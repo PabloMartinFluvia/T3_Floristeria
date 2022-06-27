@@ -1,4 +1,4 @@
-package com.calvogasullmartin.t3_floristeria.persistencia.daos;
+package com.calvogasullmartin.t3_floristeria.persistencia.dao;
 
 public abstract class DaoFactory {
     
