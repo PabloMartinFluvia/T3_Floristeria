@@ -8,7 +8,96 @@ public class App {
         return "Hello World!";
     }
 
+<<<<<<< Updated upstream
     public static void main(String[] args) {
         System.out.println(new App().getGreeting());
+=======
+    public void init() {
+        Integer opcion = null;
+        Menu menu = new Menu();
+        do {            
+            menu.mostrarMenu();
+            opcion = menu.seleccionaOpcion();              
+        } while (opcion != 0);
     }
+    
+    public void realizarTarea(Integer opcion) {
+        String floristeria = "";
+        String.tipoArticulo;
+
+
+            switch (opcion) {
+                case 1:
+                    //Crear Floristeria
+                    nombre = io.readString("¿Cuál es el nombre de la floristería?");
+                    crearFloristeriaController(nombre);
+                    break;
+                case 2:
+                    //Crear artículo
+                    tipoArticulo = io.readString("Qué tipo de artículo quieres añadir(A,F,D)?");
+                    if (tipoLetra(tipoArticulo)) { //Comprueba que la letra inngresada es correcta
+                        getFloristeriaMenu(floristeria).getStock(tipoArticulo).crearArticulo(); //Crea y añade el stock al artículo
+                        io.writeln("Articulo añadido al Stock");
+                    } else {
+                        io.writln("La letra seleccionada es erronea")
+                    }
+                    break;
+                case 3:
+                    //Eliminar artículo
+                    tipoArticulo = io.readString("Qué tipo de artículo quieres eliminar(A,F,D)?");
+                    if (tipoLetra(tipoArticulo)) { //Comprueba que la letra inngresada es correcta
+                        getStock(tipoArticulo).eliminarArticulo(); //Crea un artículo del stock
+                        io.writeln("El artículo se ha eliminado correctamente del stock.");
+                    } else {
+                        io.writln("La letra seleccionada es erronea");
+                    }
+                    break;
+                case 4:
+                    //Mostrar stock
+                    mostrarStocks();
+                    break;
+                case 5:
+                    //Mostrar stock con unidades
+                    mostrarStocksUnidades();
+                    break;
+                case 6:
+                    //Mostrar valor total del stock.
+                    valorStock();
+                    break;
+                case 7:
+                    //Crear ticket
+                    Floristeria floristeria1;
+                    floristeria1.addArticulosTicket(floristeria1);
+                    break;
+                case 8:
+                    //Mostrar tickets
+                    mostrarTickets();
+                    break;
+
+                case 9:
+                    //Mostrar total ventas
+                    mostrarVentas();
+                    break;
+                case 0:
+                    //Salir de la app
+                    salir = true;
+                    break;
+                default:
+                    io.writeln("Escoge una opción válida");
+
+            }
+
+>>>>>>> Stashed changes
+    }
+
+
+
+    static boolean tipoLetra (String nombre){
+        boolean letraAdecuada= false;
+        if(nombre.equalsIgnoreCase("a")||nombre.equalsIgnoreCase("d")||nombre.equalsIgnoreCase("f")){
+            letraAdecuada=true;
+        }
+        return letraAdecuada;
+        }
 }
+
