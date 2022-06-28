@@ -8,40 +8,23 @@ import java.util.List;
 
 
  public class ArrancarContolador {
-    
+    // atributos?
 	
 	
     public boolean isInicializado() {
-    	File f = new File("C:/Users/Marcos/Desktop/program.txt");
-    	//File f = new File(new InOut().readString("Introducir dirección "););
-    	return f.exists();
+        //o estaticos?
+    	DaoFacctoryTxt DFT = new DaoFactoryTxt();
+    	return DFT.isExtiste();
     }
     
-    public Floristeria iniciarFloristeria(){
-    	String nombre = new InOut().readString("Introducir nombre de la floristeria: ");
-    	Return = new Floristeria(nombre);
-    	   
+    public Floristeria iniciarFloristeria(/*no entiendo el parametro aqui */String nombre){
+        MenuVista mv = new MenuVista();
+    	Return = new Floristeria(mv.pedirDatosFloristeria());
     }
     
-    public int mostrarMenu(){
-        String mensaje = "\n"
-                + "\t1) Crear floristeria.\n"
-                + "\t0) SALIR.\n";        
-        InOut io = new InOut();
-        io.writeln(mensaje); 
-        
-        boolean ok =false;
-        int opcion;
-        do {
-            opcion = io.readInt("Selecciona Opcion: ");
-            if(opcion>=0 && opcion<=9){
-                ok = true;
-            }else{
-                io.writeln("Debe ser entre 0 i 1");
-            }            
-        }while(!ok);
-        return opcion;
-        
+    public int pedirQueQuiereHacer(){
+        MenuVista mv = new MenuVista();
+        return mv.pedirNuevaOpcion();
     }
 
     
