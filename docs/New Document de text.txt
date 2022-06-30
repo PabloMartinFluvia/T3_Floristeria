@@ -1,0 +1,27 @@
+{
+	nombreFloristeria: blablaba
+}
+
+{
+	nombreFloristeria:	,
+
+	stocks:[
+		stockArboles: [{
+
+		}],
+
+		stockFlores: [{
+
+		}],
+
+		stockDecoracion: [{
+
+		]},
+	],
+
+	tickets: [
+		{
+		},
+		ticket2
+	],
+}	
