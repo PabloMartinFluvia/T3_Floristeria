@@ -12,13 +12,11 @@ public class DaoFactoryTxt extends DaoFactory{
     private DecoracionDao decoracionDao;
     
 
-    @Override
-    public boolean isBDInizializada() {
-       //pendiente
-       Boolean ok = null;
-       return ok;
+    public boolean isNecesarioInicializarBD(){
+        //pendiente
+        return false;
     }
-
+    
     @Override
     public void inicializarBD() {
        //pendiente

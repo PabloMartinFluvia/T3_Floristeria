@@ -11,11 +11,10 @@ public abstract class DaoFactory {
     }
 
     public static void setFactory(DaoFactory factory) {
-        assert factory != null;
         DaoFactory.factory = factory;
     }
-    
-    public abstract boolean isBDInizializada();
+
+    public abstract boolean isNecesarioInicializarBD();
 
     public abstract void inicializarBD();        
     
