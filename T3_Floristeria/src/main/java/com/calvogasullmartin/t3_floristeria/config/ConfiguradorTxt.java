@@ -30,10 +30,8 @@ public class ConfiguradorTxt implements Configurador{
        }
     }
 
-    
+    public String getRutaArchivoTxt() {
+        return rutaArchivoTxt;
+    }  
 
-    
-    
-    
-    
 }
