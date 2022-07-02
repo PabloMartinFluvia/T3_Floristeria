@@ -1,0 +1,38 @@
+altura -> int en cm VS decimal en m
+
+el valor total del stock es un atributo de floristería.
+és redundante, però el cliente lo requiere.
+
+floristeria [1] : [3] stock
+
+versión 1:
+No hay la abstracción "producto" ->
+
+a) la relación N:N entre tiquets i productos és una chapuza: 
+	podría haber registros con tiquet_id pero con arbol_id = null + flor_id = null + decoracion_id = null
+
+b)
+saber el número en stock del producto "arbol con id = 1" hay que poner-lo en el producto (al igual que en el precio)
+
+atributo / columna precio & unidades en stock se repite en 3 tablas distintas, y representan el mismo concept -> WRONG
+
+
+versión 2:
+se añade tabla "producto"
+solución acceptable
+
+versión 3:
+(possibles mejoras en el modelado tanto en java como en mysql):
+a)
+	existe la posibilidad de cargarnos el atributo importe_venta de tiquet 
+		(no requerido y es redundante, ya que se puede obtener el valor sumando precio*cantidad de los productos del tiquet)
+	si lo hacemos se ve que un tiquet y un stock és lo mismo: "Coleccion de productos y las unidades de este" 
+	En el caso de un gestor que representa stock, hay que limitar-lo a un tipo de productos concretos.
+	Pero esto es una restricción a poner en el codigo java (muy simple), no en las relaciones.
+
+
+version 4:
+a)
+	nos cargamos tablas arbol/flor/decoracion 
+	+ añadimos las columnas en producto (con la posibilidad de que sean null)
+	+ podriamos añadir una columna categoria que sea un enum ('A','F','D')
