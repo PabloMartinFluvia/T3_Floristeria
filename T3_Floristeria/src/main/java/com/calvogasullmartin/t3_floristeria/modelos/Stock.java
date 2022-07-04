@@ -1,8 +1,8 @@
-package com.calvogasullmartin.t3_floristeria.persistencia.dto;
+package com.calvogasullmartin.t3_floristeria.modelos;
 
 import com.calvogasullmartin.t3_floristeria.modelos.ProductoManager;
 
-public class StockDto extends ProductoManager{
+public class Stock extends ProductoManager{
     // id heredado // //1:1 composicion -> embebed
     
     // Map<Producto,Integer> productos heredado //1:0_N composición ->

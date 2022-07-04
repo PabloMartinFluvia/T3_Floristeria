@@ -1,4 +1,4 @@
-package com.calvogasullmartin.t3_floristeria.persistencia.dao;
+package com.calvogasullmartin.t3_floristeria.persistencia;
 
 import java.util.List;
 

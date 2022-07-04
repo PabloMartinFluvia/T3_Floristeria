@@ -1,8 +1,8 @@
-package com.calvogasullmartin.t3_floristeria.persistencia.dto;
+package com.calvogasullmartin.t3_floristeria.modelos;
 
 import com.calvogasullmartin.t3_floristeria.modelos.Producto;
 
-public class FlorDto extends Producto{
+public class Flor extends Producto{
     
     private String color;
 

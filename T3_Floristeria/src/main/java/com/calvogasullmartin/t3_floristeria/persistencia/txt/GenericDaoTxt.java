@@ -1,6 +1,6 @@
-package com.calvogasullmartin.t3_floristeria.persistencia.dao.txt;
+package com.calvogasullmartin.t3_floristeria.persistencia.txt;
 
-import com.calvogasullmartin.t3_floristeria.persistencia.dao.GenericDao;
+import com.calvogasullmartin.t3_floristeria.persistencia.GenericDao;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import java.io.File;
 import java.io.IOException;

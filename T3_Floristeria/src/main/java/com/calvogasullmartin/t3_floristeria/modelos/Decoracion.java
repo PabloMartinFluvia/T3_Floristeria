@@ -1,8 +1,8 @@
-package com.calvogasullmartin.t3_floristeria.persistencia.dto;
+package com.calvogasullmartin.t3_floristeria.modelos;
 
 import com.calvogasullmartin.t3_floristeria.modelos.Material;
 
-public class DecoracionDto {
+public class Decoracion {
     
     private Material material;
 

@@ -1,4 +1,4 @@
-package com.calvogasullmartin.t3_floristeria.persistencia.dao;
+package com.calvogasullmartin.t3_floristeria.persistencia;
 
 public abstract class DaoFactory {
     
@@ -12,11 +12,7 @@ public abstract class DaoFactory {
 
     public static void setFactory(DaoFactory factory) {
         DaoFactory.factory = factory;
-    }
-
-    public abstract boolean isNecesarioInicializarBD();
-
-    public abstract void inicializarBD();        
+    }    
     
     public abstract FloristeriaDao getFloristeriaDao();
 
@@ -29,4 +25,6 @@ public abstract class DaoFactory {
     public abstract FlorDao getFlorDao();
     
     public abstract DecoracionDao getDecoracionDao();
+    
+    public abstract Conector getConector();
 }

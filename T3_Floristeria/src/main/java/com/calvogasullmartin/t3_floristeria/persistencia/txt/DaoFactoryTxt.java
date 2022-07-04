@@ -1,6 +1,13 @@
-package com.calvogasullmartin.t3_floristeria.persistencia.dao.txt;
+package com.calvogasullmartin.t3_floristeria.persistencia.txt;
 
-import com.calvogasullmartin.t3_floristeria.persistencia.dao.*;
+import com.calvogasullmartin.t3_floristeria.persistencia.FloristeriaDao;
+import com.calvogasullmartin.t3_floristeria.persistencia.DaoFactory;
+import com.calvogasullmartin.t3_floristeria.persistencia.FlorDao;
+import com.calvogasullmartin.t3_floristeria.persistencia.TicketDao;
+import com.calvogasullmartin.t3_floristeria.persistencia.ArbolDao;
+import com.calvogasullmartin.t3_floristeria.persistencia.Conector;
+import com.calvogasullmartin.t3_floristeria.persistencia.DecoracionDao;
+import com.calvogasullmartin.t3_floristeria.persistencia.StockDao;
 
 public class DaoFactoryTxt extends DaoFactory{
     
@@ -9,18 +16,8 @@ public class DaoFactoryTxt extends DaoFactory{
     private TicketDao ticketDao;
     private ArbolDao arbolDao;
     private FlorDao florDao;
-    private DecoracionDao decoracionDao;
-    
-
-    public boolean isNecesarioInicializarBD(){
-        //pendiente
-        return false;
-    }
-    
-    @Override
-    public void inicializarBD() {
-       //pendiente
-    }
+    private DecoracionDao decoracionDao;  
+    private Conector conector;
 
     @Override
     public FloristeriaDao getFloristeriaDao() {
@@ -68,6 +65,14 @@ public class DaoFactoryTxt extends DaoFactory{
             decoracionDao = new DecoracionDaoTxt();
         }
         return decoracionDao;
+    }
+
+    @Override
+    public Conector getConector() {
+       if (conector == null) {
+            conector = new ConectorTxt();
+        }
+        return conector;
     }
     
 }

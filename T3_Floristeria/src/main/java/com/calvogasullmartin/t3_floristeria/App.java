@@ -1,8 +1,7 @@
 package com.calvogasullmartin.t3_floristeria;
 
 import com.calvogasullmartin.t3_floristeria.config.Configurador;
-import com.calvogasullmartin.t3_floristeria.config.ConfiguradorTxt;
-import com.calvogasullmartin.t3_floristeria.persistencia.dao.DaoFactory;
+import com.calvogasullmartin.t3_floristeria.persistencia.DaoFactory;
 
 public class App {
     
@@ -20,7 +19,7 @@ public class App {
     Constructor
     */
     public App(){
-        configurador = new ConfiguradorTxt();                
+        configurador = new Configurador();                
     }
     
     /*
