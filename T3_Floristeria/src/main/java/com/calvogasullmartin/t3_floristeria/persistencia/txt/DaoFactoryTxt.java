@@ -11,14 +11,25 @@ import com.calvogasullmartin.t3_floristeria.persistencia.StockDao;
 
 public class DaoFactoryTxt extends DaoFactory{
     
+    private Conector conector;
     private FloristeriaDao floristeriaDao;
+    
+    /*
     private StockDao stockDao;
     private TicketDao ticketDao;
     private ArbolDao arbolDao;
     private FlorDao florDao;
     private DecoracionDao decoracionDao;  
-    private Conector conector;
+    */
 
+    @Override
+    public Conector getConector() {
+       if (conector == null) {
+            conector = new ConectorTxt();
+        }
+        return conector;
+    }
+    
     @Override
     public FloristeriaDao getFloristeriaDao() {
        if (floristeriaDao == null) {
@@ -27,6 +38,7 @@ public class DaoFactoryTxt extends DaoFactory{
         return floristeriaDao;
     }
 
+    /*
     @Override
     public StockDao getStockDao() {
        if (stockDao == null) {
@@ -65,14 +77,6 @@ public class DaoFactoryTxt extends DaoFactory{
             decoracionDao = new DecoracionDaoTxt();
         }
         return decoracionDao;
-    }
-
-    @Override
-    public Conector getConector() {
-       if (conector == null) {
-            conector = new ConectorTxt();
-        }
-        return conector;
-    }
-    
+    }   
+    */
 }
