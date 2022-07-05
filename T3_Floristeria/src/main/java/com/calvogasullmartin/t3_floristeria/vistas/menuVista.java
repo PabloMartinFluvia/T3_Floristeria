@@ -1,7 +1,7 @@
 package com.calvogasullmartin.t3_floristeria.vistas;
 
 public class MenuVista {
-    
+
     /*
     public static void mostrarMenu() {
         String mensaje = "MENU INICAL:\n"
