@@ -4,5 +4,5 @@ public interface Conector {
     
     public boolean isBDInicizializada();
     
-    public void inicializadBD();
+    public void inicializarBD();
 }
