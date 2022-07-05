@@ -22,6 +22,20 @@ public class InOut {
 		} while (!ok);
 		return input;
 	}
+        
+        public int readInt(String title) {
+		int input = 0;
+		boolean ok = false;
+		do {
+			try {
+				input = Integer.parseInt(this.readString(title));
+				ok = true;
+			} catch (Exception ex) {
+				this.writeError("entero");
+			}
+		} while (!ok);
+		return input;
+	}
 
 	public void writeln() {
 		System.out.println();
