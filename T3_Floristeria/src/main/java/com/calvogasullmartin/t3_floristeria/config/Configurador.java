@@ -2,20 +2,18 @@ package com.calvogasullmartin.t3_floristeria.config;
 
 import com.calvogasullmartin.t3_floristeria.persistencia.DaoFactory;
 import com.calvogasullmartin.t3_floristeria.persistencia.txt.DaoFactoryTxt;
-import java.io.File;
-
 
 
 public class Configurador{
-    
-    //provisional, se guarda dentro de la carpeta src
-    private final String rutaArchivoTxt = "floristeria.txt";
-    
-    public void configurarPersistenciaFactory() {
-        // de momento se inyecta todo "a puro codigo" en un solo método, solo para que funcione
+          
+    public void inyectarFactory() {        
         DaoFactory.setFactory(new DaoFactoryTxt());
     }
     
+    //provisional, se guarda dentro de la carpeta src
+    //private final String rutaArchivoTxt = "floristeria.txt";
+    
+    /*
     public boolean validarBD() {
        File archivo = new File(rutaArchivoTxt);
        if (archivo.exists() && !archivo.isDirectory()){
@@ -27,9 +25,11 @@ public class Configurador{
            return false;
        }
     }
-
+    */
+    
+    /*
     public String getRutaArchivoTxt() {
         return rutaArchivoTxt;
     }  
-
+    */
 }
