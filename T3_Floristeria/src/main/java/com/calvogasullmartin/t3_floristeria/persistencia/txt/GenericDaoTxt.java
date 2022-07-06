@@ -1,40 +1,30 @@
 package com.calvogasullmartin.t3_floristeria.persistencia.txt;
 
 import com.calvogasullmartin.t3_floristeria.persistencia.GenericDao;
-import com.fasterxml.jackson.databind.ObjectMapper;
-import java.io.File;
+import com.calvogasullmartin.t3_floristeria.utils.JsonManager;
 import java.io.IOException;
-import java.util.LinkedList;
-import java.util.List;
 
-public class GenericDaoTxt<T,ID> implements GenericDao<T, ID>{
-    
-    private ObjectMapper mapper;
-    //chapuza ->
-    private final String rutaArchivoTxt = "floristeria.txt";
+public class GenericDaoTxt<T, ID> implements GenericDao<T, ID> {
+
+    protected JsonManager gestor;
 
     public GenericDaoTxt() {
-        this.mapper = new ObjectMapper();
-    }        
-
-    @Override
-    public void create(T entity) {
-        // testeando, también incializa        
-        try {
-            //passar un objecte a json i escriure'l en un arxiu
-            mapper.writeValue(new File(rutaArchivoTxt), entity);
-        } catch (IOException ex) {
-            System.err.println(ex);
-        }
+        gestor = new JsonManager(new ConectorTxt().getArchivoTxt());
     }
 
+    @Override
+    public void create(T entity) throws IOException{
+        assert entity != null;
+        gestor.writeInFile(entity); //appendable + nulls fields ignored
+    }
+    /*
     @Override
     public T read(ID id) {
-        T dto = null;
-        //Pendiente
-        return dto;
+        //pendiente
     }
-
+    */
+    
+    /*
     @Override
     public void update(T entity) {
         //Pendiente
@@ -50,5 +40,6 @@ public class GenericDaoTxt<T,ID> implements GenericDao<T, ID>{
         List<T> entidades = new LinkedList<>();
         //Pendiente
         return entidades;
-    }    
+    }  
+     */
 }
