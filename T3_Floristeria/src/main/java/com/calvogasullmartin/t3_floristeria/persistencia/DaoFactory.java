@@ -6,10 +6,11 @@ public abstract class DaoFactory {
 
     public static DaoFactory getFactory() {
         assert factory != null;
-        return factory;
+        return DaoFactory.factory;
     }
     
     public static void setFactory(DaoFactory factory) {
+        assert factory != null;
         DaoFactory.factory = factory;
     }    
     
