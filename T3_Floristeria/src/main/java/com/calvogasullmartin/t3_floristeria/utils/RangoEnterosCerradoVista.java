@@ -4,15 +4,15 @@ class RangoEnterosCerradoVista {
 
 	private String title;
 	
-	private RangoEnterosCerrado closedInterval;
+	private RangoEnterosCerrado rango;
 	
 	private InOut io;
 	
-	public RangoEnterosCerradoVista(String title, RangoEnterosCerrado closedInterval){
+	public RangoEnterosCerradoVista(String title, RangoEnterosCerrado rango){
 		assert title != null;
-		assert closedInterval != null;
+		assert rango != null;
 		this.title = title;
-		this.closedInterval = closedInterval;
+		this.rango = rango;
 		io = new InOut();
 	}
 	
@@ -22,6 +22,6 @@ class RangoEnterosCerradoVista {
 	
 	@Override
 	public String toString() {
-		return "[" + closedInterval.getMin() + ", " + closedInterval.getMax() + "]";
+		return "[" + rango.getMin() + ", " + rango.getMax() + "]";
 	}
 }

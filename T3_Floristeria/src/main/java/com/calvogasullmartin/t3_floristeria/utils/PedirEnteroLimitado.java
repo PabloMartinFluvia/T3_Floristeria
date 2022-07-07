@@ -4,15 +4,15 @@ public class PedirEnteroLimitado {
 
 	private String title;
 	
-	private RangoEnterosCerrado limits;
+	private RangoEnterosCerrado rango;
 	
-	private RangoEnterosCerradoVista limitsView;
+	private RangoEnterosCerradoVista rangoVista;
 	
 	public PedirEnteroLimitado(String title, int min, int max){
 		assert title != null;
-		this.limits = new RangoEnterosCerrado(min, max);
-		limitsView = new RangoEnterosCerradoVista("El valor debe estar entre ", limits);
-		this.title = title + " " + limitsView + ": ";
+		this.rango = new RangoEnterosCerrado(min, max);
+		rangoVista = new RangoEnterosCerradoVista("El valor debe estar entre ", rango);
+		this.title = title + " " + rangoVista + ": ";
 	}
 	
 	public PedirEnteroLimitado(String title, int max){
@@ -25,9 +25,9 @@ public class PedirEnteroLimitado {
 		boolean ok;
 		do {
 			value = io.readInt(title);
-			ok = limits.includes(value);
+			ok = rango.includes(value);
 			if (!ok) {
-				limitsView.writeln();
+				rangoVista.writeln();
 			}
 		} while (!ok);
 		return value;
