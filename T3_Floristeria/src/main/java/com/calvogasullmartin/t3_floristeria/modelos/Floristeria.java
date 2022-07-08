@@ -1,5 +1,6 @@
 package com.calvogasullmartin.t3_floristeria.modelos;
 
+import java.util.LinkedList;
 import java.util.List;
 
 public class Floristeria {
@@ -23,64 +24,54 @@ public class Floristeria {
         valorStocksTotal = null;
         valorTicketsTotal = null;
         stocks = new ConjuntoProductos[3]; // elements = null
-        ti
+        tiquets = new LinkedList<>(); // size = 0
     }
 
-    public void setId(int id) {
-        assert id == 1; // la aplicacion es solo para una floristeria
-        this.id = id;
-    }
-    
-    public void setNombre(String nombre) {
-        assert nombre != null;
-        //faltan mas validaciones
-        this.nombre = nombre;
-    }
-    
-    public void setValorTotal(float valorTotal) {
-        assert valorTotal >= 0f; 
-        this.valorTotal = valorTotal;
-    }
-    
-    public String getNombre() {
-        assert nombre != null;
-        //faltan mas validaciones
-        return nombre;
-    }    
-    
-    /*
-    public int getId() {
-        assert id == 1;
-        return id;
-    } 
-    
-    public float getValorTotal() {
-        assert valorTotal >= 0f; 
-        return valorTotal;
+    public Integer getFloristeria_id() {
+        return floristeria_id;
     }
 
-    public Map<Categoria, Stock> getStocks() {
+    public void setFloristeria_id(Integer floristeria_id) {
+        this.floristeria_id = floristeria_id;
+    }
+
+    public String getNombre_floristeria() {
+        return nombre_floristeria;
+    }
+
+    public void setNombre_floristeria(String nombre_floristeria) {
+        this.nombre_floristeria = nombre_floristeria;
+    }
+
+    public Float getValorStocksTotal() {
+        return valorStocksTotal;
+    }
+
+    public void setValorStocksTotal(Float valorStocksTotal) {
+        this.valorStocksTotal = valorStocksTotal;
+    }
+
+    public Float getValorTicketsTotal() {
+        return valorTicketsTotal;
+    }
+
+    public void setValorTicketsTotal(Float valorTicketsTotal) {
+        this.valorTicketsTotal = valorTicketsTotal;
+    }
+
+    public ConjuntoProductos[] getStocks() {
         return stocks;
     }
 
-    public void setStocks(Map<Categoria, Stock> stocks) {
+    public void setStocks(ConjuntoProductos[] stocks) {
         this.stocks = stocks;
-    }    
-
-    public List<Ticket> getTickets() {
-        return tickets;
     }
 
-    public void setTickets(List<Ticket> tickets) {
-        this.tickets = tickets;
+    public List<ConjuntoProductos> getTiquets() {
+        return tiquets;
     }
 
-    public float getVentasToal() {
-        return ventasToal;
-    }
-
-    public void setVentasToal(float ventasToal) {
-        this.ventasToal = ventasToal;
-    } 
-    */
+    public void setTiquets(List<ConjuntoProductos> tiquets) {
+        this.tiquets = tiquets;
+    }   
 }
