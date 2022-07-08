@@ -19,11 +19,11 @@ public class Floristeria {
    
     public Floristeria() {
         // constructor -> null o conjuntos vacíos  
-        floristeria_id = null;
+        floristeria_id = null; 
         nombre_floristeria = null;
-        valorStocksTotal = null;
-        valorTicketsTotal = null;
-        stocks = new ConjuntoProductos[3]; // elements = null
+        valorStocksTotal = 0f;
+        valorTicketsTotal = 0f;
+        stocks = new ConjuntoProductos[3]; // elements = null        
         tiquets = new LinkedList<>(); // size = 0
     }
 
