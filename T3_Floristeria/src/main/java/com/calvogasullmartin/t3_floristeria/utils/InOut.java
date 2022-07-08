@@ -2,11 +2,15 @@ package com.calvogasullmartin.t3_floristeria.utils;
 
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
+import java.util.Scanner;
 
 public class InOut {
 
-	private BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(
-			System.in));
+        //Correcte per a ingés. Si es vol posar accents o apostrofs dona problemes
+	//private BufferedReader lector = new BufferedReader(new InputStreamReader(System.in));
+    
+        //Per a ES/CAT
+        private Scanner lector = new Scanner(System.in);
 
 	public String readString(String title) {
 		String input = null;
@@ -14,7 +18,8 @@ public class InOut {
 		do {
 			this.write(title);
 			try {
-				input = bufferedReader.readLine();
+				//input = lector.readLine(); // Buffered Reader
+                                input = lector.nextLine(); // Scanner
 				ok = true;
 			} catch (Exception ex) {
 				this.writeError("de cadena de caracteres");
@@ -35,6 +40,21 @@ public class InOut {
 			}
 		} while (!ok);
 		return input;
+	}
+        
+        public char readChar(String title) {
+		char charValue = ' ';
+		boolean ok = false;
+		do {
+			String input = this.readString(title);
+			if (input.length() != 1) {
+				this.writeError("caracter");
+			} else {
+				charValue = input.charAt(0);
+				ok = true;
+			}
+		} while (!ok);
+		return charValue;
 	}
 
 	public void writeln() {

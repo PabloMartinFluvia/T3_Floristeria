@@ -19,32 +19,47 @@ public class Floristeria {
     
     private float ventasToal; //1:1 composicion -> embebed  
     */
-
-    public int getId() {
-        return id;
+   
+    public Floristeria() {
+        //ningun valor válido -> si no se hacen los setters el programa petará       
+        id = 0;
+        nombre = null;
+        valorTotal = -1f;
     }
 
     public void setId(int id) {
+        assert id == 1; // la aplicacion es solo para una floristeria
         this.id = id;
     }
-
-    public String getNombre() {
-        return nombre;
-    }
-
+    
     public void setNombre(String nombre) {
+        assert nombre != null;
+        //faltan mas validaciones
         this.nombre = nombre;
     }
     
+    public void setValorTotal(float valorTotal) {
+        assert valorTotal >= 0f; 
+        this.valorTotal = valorTotal;
+    }
+    
+    public String getNombre() {
+        assert nombre != null;
+        //faltan mas validaciones
+        return nombre;
+    }    
+    
+    /*
+    public int getId() {
+        assert id == 1;
+        return id;
+    } 
+    
     public float getValorTotal() {
+        assert valorTotal >= 0f; 
         return valorTotal;
     }
 
-    public void setValorTotal(float valorTotal) {
-        this.valorTotal = valorTotal;
-    }
-
-    /*
     public Map<Categoria, Stock> getStocks() {
         return stocks;
     }
