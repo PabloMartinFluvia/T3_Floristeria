@@ -1,30 +1,29 @@
 package com.calvogasullmartin.t3_floristeria.modelos;
 
+import java.util.List;
+
 public class Floristeria {
     
-    private int id; //1:1 composicion -> embebed
+    private Integer floristeria_id; 
     
-    private String nombre; //1:1 composicion -> embebed
+    private String nombre_floristeria; 
     
-    private float valorTotal; //1:1 composicion -> embebed
+    private Float valorStocksTotal; 
     
-    /*
-    private Map<Categoria,Stock> stocks; //1:3 composición ->
-                            //array de stocls embebed en json / mongo
-                            // tabla extra en mysql registros floristeria_id / stock_id        
+    private Float valorTicketsTotal; 
     
-    private List<Ticket> tickets; //1:0_N composición ->
-                            //array de tickets embebed en json / mongo
-                            // tabla extra en mysql registros floristeria_id / ticket_id
+    private ConjuntoProductos[] stocks;
     
-    private float ventasToal; //1:1 composicion -> embebed  
-    */
+    private List<ConjuntoProductos> tiquets;
    
     public Floristeria() {
-        //ningun valor válido -> si no se hacen los setters el programa petará       
-        id = 0;
-        nombre = null;
-        valorTotal = -1f;
+        // constructor -> null o conjuntos vacíos  
+        floristeria_id = null;
+        nombre_floristeria = null;
+        valorStocksTotal = null;
+        valorTicketsTotal = null;
+        stocks = new ConjuntoProductos[3]; // elements = null
+        ti
     }
 
     public void setId(int id) {
