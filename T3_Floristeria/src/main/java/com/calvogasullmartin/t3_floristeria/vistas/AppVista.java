@@ -27,6 +27,8 @@ public class AppVista {
         if (controlador.isPrimeraVez()) {
             // sacar mensaje "es la primera vez que se arranca..."
            new FloristeriaVista(controlador).solicitarDatos();
+           //mensaje de guardado con exito
+           controlador.setEstado(Estado.IN_MENU);
         } else {
             String nombre;
             try {
