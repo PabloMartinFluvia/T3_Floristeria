@@ -2,9 +2,9 @@ package com.calvogasullmartin.t3_floristeria.modelos;
 
 public enum Categoria {
     
-    ARBOL("Arbol"),
-    FLOR("Flor"),
-    DECORACION("Decoracion");
+    ARBOL("ÁRBOL"),
+    FLOR("FLOR"),
+    DECORACION("DECORACIÓN");
     
     private String abreviatura;
 
