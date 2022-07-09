@@ -6,7 +6,7 @@ import com.calvogasullmartin.t3_floristeria.persistencia.DaoFactoryTxt;
 
 public class Configurador{
           
-    public void configurar() {        
+    public void configurarDaoFactory() {        
         DaoFactory.setFactory(new DaoFactoryTxt());
     }
 }
