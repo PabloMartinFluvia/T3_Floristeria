@@ -1,8 +1,8 @@
 package com.calvogasullmartin.t3_floristeria.vistas;
 
 import com.calvogasullmartin.t3_floristeria.VistaInterface;
-import com.calvogasullmartin.t3_floristeria.controladores.ArrancarAppControladorInterface;
-import com.calvogasullmartin.t3_floristeria.controladores.ControladorFuncionalInterface;
+import com.calvogasullmartin.t3_floristeria.controladores.ControladorFuncional;
+import com.calvogasullmartin.t3_floristeria.controladores.ArrancarAppControlador;
 
 public class AppVista implements VistaInterface{
 
@@ -16,20 +16,20 @@ public class AppVista implements VistaInterface{
 
 
     @Override
-    public void interactuar(ControladorFuncionalInterface controlador) {
+    public void interactuar(ControladorFuncional controlador) {
         assert controlador != null;
         controlador.aceptar(this);
     }
 
     @Override
-    public void visitar(ArrancarAppControladorInterface arrancarAppControlador) {
+    public void visitar(ArrancarAppControlador arrancarAppControlador) {
         bienvenidaVista.interactuar(arrancarAppControlador);
     }
     
     //private InOut io = new InOut();
     
     /*
-    public void interactuar(ControladorFuncionalInterface controlador) {
+    public void interactuar(ControladorFuncional controlador) {
         if (controlador instanceof ArrancarAppControlador) {
             interactuar(controlador);
         }

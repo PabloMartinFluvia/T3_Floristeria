@@ -1,11 +1,13 @@
-package com.calvogasullmartin.t3_floristeria.controladores;
+package com.calvogasullmartin.t3_floristeria.controladores.locales;
 
 
+import com.calvogasullmartin.t3_floristeria.controladores.locales.ArrancarAppControlador;
 import com.calvogasullmartin.t3_floristeria.LogicaInterface;
 import com.calvogasullmartin.t3_floristeria.modelos.Aplicacion;
 import com.calvogasullmartin.t3_floristeria.modelos.Estado;
 import java.util.HashMap;
 import java.util.Map;
+import com.calvogasullmartin.t3_floristeria.controladores.ControladorFuncional;
 
 public class Logica implements LogicaInterface{    
     //atributos:
@@ -17,7 +19,7 @@ public class Logica implements LogicaInterface{
     // los controladores se asocian a los modelos con los que "trabajan"
     private ArrancarAppControlador arrancarAppControlador; 
     //añadir más a medida que se amplie la funcionalidad
-    private Map<Estado,ControladorFuncionalInterface> controladores;            
+    private Map<Estado,ControladorFuncional> controladores;            
 
     public Logica() {
         aplicacion = new Aplicacion(); // la aplicacion pone el estado = INICIAL
@@ -34,7 +36,7 @@ public class Logica implements LogicaInterface{
     }
         
     @Override
-    public ControladorFuncionalInterface getControladorFuncional(){
+    public ControladorFuncional getControladorFuncional(){
             return controladores.get(aplicacion.getEstado());        
     }
 }

@@ -1,4 +1,4 @@
-package com.calvogasullmartin.t3_floristeria.controladores;
+package com.calvogasullmartin.t3_floristeria.controladores.locales;
 
 import com.calvogasullmartin.t3_floristeria.modelos.Estado;
 
