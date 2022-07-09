@@ -2,7 +2,9 @@ package com.calvogasullmartin.t3_floristeria.controladores.locales;
 
 import com.calvogasullmartin.t3_floristeria.controladores.ArrancarAppControlador;
 import com.calvogasullmartin.t3_floristeria.controladores.ControladorFuncionalVisitor;
+import com.calvogasullmartin.t3_floristeria.modelos.Aplicacion;
 import com.calvogasullmartin.t3_floristeria.modelos.Estado;
+import com.calvogasullmartin.t3_floristeria.modelos.Estados;
 import com.calvogasullmartin.t3_floristeria.modelos.Floristeria;
 import com.calvogasullmartin.t3_floristeria.persistencia.Conector;
 import java.io.IOException;
@@ -12,8 +14,8 @@ public class LocalArrancarAppControlador extends LocalControladorFuncional imple
     
     private Floristeria floristeria;
     
-    public LocalArrancarAppControlador(Estado estado, Floristeria floristeria) {
-        super(estado);      
+    public LocalArrancarAppControlador(Estados estados, Floristeria floristeria) {        
+        super(estados);    
         this.floristeria = floristeria;
     }
     
@@ -23,9 +25,6 @@ public class LocalArrancarAppControlador extends LocalControladorFuncional imple
         boolean ok = true;
         if(conector.isBDInicizializada()){
             ok=false;
-        }
-        else{
-            ok = true;
         }
         return ok;
     }
@@ -53,8 +52,8 @@ public class LocalArrancarAppControlador extends LocalControladorFuncional imple
     }
 
     @Override
-    public void seleccionarMenu() {
-        this.setEstado(Estado.EN_MENU);
+    public void seleccionarMenu() {          
+        this.setEstado(Estado.EN_MENU); 
     }
     
     @Override
