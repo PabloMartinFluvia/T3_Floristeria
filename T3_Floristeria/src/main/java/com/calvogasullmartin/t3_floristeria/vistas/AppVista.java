@@ -1,27 +1,41 @@
 package com.calvogasullmartin.t3_floristeria.vistas;
 
-import com.calvogasullmartin.t3_floristeria.controladores.ArrancarAppControlador;
+import com.calvogasullmartin.t3_floristeria.VistaInterface;
 import com.calvogasullmartin.t3_floristeria.controladores.ControladorFuncional;
-import com.calvogasullmartin.t3_floristeria.modelos.Estado;
-import com.calvogasullmartin.t3_floristeria.utils.InOut;
-import java.io.IOException;
-import java.util.logging.Level;
-import java.util.logging.Logger;
+import com.calvogasullmartin.t3_floristeria.controladores.ArrancarAppControlador;
 
-public class AppVista {
+public class AppVista implements VistaInterface{
 
-    private InOut io = new InOut();
+    //atributos: las vistas que interactuaran con cada controlador que llegue
+    private BienvenidaVista bienvenidaVista;
 
     public AppVista() {
+        //instanciar los atributos (hacer el new). Sus constructores no tienen parametors
+        bienvenidaVista = new BienvenidaVista();
     }
 
-    public void interactua(ControladorFuncional controlador) {
+
+    @Override
+    public void interactuar(ControladorFuncional controlador) {
+        assert controlador != null;
+        controlador.aceptar(this);
+    }
+
+    @Override
+    public void visitar(ArrancarAppControlador arrancarAppControlador) {
+        bienvenidaVista.interactuar(arrancarAppControlador);
+    }
+    
+    //private InOut io = new InOut();
+    
+    /*
+    public void interactuar(ControladorFuncional controlador) {
         if (controlador instanceof ArrancarAppControlador) {
-            interactua(controlador);
+            interactuar(controlador);
         }
     }
 
-    public void interactua(ArrancarAppControlador controlador) {
+    public void interactuar(ArrancarAppControlador controlador) {
         BienvenidaVista bienvenida = new BienvenidaVista(controlador);
 
         if (controlador.isPrimeraVez()) {
@@ -41,5 +55,5 @@ public class AppVista {
 
         }
     }
-
+*/
 }

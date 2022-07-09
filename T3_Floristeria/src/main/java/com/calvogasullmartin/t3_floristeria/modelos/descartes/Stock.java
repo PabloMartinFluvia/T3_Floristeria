@@ -1,6 +1,6 @@
-package com.calvogasullmartin.t3_floristeria.modelos;
+package com.calvogasullmartin.t3_floristeria.modelos.descartes;
 
-import com.calvogasullmartin.t3_floristeria.modelos.ProductoManager;
+import com.calvogasullmartin.t3_floristeria.modelos.descartes.ProductoManager;
 
 public class Stock extends ProductoManager{
     // id heredado // //1:1 composicion -> embebed

@@ -7,8 +7,7 @@ public enum Estado {
     //* Incluso un caso de uso puede devolverte al mismo estado si sucede algun "if"
     //** initial y exit se incluyen siempre
     INITIAL,    
-    IN_MENU, // NO CHOICE
-    SELECTED_ADD_NEW_PRODUCT,
+    EN_MENU,
     //aqui habran más
     EXIT;    
 }

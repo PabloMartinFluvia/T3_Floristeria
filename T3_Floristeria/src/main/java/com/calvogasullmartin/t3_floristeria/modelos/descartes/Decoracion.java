@@ -1,5 +1,6 @@
-package com.calvogasullmartin.t3_floristeria.modelos;
+package com.calvogasullmartin.t3_floristeria.modelos.descartes;
 
+import com.calvogasullmartin.t3_floristeria.modelos.Material;
 import com.calvogasullmartin.t3_floristeria.modelos.Material;
 
 public class Decoracion {

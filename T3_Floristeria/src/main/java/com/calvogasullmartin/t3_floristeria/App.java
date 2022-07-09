@@ -1,47 +1,38 @@
 package com.calvogasullmartin.t3_floristeria;
 
 import com.calvogasullmartin.t3_floristeria.config.Configurador;
-import com.calvogasullmartin.t3_floristeria.controladores.ControladorFuncional;
-import com.calvogasullmartin.t3_floristeria.controladores.Logica;
-import com.calvogasullmartin.t3_floristeria.modelos.Estado;
+import com.calvogasullmartin.t3_floristeria.controladores.locales.Logica;
 import com.calvogasullmartin.t3_floristeria.vistas.AppVista;
+import com.calvogasullmartin.t3_floristeria.controladores.ControladorFuncional;
+
 
 public class App {
     
-    private Logica logica;
-    private Estado estado;
-    private AppVista vistaPrincipal;
+    private LogicaInterface logica;
     
-    private App (){
-        configurar();
-        estado = Estado.INITIAL;
-        logica = new Logica(estado); 
-        vistaPrincipal = new AppVista();
-    }
+    private VistaInterface vistaPrincipal;        
     
-    public static void main(String[] args) {
-        new App().ejecutar();
-    }    
+    public App (LogicaInterface logica, VistaInterface vistaPrincipal){
+        configurar();    
+        this.logica = logica;
+        this.vistaPrincipal = vistaPrincipal;
+    }            
     
-    /*
-    Inicializa la configuración inicial.
-    Que base de datos se usa, que familia de vistas, que famila de controladores, etc...    
-    */
     private void configurar(){
-        new Configurador().configurar();         
+        new Configurador().configurarDaoFactory();         
     }
     
-    /*
-    Arranca la aplicación
-    */
     private void ejecutar(){
         ControladorFuncional controlador;        
         do{
-            controlador = logica.getControlador();
+            controlador = logica.getControladorFuncional();
             if (controlador != null){
-                vistaPrincipal.interactua(controlador);
+                vistaPrincipal.interactuar(controlador);
             }            
         }while(controlador != null);
-        // vistaPrincipal.despidete;
+    } 
+    
+    public static void main(String[] args) {        
+        new App(new Logica(), new AppVista()).ejecutar();
     }
 }

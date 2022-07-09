@@ -1,14 +1,15 @@
 package com.calvogasullmartin.t3_floristeria.modelos;
 
-public enum Categoria {
-    
-    ARBOL("ÁRBOL"),
-    FLOR("FLOR"),
-    DECORACION("DECORACIÓN");
+public enum Altura {
+    MUY_ALTO("MUY_ALTO"),
+    ALTO("ALTO"),
+    MEDIANO("MEDIANO"),
+    BAJO("BAJO"),
+    MUY_BAJO("MUY_BAJO");
     
     private String abreviatura;
 
-    private Categoria(String abreviatura) {
+    private Altura(String abreviatura) {
         this.abreviatura = abreviatura;
     }
     

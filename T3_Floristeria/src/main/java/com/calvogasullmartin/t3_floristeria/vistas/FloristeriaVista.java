@@ -1,31 +1,43 @@
 package com.calvogasullmartin.t3_floristeria.vistas;
 
-import com.calvogasullmartin.t3_floristeria.controladores.ArrancarAppControlador;
-import com.calvogasullmartin.t3_floristeria.controladores.ControladorFuncional;
 import com.calvogasullmartin.t3_floristeria.utils.InOut;
+import com.calvogasullmartin.t3_floristeria.controladores.ArrancarAppControlador;
 import java.io.IOException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
 public class FloristeriaVista {
-    
-    private ArrancarAppControlador controlador;
+
     private InOut io;
 
-    public FloristeriaVista(ArrancarAppControlador controlador) {
-        this.controlador = controlador;
+    public FloristeriaVista() {
         this.io = new InOut();
     }
-        
-    
-    public void solicitarDatos(){
-        // pedir nombre al usuario // validar que sea correcto
-        String nombre = null;
+
+    public void interactuar(ArrancarAppControlador controlador) {
+        String nombre = pedirNombre();
         try {
-            controlador.guardarUnicaFloristeria(nombre);
+            controlador.iniciarFloristeria(nombre);
+            controlador.guardarUnicaFloristeria();
+            io.write("Floristeria guardada con éxito.");
         } catch (IOException ex) {
-            System.err.println("dgsd");
+            ////que hacer con la excepcion
         }
-        
     }
+
+    private String pedirNombre() {
+        String nombre = null;
+        boolean ok = false;
+        int minNumChar = 3;
+        do {
+            nombre = io.readString("Introduce el nombre de la floristeria: ");
+            if (nombre.length() < minNumChar) {
+                io.writeError("de al menos 3 caracteres");
+            } else {
+                ok = true;
+            }
+        } while (!ok);
+        return null;
+    }
+
 }

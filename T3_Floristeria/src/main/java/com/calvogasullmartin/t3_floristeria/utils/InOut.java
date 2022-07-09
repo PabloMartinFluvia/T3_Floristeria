@@ -69,7 +69,7 @@ public class InOut {
 		System.out.println(string);
 	}
 
-	private void writeError(String formato) {
+	public void writeError(String formato) {
 		System.err.println("ERROR DE FORMATO! "
 				+ "Introduzca un valor con formato " + formato + ".");
 	}

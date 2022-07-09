@@ -1,4 +1,5 @@
-package com.calvogasullmartin.t3_floristeria.modelos;
+package com.calvogasullmartin.t3_floristeria.modelos.descartes;
+
 
 public abstract class Producto {
     
