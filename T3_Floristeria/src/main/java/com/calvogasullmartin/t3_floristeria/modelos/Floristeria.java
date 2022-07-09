@@ -17,13 +17,13 @@ public class Floristeria {
     
     private List<ConjuntoProductos> tiquets;
    
-    public Floristeria() {
+    public Floristeria(int numCategorias) {
         // constructor -> null o conjuntos vacíos  
         floristeria_id = null; 
         nombre_floristeria = null;
         valorStocksTotal = 0f;
         valorTicketsTotal = 0f;
-        stocks = new ConjuntoProductos[3]; // elements = null        
+        stocks = new ConjuntoProductos[numCategorias]; // elements = null        
         tiquets = new LinkedList<>(); // size = 0
     }
 
