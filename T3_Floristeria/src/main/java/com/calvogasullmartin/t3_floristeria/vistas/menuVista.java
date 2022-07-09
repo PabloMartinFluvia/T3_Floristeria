@@ -1,73 +1,106 @@
 package com.calvogasullmartin.t3_floristeria.vistas;
 
+import com.calvogasullmartin.t3_floristeria.controladores.MenuControlador;
+import com.calvogasullmartin.t3_floristeria.utils.InOut;
+import com.calvogasullmartin.t3_floristeria.utils.PedirEnteroLimitado;
+import java.util.Scanner;
+
 public class MenuVista {
 
-    /*
-    public static void mostrarMenu() {
-        String mensaje = "MENU INICAL:\n"
-                + "\t1) Añadir articulo.\n"
-                + "\t2) Eliminar articulo.\n"
-                + "\t3) Mostrar lista del stock.\n"
-                + "\t4) Mostrar stock con unidades.\n"
-                + "\t5) Mostrar valor total del stock.\n"
-                + "\t6) Realizar venta.\n"
-                + "\t7) Mostrar tickets.\n"
-                + "\t8) Mostrar total ventas.\n\n"
-                + "\t0) SALIR.\n";
-
-        InOut io = new InOut();
-        io.writeln(mensaje);
-    }
-    */
+    private MenuControlador controlador;
     
-    /*
-    public static int seleccionaOpcion(int opciones) {
+    private InOut io;
+
+    public MenuVista() {
+        io = new InOut();
+    }
+
+    public void interactuar(MenuControlador controlador) {
+        assert controlador != null;
+        this.controlador = controlador;
+        mostrarMenu();
+        int opcion = pedirOpcion();
+        indicarFuncionalidad(opcion);
+    }
+    
+    private void mostrarMenu(){
+        String mensaje = "MENU INICAL:\n"
+                + "\t1) Añadir un articulo.\n"
+                + "\t2) Modificar unidades de un articulo.\n"
+                + "\t3) Eliminar un articulo.\n"
+                
+                + "\t4) Ver los productos en stock.\n"
+                
+                + "\t5) Ver valor total del stock.\n"
+                
+                + "\t6) Realizar una venta.\n"
+                + "\t7) Mostrar histórico de tickets.\n"
+                + "\t8) Mostrar total ventas.\n\n"
+                + "\t0) SALIR.\n";        
+        //io.writeln(mensaje);
+        System.out.println(mensaje);
+    }
+    
+    private int pedirOpcion(){   
+        /*
+        PedirEnteroLimitado solicitud = new PedirEnteroLimitado("Selecciona Opcion: ", 0, 8);
+        return solicitud.read();
+        */
+        Scanner entrada = new Scanner(System.in);
         int opcion;
-        InOut io = new InOut();
         boolean ok = false;
         do {
-            opcion = io.readInt("Selecciona Opcion: ");
-            if (opcion >= 0 && opcion <= opciones) {
+            //opcion = io.readInt("Selecciona Opcion: ");
+            opcion = entrada.nextInt();
+            if (opcion >= 0 && opcion <= 8) { 
                 ok = true;
             } else {
-                io.writeln("Opcion no correcta. Debe ser entre 0 i " + opciones);
+                //io.writeln("Opcion no correcta. Debe ser entre 0 i 8");
+                System.out.println("Opcion no correcta. Debe ser entre 0 i 8");
             }
         } while (!ok);
         return opcion;
     }
-    */
     
-    /*
-    public static void realizarTarea(Integer opcion, Floristeria floristeria) {
+    private void indicarFuncionalidad(int opcion){
+        assert opcion >= 0 && opcion <= 8;
         switch (opcion) {
             case 1:
-                articuloVista(floristeria);
+                controlador.introducirArticulo();
                 break;
             case 2:
-                retirarArticuloVista(floristeria);
-                break;
+                controlador.modificarUnidades();
             case 3:
-                mostrarStockVista(floristeria);
+                controlador.retirarAriculo();
                 break;
             case 4:
-                mostrarStockUnitVista(floristeria);
+                controlador.mostrarStock();
                 break;
             case 5:
-                valorFloristeriaVista(floristeria);
+                controlador.valorFloristeria();
                 break;
             case 6:
-                ventaVista(floristeria);
+                controlador.venta();
                 break;
             case 7:
-                historialTicketsVista(floristeria);
+                controlador.historialVenta();
                 break;
             case 8:
-                totalVentasVista(floristeria);
+                controlador.totalVentas();
                 break;
             case 0:
-                //return
+                controlador.exit();
                 break;
         }
     }
-    */
+    
+    /*
+    private MenuControlador getMenuControlador() throws IOException {
+        return this.controlador;
+    }
+
+    public void setControlador(MenuControlador controlador) {//codigo repetido
+        this.controlador = controlador;
+    }
+*/
 }
