@@ -8,7 +8,7 @@ public interface ControladorFuncional {
     final DaoFactory factory = DaoFactory.getFactory();
     
     void aceptar(ControladorFuncionalVisitor controlador);
-
+    
     /*
     protected Estado estado;
 
