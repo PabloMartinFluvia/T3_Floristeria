@@ -17,13 +17,12 @@ public class Logica implements LogicaInterface{
     // los controladores se asocian a los modelos con los que "trabajan"
     private ArrancarAppControlador arrancarAppControlador; 
     //añadir más a medida que se amplie la funcionalidad
-    private Map<Estado,ControladorFuncional> controladores;            
+    private Map<Estado,ControladorFuncionalInterface> controladores;            
 
     public Logica() {
         aplicacion = new Aplicacion(); // la aplicacion pone el estado = INICIAL
-        this.arrancarAppControlador = new ArrancarAppControlador(
-                aplicacion.getEstado(), aplicacion.getFloristeria());
-        
+        this.arrancarAppControlador = new ArrancarAppControlador(aplicacion);
+        //i mas
         controladores = new HashMap<>();
         coordinarControladores();
     }
@@ -35,7 +34,7 @@ public class Logica implements LogicaInterface{
     }
         
     @Override
-    public ControladorFuncional getControladorFuncional(){
+    public ControladorFuncionalInterface getControladorFuncional(){
             return controladores.get(aplicacion.getEstado());        
     }
 }
