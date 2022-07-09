@@ -27,7 +27,7 @@ public class App {
         do{
             controlador = logica.getControladorFuncional();
             if (controlador != null){
-                vistaPrincipal.interactua(controlador);
+                vistaPrincipal.interactuar(controlador);
             }            
         }while(controlador != null);
     } 
