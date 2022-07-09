@@ -10,12 +10,12 @@ public class AppVista implements VistaInterface{
     //atributos: las vistas que interactuaran con cada controlador que llegue
     private BienvenidaVista bienvenidaVista;
     
-    private MenuVista menuVista;
+    private MenuPrincipalVista menuVista;
 
     public AppVista() {
         //instanciar los atributos (hacer el new). Sus constructores no tienen parametors
         bienvenidaVista = new BienvenidaVista();
-        menuVista = new MenuVista();
+        menuVista = new MenuPrincipalVista();
     }
     
     @Override
