@@ -19,6 +19,9 @@ public abstract class DaoFactory {
     public abstract FloristeriaDao getFloristeriaDao();
 
     /*
+    SOBRAN:
+    habrá que crear métodos para los nuevos modelos
+    
     public abstract StockDao getStockDao();
 
     public abstract TicketDao getTicketDao();
