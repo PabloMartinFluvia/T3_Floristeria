@@ -3,8 +3,6 @@ package com.calvogasullmartin.t3_floristeria.vistas;
 import com.calvogasullmartin.t3_floristeria.utils.InOut;
 import com.calvogasullmartin.t3_floristeria.controladores.ArrancarAppControlador;
 import java.io.IOException;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 
 public class BienvenidaVista {
 
@@ -27,10 +25,12 @@ public class BienvenidaVista {
     }
 
     private void pedirInicializacion() {
-        io.writeln("Aplicación ejecutandose por primera vez ...");
+       // io.writeln("Aplicación ejecutandose por primera vez ...");
+        System.out.println("Aplicación ejecutandose por primera vez ...");
         try {
             controlador.iniciarPersistencia();
-            io.writeln("Capa de persistencia inizializada con exito");
+            //io.writeln("Capa de persistencia inizializada con exito");
+            System.out.println("Capa de persistencia inizializada con exito");                        
             new FloristeriaVista().interactuar(controlador);
         } catch (IOException ex) {
             ////que hacer con la excepcion
@@ -41,7 +41,8 @@ public class BienvenidaVista {
         String nombre;
         try {
             nombre = controlador.getNombreFloristeria();
-            io.writeln("Bienvenid@ al gestor de la floristeria " + nombre + ", desarrollado por CalvoGasullMartin ");
+            //io.writeln("Bienvenid@ al gestor de la floristeria " + nombre + ", desarrollado por CalvoGasullMartin.");
+            System.out.println("Bienvenid@ al gestor de la floristeria " + nombre + ", desarrollado por CalvoGasullMartin.");
         } catch (IOException ex) {
             ////que hacer con la excepcion
         }
