@@ -37,6 +37,8 @@ public class LocalArrancarAppControlador extends LocalControladorFuncional imple
 
     @Override
     public void iniciarFloristeria(String nombre) {
+        assert nombre != null;
+        assert nombre.length() >= 3;
         floristeria.setFloristeria_id(1);//provisional
         floristeria.setNombre_floristeria(nombre);        
     }
@@ -58,6 +60,7 @@ public class LocalArrancarAppControlador extends LocalControladorFuncional imple
     
     @Override
     public void aceptar(ControladorFuncionalVisitor controlador) {
+        assert controlador != null;
         controlador.visitar(this);
     }          
 }
