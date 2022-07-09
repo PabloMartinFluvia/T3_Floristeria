@@ -16,7 +16,7 @@ public class AppVista implements VistaInterface{
 
 
     @Override
-    public void interactua(ControladorFuncional controlador) {
+    public void interactuar(ControladorFuncional controlador) {
         assert controlador != null;
         controlador.aceptar(this);
     }
@@ -29,13 +29,13 @@ public class AppVista implements VistaInterface{
     //private InOut io = new InOut();
     
     /*
-    public void interactua(ControladorFuncional controlador) {
+    public void interactuar(ControladorFuncional controlador) {
         if (controlador instanceof ArrancarAppControlador) {
-            interactua(controlador);
+            interactuar(controlador);
         }
     }
 
-    public void interactua(ArrancarAppControlador controlador) {
+    public void interactuar(ArrancarAppControlador controlador) {
         BienvenidaVista bienvenida = new BienvenidaVista(controlador);
 
         if (controlador.isPrimeraVez()) {
