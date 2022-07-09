@@ -1,13 +1,38 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
 package com.calvogasullmartin.t3_floristeria.modelos;
 
-/**
- *
- * @author paumf
- */
 public class Aplicacion {
+    //esta clase almacena todos los modelos de nuestra aplicación
+    
+    private Estado estado;
+    
+    private Floristeria floristeria;    
+    
+    //falta menú i otros
+    
+    private final int NUM_CATEGORIAS = 3; //3 tipos de productos = 3 stocks distintos
+    
+    private final int NUM_DIVISIONES_CONJUNTOS = 2; // 2 maneras de interpretar un conjunto: stock o tiquet
+
+    public Aplicacion() {
+        estado = Estado.INITIAL;
+        floristeria = new Floristeria(NUM_CATEGORIAS);        
+    }
+
+    public Estado getEstado() {
+        return estado;
+    }
+
+    public void setEstado(Estado estado) {
+        this.estado = estado;
+    }
+
+    public Floristeria getFloristeria() {
+        return floristeria;
+    }
+
+    public void setFloristeria(Floristeria floristeria) {
+        this.floristeria = floristeria;
+    }
+    
     
 }
