@@ -1,9 +1,9 @@
 package com.calvogasullmartin.t3_floristeria;
 
 import com.calvogasullmartin.t3_floristeria.config.Configurador;
-import com.calvogasullmartin.t3_floristeria.controladores.Logica;
+import com.calvogasullmartin.t3_floristeria.controladores.locales.Logica;
 import com.calvogasullmartin.t3_floristeria.vistas.AppVista;
-import com.calvogasullmartin.t3_floristeria.controladores.ControladorFuncionalInterface;
+import com.calvogasullmartin.t3_floristeria.controladores.ControladorFuncional;
 
 
 public class App {
@@ -23,7 +23,7 @@ public class App {
     }
     
     private void ejecutar(){
-        ControladorFuncionalInterface controlador;        
+        ControladorFuncional controlador;        
         do{
             controlador = logica.getControladorFuncional();
             if (controlador != null){
