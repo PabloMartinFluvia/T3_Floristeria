@@ -5,5 +5,5 @@ import com.calvogasullmartin.t3_floristeria.controladores.ControladorFuncionalVi
 
 public interface VistaInterface extends ControladorFuncionalVisitor{
     
-    public void interactua(ControladorFuncional controlador);
+    public void interactuar(ControladorFuncional controlador);
 }
