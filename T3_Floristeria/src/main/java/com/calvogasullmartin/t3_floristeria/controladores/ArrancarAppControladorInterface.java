@@ -6,7 +6,13 @@ public interface ArrancarAppControladorInterface extends ControladorFuncional{
     
     public boolean isPrimeraVez();
     
-    public void guardarUnicaFloristeria(String nombre);
+    public void iniciarPersistencia();
+     
+    public void iniciarFloristeria(String nombre);
+    
+    public void guardarUnicaFloristeria();
     
     public String getNombreFloristeria();
+    
+    public void seleccionarMenu();    
 }
