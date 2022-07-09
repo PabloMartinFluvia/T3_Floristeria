@@ -3,18 +3,21 @@ package com.calvogasullmartin.t3_floristeria.vistas;
 import com.calvogasullmartin.t3_floristeria.VistaInterface;
 import com.calvogasullmartin.t3_floristeria.controladores.ControladorFuncional;
 import com.calvogasullmartin.t3_floristeria.controladores.ArrancarAppControlador;
+import com.calvogasullmartin.t3_floristeria.controladores.MenuControlador;
 
 public class AppVista implements VistaInterface{
 
     //atributos: las vistas que interactuaran con cada controlador que llegue
     private BienvenidaVista bienvenidaVista;
+    
+    private MenuVista menuVista;
 
     public AppVista() {
         //instanciar los atributos (hacer el new). Sus constructores no tienen parametors
         bienvenidaVista = new BienvenidaVista();
+        menuVista = new MenuVista();
     }
-
-
+    
     @Override
     public void interactuar(ControladorFuncional controlador) {
         assert controlador != null;
@@ -22,8 +25,15 @@ public class AppVista implements VistaInterface{
     }
 
     @Override
-    public void visitar(ArrancarAppControlador arrancarAppControlador) {
-        bienvenidaVista.interactuar(arrancarAppControlador);
+    public void visitar(ArrancarAppControlador controlador) {
+        assert controlador != null;
+        bienvenidaVista.interactuar(controlador);
+    }
+    
+    @Override
+    public void visitar(MenuControlador controlador) {
+        assert controlador != null;
+       menuVista.interactuar(controlador);
     }
     
     //private InOut io = new InOut();
@@ -56,4 +66,8 @@ public class AppVista implements VistaInterface{
         }
     }
 */
+
+    
+
+    
 }
