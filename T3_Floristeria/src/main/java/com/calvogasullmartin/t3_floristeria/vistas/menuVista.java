@@ -1,9 +1,20 @@
-package com.calvogasullmartin.t3_floristeria.vistas;
+﻿package com.calvogasullmartin.t3_floristeria.vistas;
 
 public class MenuVista {
+    MenuControlador controlador;
 
-    /*
-    public static void mostrarMenu() {
+
+    public MenuVista(){}
+
+    private MenuControlador getMenuControlador() throws IOException{
+        return this.Controlador;
+    }
+    
+    public void setControlador(MenuControlador controlador){//codigo repetido
+        this.controlador = controlador;
+    }
+
+    public void interactuar(menuControlador controlador){
         String mensaje = "MENU INICAL:\n"
                 + "\t1) Añadir articulo.\n"
                 + "\t2) Eliminar articulo.\n"
@@ -17,13 +28,7 @@ public class MenuVista {
 
         InOut io = new InOut();
         io.writeln(mensaje);
-    }
-    */
-    
-    /*
-    public static int seleccionaOpcion(int opciones) {
         int opcion;
-        InOut io = new InOut();
         boolean ok = false;
         do {
             opcion = io.readInt("Selecciona Opcion: ");
@@ -33,41 +38,37 @@ public class MenuVista {
                 io.writeln("Opcion no correcta. Debe ser entre 0 i " + opciones);
             }
         } while (!ok);
-        return opcion;
-    }
-    */
-    
-    /*
-    public static void realizarTarea(Integer opcion, Floristeria floristeria) {
+
         switch (opcion) {
             case 1:
-                articuloVista(floristeria);
+                controlador.introducirArticulo();
                 break;
             case 2:
-                retirarArticuloVista(floristeria);
+                controlador.retirarAriculo();
                 break;
             case 3:
-                mostrarStockVista(floristeria);
+                controlador.mostrarStock();
                 break;
             case 4:
-                mostrarStockUnitVista(floristeria);
+                controlador.mostrarStockUnitat();
                 break;
             case 5:
-                valorFloristeriaVista(floristeria);
+                controlador.valorFloristeria();
                 break;
             case 6:
-                ventaVista(floristeria);
+                controlador.venta();
                 break;
             case 7:
-                historialTicketsVista(floristeria);
+                controlador.historialVenta();
                 break;
             case 8:
-                totalVentasVista(floristeria);
+                controlador.totalVentas();
                 break;
             case 0:
-                //return
+                controlador.exit();
                 break;
         }
     }
-    */
+
 }
+
