@@ -1,13 +1,15 @@
 package com.calvogasullmartin.t3_floristeria.controladores;
 
-import com.calvogasullmartin.t3_floristeria.modelos.Estado;
 import com.calvogasullmartin.t3_floristeria.persistencia.DaoFactory;
 
 
-public abstract class ControladorFuncional {
+public interface ControladorFuncional {
 
-    protected final DaoFactory factory = DaoFactory.getFactory();
+    final DaoFactory factory = DaoFactory.getFactory();
+    
+    void aceptar(ControladorFuncionalVisitor controlador);
 
+    /*
     protected Estado estado;
 
     protected ControladorFuncional(Estado estado) {
@@ -24,4 +26,5 @@ public abstract class ControladorFuncional {
         assert estado != null;
         this.estado = estado;
     }
+    */
 }
