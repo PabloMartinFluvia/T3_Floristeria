@@ -1,23 +1,22 @@
 package com.calvogasullmartin.t3_floristeria.controladores;
 
-import com.calvogasullmartin.t3_floristeria.modelos.Aplicacion;
 import com.calvogasullmartin.t3_floristeria.modelos.Estado;
 
 public abstract class Controlador {
     
-    private Aplicacion aplicacion;
+    private Estado estado;
 
-    protected Controlador(Aplicacion aplicacion) {
-        assert aplicacion != null;
-        this.aplicacion = aplicacion;
+    protected Controlador(Estado estado) {
+        assert estado != null;
+        this.estado = estado;
     }
     
     protected Estado getEstado(){
-	return aplicacion.getEstado();
+	return estado;
     }
 	
     public void setEstado(Estado estado){
 	assert estado != null;
-	aplicacion.setEstado(estado);
+	this.estado = estado;
     }
 }
