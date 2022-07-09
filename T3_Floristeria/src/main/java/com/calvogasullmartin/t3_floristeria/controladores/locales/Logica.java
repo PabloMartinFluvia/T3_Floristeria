@@ -1,8 +1,7 @@
 package com.calvogasullmartin.t3_floristeria.controladores.locales;
 
-
-import com.calvogasullmartin.t3_floristeria.controladores.locales.ArrancarAppControlador;
 import com.calvogasullmartin.t3_floristeria.LogicaInterface;
+import com.calvogasullmartin.t3_floristeria.controladores.ArrancarAppControlador;
 import com.calvogasullmartin.t3_floristeria.modelos.Aplicacion;
 import com.calvogasullmartin.t3_floristeria.modelos.Estado;
 import java.util.HashMap;
@@ -23,7 +22,7 @@ public class Logica implements LogicaInterface{
 
     public Logica() {
         aplicacion = new Aplicacion(); // la aplicacion pone el estado = INICIAL
-        this.arrancarAppControlador = new ArrancarAppControlador(aplicacion.getEstado(), aplicacion.getFloristeria());
+        this.arrancarAppControlador = new LocalArrancarAppControlador(aplicacion.getEstado(), aplicacion.getFloristeria());
         //i mas
         controladores = new HashMap<>();
         coordinarControladores();
@@ -31,6 +30,7 @@ public class Logica implements LogicaInterface{
     
     private void coordinarControladores(){        
         controladores.put(Estado.INITIAL, arrancarAppControlador);  
+        controladores.put(Estado.EN_MENU, null); 
         //añadir más a medida que se amplie la funcionalidad
         controladores.put(Estado.EXIT, null);
     }
