@@ -1,6 +1,6 @@
 package com.calvogasullmartin.t3_floristeria.controladores;
 
-public interface ArrancarAppControladorInterface extends ControladorFuncional{
+public interface ArrancarAppControladorInterface extends ControladorFuncionalInterface{
     
     //los métodos específicos de un ArrancarAppControlador
     
