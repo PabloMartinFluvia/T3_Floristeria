@@ -4,4 +4,6 @@ public interface ControladorFuncionalVisitor {
     
     // una nueva linia
     void visitar (ArrancarAppControlador arrancarAppControlador);
+    
+    void visitar(MenuControlador menuControlador);
 }
