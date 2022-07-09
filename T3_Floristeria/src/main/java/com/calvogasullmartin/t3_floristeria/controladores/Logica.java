@@ -21,7 +21,7 @@ public class Logica implements LogicaInterface{
 
     public Logica() {
         aplicacion = new Aplicacion(); // la aplicacion pone el estado = INICIAL
-        this.arrancarAppControlador = new ArrancarAppControlador(aplicacion);
+        this.arrancarAppControlador = new ArrancarAppControlador(aplicacion.getEstado(), aplicacion.getFloristeria());
         //i mas
         controladores = new HashMap<>();
         coordinarControladores();
