@@ -21,6 +21,7 @@ public class BienvenidaVista {
         }
         String nombre = controlador.getNombreFloristeria();
         darBienvienida(nombre);
+        controlador.seleccionarMenu();
     }
     
     private void darBienvienida(String nombre){    
