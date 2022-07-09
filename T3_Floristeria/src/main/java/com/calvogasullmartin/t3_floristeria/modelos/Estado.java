@@ -7,6 +7,7 @@ public enum Estado {
     //* Incluso un caso de uso puede devolverte al mismo estado si sucede algun "if"
     //** initial y exit se incluyen siempre
     INITIAL,    
+    EN_MENU,
     //aqui habran más
     EXIT;    
 }
