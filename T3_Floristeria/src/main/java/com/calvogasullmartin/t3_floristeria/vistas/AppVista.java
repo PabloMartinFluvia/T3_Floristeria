@@ -23,7 +23,7 @@ public class AppVista implements VistaInterface{
 
     @Override
     public void visitar(ArrancarAppControladorInterface arrancarAppControlador) {
-        bienvenidaVista.interactua(arrancarAppControlador);
+        bienvenidaVista.interactuar(arrancarAppControlador);
     }
     
     //private InOut io = new InOut();
