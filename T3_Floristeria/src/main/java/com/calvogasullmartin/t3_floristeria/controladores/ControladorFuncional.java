@@ -14,6 +14,8 @@ public abstract class ControladorFuncional {
         this.estado = estado;
     }
 
+    public abstract void controlar();
+
     protected Estado getEstado() {
         return estado;
     }
