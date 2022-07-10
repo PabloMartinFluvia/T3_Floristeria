@@ -2,6 +2,9 @@ package com.calvogasullmartin.t3_floristeria.vistasConsola;
 
 import com.calvogasullmartin.t3_floristeria.controladores.AddProductoControlador;
 import com.calvogasullmartin.t3_floristeria.modelos.Categoria;
+import java.io.IOException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 public class MenuStockVista {
 
@@ -14,6 +17,11 @@ public class MenuStockVista {
     public void interactuar(AddProductoControlador controlador){
         Categoria categoria = saberCategoria();
         new ProductoCompletoVista().interactuar(controlador, categoria);
+        try {
+            controlador.actualizarValoresStock();
+        } catch (IOException ex) {
+            // mensaje de error diciendo que no se ha podido actualizar el valor de la tienda ni del stock
+        }
         controlador.seleccionarMenu();
     }
     
