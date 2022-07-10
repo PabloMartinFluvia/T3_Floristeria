@@ -1,6 +1,6 @@
 package com.calvogasullmartin.t3_floristeria.controladores;
 
-public interface MenuControlador extends ControladorFuncional{
+public interface MenuControlador extends ControladorPadre{
     
     public void introducirArticulo();
     

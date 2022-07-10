@@ -1,0 +1,9 @@
+package com.calvogasullmartin.t3_floristeria.controladores;
+
+public interface ControladorPadreVisitor {
+    
+    // una nueva linia
+    void visitar (ArrancarAppControlador arrancarAppControlador);
+    
+    void visitar(MenuControlador menuControlador);
+}

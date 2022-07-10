@@ -1,16 +1,16 @@
 package com.calvogasullmartin.t3_floristeria.controladores.locales;
 
 import com.calvogasullmartin.t3_floristeria.controladores.ArrancarAppControlador;
-import com.calvogasullmartin.t3_floristeria.controladores.ControladorFuncionalVisitor;
 import com.calvogasullmartin.t3_floristeria.modelos.Aplicacion;
 import com.calvogasullmartin.t3_floristeria.modelos.Estado;
 import com.calvogasullmartin.t3_floristeria.modelos.Estados;
 import com.calvogasullmartin.t3_floristeria.modelos.Floristeria;
 import com.calvogasullmartin.t3_floristeria.persistencia.Conector;
 import java.io.IOException;
+import com.calvogasullmartin.t3_floristeria.controladores.ControladorPadreVisitor;
 
 
-public class LocalArrancarAppControlador extends LocalControladorFuncional implements ArrancarAppControlador{        
+public class LocalArrancarAppControlador extends LocalControladorPadre implements ArrancarAppControlador{        
     
     private Floristeria floristeria;
     
@@ -59,7 +59,7 @@ public class LocalArrancarAppControlador extends LocalControladorFuncional imple
     }
     
     @Override
-    public void aceptar(ControladorFuncionalVisitor controlador) {
+    public void aceptar(ControladorPadreVisitor controlador) {
         assert controlador != null;
         controlador.visitar(this);
     }          
