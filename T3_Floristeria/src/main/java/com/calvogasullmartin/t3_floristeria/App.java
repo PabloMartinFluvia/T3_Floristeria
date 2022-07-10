@@ -1,47 +1,48 @@
 package com.calvogasullmartin.t3_floristeria;
 
-import com.calvogasullmartin.t3_floristeria.config.Configurador;
-import com.calvogasullmartin.t3_floristeria.controladores.locales.Logica;
-import com.calvogasullmartin.t3_floristeria.vistas.AppVista;
-import com.calvogasullmartin.t3_floristeria.controladores.ControladorFuncional;
+import com.calvogasullmartin.t3_floristeria.controladores.ControladorPadre;
 
 public class App {
 
-    private LogicaInterface logica;
+    private Logica logica;
 
-    private VistaInterface vistaPrincipal;
+    private Vista vistaPrincipal;
 
-    public App(LogicaInterface logica, VistaInterface vistaPrincipal) {
-        configurar();
-        this.logica = logica;
-        this.vistaPrincipal = vistaPrincipal;
+    public App() {
+        configurarDependencias();
     }
 
-    private void configurar() {
-        new Configurador().configurarDaoFactory();
+    private void configurarDependencias() {
+        Configurador configurador = new Configurador();        
+        this.vistaPrincipal = configurador.vistasPorConsola();
+        this.logica = configurador.controladoresLocales();
+        configurador.persistenciaTxt();    
+        //i más metodos según capa de persistencia
     }
 
+    public static void main(String[] args) {
+        new App().ejecutar();
+    }
+    
     private void ejecutar() {
         
-        ControladorFuncional controlador;        
+        ControladorPadre controlador;        
         do{            
-            controlador = logica.getControladorFuncional();
+            controlador = logica.getControladorPadre();
             if (controlador != null){
                 vistaPrincipal.interactuar(controlador);
             }            
         }while(controlador != null);
          
         /*
-        ControladorFuncional controlador;
-        controlador = logica.getControladorFuncional();
+        ControladorPadre controlador;
+        controlador = logica.getControladorPadre();
         if (controlador != null) {
             vistaPrincipal.interactuar(controlador);
         }        
-        controlador = logica.getControladorFuncional();
+        controlador = logica.getControladorPadre();
         */
     }
 
-    public static void main(String[] args) {
-        new App(new Logica(), new AppVista()).ejecutar();
-    }
+    
 }
