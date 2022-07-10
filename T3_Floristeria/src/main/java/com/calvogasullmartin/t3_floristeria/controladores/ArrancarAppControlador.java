@@ -2,7 +2,7 @@ package com.calvogasullmartin.t3_floristeria.controladores;
 
 import java.io.IOException;
 
-public interface ArrancarAppControlador extends ControladorFuncional{
+public interface ArrancarAppControlador extends ControladorPadre{
     
     //los métodos específicos de un ArrancarAppControlador
     
