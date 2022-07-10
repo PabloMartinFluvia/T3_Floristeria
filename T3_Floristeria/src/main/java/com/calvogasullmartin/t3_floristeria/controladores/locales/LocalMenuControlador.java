@@ -13,7 +13,7 @@ public class LocalMenuControlador extends LocalControladorPadre implements MenuC
 
     @Override
     public void introducirArticulo() {
-         //pendiente el setEstado
+         this.setEstado(Estado.NUEVO_PRODUCTO);
     }
 
     @Override
