@@ -8,6 +8,7 @@ import com.calvogasullmartin.t3_floristeria.modelos.Estado;
 import com.calvogasullmartin.t3_floristeria.modelos.Estados;
 import com.calvogasullmartin.t3_floristeria.modelos.Material;
 import com.calvogasullmartin.t3_floristeria.modelos.ProductoCompleto;
+import java.io.IOException;
 import java.util.List;
 
 public class LocalAddProductoControlador extends LocalControladorPadre implements AddProductoControlador{
@@ -41,6 +42,11 @@ public class LocalAddProductoControlador extends LocalControladorPadre implement
     @Override
     public void guardarProducto() {
         //pendiente *recordar dar valor al id
+    }
+    
+    @Override
+    public void actualizarValoresStock() throws IOException {
+        //pendiente: actualizar valor tienda y valor stock
     }
 
     @Override
@@ -83,5 +89,5 @@ public class LocalAddProductoControlador extends LocalControladorPadre implement
     @Override
     public void aceptar(ControladorPadreVisitor controlador) {
         controlador.visitar(this);
-    }   
+    }      
 }
