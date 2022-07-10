@@ -7,6 +7,8 @@ public class DaoFactoryTxt extends DaoFactory{
     private Conector conector;
     private FloristeriaDao floristeriaDao;
     private ProductoCompletoDao productoDao;
+    private ProductoUnidadDao productoUnidadDao;
+    private ConjuntoProductosDao conjuntoProductosDao;
     
     /*
     private StockDao stockDao;
@@ -27,7 +29,7 @@ public class DaoFactoryTxt extends DaoFactory{
     @Override
     public FloristeriaDao getFloristeriaDao() {
        if (floristeriaDao == null) {
-            floristeriaDao = new FloristeriaDaoTxt();
+            floristeriaDao = new FloristeriaTxt();
         }
         return floristeriaDao;
     }
@@ -38,6 +40,22 @@ public class DaoFactoryTxt extends DaoFactory{
             productoDao = new ProductoCompletoTxt();
         }
         return productoDao;
+    }
+    
+    @Override
+    public ProductoUnidadDao getProductoUnidadesDao() {
+        if (productoUnidadDao == null) {
+            productoUnidadDao = new ProductoUnidadTxt();
+        }
+        return productoUnidadDao;
+    }
+    
+    @Override
+    public ConjuntoProductosDao getConjuntoProductosDao() {
+       if (conjuntoProductosDao == null) {
+            conjuntoProductosDao = new ConjuntoProductosTxt();
+        }
+        return conjuntoProductosDao; 
     }
     
     /*
@@ -81,4 +99,8 @@ public class DaoFactoryTxt extends DaoFactory{
         return decoracionDao;
     }   
     */   
+
+    
+
+    
 }

@@ -39,7 +39,7 @@ public class LocalArrancarAppControlador extends LocalControladorPadre implement
     public void iniciarFloristeria(String nombre) {
         assert nombre != null;
         assert nombre.length() >= 3;
-        floristeria.setFloristeria_id(1);//provisional
+        //el id lo pondrá el dao dentro del create
         floristeria.setNombre_floristeria(nombre);        
     }
 
