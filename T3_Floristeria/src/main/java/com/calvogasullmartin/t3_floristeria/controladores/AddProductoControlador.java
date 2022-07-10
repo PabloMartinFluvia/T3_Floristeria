@@ -19,6 +19,8 @@ public interface AddProductoControlador extends ControladorPadre{
     
     void almacenarMaterial(Material material);
     
+    void almacenarUnidadesIniciales(int cantidad);
+    
     boolean isNuevo() throws IOException;
     
     void guardarProducto() throws IOException;
