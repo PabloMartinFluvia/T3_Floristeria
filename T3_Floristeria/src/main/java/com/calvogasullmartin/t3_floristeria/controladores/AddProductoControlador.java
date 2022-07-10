@@ -3,6 +3,7 @@ package com.calvogasullmartin.t3_floristeria.controladores;
 import com.calvogasullmartin.t3_floristeria.modelos.Altura;
 import com.calvogasullmartin.t3_floristeria.modelos.Categoria;
 import com.calvogasullmartin.t3_floristeria.modelos.Material;
+import java.io.IOException;
 
 public interface AddProductoControlador extends ControladorPadre{
     
@@ -18,11 +19,11 @@ public interface AddProductoControlador extends ControladorPadre{
     
     void almacenarMaterial(Material material);
     
-    boolean isNuevo();
+    boolean isNuevo() throws IOException;
     
-    void guardarProducto();
+    void guardarProducto() throws IOException;
     
-    String getInfoProductoSinNulls();
+    String getInfoProductoSinNulls() throws IOException;
     
     void seleccionarMenu();
 }
