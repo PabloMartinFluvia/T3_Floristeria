@@ -27,5 +27,7 @@ public interface AddProductoControlador extends ControladorPadre{
     
     String getInfoProductoSinNulls() throws IOException;
     
+    void actualizarValoresStock() throws IOException;
+    
     void seleccionarMenu();
 }
