@@ -24,23 +24,17 @@ public class ProductoCompletoVista {
 
     }
 
-    private void validarProducto() {
-        boolean nuevo;
+    private void validarProducto() {        
         try {
-            nuevo = controlador.isNuevo();
-            if (nuevo) {
+            if (controlador.isNuevo()) {
                 new ProductoUnidadVista().interactuar(controlador);
-                controlador.guardarProducto(); 
+                controlador.addProductoConUnidadesEnStock();
                 /*
                 decir que guardado con exito
                 */
             } else {
                 /*
                 decirle al usuario que no se puede guardar el producto (pk ya existe una igual guardado)
-                 */
-                String infoProductoEnStingSinNulls = controlador.getInfoProductoSinNulls(); // habrá que capturar IOException
-                /*
-                mostrar por pantalla el string anterior (es un String que equivale a la info del producto, omitiendo los campos null i el id)
                  */
             }
         } catch (IOException ex) {
