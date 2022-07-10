@@ -23,9 +23,7 @@ public interface AddProductoControlador extends ControladorPadre{
     
     boolean isNuevo() throws IOException;
     
-    void guardarProducto() throws IOException;
-    
-    String getInfoProductoSinNulls() throws IOException;
+    void addProductoConUnidadesEnStock() throws IOException;
     
     void actualizarValoresStock() throws IOException;
     
