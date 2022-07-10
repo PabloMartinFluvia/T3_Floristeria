@@ -8,6 +8,7 @@ public enum Estado {
     //** initial y exit se incluyen siempre
     INITIAL,    
     EN_MENU,
+    NUEVO_PRODUCTO,
     //aqui habran más
     EXIT;    
 }
