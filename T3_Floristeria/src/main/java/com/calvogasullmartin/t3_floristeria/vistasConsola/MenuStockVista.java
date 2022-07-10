@@ -22,7 +22,7 @@ public class MenuStockVista {
         } catch (IOException ex) {
             // mensaje de error diciendo que no se ha podido actualizar el valor de la tienda ni del stock
         }
-        controlador.seleccionarMenu();
+        finalizar(controlador);
     }
     
     private Categoria saberCategoria(){
@@ -45,5 +45,15 @@ public class MenuStockVista {
         Poner el atributo categoria con el valor que elija.
         */
         return categoria;
+    }
+    
+    private void finalizar(AddProductoControlador controlador){
+        boolean addMore = false;
+        /*
+        preguntarle si quiere añadir más productos, en caso afirmativo poner el addMore en true.
+        */
+        if (!addMore){
+            controlador.seleccionarMenu();
+        }
     }
 }
