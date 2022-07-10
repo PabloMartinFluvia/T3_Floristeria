@@ -23,6 +23,9 @@ public class Aplicacion {
     public void setFloristeria(Floristeria floristeria) {
         this.floristeria = floristeria;
     }
-    
-    
+
+    public int getNUM_CATEGORIAS() {
+        return NUM_CATEGORIAS;
+    }
+        
 }
