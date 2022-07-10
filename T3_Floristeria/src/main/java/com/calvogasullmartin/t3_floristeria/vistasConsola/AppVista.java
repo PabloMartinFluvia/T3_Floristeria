@@ -3,6 +3,7 @@ package com.calvogasullmartin.t3_floristeria.vistasConsola;
 import com.calvogasullmartin.t3_floristeria.controladores.ArrancarAppControlador;
 import com.calvogasullmartin.t3_floristeria.controladores.MenuControlador;
 import com.calvogasullmartin.t3_floristeria.Vista;
+import com.calvogasullmartin.t3_floristeria.controladores.AddProductoControlador;
 import com.calvogasullmartin.t3_floristeria.controladores.ControladorPadre;
 
 public class AppVista implements Vista{
@@ -11,11 +12,14 @@ public class AppVista implements Vista{
     private BienvenidaVista bienvenidaVista;
     
     private MenuPrincipalVista menuVista;
+    
+    private MenuStockVista menuStock;
 
     public AppVista() {
         //instanciar los atributos (hacer el new). Sus constructores no tienen parametors
         bienvenidaVista = new BienvenidaVista();
         menuVista = new MenuPrincipalVista();
+        menuStock = new MenuStockVista();
     }
     
     @Override
@@ -32,8 +36,14 @@ public class AppVista implements Vista{
     
     @Override
     public void visitar(MenuControlador controlador) {
-        assert controlador != null;
+       assert controlador != null;
        menuVista.interactuar(controlador);
+    }
+    
+    @Override
+    public void visitar(AddProductoControlador controlador) {
+       assert controlador != null;
+       menuStock.interactuar(controlador);       
     }
     
     //private InOut io = new InOut();
