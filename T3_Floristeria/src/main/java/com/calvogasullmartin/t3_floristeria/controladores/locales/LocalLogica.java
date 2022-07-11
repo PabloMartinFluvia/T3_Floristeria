@@ -29,6 +29,8 @@ public class LocalLogica implements Logica{
     private AddProductoControlador addProductoControlador;
     
     private MostrarConjuntoControlador mostrarStockControlador;
+    
+    private MostrarConjuntoControlador mostrarTicketsControlador;
     //añadir más a medida que se amplie la funcionalidad
     
     private Map<Estado,ControladorPadre> mapaEstadosContoladores;            
@@ -39,7 +41,8 @@ public class LocalLogica implements Logica{
         this.arrancarAppControlador = new LocalArrancarAppControlador(estados, aplicacion.getFloristeria());
         this.menuControlador = new LocalMenuControlador(estados);
         this.addProductoControlador = new LocalAddProductoControlador(estados);
-        this.mostrarStockControlador = new LocalMostrarConjuntoControlador(estados, true);
+        this.mostrarStockControlador = new LocalMostrarConjuntoControlador(estados, true); //stocks
+        this.mostrarTicketsControlador = new LocalMostrarConjuntoControlador(estados, false); //tiquets
         //i mas
         mapaEstadosContoladores = new HashMap<>();
         coordinarControladores();
@@ -50,6 +53,7 @@ public class LocalLogica implements Logica{
         mapaEstadosContoladores.put(Estado.EN_MENU, menuControlador); 
         mapaEstadosContoladores.put(Estado.NUEVO_PRODUCTO, addProductoControlador);
         mapaEstadosContoladores.put(Estado.MOSTRAR_STOCK, mostrarStockControlador);
+        mapaEstadosContoladores.put(Estado.MOSTRAR_TIQUETS, mostrarTicketsControlador);
         //añadir más a medida que se amplie la funcionalidad
         mapaEstadosContoladores.put(Estado.EXIT, null);
     }
