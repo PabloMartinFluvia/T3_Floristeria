@@ -13,4 +13,6 @@ public interface ConjuntoProductosDao extends GenericDao<ConjuntoProductos, Inte
     public List<ConjuntoProductos> findAllTiquets ()throws IOException;
     
     public ConjuntoProductos findOneStockById (Integer id)throws IOException;
+        
+    public void createTiquet(ConjuntoProductos tiquet) throws IOException;
 }
