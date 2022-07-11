@@ -11,6 +11,7 @@ import com.calvogasullmartin.t3_floristeria.Logica;
 import com.calvogasullmartin.t3_floristeria.controladores.AddProductoControlador;
 import com.calvogasullmartin.t3_floristeria.controladores.ControladorPadre;
 import com.calvogasullmartin.t3_floristeria.controladores.MostrarConjuntoControlador;
+import com.calvogasullmartin.t3_floristeria.controladores.MostrarTotalesControlador;
 
 public class LocalLogica implements Logica{    
     //atributos:
@@ -31,6 +32,10 @@ public class LocalLogica implements Logica{
     private MostrarConjuntoControlador mostrarStockControlador;
     
     private MostrarConjuntoControlador mostrarTicketsControlador;
+    
+    private MostrarTotalesControlador mostrarTotalValorControlador;
+    
+    private MostrarTotalesControlador mostrarTotalFacturacionControlador;
     //añadir más a medida que se amplie la funcionalidad
     
     private Map<Estado,ControladorPadre> mapaEstadosContoladores;            
@@ -43,6 +48,8 @@ public class LocalLogica implements Logica{
         this.addProductoControlador = new LocalAddProductoControlador(estados);
         this.mostrarStockControlador = new LocalMostrarConjuntoControlador(estados, true); //stocks
         this.mostrarTicketsControlador = new LocalMostrarConjuntoControlador(estados, false); //tiquets
+        this.mostrarTotalValorControlador = new LocalMostrarTotalesControlador(estados, true); // totalValorStocks
+        this.mostrarTotalFacturacionControlador = new LocalMostrarTotalesControlador(estados, false); //totalValorTiquets
         //i mas
         mapaEstadosContoladores = new HashMap<>();
         coordinarControladores();
@@ -54,6 +61,8 @@ public class LocalLogica implements Logica{
         mapaEstadosContoladores.put(Estado.NUEVO_PRODUCTO, addProductoControlador);
         mapaEstadosContoladores.put(Estado.MOSTRAR_STOCK, mostrarStockControlador);
         mapaEstadosContoladores.put(Estado.MOSTRAR_TIQUETS, mostrarTicketsControlador);
+        mapaEstadosContoladores.put(Estado.MOSTRAR_VALOR_TIENDA, mostrarTotalValorControlador);
+        mapaEstadosContoladores.put(Estado.MOSTRAR_FACTURACION_TOTAL, mostrarTotalFacturacionControlador);
         //añadir más a medida que se amplie la funcionalidad
         mapaEstadosContoladores.put(Estado.EXIT, null);
     }
