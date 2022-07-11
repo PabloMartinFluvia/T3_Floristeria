@@ -1,6 +1,6 @@
 {
   "floristeria_id": 1,
-  "nombre_floristeria": "floriTest",
+  "nombre_floristeria": "juan",
   "valorStocksTotal": 0.0,
   "valorTicketsTotal": 0.0,
   "stocks": [

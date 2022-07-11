@@ -5,6 +5,7 @@ import com.calvogasullmartin.t3_floristeria.modelos.Altura;
 import com.calvogasullmartin.t3_floristeria.modelos.Categoria;
 import com.calvogasullmartin.t3_floristeria.modelos.Material;
 import java.io.IOException;
+import java.util.Scanner;
 
 public class ProductoCompletoVista {
 
@@ -21,7 +22,6 @@ public class ProductoCompletoVista {
         enviarToContoladorDatosComunes();
         enviarToControladorDatosEspecificos();
         validarProducto();
-
     }
 
     private void validarProducto() {        
@@ -29,16 +29,12 @@ public class ProductoCompletoVista {
             if (controlador.isNuevo()) {
                 new ProductoUnidadVista().interactuar(controlador);
                 controlador.addProductoConUnidadesEnStock();
-                /*
-                decir que guardado con exito
-                */
+                System.out.println("Producto añadido con éxito.");///////InOut
             } else {
-                /*
-                decirle al usuario que no se puede guardar el producto (pk ya existe una igual guardado)
-                 */
+                System.out.println("Error: producto ya existente.");
             }
         } catch (IOException ex) {
-            // decir que no se puede consultar la BBDD
+            System.out.println("Base de datos inaxcesible.");
         }
     }
 
@@ -75,34 +71,96 @@ public class ProductoCompletoVista {
     }
 
     private float solicitarPrecio() {
-        float precio = 0f; // quitar el dar valor cuando se haga este metodo
-        /*
-        solicitar un precio valido (>0) y guardarlo en la variable local
-         */
+        float precio = getFloat("introduce el precio");
         return precio;
     }
 
     private Altura solicitarAltura() {
-        Altura altura = null;// quitar el dar valor cuando se haga este metodo
-        /*
-        mostrar alturas y solicitar una altura válida y guardarla en la variable local
-         */
+        String mensaje = "Escoge altura: \n"
+             + "\t1) Muy alto.\n"
+             + "\t2) Alto.\n"
+             + "\t3) Mediano.\n"
+             + "\t4) Bajo.\n"  
+             + "\t5) Muy bajo.\n";
+             int min = 1,max = 5;
+             int respuesta = getInt(mensaje,min,max);
+        Altura altura = getAltura(respuesta);
         return altura;
     }
 
+    private Altura getAltura(int respuesta) {
+        Altura altura;
+        switch(respuesta) {
+			case 1:
+				altura = Altura.MUY_ALTO;
+			case 2:
+                altura = Altura.ALTO;
+			case 3:
+                altura = Altura.MEDIANO;
+			case 4:
+                altura = Altura.BAJO;
+            default:
+                altura = Altura.MUY_BAJO;
+		}
+        return altura;
+    }
+
+    private int getInt(String mensaje, int min, int max) {
+        Scanner sc = new Scanner(System.in);
+        int input;
+        do{
+            System.out.println(mensaje);
+            input = sc.nextInt();
+        }while(input>=min && input<=max);
+        return input;
+    }
+
     private String solicitarColor() {
-        String color = null;// quitar el dar valor cuando se haga este metodo
-        /*
-        solicitar una color valido y guardarla en la variable local
-         */
-        return color;
+        String mensaje = "Introduce color: \n";
+        int min = 3,max = 10;
+        return getString(mensaje,min,max);
+    }
+
+    private String getString(String mensaje, int min, int max) {
+        Scanner sc = new Scanner(System.in);
+        String input;
+        do{
+            System.out.println(mensaje);
+            input = sc.nextLine();
+        }while(input.length()>=min && input.length()<=max);
+        return input;
     }
 
     private Material solicitarMaterial() {
-        Material material = null;// quitar el dar valor cuando se haga este metodo
-        /*
-        mostrar materiales y solicitar una material valido y guardarla en la variable local
-         */
+        String mensaje = "Escoge material: \n"
+            + "\t1) Madera.\n"
+            + "\t2) Plastico.\n";
+            int min = 1,max = 2;
+            int respuesta = getInt(mensaje,min,max);
+            Material material = getMaterial(respuesta);
         return material;
     }
+    private Material getMaterial(int respuesta) {
+        Material material;
+        switch(respuesta) {
+			case 1:
+				material = Material.MADERA;
+            case 2:
+                material = Material.PLASTICO;
+            default:
+                material = Material.MADERA;
+		}
+        return material;
+    }
+    private float getFloat(String frase) {
+		System.out.println(frase);
+        Scanner sc = new Scanner(System.in);
+        float input;
+        do{
+            input = sc.nextFloat();
+        }while(input>0);
+        return input;
+    }
+
+
 }
