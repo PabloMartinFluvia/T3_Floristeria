@@ -42,7 +42,7 @@ public class ConjuntoProductosVista {
             Integer conjunto_id = saberStockId(true); // puede ser null si quiere ver todos los stocks
             mostrarConjuntoProductosSegunEleccion(conjunto_id);
         } 
-        mostrarControlador.setInMenu();
+        mostrarControlador.seleccionarMenu();
     }
     
     private void mostrarConjuntoProductosSegunEleccion (Integer stock_id){

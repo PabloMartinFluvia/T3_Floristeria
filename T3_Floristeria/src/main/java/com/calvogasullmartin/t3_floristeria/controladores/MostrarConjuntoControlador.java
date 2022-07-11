@@ -15,5 +15,5 @@ public interface MostrarConjuntoControlador extends ControladorPadre{
     
     public List<String> getOneConjuntos(int conjundo_id) throws IOException;
     
-    public void setInMenu();
+    public void seleccionarMenu();
 }
