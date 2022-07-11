@@ -9,6 +9,7 @@ public enum Estado {
     INITIAL,    
     EN_MENU,
     NUEVO_PRODUCTO,
+    MOSTRAR_STOCK,
     //aqui habran más
     EXIT;    
 }
