@@ -6,11 +6,11 @@ import com.calvogasullmartin.t3_floristeria.modelos.Estados;
 
 public class LocalModificarProductoControlador extends LocalMostrarConjuntoControlador implements ModificarProductoControlador{
 
-    private boolean isUpdate; //si falso -> is delete product
+    private boolean isUpdateUnits; //si falso -> is delete product
     
     public LocalModificarProductoControlador(Estados estados, boolean isStock, boolean isUpdate) {
         super(estados, isStock);
-        this.isUpdate = this.isUpdate;
+        this.isUpdateUnits = this.isUpdateUnits;
     }
         
     @Override
@@ -19,8 +19,8 @@ public class LocalModificarProductoControlador extends LocalMostrarConjuntoContr
     }
 
     @Override
-    public boolean IsUpdate() {
-        return isUpdate;
+    public boolean IsUpdateUnits() {
+        return isUpdateUnits;
     }
         
 }
