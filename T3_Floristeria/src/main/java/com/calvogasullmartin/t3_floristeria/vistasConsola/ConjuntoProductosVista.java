@@ -1,6 +1,7 @@
 package com.calvogasullmartin.t3_floristeria.vistasConsola;
 
 import com.calvogasullmartin.t3_floristeria.controladores.AddProductoControlador;
+import com.calvogasullmartin.t3_floristeria.controladores.ModificarProductoControlador;
 import com.calvogasullmartin.t3_floristeria.controladores.MostrarConjuntoControlador;
 import com.calvogasullmartin.t3_floristeria.modelos.Categoria;
 import java.io.IOException;
@@ -41,6 +42,10 @@ public class ConjuntoProductosVista {
             mostrarConjuntoProductosSegunEleccion(conjunto_id);
         } 
         mostrarControlador.seleccionarMenu();
+    }
+    
+    public void interactuar(ModificarProductoControlador modificarControlador){
+        
     }
     
     private void mostrarConjuntoProductosSegunEleccion (Integer stock_id){
