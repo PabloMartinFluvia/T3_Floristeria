@@ -65,7 +65,7 @@ public class LocalMostrarConjuntoControlador extends LocalControladorPadre imple
            conjunto = factory.getConjuntoProductosDao().findOneStockById(conjundo_id);
         }else {
             /*
-            buscar un tiquet por id NO es requerido
+            buscar un tiquet por id NO es requerido (por el problema
             */
         }               
         return conjuntoToString(conjunto);
