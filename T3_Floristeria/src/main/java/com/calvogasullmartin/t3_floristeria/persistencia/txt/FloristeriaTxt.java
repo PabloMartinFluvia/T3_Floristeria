@@ -23,5 +23,19 @@ public class FloristeriaTxt extends GenericDaoTxt<Floristeria, Integer> implemen
     public void addToStockValue(float increment) throws IOException {
         // augmentar / reducir el valor del stock segun esta cantidad
     }
+
+    @Override
+    public float findTotalStocks() throws IOException {
+        float total = 0f; //temporal, es solo para que no de error
+        // buscar el valor del atributo totalStocks y devolverlo
+        return total;
+    }
+
+    @Override
+    public float findTotalTiquets() throws IOException {
+        float total = 0f; //temporal, es solo para que no de error
+       // buscar el valor del atributo totalTiquets y devolverlo
+       return total;
+    }
     
 }
