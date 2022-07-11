@@ -79,6 +79,10 @@ public class LocalMostrarConjuntoControlador extends LocalControladorPadre imple
         [teniendo en cuenta si es un tiquet o un stock]
         [en caso de ser un stock hay que tener en cuenta si se tienen que mostrar unidades o no]
         **para hacer estas distinciones usar los atributos de esta clase
+        **recordar que los campos con valor null no deben mostrarse
+        
+        ***quizas sería mejor ir a las clases de los modelos y hacer Override al método toString 
+        ***y ir implementando lo que se requiere en este metodo por partes.
         */
         return conjuntoToString;
     }
