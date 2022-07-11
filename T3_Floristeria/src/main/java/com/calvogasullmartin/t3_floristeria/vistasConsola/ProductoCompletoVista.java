@@ -12,10 +12,10 @@ public class ProductoCompletoVista {
 
     private AddProductoControlador controlador;
 
-    public void interactuar(AddProductoControlador controlador, Categoria categoria) {
+    public void interactuar(AddProductoControlador controlador, Integer conjunto_Id) {
         assert controlador != null;
         assert categoria != null;
-        this.categoria = categoria;
+        this.categoria = Categoria.values()[conjunto_Id-1];
         this.controlador = controlador;
         controlador.inicializarNuevoProducto();
         enviarToContoladorDatosComunes();
