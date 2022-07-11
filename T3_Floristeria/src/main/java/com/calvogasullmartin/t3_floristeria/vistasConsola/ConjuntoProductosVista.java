@@ -53,7 +53,7 @@ public class ConjuntoProductosVista {
     
     private void mostrarUnConjunto (Integer conjunto_id){
         try {
-            List<String> conjuntoProductosUnidad = mostrarControlador.getOneConjuntos(conjunto_id);
+            String conjuntoProductosUnidad = mostrarControlador.getOneConjuntos(conjunto_id);
             /*
             mostrar la lista de productos (en formato string)
             ** prguntandole al controlador.isWithUnits i .isStock se puede saber si son todos
@@ -69,7 +69,7 @@ public class ConjuntoProductosVista {
     
     private void mostrarTodo(){
         try {
-            List<List<String>> tiquets_stocks = mostrarControlador.getAllConjuntos();
+            List<String> tiquets_stocks = mostrarControlador.getAllConjuntos();
             /*
             mostrar la lista de listas de productos (en formato string)
             ** prguntandole al controlador.isWithUnits i .isStock se puede saber si son todos
