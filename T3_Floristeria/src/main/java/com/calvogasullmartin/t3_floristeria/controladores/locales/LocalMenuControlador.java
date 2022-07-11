@@ -28,7 +28,7 @@ public class LocalMenuControlador extends LocalControladorPadre implements MenuC
 
     @Override
     public void mostrarStock() {
-         //pendiente el setEstado
+         this.setEstado(Estado.MOSTRAR_STOCK);
     }
 
     @Override
