@@ -5,6 +5,7 @@ import com.calvogasullmartin.t3_floristeria.controladores.MenuControlador;
 import com.calvogasullmartin.t3_floristeria.Vista;
 import com.calvogasullmartin.t3_floristeria.controladores.AddProductoControlador;
 import com.calvogasullmartin.t3_floristeria.controladores.ControladorPadre;
+import com.calvogasullmartin.t3_floristeria.controladores.MostrarConjuntoControlador;
 
 public class AppVista implements Vista{
 
@@ -13,13 +14,13 @@ public class AppVista implements Vista{
     
     private MenuPrincipalVista menuVista;
     
-    private MenuStockVista menuStock;
+    private ConjuntoProductosVista menuStock;
 
     public AppVista() {
         //instanciar los atributos (hacer el new). Sus constructores no tienen parametors
         bienvenidaVista = new BienvenidaVista();
         menuVista = new MenuPrincipalVista();
-        menuStock = new MenuStockVista();
+        menuStock = new ConjuntoProductosVista();
     }
     
     @Override
@@ -45,39 +46,12 @@ public class AppVista implements Vista{
        assert controlador != null;
        menuStock.interactuar(controlador);       
     }
-    
-    //private InOut io = new InOut();
-    
-    /*
-    public void interactuar(ControladorPadre controlador) {
-        if (controlador instanceof ArrancarAppControlador) {
-            interactuar(controlador);
-        }
+
+    @Override
+    public void visitar(MostrarConjuntoControlador controlador) {
+       assert controlador != null;
+       menuStock.interactuar(controlador);
     }
-
-    public void interactuar(ArrancarAppControlador controlador) {
-        BienvenidaVista bienvenida = new BienvenidaVista(controlador);
-
-        if (controlador.isPrimeraVez()) {
-            // sacar mensaje "es la primera vez que se arranca..."
-           new FloristeriaVista(controlador).solicitarDatos();
-           //mensaje de guardado con exito
-           controlador.setEstado(Estado.IN_MENU);
-        } else {
-            String nombre;
-            try {
-                nombre = controlador.getNombreFloristeria();
-                io.write("Bienvenidro a la App de la floristeria " + nombre);
-                controlador.setEstado(Estado.IN_MENU);
-            } catch (IOException ex) {
-                System.err.println("No se ha podido acceder a la BD");
-            }
-
-        }
-    }
-*/
-
     
-
     
 }
