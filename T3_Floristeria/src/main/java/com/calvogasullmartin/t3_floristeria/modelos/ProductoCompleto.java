@@ -2,11 +2,11 @@ package com.calvogasullmartin.t3_floristeria.modelos;
 
 public class ProductoCompleto {
     
-    private Integer producto_id; //todos
+    private int producto_id; //todos
     
     private Categoria categoria; //todos
     
-    private Float precio; //todos
+    private float precio; //todos
     
     private Altura altura; //opcional
     
@@ -16,19 +16,19 @@ public class ProductoCompleto {
 
     public ProductoCompleto() {
         // constructor -> todo null
-        producto_id = null;
+        producto_id = 0;
         categoria = null;
-        precio = null;
+        precio = 0;
         altura = null;
         color = null;
         material = null;
     }
 
-    public Integer getProducto_id() {
+    public int getProducto_id() {
         return producto_id;
     }
 
-    public void setProducto_id(Integer producto_id) {
+    public void setProducto_id(int producto_id) {
         this.producto_id = producto_id;
     }
 
@@ -40,11 +40,11 @@ public class ProductoCompleto {
         this.categoria = categoria;
     }
 
-    public Float getPrecio() {
+    public float getPrecio() {
         return precio;
     }
 
-    public void setPrecio(Float precio) {
+    public void setPrecio(float precio) {
         this.precio = precio;
     }
 
