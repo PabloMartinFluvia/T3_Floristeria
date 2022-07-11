@@ -1,8 +1,7 @@
 package com.calvogasullmartin.t3_floristeria.controladores;
 
 public interface ControladorPadreVisitor {
-    
-    // una nueva linia
+        
     void visitar (ArrancarAppControlador controlador);
     
     void visitar(MenuControlador controlador);
@@ -14,4 +13,6 @@ public interface ControladorPadreVisitor {
     void visitar(MostrarTotalesControlador controlador);
     
     void visitar(ModificarProductoControlador controlador);
+    
+    void visitar(NuevaVentaControlador controlador);
 }
