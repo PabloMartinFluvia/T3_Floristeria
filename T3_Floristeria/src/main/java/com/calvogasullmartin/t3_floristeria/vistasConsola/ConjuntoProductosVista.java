@@ -33,7 +33,7 @@ public class ConjuntoProductosVista {
     public void interactuar(MostrarConjuntoControlador mostrarControlador){
         this.mostrarControlador = mostrarControlador;
         mostrarControlador.setWithUnits(true); // por defecto se muestra el conjuno(s) con las unidades de los productos        
-        if (!mostrarControlador.isIsStock()){
+        if (!mostrarControlador.isStock()){
             mostrarTodo();
         }else {
             preguntarSiIncluirUnidades();
