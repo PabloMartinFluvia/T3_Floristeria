@@ -43,7 +43,7 @@ public class LocalMenuControlador extends LocalControladorPadre implements MenuC
 
     @Override
     public void historialVenta() {
-         //pendiente el setEstado
+         this.setEstado(Estado.MOSTRAR_TIQUETS);
     }
 
     @Override
