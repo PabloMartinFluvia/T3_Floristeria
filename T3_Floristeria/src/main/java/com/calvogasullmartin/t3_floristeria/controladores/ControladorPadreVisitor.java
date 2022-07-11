@@ -8,4 +8,6 @@ public interface ControladorPadreVisitor {
     void visitar(MenuControlador controlador);
     
     void visitar(AddProductoControlador controlador);
+    
+    void visitar(MostrarConjuntoControlador controlador);
 }
