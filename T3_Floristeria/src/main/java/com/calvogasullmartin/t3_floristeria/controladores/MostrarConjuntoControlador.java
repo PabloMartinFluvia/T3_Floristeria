@@ -11,9 +11,9 @@ public interface MostrarConjuntoControlador extends ControladorPadre{
     
     public boolean isWithUnits(); 
     
-    public List<List<String>> getAllConjuntos() throws IOException;
+    public List<String> getAllConjuntos() throws IOException;
     
-    public List<String> getOneConjuntos(int conjundo_id) throws IOException;
+    public String getOneConjuntos(int conjundo_id) throws IOException;
     
     public void seleccionarMenu();
 }
