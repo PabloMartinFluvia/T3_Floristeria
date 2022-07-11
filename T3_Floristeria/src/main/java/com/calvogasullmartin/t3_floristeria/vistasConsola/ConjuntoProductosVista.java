@@ -5,8 +5,6 @@ import com.calvogasullmartin.t3_floristeria.controladores.MostrarConjuntoControl
 import com.calvogasullmartin.t3_floristeria.modelos.Categoria;
 import java.io.IOException;
 import java.util.List;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 
 public class ConjuntoProductosVista {
 
