@@ -33,7 +33,7 @@ public class LocalMenuControlador extends LocalControladorPadre implements MenuC
 
     @Override
     public void valorFloristeria() {
-         //pendiente el setEstado
+         this.setEstado(Estado.MOSTRAR_VALOR_TIENDA);
     }
 
     @Override
@@ -48,7 +48,7 @@ public class LocalMenuControlador extends LocalControladorPadre implements MenuC
 
     @Override
     public void totalVentas() {
-        //pendiente el setEstado
+        this.setEstado(Estado.MOSTRAR_FACTURACION_TOTAL);
     }
 
     @Override
