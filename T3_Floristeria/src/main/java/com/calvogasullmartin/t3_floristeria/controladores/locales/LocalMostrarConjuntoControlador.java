@@ -29,7 +29,7 @@ public class LocalMostrarConjuntoControlador extends LocalControladorPadre imple
     } 
 
     @Override
-    public boolean isIsStock() {
+    public boolean isStock() {
         return isStock;
     }   
 
