@@ -9,9 +9,9 @@ public class Floristeria {
     
     private String nombre_floristeria; 
     
-    private Float valorStocksTotal; 
+    private float valorStocksTotal; 
     
-    private Float valorTicketsTotal; 
+    private float valorTicketsTotal; 
     
     private ConjuntoProductos[] stocks;
     
