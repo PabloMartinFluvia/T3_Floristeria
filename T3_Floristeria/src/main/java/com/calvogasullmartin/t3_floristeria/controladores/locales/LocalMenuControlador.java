@@ -18,12 +18,12 @@ public class LocalMenuControlador extends LocalControladorPadre implements MenuC
 
     @Override
     public void modificarUnidades() {
-         //pendiente el setEstado
+         this.setEstado(Estado.ACTUALIZAR_UNIDADES);
     }
 
     @Override
     public void retirarAriculo() {
-         //pendiente el setEstado
+         this.setEstado(Estado.RETIRAR_PRODUCTO);
     }
 
     @Override
