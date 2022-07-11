@@ -10,4 +10,6 @@ public interface ControladorPadreVisitor {
     void visitar(AddProductoControlador controlador);
     
     void visitar(MostrarConjuntoControlador controlador);
+    
+    void visitar(MostrarTotalesControlador controlador);
 }
