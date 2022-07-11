@@ -11,6 +11,8 @@ public enum Estado {
     NUEVO_PRODUCTO,
     MOSTRAR_STOCK,
     MOSTRAR_TIQUETS,
+    MOSTRAR_VALOR_TIENDA,
+    MOSTRAR_FACTURACION_TOTAL,
     //aqui habran más
     EXIT;    
 }
