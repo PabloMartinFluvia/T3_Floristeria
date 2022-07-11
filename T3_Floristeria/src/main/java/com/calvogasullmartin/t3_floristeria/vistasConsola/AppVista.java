@@ -14,13 +14,13 @@ public class AppVista implements Vista{
     
     private MenuPrincipalVista menuVista;
     
-    private ConjuntoProductosVista menuStock;
+    private ConjuntoProductosVista conjuntoProductosVista;
 
     public AppVista() {
         //instanciar los atributos (hacer el new). Sus constructores no tienen parametors
         bienvenidaVista = new BienvenidaVista();
         menuVista = new MenuPrincipalVista();
-        menuStock = new ConjuntoProductosVista();
+        conjuntoProductosVista = new ConjuntoProductosVista();
     }
     
     @Override
@@ -44,13 +44,13 @@ public class AppVista implements Vista{
     @Override
     public void visitar(AddProductoControlador controlador) {
        assert controlador != null;
-       menuStock.interactuar(controlador);       
+       conjuntoProductosVista.interactuar(controlador);       
     }
 
     @Override
     public void visitar(MostrarConjuntoControlador controlador) {
        assert controlador != null;
-       menuStock.interactuar(controlador);
+       conjuntoProductosVista.interactuar(controlador);
     }
     
     
