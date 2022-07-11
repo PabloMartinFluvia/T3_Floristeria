@@ -14,6 +14,15 @@ public class ProductoCompletoTxt extends GenericDaoTxt<ProductoCompleto, Integer
         */
         return null;
     }
+
+    @Override
+    public ProductoCompleto findById(int id) {
+        ProductoCompleto producto = null;
+        /*
+        encontrar un productoCompleto que tenga ese id
+        */
+        return producto;
+    }
     
     
 }
