@@ -5,7 +5,7 @@ import java.util.List;
 
 public class Floristeria {
     
-    private Integer floristeria_id; 
+    private int floristeria_id; 
     
     private String nombre_floristeria; 
     
@@ -19,7 +19,7 @@ public class Floristeria {
    
     public Floristeria(int numCategorias) {
         // constructor -> null o conjuntos vacíos  
-        floristeria_id = null; 
+        floristeria_id = 0; 
         nombre_floristeria = null;
         valorStocksTotal = 0f;
         valorTicketsTotal = 0f;
@@ -30,11 +30,11 @@ public class Floristeria {
         tiquets = new LinkedList<>(); // size = 0
     }
 
-    public Integer getFloristeria_id() {
+    public int getFloristeria_id() {
         return floristeria_id;
     }
 
-    public void setFloristeria_id(Integer floristeria_id) {
+    public void setFloristeria_id(int floristeria_id) {
         this.floristeria_id = floristeria_id;
     }
 
@@ -46,19 +46,19 @@ public class Floristeria {
         this.nombre_floristeria = nombre_floristeria;
     }
 
-    public Float getValorStocksTotal() {
+    public float getValorStocksTotal() {
         return valorStocksTotal;
     }
 
-    public void setValorStocksTotal(Float valorStocksTotal) {
+    public void setValorStocksTotal(float valorStocksTotal) {
         this.valorStocksTotal = valorStocksTotal;
     }
 
-    public Float getValorTicketsTotal() {
+    public float getValorTicketsTotal() {
         return valorTicketsTotal;
     }
 
-    public void setValorTicketsTotal(Float valorTicketsTotal) {
+    public void setValorTicketsTotal(float valorTicketsTotal) {
         this.valorTicketsTotal = valorTicketsTotal;
     }
 
