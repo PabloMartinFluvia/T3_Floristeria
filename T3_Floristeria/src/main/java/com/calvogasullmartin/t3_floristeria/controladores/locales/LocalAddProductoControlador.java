@@ -55,7 +55,7 @@ public class LocalAddProductoControlador extends LocalControladorPadre implement
         Iterator<ProductoCompleto> iterador = listaProductos.iterator();
         while (iterador.hasNext()){
             ProductoCompleto producto = iterador.next();
-            if(this.producto.getPrecio().equals(producto.getPrecio())){
+            if(this.producto.getPrecio() == producto.getPrecio()){
                 nuevaLista.add(producto);
             }
         }
