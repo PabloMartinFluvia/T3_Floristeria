@@ -2,9 +2,12 @@ package com.calvogasullmartin.t3_floristeria.controladores.locales;
 
 import com.calvogasullmartin.t3_floristeria.controladores.ControladorPadreVisitor;
 import com.calvogasullmartin.t3_floristeria.controladores.MostrarConjuntoControlador;
+import com.calvogasullmartin.t3_floristeria.modelos.Categoria;
+import com.calvogasullmartin.t3_floristeria.modelos.ConjuntoProductos;
 import com.calvogasullmartin.t3_floristeria.modelos.Estado;
 import com.calvogasullmartin.t3_floristeria.modelos.Estados;
 import java.io.IOException;
+import java.util.LinkedList;
 import java.util.List;
 
 public class LocalMostrarConjuntoControlador extends LocalControladorPadre implements MostrarConjuntoControlador{
@@ -13,6 +16,9 @@ public class LocalMostrarConjuntoControlador extends LocalControladorPadre imple
     private boolean withUnits; // si true, devuelve los productos con sus unidades; si false se ignoran las unidades
     
     public LocalMostrarConjuntoControlador(Estados estados, boolean isStock) {
+        /*
+        de momento nada, aun no se necesite un atributo de tipo ConjuntoProductos
+        */
         super(estados);
         this.isStock = isStock;
     }
@@ -38,17 +44,43 @@ public class LocalMostrarConjuntoControlador extends LocalControladorPadre imple
     }
 
     @Override
-    public List<List<String>> getAllConjuntos() throws IOException {
-        /*
-        pendent
-        */
+    public List<String> getAllConjuntos() throws IOException {
+        List<ConjuntoProductos> listaConjuntos;
+        if (isStock){
+            listaConjuntos = factory.getConjuntoProductosDao().findAllStocks();
+        }else{
+            listaConjuntos = factory.getConjuntoProductosDao().findAllTiquets();
+        }
+        List<String> listaDeConjuntoToString = new LinkedList<>();
+        for (ConjuntoProductos conjunto : listaConjuntos){
+            listaDeConjuntoToString.add(conjuntoToString(conjunto));
+        }
+        return listaDeConjuntoToString;
     }
 
     @Override
-    public List<String> getOneConjuntos(int conjundo_id) throws IOException {
+    public String getOneConjuntos(int conjundo_id) throws IOException {
+        ConjuntoProductos conjunto = null;
+        if (conjundo_id <= Categoria.values().length){
+           conjunto = factory.getConjuntoProductosDao().findOneStockById(conjundo_id);
+        }else {
+            /*
+            buscar un tiquet por id NO es requerido
+            */
+        }               
+        return conjuntoToString(conjunto);
+    }
+    
+    private String conjuntoToString (ConjuntoProductos conjunto){
+        assert conjunto != null; 
+        String conjuntoToString = null;
         /*
-        pendent
+        passar el stock/tiquet a String
+        [teniendo en cuenta si es un tiquet o un stock]
+        [en caso de ser un stock hay que tener en cuenta si se tienen que mostrar unidades o no]
+        **para hacer estas distinciones usar los atributos de esta clase
         */
+        return conjuntoToString;
     }
 
     @Override
