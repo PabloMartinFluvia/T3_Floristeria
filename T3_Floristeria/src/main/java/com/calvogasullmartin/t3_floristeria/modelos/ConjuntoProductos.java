@@ -5,24 +5,24 @@ import java.util.List;
 
 public class ConjuntoProductos {
     // es = stock = tiquet
-    private Integer id; // 1,2,3 para los stock de arboles, flores, decoracion, los siguientes para tiquets
+    private int id; // 1,2,3 para los stock de arboles, flores, decoracion, los siguientes para tiquets
     
-    private Float valor_Productos; // sumatorio, en este conjunto, de: precio del producto * unidades 
+    private float valor_Productos; // sumatorio, en este conjunto, de: precio del producto * unidades 
                                     // = valor de este stock = importe de este tiquet
     private List<ProductoUnidad> productos; // lista de ProductoUnidad
                                     //asociar producto y unidades de este se puede hacer un Map, pero para serializar hace falta esta clase intermedia
 
-    public ConjuntoProductos(Integer id) {
+    public ConjuntoProductos(int id) {
         this.id = id;
         valor_Productos = 0f;
         productos = new LinkedList<>();
     }
 
-    public Integer getId() {
+    public int getId() {
         return id;
     }
 
-    public void setId(Integer id) {
+    public void setId(int id) {
         this.id = id;
     }
 
@@ -30,7 +30,7 @@ public class ConjuntoProductos {
         return valor_Productos;
     }
 
-    public void setValor_Productos(Float valor_Productos) {
+    public void setValor_Productos(float valor_Productos) {
         this.valor_Productos = valor_Productos;
     }
 

@@ -12,4 +12,6 @@ public interface ControladorPadreVisitor {
     void visitar(MostrarConjuntoControlador controlador);
     
     void visitar(MostrarTotalesControlador controlador);
+    
+    void visitar(ModificarProductoControlador controlador);
 }

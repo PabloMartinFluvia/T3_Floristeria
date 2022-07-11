@@ -13,6 +13,8 @@ public enum Estado {
     MOSTRAR_TIQUETS,
     MOSTRAR_VALOR_TIENDA,
     MOSTRAR_FACTURACION_TOTAL,
+    RETIRAR_PRODUCTO,
+    ACTUALIZAR_UNIDADES,
     //aqui habran más
     EXIT;    
 }

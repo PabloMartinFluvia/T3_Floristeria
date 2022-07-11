@@ -1,6 +1,7 @@
 package com.calvogasullmartin.t3_floristeria.vistasConsola;
 
 import com.calvogasullmartin.t3_floristeria.controladores.AddProductoControlador;
+import com.calvogasullmartin.t3_floristeria.controladores.ModificarProductoControlador;
 import com.calvogasullmartin.t3_floristeria.controladores.MostrarConjuntoControlador;
 import com.calvogasullmartin.t3_floristeria.modelos.Categoria;
 import java.io.IOException;
@@ -12,6 +13,7 @@ public class ConjuntoProductosVista {
     //al ser un enum NO es un pecado que esta vista conozca información del modelo
     
     private MostrarConjuntoControlador mostrarControlador;
+    private ModificarProductoControlador modificarControlador;
     
     public ConjuntoProductosVista() {        
     }        
@@ -33,7 +35,7 @@ public class ConjuntoProductosVista {
     public void interactuar(MostrarConjuntoControlador mostrarControlador){
         this.mostrarControlador = mostrarControlador;
         mostrarControlador.setWithUnits(true); // por defecto se muestra el conjuno(s) con las unidades de los productos        
-        if (!mostrarControlador.isIsStock()){
+        if (!mostrarControlador.isStock()){
             mostrarTodo();
         }else {
             preguntarSiIncluirUnidades();
@@ -41,6 +43,25 @@ public class ConjuntoProductosVista {
             mostrarConjuntoProductosSegunEleccion(conjunto_id);
         } 
         mostrarControlador.seleccionarMenu();
+    }
+    
+    public void interactuar(ModificarProductoControlador modificarControlador){
+        this.modificarControlador = modificarControlador;
+        Integer conjunto_id = saberStockId(false); 
+        try{
+            mostrarUnConjuntoV2(conjunto_id);
+            new ProductoUnidadVista().interactuar(modificarControlador);
+        } catch (IOException ex) {
+            /*
+            mostrarMensaje que no se ha podido consultar a la BBD
+            */
+            modificarControlador.seleccionarMenu();
+        }                
+    }
+    
+    private void mostrarStock (boolean isAllPossible){        
+        Integer conjunto_id = saberStockId(isAllPossible); // puede ser null si quiere ver todos los stocks
+        mostrarConjuntoProductosSegunEleccion(conjunto_id);
     }
     
     private void mostrarConjuntoProductosSegunEleccion (Integer stock_id){
@@ -65,6 +86,17 @@ public class ConjuntoProductosVista {
             mostrarMensaje que no se ha podido consultar a la BBD
             */
         }
+    }
+    
+    //chapuza para que funcione con otro controlador el controlador mostrar y el controlador modificar tienen cosas comunes
+    private void mostrarUnConjuntoV2 (Integer conjunto_id) throws IOException{        
+        String conjuntoProductosUnidad = modificarControlador.getOneConjuntos(conjunto_id);
+            /*
+            mostrar la lista de productos (en formato string)
+            ** prguntandole al controlador.isWithUnits i .isStock se puede saber si son todos
+               los tiquets o todos los stocks, i si incluyen unidades (los tiquets siempre la incluyen)
+            ** Con Categoria.values()[conjunto_id-1] se puede saber qué estock es
+            */
     }
     
     private void mostrarTodo(){

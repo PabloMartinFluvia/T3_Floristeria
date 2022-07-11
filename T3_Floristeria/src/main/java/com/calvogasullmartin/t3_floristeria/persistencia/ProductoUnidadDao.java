@@ -6,4 +6,8 @@ import java.io.IOException;
 public interface ProductoUnidadDao extends GenericDao<ProductoUnidad, Integer>{
     
     public void addInConjunto(ProductoUnidad producto, int idConjunto) throws IOException;
+    
+    public void deleteInConjunto(ProductoUnidad producto, int idConjunt) throws IOException;
+    
+    public void updateInConjunto(ProductoUnidad producto, int idConjunt) throws IOException;
 }

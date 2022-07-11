@@ -11,6 +11,16 @@ public class ProductoUnidadTxt extends GenericDaoTxt<ProductoUnidad, Integer> im
         // Associar / poner, segun el id del conjuntoProductos, un nuevo producto con una determinada cantidad
     }
 
+    @Override
+    public void deleteInConjunto(ProductoUnidad producto, int idConjunt) throws IOException {
+        //sabiendo en que stock está: eliminar producto y cantidades
+    }
+
+    @Override
+    public void updateInConjunto(ProductoUnidad producto, int idConjunt) throws IOException {
+        //sabiendo en que stock está: actualizar /subsituir la cantidad de este ProductoUnidad
+    }
+
     
 
     
