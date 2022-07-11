@@ -10,6 +10,7 @@ import com.calvogasullmartin.t3_floristeria.modelos.Estados;
 import com.calvogasullmartin.t3_floristeria.Logica;
 import com.calvogasullmartin.t3_floristeria.controladores.AddProductoControlador;
 import com.calvogasullmartin.t3_floristeria.controladores.ControladorPadre;
+import com.calvogasullmartin.t3_floristeria.controladores.ModificarProductoControlador;
 import com.calvogasullmartin.t3_floristeria.controladores.MostrarConjuntoControlador;
 import com.calvogasullmartin.t3_floristeria.controladores.MostrarTotalesControlador;
 
@@ -36,6 +37,10 @@ public class LocalLogica implements Logica{
     private MostrarTotalesControlador mostrarTotalValorControlador;
     
     private MostrarTotalesControlador mostrarTotalFacturacionControlador;
+    
+    private ModificarProductoControlador modificarUnidadControlador;
+    
+    private ModificarProductoControlador eliminarProductoControlador;
     //añadir más a medida que se amplie la funcionalidad
     
     private Map<Estado,ControladorPadre> mapaEstadosContoladores;            
@@ -50,6 +55,8 @@ public class LocalLogica implements Logica{
         this.mostrarTicketsControlador = new LocalMostrarConjuntoControlador(estados, false); //tiquets
         this.mostrarTotalValorControlador = new LocalMostrarTotalesControlador(estados, true); // totalValorStocks
         this.mostrarTotalFacturacionControlador = new LocalMostrarTotalesControlador(estados, false); //totalValorTiquets
+        this.modificarUnidadControlador = new LocalModificarProductoControlador(estados, true, true); // actualizar unidades de un producto que está en stock
+        this.eliminarProductoControlador = new LocalModificarProductoControlador(estados, true, false); // eliminar un producto que está en stock
         //i mas
         mapaEstadosContoladores = new HashMap<>();
         coordinarControladores();
@@ -63,6 +70,8 @@ public class LocalLogica implements Logica{
         mapaEstadosContoladores.put(Estado.MOSTRAR_TIQUETS, mostrarTicketsControlador);
         mapaEstadosContoladores.put(Estado.MOSTRAR_VALOR_TIENDA, mostrarTotalValorControlador);
         mapaEstadosContoladores.put(Estado.MOSTRAR_FACTURACION_TOTAL, mostrarTotalFacturacionControlador);
+        mapaEstadosContoladores.put(Estado.ACTUALIZAR_UNIDADES, modificarUnidadControlador);
+        mapaEstadosContoladores.put(Estado.RETIRAR_PRODUCTO, eliminarProductoControlador);
         //añadir más a medida que se amplie la funcionalidad
         mapaEstadosContoladores.put(Estado.EXIT, null);
     }
