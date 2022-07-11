@@ -10,6 +10,7 @@ import com.calvogasullmartin.t3_floristeria.modelos.Estados;
 import com.calvogasullmartin.t3_floristeria.Logica;
 import com.calvogasullmartin.t3_floristeria.controladores.AddProductoControlador;
 import com.calvogasullmartin.t3_floristeria.controladores.ControladorPadre;
+import com.calvogasullmartin.t3_floristeria.controladores.MostrarConjuntoControlador;
 
 public class LocalLogica implements Logica{    
     //atributos:
@@ -26,6 +27,8 @@ public class LocalLogica implements Logica{
     private MenuControlador menuControlador;
     
     private AddProductoControlador addProductoControlador;
+    
+    private MostrarConjuntoControlador mostrarConjuntoControlador;
     //añadir más a medida que se amplie la funcionalidad
     
     private Map<Estado,ControladorPadre> mapaEstadosContoladores;            
@@ -36,6 +39,7 @@ public class LocalLogica implements Logica{
         this.arrancarAppControlador = new LocalArrancarAppControlador(estados, aplicacion.getFloristeria());
         this.menuControlador = new LocalMenuControlador(estados);
         this.addProductoControlador = new LocalAddProductoControlador(estados);
+        this.mostrarConjuntoControlador = new LocalMostrarConjuntoControlador(estados);
         //i mas
         mapaEstadosContoladores = new HashMap<>();
         coordinarControladores();
@@ -45,6 +49,7 @@ public class LocalLogica implements Logica{
         mapaEstadosContoladores.put(Estado.INITIAL, arrancarAppControlador);  
         mapaEstadosContoladores.put(Estado.EN_MENU, menuControlador); 
         mapaEstadosContoladores.put(Estado.NUEVO_PRODUCTO, addProductoControlador);
+        mapaEstadosContoladores.put(Estado.MOSTRAR_STOCK, mostrarConjuntoControlador);
         //añadir más a medida que se amplie la funcionalidad
         mapaEstadosContoladores.put(Estado.EXIT, null);
     }
