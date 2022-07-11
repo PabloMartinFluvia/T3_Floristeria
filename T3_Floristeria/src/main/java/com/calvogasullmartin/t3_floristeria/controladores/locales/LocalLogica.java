@@ -55,8 +55,8 @@ public class LocalLogica implements Logica{
         this.mostrarTicketsControlador = new LocalMostrarConjuntoControlador(estados, false); //tiquets
         this.mostrarTotalValorControlador = new LocalMostrarTotalesControlador(estados, true); // totalValorStocks
         this.mostrarTotalFacturacionControlador = new LocalMostrarTotalesControlador(estados, false); //totalValorTiquets
-        this.modificarUnidadControlador = new LocalModificarProductoControlador(estados, true, true); // actualizar unidades de un producto que está en stock
-        this.eliminarProductoControlador = new LocalModificarProductoControlador(estados, true, false); // eliminar un producto que está en stock
+        this.modificarUnidadControlador = new LocalModificarProductoControlador(estados, true); // actualizar unidades de un producto que está en stock
+        this.eliminarProductoControlador = new LocalModificarProductoControlador(estados, false); // eliminar un producto que está en stock
         //i mas
         mapaEstadosContoladores = new HashMap<>();
         coordinarControladores();
