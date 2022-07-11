@@ -4,11 +4,11 @@ public class ProductoUnidad {
     
     private ProductoCompleto producto;
     
-    private Integer cantidad;
+    private int cantidad;
 
     public ProductoUnidad() {
         producto = null;
-        cantidad = null;
+        cantidad = 0;
     }
 
     public ProductoCompleto getProducto() {
@@ -19,11 +19,11 @@ public class ProductoUnidad {
         this.producto = producto;
     }
 
-    public Integer getCantidad() {
+    public int getCantidad() {
         return cantidad;
     }
 
-    public void setCantidad(Integer cantidad) {
+    public void setCantidad(int cantidad) {
         this.cantidad = cantidad;
     }        
 }
