@@ -13,7 +13,7 @@ public class LocalMenuControlador extends LocalControladorPadre implements MenuC
 
     @Override
     public void introducirArticulo() {
-         //pendiente el setEstado
+         this.setEstado(Estado.NUEVO_PRODUCTO);
     }
 
     @Override
@@ -28,12 +28,12 @@ public class LocalMenuControlador extends LocalControladorPadre implements MenuC
 
     @Override
     public void mostrarStock() {
-         //pendiente el setEstado
+         this.setEstado(Estado.MOSTRAR_STOCK);
     }
 
     @Override
     public void valorFloristeria() {
-         //pendiente el setEstado
+         this.setEstado(Estado.MOSTRAR_VALOR_TIENDA);
     }
 
     @Override
@@ -43,12 +43,12 @@ public class LocalMenuControlador extends LocalControladorPadre implements MenuC
 
     @Override
     public void historialVenta() {
-         //pendiente el setEstado
+         this.setEstado(Estado.MOSTRAR_TIQUETS);
     }
 
     @Override
     public void totalVentas() {
-        //pendiente el setEstado
+        this.setEstado(Estado.MOSTRAR_FACTURACION_TOTAL);
     }
 
     @Override

@@ -17,6 +17,12 @@ public abstract class DaoFactory {
     public abstract Conector getConector();
     
     public abstract FloristeriaDao getFloristeriaDao();
+    
+    public abstract ProductoCompletoDao getProductoCompletoDao();
+    
+    public abstract ProductoUnidadDao getProductoUnidadesDao();
+    
+    public abstract ConjuntoProductosDao getConjuntoProductosDao();
 
     /*
     SOBRAN:

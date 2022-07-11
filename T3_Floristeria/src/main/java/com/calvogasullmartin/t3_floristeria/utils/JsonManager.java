@@ -41,8 +41,7 @@ public class JsonManager<T, ID> {
     
     /**
      * write object (seialized in json Format) in the File of the Class.
-     * Writer has appendable = true. 
-     * (But it would be better one single document with collections / arrays).
+     * Writer has appendable = false. 
      * NULL fields are ignored.
      * @param entidad
      * @throws IOException 
@@ -50,7 +49,7 @@ public class JsonManager<T, ID> {
     public void writeInFile(T entidad) throws IOException{ 
         assert entidad != null;
         
-        BufferedWriter escritor = new BufferedWriter(new FileWriter(archivo,true)); //apendable: true
+        BufferedWriter escritor = new BufferedWriter(new FileWriter(archivo,false)); //apendable: false
         gson = new GsonBuilder().setPrettyPrinting().create(); //serialize nulls: false       
         gson.toJson(entidad,escritor); // usar algun writer que implementi Appendable interface
         escritor.close();

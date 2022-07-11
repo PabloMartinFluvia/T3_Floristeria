@@ -4,7 +4,7 @@ import com.calvogasullmartin.t3_floristeria.persistencia.GenericDao;
 import com.calvogasullmartin.t3_floristeria.utils.JsonManager;
 import java.io.IOException;
 
-public class GenericDaoTxt<T, ID> implements GenericDao<T, ID> {
+public abstract class GenericDaoTxt<T, ID> implements GenericDao<T, ID> {
 
     protected JsonManager gestor;
 
@@ -14,9 +14,11 @@ public class GenericDaoTxt<T, ID> implements GenericDao<T, ID> {
 
     @Override
     public void create(T entity) throws IOException{
-        assert entity != null;
-        gestor.writeInFile(entity); //appendable + nulls fields ignored
-    }
+        /*
+        ob
+        */
+    };
+    
     /*
     @Override
     public T read(ID id) {

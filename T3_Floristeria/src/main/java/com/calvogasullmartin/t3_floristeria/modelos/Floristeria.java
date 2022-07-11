@@ -9,9 +9,9 @@ public class Floristeria {
     
     private String nombre_floristeria; 
     
-    private Float valorStocksTotal; 
+    private float valorStocksTotal; 
     
-    private Float valorTicketsTotal; 
+    private float valorTicketsTotal; 
     
     private ConjuntoProductos[] stocks;
     
@@ -23,7 +23,10 @@ public class Floristeria {
         nombre_floristeria = null;
         valorStocksTotal = 0f;
         valorTicketsTotal = 0f;
-        stocks = new ConjuntoProductos[numCategorias]; // elements = null        
+        stocks = new ConjuntoProductos[numCategorias]; // elements = null 
+        for (int i = 0; i< numCategorias; i++ ){
+            stocks[i] = new ConjuntoProductos(i+1); 
+        }
         tiquets = new LinkedList<>(); // size = 0
     }
 

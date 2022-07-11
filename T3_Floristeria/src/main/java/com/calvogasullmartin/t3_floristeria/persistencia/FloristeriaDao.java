@@ -6,4 +6,10 @@ import java.io.IOException;
 public interface FloristeriaDao extends GenericDao<Floristeria, Integer>{
     
     public String findName() throws IOException;
+    
+    public void addToStockValue(float increment) throws IOException;
+    
+    public float findTotalStocks() throws IOException;
+    
+    public float findTotalTiquets() throws IOException;
 }
