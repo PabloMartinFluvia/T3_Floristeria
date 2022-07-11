@@ -5,7 +5,7 @@ import java.util.List;
 
 public interface MostrarConjuntoControlador extends ControladorPadre{
     
-    public boolean isIsStock();
+    public boolean isStock();
     
     public void setWithUnits(boolean withUnits);
     
