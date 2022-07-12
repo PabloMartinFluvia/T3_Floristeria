@@ -99,8 +99,13 @@ public class ConjuntoProductosVista {
             ** son tiquets: cada List<String> es un tiquet -> List<List<String>> es una lista de todos los tiquets
             ** son stocks: cada List<String> es un stock -> List<List<String>> es una lista de todos los stocks {tamaño 3}
             */
-            for (String string : tiquets_stocks) {
-                System.out.println(string);
+            if(tiquets_stocks.size()!=0){
+                for (String string : tiquets_stocks) {
+                    System.out.println(string);
+                }
+            }
+            else{
+                System.out.println("No hay tickets.");
             }
         } catch (IOException ex) {
             System.out.println("Base de datos inaccesible.");
@@ -113,7 +118,7 @@ public class ConjuntoProductosVista {
     }
     
     private void mostrarOpciones(boolean isAllPosible){
-        String mensaje = "Mostrar stock de: "
+        String mensaje = "Mostrar stock de: \n"
         + "\t1) Arboles.\n"
         + "\t2) Flores.\n"
         + "\t3) Adornos.\n"

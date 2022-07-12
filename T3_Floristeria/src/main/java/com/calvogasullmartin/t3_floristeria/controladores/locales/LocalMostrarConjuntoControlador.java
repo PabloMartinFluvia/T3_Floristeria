@@ -52,8 +52,10 @@ public class LocalMostrarConjuntoControlador extends LocalControladorPadre imple
             listaConjuntos = factory.getConjuntoProductosDao().findAllTiquets();
         }
         List<String> listaDeConjuntoToString = new LinkedList<>();
-        for (ConjuntoProductos conjunto : listaConjuntos){
-            listaDeConjuntoToString.add(conjuntoToString(conjunto));
+        if(listaDeConjuntoToString.size() != 0){
+            for (ConjuntoProductos conjunto : listaConjuntos){
+                listaDeConjuntoToString.add(conjuntoToString(conjunto));
+            }
         }
         return listaDeConjuntoToString;
     }
