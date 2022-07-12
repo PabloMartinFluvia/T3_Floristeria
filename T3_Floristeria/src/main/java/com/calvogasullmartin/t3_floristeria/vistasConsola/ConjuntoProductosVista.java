@@ -69,16 +69,17 @@ public class ConjuntoProductosVista {
         }
     }
     
-    private void mostrarUnConjunto (Integer conjunto_id){
+    private void mostrarUnConjunto(Integer conjunto_id){
         try {
             String conjuntoProductosUnidad = mostrarControlador.getOneConjuntos(conjunto_id);
+            System.out.println(conjuntoProductosUnidad);
         } catch (IOException ex) {
             System.out.println("Base de datos inaccesible.");
         }
     }
     
     //chapuza para que funcione con otro controlador el controlador mostrar y el controlador modificar tienen cosas comunes
-    private void mostrarUnConjuntoV2 (Integer conjunto_id) throws IOException{        
+    private void mostrarUnConjuntoV2(Integer conjunto_id) throws IOException{        
         String conjuntoProductosUnidad = modificarControlador.getOneConjuntos(conjunto_id);
             /*
             mostrar la lista de productos (en formato string)
@@ -99,9 +100,7 @@ public class ConjuntoProductosVista {
             ** son stocks: cada List<String> es un stock -> List<List<String>> es una lista de todos los stocks {tamaño 3}
             */
         } catch (IOException ex) {
-            /*
-            mostrarMensaje que no se ha podido consultar a la BBD
-            */
+            System.out.println("Base de datos inaccesible.");
         }
     }
     
