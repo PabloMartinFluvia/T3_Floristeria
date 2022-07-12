@@ -6,6 +6,7 @@ import com.calvogasullmartin.t3_floristeria.controladores.MostrarConjuntoControl
 import com.calvogasullmartin.t3_floristeria.modelos.Categoria;
 import java.io.IOException;
 import java.util.List;
+import java.util.Scanner;
 
 public class ConjuntoProductosVista {
 
@@ -25,9 +26,7 @@ public class ConjuntoProductosVista {
         try {
             addProductoControlador.actualizarValoresStock();
         } catch (IOException ex) {
-            /*
-            mensaje de error diciendo que no se ha podido actualizar el valor de la tienda ni del stock
-            */
+            System.out.println("No se ha podido modificar el stock.");
         }
         finalizar(addProductoControlador);
     }
@@ -52,9 +51,7 @@ public class ConjuntoProductosVista {
             mostrarUnConjuntoV2(conjunto_id);
             new ProductoUnidadVista().interactuar(modificarControlador);
         } catch (IOException ex) {
-            /*
-            mostrarMensaje que no se ha podido consultar a la BBD
-            */
+            System.out.println("Base de datos inaccesible.");
             modificarControlador.seleccionarMenu();
         }                
     }
@@ -75,16 +72,8 @@ public class ConjuntoProductosVista {
     private void mostrarUnConjunto (Integer conjunto_id){
         try {
             String conjuntoProductosUnidad = mostrarControlador.getOneConjuntos(conjunto_id);
-            /*
-            mostrar la lista de productos (en formato string)
-            ** prguntandole al controlador.isWithUnits i .isStock se puede saber si son todos
-               los tiquets o todos los stocks, i si incluyen unidades (los tiquets siempre la incluyen)
-            ** Con Categoria.values()[conjunto_id-1] se puede saber qué estock es
-            */
         } catch (IOException ex) {
-            /*
-            mostrarMensaje que no se ha podido consultar a la BBD
-            */
+            System.out.println("Base de datos inaccesible.");
         }
     }
     
@@ -146,13 +135,27 @@ public class ConjuntoProductosVista {
         */
         mostrarControlador.setWithUnits(incluirUnidades);
     }
+    
     private void finalizar(AddProductoControlador controlador){
-        boolean addMore = false;
-        /*
-        preguntarle si quiere añadir más productos, en caso afirmativo poner el addMore en true.
-        */
+        boolean addMore = isCorrecto("Quiere añadir más productos?\n"
+        + "\t1) Si.\n"
+        + "\t0) No.\n");
         if (!addMore){
             controlador.seleccionarMenu();
         }
+    }
+    
+    private boolean isCorrecto(String mensaje) {
+        Scanner sc = new Scanner(System.in);
+        int input;
+        do{
+            System.out.println(mensaje);
+            input = sc.nextInt();
+        }while(input>=0 && input<=1);
+        boolean ok = true;
+        if(input==0){
+            ok=false;
+        }
+        return ok;
     }
 }
