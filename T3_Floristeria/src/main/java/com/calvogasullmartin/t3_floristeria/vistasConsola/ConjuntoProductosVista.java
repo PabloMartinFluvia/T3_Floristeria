@@ -99,6 +99,9 @@ public class ConjuntoProductosVista {
             ** son tiquets: cada List<String> es un tiquet -> List<List<String>> es una lista de todos los tiquets
             ** son stocks: cada List<String> es un stock -> List<List<String>> es una lista de todos los stocks {tamaño 3}
             */
+            for (String string : tiquets_stocks) {
+                System.out.println(string);
+            }
         } catch (IOException ex) {
             System.out.println("Base de datos inaccesible.");
         }
@@ -110,6 +113,14 @@ public class ConjuntoProductosVista {
     }
     
     private void mostrarOpciones(boolean isAllPosible){
+        String mensaje = "Mostrar stock de: "
+        + "\t1) Arboles.\n"
+        + "\t2) Flores.\n"
+        + "\t3) Adornos.\n"
+        
+        + "\t0) Todos.\n";
+        
+        System.out.println(mensaje);
         /*
         Mostrar por consola las distintas categorias de producto.
         Si isAllPosible = true -> entonces también mostrar la opción TODOS (para que pueda seleccionar todos los stocks)
@@ -117,8 +128,10 @@ public class ConjuntoProductosVista {
     }
     
     private Integer pedirOpcion(boolean isAllPosible){
-        Integer conjunto_id = null;
-        /*
+        Integer conjunto_id = getInt("",0,3);
+        /*0 esnull, que es todso
+        
+        
         Pedir al usuario que seleccione una opción de las mostradas [1:3] o [0:3]
         Poner la variable conjunto_id con el valor que elija.
             En el caso de isAllPosible = true -> si selecciona la opción TODOS devolver conjunto_id = null
@@ -126,12 +139,20 @@ public class ConjuntoProductosVista {
         return conjunto_id;
     }
     
+    private int getInt(String mensaje, int min, int max) {
+        Scanner sc = new Scanner(System.in);
+        int input;
+        do{
+            System.out.println(mensaje);
+            input = sc.nextInt();
+        }while(input>=min && input<=max);
+        return input;
+    }
+    
     private void preguntarSiIncluirUnidades (){
-        boolean incluirUnidades = true;
-        /*
-        preguntar al usuario si desea ver también las unidades de los productos en stock
-        ** En untils hay una clase YesNoDialog que puede faiclitar esta consulta
-        */
+        boolean incluirUnidades = isCorrecto("Quiere incluir las unidades?\n"
+        + "\t1) Si.\n"
+        + "\t0) No.\n");
         mostrarControlador.setWithUnits(incluirUnidades);
     }
     
