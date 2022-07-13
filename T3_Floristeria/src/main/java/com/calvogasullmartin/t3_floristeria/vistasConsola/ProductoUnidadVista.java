@@ -87,7 +87,7 @@ public class ProductoUnidadVista {
         do{
             System.out.println(mensaje);
             input = sc.nextInt();
-        }while(input>=0 && input<=1);
+        }while(input<0 || input>1);
         boolean ok = true;
         if(input==0){
             ok=false;
@@ -118,7 +118,7 @@ public class ProductoUnidadVista {
         do{
             System.out.println(mensaje);
             input = sc.nextInt();
-        }while(input>=min && input<=max);
+        }while(input<min || input>max);
         return input;
     }
 
