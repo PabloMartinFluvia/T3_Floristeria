@@ -17,7 +17,6 @@ public class App {
         this.vistaPrincipal = configurador.vistasPorConsola();
         this.logica = configurador.controladoresLocales();
         configurador.persistenciaTxt();    
-        //i más metodos según capa de persistencia
     }
 
     public static void main(String[] args) {
@@ -32,17 +31,6 @@ public class App {
             if (controlador != null){
                 vistaPrincipal.interactuar(controlador);
             }            
-        }while(controlador != null);
-         
-        /*
-        ControladorPadre controlador;
-        controlador = logica.getControladorPadre();
-        if (controlador != null) {
-            vistaPrincipal.interactuar(controlador);
-        }        
-        controlador = logica.getControladorPadre();
-        */
-    }
-
-    
+        }while(controlador != null);        
+    }   
 }
