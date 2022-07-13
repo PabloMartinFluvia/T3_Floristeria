@@ -69,39 +69,26 @@ public class LocalMostrarConjuntoControlador extends LocalControladorPadre imple
             /*
             buscar un tiquet por id NO es requerido (por el problema
             */
-        } 
-        String stock;
+        }         
+        return conjuntoToString(conjunto);
+    }
+        
+    private String conjuntoToString (ConjuntoProductos conjunto){
+        assert conjunto != null; 
+        String stockToString;
         if(isStock){
             System.out.println("\n\nStock---------------------------------\n");
-            stock = toString(conjunto);
+            stockToString = toString(conjunto);
         }
         else if(withUnits){
             System.out.println("\n\nStock con unidades-------------------\n");
-            stock = toStringUnits(conjunto);
+            stockToString = toStringUnits(conjunto);
         }
         else{
             System.out.println("\n\nTicket--------------------------------\n");
-            stock = toStringTicket(conjunto);
+            stockToString = toStringTicket(conjunto);
         }
-        return stock;
-    }
-
-    private String conjuntoToString (ConjuntoProductos conjunto){
-        assert conjunto != null; 
-        String conjuntoToString = null;
-        /*
-        passar el stock/tiquet a String
-        [teniendo en cuenta si es un tiquet o un stock]
-        [en caso de ser un stock hay que tener en cuenta si se tienen que mostrar unidades o no]
-        **para hacer estas distinciones usar los atributos de esta clase
-        **recordar que los campos con valor null no deben mostrarse
-        
-        ***quizas sería mejor ir a las clases de los modelos y hacer Override al método toString 
-        ***y ir implementando lo que se requiere en este metodo por partes.
-        */
-
-
-        return conjuntoToString;
+        return stockToString;
     }
 
     private String toString(ConjuntoProductos conjunto){
