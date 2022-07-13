@@ -38,7 +38,7 @@ public class LocalModificarProductoControlador extends LocalControladorPadre imp
     @Override
     public String getOneConjuntos(int conjundo_id) throws IOException {  
         assert conjundo_id <= Categoria.values().length;
-        this.stock = factory.getConjuntoProductosDao().findOneStockById(conjundo_id);                     
+        this.stock = factory.getConjuntoProductosDao().getOneStockById(conjundo_id);                     
         return conjuntoToString(stock);
     }
     
@@ -83,7 +83,7 @@ public class LocalModificarProductoControlador extends LocalControladorPadre imp
     public void disminuirValoresStock() throws IOException {
         float incrementoValor = - productoUnidad.getProducto().getPrecio() * productoUnidad.getCantidad();
         factory.getFloristeriaDao().incrementarValorFloristeria(incrementoValor);        
-        factory.getConjuntoProductosDao().incrementarValorUnStockById(stock.getId(), incrementoValor);
+        factory.getConjuntoProductosDao().incrementarValorEnStockById(stock.getId(), incrementoValor);
     }
 
     @Override
@@ -106,6 +106,6 @@ public class LocalModificarProductoControlador extends LocalControladorPadre imp
     public void actualizarValoresStock(int incremento) throws IOException {
         float incrementoValor =  productoUnidad.getProducto().getPrecio() * incremento;
         factory.getFloristeriaDao().incrementarValorFloristeria(incrementoValor);        
-        factory.getConjuntoProductosDao().incrementarValorUnStockById(stock.getId(), incrementoValor);
+        factory.getConjuntoProductosDao().incrementarValorEnStockById(stock.getId(), incrementoValor);
     }
 }

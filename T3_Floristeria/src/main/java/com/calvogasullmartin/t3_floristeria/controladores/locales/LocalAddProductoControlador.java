@@ -146,7 +146,7 @@ public class LocalAddProductoControlador extends LocalControladorPadre implement
     public void actualizarValoresStock() throws IOException {
         float incrementoValor = producto.getPrecio() * productoUnidad.getCantidad();
         factory.getFloristeriaDao().incrementarValorFloristeria(incrementoValor);        
-        factory.getConjuntoProductosDao().incrementarValorUnStockById(getStockId(), incrementoValor);
+        factory.getConjuntoProductosDao().incrementarValorEnStockById(getStockId(), incrementoValor);
     }
 
     
