@@ -2,7 +2,6 @@ package com.calvogasullmartin.t3_floristeria.persistencia.txt;
 
 import com.calvogasullmartin.t3_floristeria.persistencia.GenericDao;
 import com.calvogasullmartin.t3_floristeria.utils.JsonManager;
-import java.io.IOException;
 
 public abstract class GenericDaoTxt<T, ID> implements GenericDao<T, ID> {
 
@@ -11,37 +10,4 @@ public abstract class GenericDaoTxt<T, ID> implements GenericDao<T, ID> {
     public GenericDaoTxt() {
         gestor = new JsonManager(new ConectorTxt().getArchivoTxt());
     }
-
-    @Override
-    public void create(T entity) throws IOException{
-        /*
-        ob
-        */
-    };
-    
-    /*
-    @Override
-    public T read(ID id) {
-        //pendiente
-    }
-    */
-    
-    /*
-    @Override
-    public void update(T entity) {
-        //Pendiente
-    }
-
-    @Override
-    public void deleteById(ID id) {
-        //Pendiente
-    }
-
-    @Override
-    public List<T> findAll() {
-        List<T> entidades = new LinkedList<>();
-        //Pendiente
-        return entidades;
-    }  
-     */
 }

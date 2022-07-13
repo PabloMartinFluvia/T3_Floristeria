@@ -25,7 +25,11 @@ public class Floristeria {
         valorTicketsTotal = 0f;
         stocks = new ConjuntoProductos[numCategorias]; // elements = null 
         for (int i = 0; i< numCategorias; i++ ){
+<<<<<<< Updated upstream
             stocks[i] = new ConjuntoProductos(); 
+=======
+            stocks[i] = new ConjuntoProductos();
+>>>>>>> Stashed changes
             stocks[i].setId(i+1);
         }
         tiquets = new LinkedList<>(); // size = 0

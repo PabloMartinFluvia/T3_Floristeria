@@ -37,26 +37,25 @@ public class MenuPrincipalVista {
                 + "\t7) Mostrar histórico de tickets.\n"
                 + "\t8) Mostrar total ventas.\n\n"
                 + "\t0) SALIR.\n";        
-        //io.writeln(mensaje);
-        System.out.println(mensaje);
+        io.writeln(mensaje);
+        //System.out.println(mensaje);
     }
     
     private int pedirOpcion(){   
-        /*
+        
         PedirEnteroLimitado solicitud = new PedirEnteroLimitado("Selecciona Opcion: ", 0, 8);
-        return solicitud.read();
-        */
-        Scanner entrada = new Scanner(System.in);
+        //Scanner entrada = new Scanner(System.in);
+                
         int opcion;
         boolean ok = false;
         do {
-            //opcion = io.readInt("Selecciona Opcion: ");
-            opcion = entrada.nextInt();
+            opcion = solicitud.read();
+            //opcion = entrada.nextInt();
             if (opcion >= 0 && opcion <= 8) { 
                 ok = true;
             } else {
-                //io.writeln("Opcion no correcta. Debe ser entre 0 i 8");
-                System.out.println("Opcion no correcta. Debe ser entre 0 i 8");
+                io.writeln("Opcion no correcta. Debe ser entre 0 i 8");
+                //System.out.println("Opcion no correcta. Debe ser entre 0 i 8");
             }
         } while (!ok);
         return opcion;
@@ -92,15 +91,5 @@ public class MenuPrincipalVista {
                 controlador.exit();
                 break;
         }
-    }
-    
-    /*
-    private MenuControlador getMenuControlador() throws IOException {
-        return this.controlador;
-    }
-
-    public void setControlador(MenuControlador controlador) {//codigo repetido
-        this.controlador = controlador;
-    }
-*/
+    }        
 }
