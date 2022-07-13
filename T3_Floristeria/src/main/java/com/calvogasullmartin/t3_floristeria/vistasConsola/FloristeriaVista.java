@@ -25,7 +25,7 @@ public class FloristeriaVista {
             //io.write("Floristeria guardada con éxito.");
             System.out.println("Floristeria guardada con éxito.");
         } catch (IOException ex) {
-            System.out.println("Base de datos inaxcesible.");
+            System.out.println("Base de datos inaccesible.");
         }
     }
     
@@ -39,7 +39,7 @@ public class FloristeriaVista {
                 mostrarTotalVentas();            
             }
         } catch (IOException ex){
-            System.out.println("Base de datos inaxcesible.");
+            System.out.println("Base de datos inaccesible.");
         }
         controladorTotales.seleccionarMenu();
     }
