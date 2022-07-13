@@ -43,14 +43,15 @@ public class MenuPrincipalVista {
     
     private int pedirOpcion(){   
         
-        PedirEnteroLimitado solicitud = new PedirEnteroLimitado("Selecciona Opcion: ", 0, 8);
-        //Scanner entrada = new Scanner(System.in);
+        //PedirEnteroLimitado solicitud = new PedirEnteroLimitado("Selecciona Opcion: ", 0, 8);
+        Scanner entrada = new Scanner(System.in);
                 
         int opcion;
         boolean ok = false;
         do {
-            opcion = solicitud.read();
-            //opcion = entrada.nextInt();
+            //opcion = solicitud.read();
+            System.out.println("Selecciona una opcion entre 0 i 8: ");
+            opcion = entrada.nextInt();
             if (opcion >= 0 && opcion <= 8) { 
                 ok = true;
             } else {
