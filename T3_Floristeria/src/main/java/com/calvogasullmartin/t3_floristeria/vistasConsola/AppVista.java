@@ -8,6 +8,7 @@ import com.calvogasullmartin.t3_floristeria.controladores.ControladorPadre;
 import com.calvogasullmartin.t3_floristeria.controladores.ModificarProductoControlador;
 import com.calvogasullmartin.t3_floristeria.controladores.MostrarConjuntoControlador;
 import com.calvogasullmartin.t3_floristeria.controladores.MostrarTotalesControlador;
+import com.calvogasullmartin.t3_floristeria.controladores.NuevaVentaControlador;
 
 public class AppVista implements Vista{
 
@@ -68,6 +69,12 @@ public class AppVista implements Vista{
     public void visitar(ModificarProductoControlador controlador) {
         assert controlador != null;
         conjuntoProductosVista.interactuar(controlador);
+    }
+
+    @Override
+    public void visitar(NuevaVentaControlador controlador) {
+       assert controlador != null;
+       conjuntoProductosVista.interactuar(controlador);
     }
     
     

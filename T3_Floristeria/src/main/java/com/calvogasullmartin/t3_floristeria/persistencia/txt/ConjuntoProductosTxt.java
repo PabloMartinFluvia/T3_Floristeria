@@ -41,4 +41,11 @@ public class ConjuntoProductosTxt extends GenericDaoTxt<ConjuntoProductos, Integ
         return stock;
     }
 
+    @Override
+    public void createTiquet(ConjuntoProductos tiquet) throws IOException {
+        /*
+        guarda el nuevo tiquet. Apañate para antes poner-le un id correcto.
+        */
+    }
+
 }
