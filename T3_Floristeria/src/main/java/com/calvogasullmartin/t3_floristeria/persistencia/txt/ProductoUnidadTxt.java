@@ -21,6 +21,16 @@ public class ProductoUnidadTxt extends GenericDaoTxt<ProductoUnidad, Integer> im
         //sabiendo en que stock está: actualizar /subsituir la cantidad de este ProductoUnidad
     }
 
+    @Override
+    public ProductoUnidad findByStockIdAndProductoId(int stock_id, int productoCompleto_id) {
+        ProductoUnidad productoUnidad = null;
+        /*
+        sabiendo el id del producto i el id del stock en que esta: devolver el productoUnidad
+        */
+        return productoUnidad;
+    }
+
+
     
 
     

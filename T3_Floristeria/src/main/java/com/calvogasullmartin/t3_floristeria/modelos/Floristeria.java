@@ -25,7 +25,8 @@ public class Floristeria {
         valorTicketsTotal = 0f;
         stocks = new ConjuntoProductos[numCategorias]; // elements = null 
         for (int i = 0; i< numCategorias; i++ ){
-            stocks[i] = new ConjuntoProductos(i+1); 
+            stocks[i] = new ConjuntoProductos(); 
+            stocks[i].setId(i+1);
         }
         tiquets = new LinkedList<>(); // size = 0
     }

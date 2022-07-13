@@ -13,6 +13,7 @@ import com.calvogasullmartin.t3_floristeria.controladores.ControladorPadre;
 import com.calvogasullmartin.t3_floristeria.controladores.ModificarProductoControlador;
 import com.calvogasullmartin.t3_floristeria.controladores.MostrarConjuntoControlador;
 import com.calvogasullmartin.t3_floristeria.controladores.MostrarTotalesControlador;
+import com.calvogasullmartin.t3_floristeria.controladores.NuevaVentaControlador;
 
 public class LocalLogica implements Logica{    
     //atributos:
@@ -41,7 +42,8 @@ public class LocalLogica implements Logica{
     private ModificarProductoControlador modificarUnidadControlador;
     
     private ModificarProductoControlador eliminarProductoControlador;
-    //añadir más a medida que se amplie la funcionalidad
+    
+    private NuevaVentaControlador nuevaVentaControlador;
     
     private Map<Estado,ControladorPadre> mapaEstadosContoladores;            
 
@@ -57,7 +59,7 @@ public class LocalLogica implements Logica{
         this.mostrarTotalFacturacionControlador = new LocalMostrarTotalesControlador(estados, false); //totalValorTiquets
         this.modificarUnidadControlador = new LocalModificarProductoControlador(estados, true); // actualizar unidades de un producto que está en stock
         this.eliminarProductoControlador = new LocalModificarProductoControlador(estados, false); // eliminar un producto que está en stock
-        //i mas
+        this.nuevaVentaControlador = new LocalNuevaVentaCotnrolador(estados);
         mapaEstadosContoladores = new HashMap<>();
         coordinarControladores();
     }
@@ -72,13 +74,12 @@ public class LocalLogica implements Logica{
         mapaEstadosContoladores.put(Estado.MOSTRAR_FACTURACION_TOTAL, mostrarTotalFacturacionControlador);
         mapaEstadosContoladores.put(Estado.ACTUALIZAR_UNIDADES, modificarUnidadControlador);
         mapaEstadosContoladores.put(Estado.RETIRAR_PRODUCTO, eliminarProductoControlador);
-        //añadir más a medida que se amplie la funcionalidad
+        mapaEstadosContoladores.put(Estado.REALIZAR_VENTA, nuevaVentaControlador);
         mapaEstadosContoladores.put(Estado.EXIT, null);
     }
         
     @Override
-    public ControladorPadre getControladorPadre(){  
-        //System.out.println(estado);
+    public ControladorPadre getControladorPadre(){          
         return mapaEstadosContoladores.get(estados.getEstado());               
     }
 }

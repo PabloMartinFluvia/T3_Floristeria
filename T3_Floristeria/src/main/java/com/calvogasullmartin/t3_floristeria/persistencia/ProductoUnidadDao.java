@@ -10,4 +10,8 @@ public interface ProductoUnidadDao extends GenericDao<ProductoUnidad, Integer>{
     public void deleteInConjunto(ProductoUnidad producto, int idConjunt) throws IOException;
     
     public void updateInConjunto(ProductoUnidad producto, int idConjunt) throws IOException;
+    
+    public ProductoUnidad findByStockIdAndProductoId(int stock_id, int productoCompleto_id);
+        
+    
 }
