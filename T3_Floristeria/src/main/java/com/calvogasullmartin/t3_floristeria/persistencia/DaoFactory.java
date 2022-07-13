@@ -23,19 +23,4 @@ public abstract class DaoFactory {
     public abstract ProductoUnidadDao getProductoUnidadesDao();
     
     public abstract ConjuntoProductosDao getConjuntoProductosDao();
-
-    /*
-    SOBRAN:
-    habrá que crear métodos para los nuevos modelos
-    
-    public abstract StockDao getStockDao();
-
-    public abstract TicketDao getTicketDao();
-
-    public abstract ArbolDao getArbolDao();
-
-    public abstract FlorDao getFlorDao();
-    
-    public abstract DecoracionDao getDecoracionDao();     
-    */
 }

@@ -5,7 +5,8 @@ import java.io.IOException;
 import java.util.List;
 
 public interface ConjuntoProductosDao extends GenericDao<ConjuntoProductos, Integer>{
-        
+     
+    /*
     public void addToConjuntoValue(int idConjunto, float increment) throws IOException;
     
     public List<ConjuntoProductos> findAllStocks ()throws IOException;
@@ -15,4 +16,5 @@ public interface ConjuntoProductosDao extends GenericDao<ConjuntoProductos, Inte
     public ConjuntoProductos findOneStockById (Integer id)throws IOException;
         
     public void createTiquet(ConjuntoProductos tiquet) throws IOException;
+    */
 }

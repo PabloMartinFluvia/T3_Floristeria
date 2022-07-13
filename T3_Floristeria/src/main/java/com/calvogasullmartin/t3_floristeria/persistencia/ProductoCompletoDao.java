@@ -5,7 +5,9 @@ import java.util.List;
 
 public interface ProductoCompletoDao extends GenericDao<ProductoCompleto, Integer>{
     
+    /*
     public List<ProductoCompleto> findAllInConjuntoId(int id);
     
     public ProductoCompleto findById(int id);
+    */
 }

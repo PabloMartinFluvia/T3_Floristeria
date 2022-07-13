@@ -5,7 +5,7 @@ import com.calvogasullmartin.t3_floristeria.modelos.Floristeria;
 import java.io.IOException;
 
 public class FloristeriaTxt extends GenericDaoTxt<Floristeria, Integer> implements FloristeriaDao{
-    
+    /*
     @Override
     public void create(Floristeria entity) throws IOException{
         assert entity != null;
@@ -37,5 +37,5 @@ public class FloristeriaTxt extends GenericDaoTxt<Floristeria, Integer> implemen
        // buscar el valor del atributo totalTiquets y devolverlo
        return total;
     }
-    
+    */
 }
