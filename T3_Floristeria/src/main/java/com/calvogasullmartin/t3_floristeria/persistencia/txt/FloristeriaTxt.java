@@ -37,5 +37,5 @@ public class FloristeriaTxt extends GenericDaoTxt<Floristeria, Integer> implemen
        // buscar el valor del atributo totalTiquets y devolverlo
        return total;
     }
-    */
+    /*
 }
