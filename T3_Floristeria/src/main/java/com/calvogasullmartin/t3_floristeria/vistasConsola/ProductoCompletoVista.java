@@ -125,17 +125,23 @@ public class ProductoCompletoVista {
 
     private String solicitarColor() {
         String mensaje = "Introduce color: \n";
-        int min = 3,max = 10;
-        return getString(mensaje,min,max);
+        System.out.println(mensaje);
+        int min = 1,max = 30;
+        return getString(min,max);
     }
 
-    private String getString(String mensaje, int min, int max) {
+    private String getString(int min, int max) {
         Scanner sc = new Scanner(System.in);
         String input;
+        boolean ok = false;
         do{
-            System.out.println(mensaje);
             input = sc.nextLine();
-        }while(input.length()<min && input.length()>max);
+            if(input.length()>=min && input.length()<=max){
+                ok = true;
+            }else{
+                System.out.println("Error: el número de caracteres debe estar entre "+min+" y "+max);
+            }
+        }while(!ok);
         return input;
     }
     
@@ -168,10 +174,8 @@ public class ProductoCompletoVista {
         try {            
             boolean es_nuevo = controlador.isNuevo();            
             if (es_nuevo) {
-                new ProductoUnidadVista().interactuar(controlador);
-                System.out.println("a");
-                controlador.addProductoConUnidadesEnStock();
-                System.out.println("b");
+                new ProductoUnidadVista().interactuar(controlador);                
+                controlador.addProductoConUnidadesEnStock();                
                 System.out.println("Producto añadido con éxito.");///////InOut
             } else {
                 System.out.println("Error: producto ya existente.");

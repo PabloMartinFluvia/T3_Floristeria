@@ -46,7 +46,7 @@ public class ConjuntoProductosVista {
         String mensaje = "Categorias posibles: \n"
         + "\t1) Arboles.\n"
         + "\t2) Flores.\n"
-        + "\t3) Adornos.";        
+        + "\t3) Decoración.";        
         if(isAllPosible){
             mensaje += "\t0) Todos.";
         }
