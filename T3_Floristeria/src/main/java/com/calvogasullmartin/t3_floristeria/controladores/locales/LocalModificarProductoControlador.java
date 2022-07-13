@@ -88,7 +88,13 @@ public class LocalModificarProductoControlador extends LocalControladorPadre imp
 
     @Override
     public void eliminarProductoUnidad() throws IOException {
-        factory.getProductoUnidadesDao().deleteInConjunto(productoUnidad, stock.getId());
+        int nVecesEnTiquet = factory.getProductoUnidadesDao().enCuantosTiquetsEsta(productoUnidad.getProducto().getProducto_id());
+        if (nVecesEnTiquet > 0){
+            productoUnidad.setCantidad(-1);
+            factory.getProductoUnidadesDao().actualizarUnidadesProductoByStockId(productoUnidad, stock.getId());
+        }{
+            factory.getProductoUnidadesDao().deleteInStock(productoUnidad, stock.getId());
+        }    
     }
 
     @Override
@@ -99,7 +105,7 @@ public class LocalModificarProductoControlador extends LocalControladorPadre imp
     @Override
     public void incrementarProductoUnidad(int incremento) throws IOException {
         this.productoUnidad.setCantidad(getUnidadesActuales()+incremento);
-        factory.getProductoUnidadesDao().updateInConjunto(productoUnidad, stock.getId());
+        factory.getProductoUnidadesDao().actualizarUnidadesProductoByStockId(productoUnidad, stock.getId());
     }
 
     @Override

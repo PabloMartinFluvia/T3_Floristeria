@@ -8,6 +8,7 @@ import com.fasterxml.jackson.databind.JsonNode;
 
 import java.io.File;
 import java.io.IOException;
+import java.util.Iterator;
 import java.util.List;
 
 public class JsonManager<T> {
@@ -116,6 +117,28 @@ public class JsonManager<T> {
             }
         }
         return maxInt;
+    }
+    
+    public T findInUniqueArrayFirstObjectByIdField (String arrayFieldName, int id, String idFieldName, String objectField, Class<T> classObjectTarget) throws IOException{
+        JsonNode mainNode = fileManager.getNodesFromFile();
+        JsonNode arrayNode = nodeManager.findFirstNodeFieldThatMatchesFieldName(mainNode, arrayFieldName);
+        List<JsonNode> nodos = nodeManager.finAllNodes(arrayNode, idFieldName);
+        boolean found = false;
+        Iterator<JsonNode> iterator = nodos.iterator();
+        JsonNode nodeField = null;
+        while (!found && iterator.hasNext()){
+            nodeField = iterator.next();
+            if (nodeField.asInt() == id){
+                found = true;
+            }
+        }
+        if (!found){
+            return null;
+        }else{
+            JsonNode targetNode = nodeField.findParent(objectField);
+            T objectTarget = nodeManager.parseNodeToObject(targetNode, classObjectTarget);
+            return objectTarget;
+        }        
     }
     
     public void addObjectInUniqueArray(T newElement, String arrayFieldName) throws IOException{

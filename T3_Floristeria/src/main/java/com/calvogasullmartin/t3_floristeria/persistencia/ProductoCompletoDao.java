@@ -6,6 +6,16 @@ import java.util.List;
 
 public interface ProductoCompletoDao extends GenericDao<ProductoCompleto, Integer>{
     
+    /*
+    esta clase es para hacer las operaciones CRUD de un producto cualquiera,
+    sin conocer / afectar a las unidades que pueda haber de este en algun conjunto
+    */
+    
+    // create: añadir nuevo producto (luego hará que asociarlo a un stock con las unidades)
+    // **** de momento ya lo hace el createProducto de Producto unidad
+    
+    
+    public ProductoCompleto findProductoEnAllStocksById(int producto_id) throws IOException;
     
     /*
     a)
@@ -14,6 +24,12 @@ public interface ProductoCompletoDao extends GenericDao<ProductoCompleto, Intege
     */
      public List<ProductoCompleto> getProductosSinUnidadesByStockId (int stock_id) throws IOException;
     
-    public ProductoCompleto findById(int id);
+    // -> NO: findAllByTiquetId -> no tiene sentido, lo relevante en un tiquet és el ProductoUnidad
+    
+     
+    //update -> nunca, no se deja canviar el precio ni características
+    
+     
+    //delete -> se encarga el prducto unidad
     
 }
