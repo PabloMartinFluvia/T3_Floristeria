@@ -11,8 +11,7 @@ import com.calvogasullmartin.t3_floristeria.controladores.MostrarTotalesControla
 import com.calvogasullmartin.t3_floristeria.controladores.NuevaVentaControlador;
 
 public class AppVista implements Vista{
-
-    //atributos: las vistas que interactuaran con cada controlador que llegue
+   
     private BienvenidaVista bienvenidaVista;
     
     private MenuPrincipalVista menuVista;
@@ -22,7 +21,6 @@ public class AppVista implements Vista{
     private FloristeriaVista floristeriaVista;
 
     public AppVista() {
-        //instanciar los atributos (hacer el new). Sus constructores no tienen parametors
         bienvenidaVista = new BienvenidaVista();
         menuVista = new MenuPrincipalVista();
         conjuntoProductosVista = new ConjuntoProductosVista();

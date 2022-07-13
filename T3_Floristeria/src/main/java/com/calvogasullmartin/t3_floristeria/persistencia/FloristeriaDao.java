@@ -7,7 +7,7 @@ public interface FloristeriaDao extends GenericDao<Floristeria, Integer>{
     
     public void create(Floristeria floristeria)throws IOException;
     
-    public String findName() throws IOException;
+    public String getName() throws IOException;
     
     public void addToStockValue(float increment) throws IOException;
     
