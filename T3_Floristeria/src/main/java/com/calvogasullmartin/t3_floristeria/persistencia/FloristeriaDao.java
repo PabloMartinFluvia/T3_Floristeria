@@ -23,6 +23,24 @@ public interface FloristeriaDao extends GenericDao<Floristeria, Integer>{
     public String getName() throws IOException;
     
     /*
+    Equivale a read
+    a) el valor del campo valor del stock, en el documento de la floristeria
+    b) select valor del stock from Floristeria where floristeria_id = 1
+    c) find floristeria + project valor del stock (y luego coger el valor del bson document)    
+    si no encutra el campo o el valor no es un string devuelve null
+    */
+    public float getValorFloristeria() throws IOException;
+    
+    /*
+    Equivale a read
+    a) el valor del campo total facturacion, en el documento de la floristeria
+    b) select total facturacion from Floristeria where floristeria_id = 1
+    c) find floristeria + project valor del total facturacion (y luego coger el valor del bson document)    
+    si no encutra el campo o el valor no es un string devuelve null
+    */
+    public float getFacturacionFloristeria() throws IOException;
+    
+    /*
     Equivale a update
     a)
     b) update Floristeria set valorTotal = valorTotal+increment where floristeria_id = 1;
@@ -30,8 +48,16 @@ public interface FloristeriaDao extends GenericDao<Floristeria, Integer>{
     */
     public void incrementarValorFloristeria(float increment) throws IOException;
     
-    public float findTotalStocks() throws IOException;
+    /*
+    Equivale a update
+    a)
+    b) update Floristeria set facturiacionTotal = facturaciontotal + increment where floristeria_id = 1;
+    c)  db.restaurant.updateOne({ "floristeria_id" : 1 },{ $set: { "facturiacionTotal" : {$incr: increment} } }
+    */
+    public void incrementarFacturacionTotal(float incremento) throws IOException;
     
-    public float findTotalTiquets() throws IOException;
+   
+    
+    
     
 }

@@ -21,19 +21,27 @@ public class FloristeriaTxt extends GenericDaoTxt<Floristeria, Integer> implemen
     }
 
     @Override
+    public float getValorFloristeria() throws IOException {
+        String nombreAtributoValor = Floristeria.class.getDeclaredFields()[2].getName();        
+        return gestor.getValueParsedToFloatOfFirstFieldMatchesName_fromFile(nombreAtributoValor);
+    }
+
+    @Override
+    public float getFacturacionFloristeria() throws IOException {
+        String nombreAtributoFacturacion = Floristeria.class.getDeclaredFields()[3].getName();
+        return gestor.getValueParsedToFloatOfFirstFieldMatchesName_fromFile(nombreAtributoFacturacion);
+    }
+    
+    @Override
     public void incrementarValorFloristeria(float incremento) throws IOException {
         String nombreAtributoValor = Floristeria.class.getDeclaredFields()[2].getName();        
         gestor.incrementMainFloatFieldInFile(nombreAtributoValor, incremento, Floristeria.class);
-    }
+    }   
 
     @Override
-    public float findTotalStocks() throws IOException {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
-    }
-
-    @Override
-    public float findTotalTiquets() throws IOException {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    public void incrementarFacturacionTotal(float incremento) throws IOException {
+        String nombreAtributoValor = Floristeria.class.getDeclaredFields()[3].getName();        
+        gestor.incrementMainFloatFieldInFile(nombreAtributoValor, incremento, Floristeria.class);
     }
    
     
