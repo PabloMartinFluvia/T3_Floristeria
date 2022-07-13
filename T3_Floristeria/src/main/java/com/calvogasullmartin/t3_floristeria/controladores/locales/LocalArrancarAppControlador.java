@@ -50,7 +50,7 @@ public class LocalArrancarAppControlador extends LocalControladorPadre implement
 
     @Override
     public String getNombreFloristeria() throws IOException {
-        return factory.getFloristeriaDao().findName();
+        return factory.getFloristeriaDao().getName();
     }
 
     @Override

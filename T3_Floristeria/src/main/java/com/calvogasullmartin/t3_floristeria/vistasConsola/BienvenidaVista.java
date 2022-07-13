@@ -14,11 +14,10 @@ public class BienvenidaVista {
     public BienvenidaVista() {
         io = new InOut();
     }
-
-    //solo interactua con un ArrncarAppControlador cualquiera
+    
     public void interactuar(ArrancarAppControlador controlador) {
         assert controlador != null;
-        this.controlador = controlador; //lo guardamos en atributos para no tener que pasarselo a los métodos privados
+        this.controlador = controlador; 
         if (controlador.isPrimeraVez()) {
             pedirInicializacion();
         }
