@@ -12,7 +12,8 @@ public class ConjuntoProductos {
     private List<ProductoUnidad> productos; // lista de ProductoUnidad
                                     //asociar producto y unidades de este se puede hacer un Map, pero para serializar hace falta esta clase intermedia
 
-    public ConjuntoProductos() {        
+    public ConjuntoProductos() {
+        this.id = 0;
         valor_Productos = 0f;
         productos = new LinkedList<>();
     }

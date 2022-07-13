@@ -6,6 +6,8 @@ import java.io.IOException;
 
 public class BienvenidaVista {
 
+    final String errorBD = "No se ha podido acceder a la base de datos";
+    
     private InOut io;
     private ArrancarAppControlador controlador;
 
@@ -25,15 +27,16 @@ public class BienvenidaVista {
     }
 
     private void pedirInicializacion() {
-       // io.writeln("Aplicación ejecutandose por primera vez ...");
-        System.out.println("Aplicación ejecutandose por primera vez ...");
+        io.writeln("Aplicación ejecutandose por primera vez ...");
+        //System.out.println("Aplicación ejecutandose por primera vez ...");
         try {
             controlador.iniciarPersistencia();
-            //io.writeln("Capa de persistencia inizializada con exito");
-            System.out.println("Capa de persistencia inizializada con exito.");                        
+            io.writeln("Capa de persistencia inizializada con exito");
+            //System.out.println("Capa de persistencia inizializada con exito.");                        
             new FloristeriaVista().interactuar(controlador);
         } catch (IOException ex) {
-            ////que hacer con la excepcion
+            io.writeln(errorBD);
+            //System.err.println(errorBD);
         }
     }
 
@@ -41,10 +44,11 @@ public class BienvenidaVista {
         String nombre;
         try {
             nombre = controlador.getNombreFloristeria();
-            //io.writeln("Bienvenid@ al gestor de la floristeria " + nombre + ", desarrollado por CalvoGasullMartin.");
-            System.out.println("Bienvenid@ a " + nombre + "'s Manager, desarrollado por CalvoGasullMartin.\n");
+            io.writeln("Bienvenid@ al gestor de la floristeria " + nombre + ", desarrollado por CalvoGasullMartin.");
+            //System.out.println("Bienvenid@ a " + nombre + "'s Manager, desarrollado por CalvoGasullMartin.\n");
         } catch (IOException ex) {
-            ////que hacer con la excepcion
+            io.writeln(errorBD);
+            //System.err.println(errorBD);
         }
     }
 }

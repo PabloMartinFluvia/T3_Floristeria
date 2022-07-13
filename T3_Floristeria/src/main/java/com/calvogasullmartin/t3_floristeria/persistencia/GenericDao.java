@@ -1,10 +1,8 @@
 package com.calvogasullmartin.t3_floristeria.persistencia;
 
-import java.io.IOException;
-
 public interface GenericDao<T, ID> {        
 
-    public void create(T entity) throws IOException;
+    //public void create(T entity) throws IOException;
 
     //public T read(ID id);
 

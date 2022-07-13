@@ -7,10 +7,10 @@ import java.util.Scanner;
 public class InOut {
 
         //Correcte per a ingés. Si es vol posar accents o apostrofs dona problemes
-	private BufferedReader lector = new BufferedReader(new InputStreamReader(System.in));
+	//private BufferedReader lector = new BufferedReader(new InputStreamReader(System.in));
     
         //Per a ES/CAT
-        //private Scanner lector = new Scanner(System.in);
+        private Scanner lector = new Scanner(System.in);
 
 	public String readString(String title) {
 		String input = null;
@@ -18,8 +18,8 @@ public class InOut {
 		do {                   
 			this.write(title);                         
 			try {
-				input = lector.readLine(); // Buffered Reader
-                                //input = lector.nextLine(); // Scanner
+				//input = lector.readLine(); // Buffered Reader
+                                input = lector.nextLine(); // Scanner
 				ok = true;
 			} catch (Exception ex) {
 				this.writeError("de cadena de caracteres");
