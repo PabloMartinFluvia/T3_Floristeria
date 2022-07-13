@@ -72,7 +72,7 @@ public class LocalNuevaVentaCotnrolador extends LocalControladorPadre implements
 
     @Override
     public boolean isProductUnidadInSomeStock(int producto_id) throws IOException{
-        ProductoCompleto producto = factory.getProductoCompletoDao().findById(producto_id);
+        ProductoCompleto producto = factory.getProductoCompletoDao().findProductoEnAllStocksById(producto_id);
         if (producto != null){
             int stock_id = producto.getCategoria().ordinal()+1;            
             this.productoUnidadEnStock = factory.getProductoUnidadesDao().findByStockIdAndProductoId(stock_id, producto_id);
@@ -118,11 +118,10 @@ public class LocalNuevaVentaCotnrolador extends LocalControladorPadre implements
         
         for(ProductoUnidad productoUnidad: productosUnidadEnStockPostVenta){
             int stock_id = productoUnidad.getProducto().getCategoria().ordinal()+1;
-            factory.getProductoUnidadesDao().updateInConjunto(productoUnidad, stock_id);            
+            factory.getProductoUnidadesDao().actualizarUnidadesProductoByStockId(productoUnidad, stock_id);            
         }
         
-        for(int i = 0; i < Categoria.values().length; i++){
-            //actualizar valor de ese stock
+        for(int i = 0; i < Categoria.values().length; i++){            
             factory.getConjuntoProductosDao().incrementarValorEnStockById(i+1, disminucionValor[i]);
         }
         

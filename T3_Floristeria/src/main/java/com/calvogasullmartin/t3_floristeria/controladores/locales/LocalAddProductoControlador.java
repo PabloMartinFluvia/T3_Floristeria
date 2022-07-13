@@ -135,7 +135,7 @@ public class LocalAddProductoControlador extends LocalControladorPadre implement
     
     @Override
     public void addProductoConUnidadesEnStock() throws IOException {        
-        factory.getProductoUnidadesDao().addNuevoProductoYAsociarloAlStockConUnidades(productoUnidad, getStockId());        
+        factory.getProductoUnidadesDao().createProductoYAsociarloAlStockConUnidades(productoUnidad, getStockId());        
     }
     
     private int getStockId (){

@@ -11,7 +11,7 @@ import java.io.IOException;
 public class ProductoUnidadTxt extends GenericDaoTxt<ProductoUnidad, Integer> implements ProductoUnidadDao{
 
     @Override
-    public void addNuevoProductoYAsociarloAlStockConUnidades(ProductoUnidad productWithUnits, int idStock) throws IOException {
+    public void createProductoYAsociarloAlStockConUnidades(ProductoUnidad productWithUnits, int idStock) throws IOException {
         assert idStock <= Categoria.values().length;
         int max_id = findMaxProductId();
         productWithUnits.getProducto().setProducto_id(max_id + 1);
@@ -25,23 +25,25 @@ public class ProductoUnidadTxt extends GenericDaoTxt<ProductoUnidad, Integer> im
         return gestor.findMaxIntInMultipleFieldsWithSameName(nombreAtributoId);
     }
 
-    
-    
-    
     @Override
-    public void deleteInConjunto(ProductoUnidad producto, int idConjunt) throws IOException {
+    public ProductoUnidad findByStockIdAndProductoId(int stock_id, int productoCompleto_id) throws IOException{
         throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
-
-    @Override
-    public void updateInConjunto(ProductoUnidad producto, int idConjunt) throws IOException {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
-    }
-
-    @Override
-    public ProductoUnidad findByStockIdAndProductoId(int stock_id, int productoCompleto_id) {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
-    }
-   
     
+    @Override
+    public int enCuantosTiquetsEsta(int producto_id) throws IOException {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
+    
+    @Override
+    public void actualizarUnidadesProductoByStockId(ProductoUnidad producto, int idConjunt) throws IOException {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+        //sabiendo en que stock está: actualizar /subsituir la cantidad de este ProductoUnidad
+    }
+    
+    @Override
+    public void deleteInStock(ProductoUnidad producto, int idConjunt) throws IOException {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+        //sabiendo en que stock está: eliminar producto y cantidades
+    }       
 }

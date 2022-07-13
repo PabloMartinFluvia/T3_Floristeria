@@ -24,8 +24,12 @@ public class ProductoCompletoTxt extends GenericDaoTxt<ProductoCompleto, Integer
     }
 
     @Override
-    public ProductoCompleto findById(int id) {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    public ProductoCompleto findProductoEnAllStocksById(int producto_id) throws IOException {
+        String stocksFieldName = Floristeria.class.getDeclaredFields()[4].getName(); 
+        String idFieldName = ProductoCompleto.class.getDeclaredFields()[0].getName(); 
+        String productosFieldName = ConjuntoProductos.class.getDeclaredFields()[2].getName(); 
+        ProductoCompleto producto = (ProductoCompleto) gestor.findInUniqueArrayFirstObjectByIdField(stocksFieldName, producto_id,idFieldName, productosFieldName,ProductoCompleto.class);
+        return producto;
     }
    
     
