@@ -31,10 +31,36 @@ public class LocalAddProductoControlador extends LocalControladorPadre implement
     }
 
     @Override
-    public boolean isNuevo() {
+    public void almacenarCategoria(Categoria categoria) {
+        producto.setCategoria(categoria);
+    }
+    
+    @Override
+    public void almacenarPrecio(float precio) {
+        producto.setPrecio(precio);
+    }
+
+    @Override
+    public void almacenarAltura(Altura altura) {
+        producto.setAltura(altura);
+    }
+
+    @Override
+    public void almacenarColor(String color) {
+        producto.setColor(color);
+    }
+
+    @Override
+    public void almacenarMaterial(Material material) {
+        producto.setMaterial(material);
+    }
+    
+    
+    @Override
+    public boolean isNuevo() throws IOException {
         Categoria categoria = producto.getCategoria();
         List<ProductoCompleto> listaProductos = factory.getProductoCompletoDao()
-                .findAllInConjuntoId(categoria.ordinal()+1);
+                .getProductosSinUnidadesByStockId(categoria.ordinal()+1);
         if (listaProductos == null || listaProductos.isEmpty()){
             return true;
         }else{ // hay productos de esa categoria ya guardados
@@ -106,13 +132,10 @@ public class LocalAddProductoControlador extends LocalControladorPadre implement
         assert cantidad > 0;
         productoUnidad.setCantidad(cantidad);
     }
-
     
     @Override
-    public void addProductoConUnidadesEnStock() throws IOException {
-        // Associar / poner, segun el id del conjuntoProductos, un nuevo producto con una determinada cantidad        
-        factory.getProductoUnidadesDao().addInConjunto(productoUnidad, getStockId());
-        //el getCategoria.ordinal + 1 coincide con el id del stock de esta categoria
+    public void addProductoConUnidadesEnStock() throws IOException {        
+        factory.getProductoUnidadesDao().addNuevoProductoYAsociarloAlStockConUnidades(productoUnidad, getStockId());        
     }
     
     private int getStockId (){
@@ -122,35 +145,13 @@ public class LocalAddProductoControlador extends LocalControladorPadre implement
     @Override
     public void actualizarValoresStock() throws IOException {
         float incrementoValor = producto.getPrecio() * productoUnidad.getCantidad();
-        factory.getFloristeriaDao().addToStockValue(incrementoValor);
-        //pendiente: actualizar valor tienda y valor stock
-        factory.getConjuntoProductosDao().addToConjuntoValue(getStockId(), incrementoValor);
+        factory.getFloristeriaDao().incrementarValorFloristeria(incrementoValor);        
+        factory.getConjuntoProductosDao().incrementarValorUnStockById(getStockId(), incrementoValor);
     }
 
-    @Override
-    public void almacenarCategoria(Categoria categoria) {
-        producto.setCategoria(categoria);
-    }
+    
 
-    @Override
-    public void almacenarPrecio(float precio) {
-        producto.setPrecio(precio);
-    }
-
-    @Override
-    public void almacenarAltura(Altura altura) {
-        producto.setAltura(altura);
-    }
-
-    @Override
-    public void almacenarColor(String color) {
-        producto.setColor(color);
-    }
-
-    @Override
-    public void almacenarMaterial(Material material) {
-        producto.setMaterial(material);
-    }
+    
 
     @Override
     public void seleccionarMenu() {

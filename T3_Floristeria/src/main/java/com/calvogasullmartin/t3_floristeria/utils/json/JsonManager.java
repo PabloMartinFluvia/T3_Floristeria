@@ -56,6 +56,16 @@ public class JsonManager<T> {
         fileManager.writeNodeInFileJackson(nodos);
     }   
     
+    public void incrementFloatFieldOfObjectIndexedInArrayAndSaveInFile
+        (float increment,String fieldToUpdate, int array_inex,String fieldArray) throws IOException{
+        JsonNode mainNode = fileManager.getNodesFromFile();
+        JsonNode arrayNode = nodeManager.findFirstNodeFieldThatMatchesFieldName(mainNode, fieldArray);
+        JsonNode nodeInIarray = arrayNodeManager.getNodeInArrayByIndex(arrayNode, array_inex);
+        nodeManager.incrementTopLevelFloatField(nodeInIarray, fieldToUpdate, increment);
+        fileManager.writeNodeInFileJackson(mainNode);
+    }
+        
+    
     
     /**
      * Looks for the FIRST field that matches that name in the file (child nodes INCLUDED),
@@ -137,5 +147,14 @@ public class JsonManager<T> {
         // T objectUpdated = nodeManager.parseNodeToObject(mainNode, classInFile);
         //fileManager.writeObjectInFileJackson(objectUpdated);
         fileManager.writeNodeInFileJackson(mainNode);
-    }                      
+    }       
+    
+    public T[] goToSpecificIndexInUniqueArrayAndGetNestedCollection(String uniqueArrayFieldName, int index, String nestedCollectionFieldName, Class<T> nestedArrayClass) throws IOException{
+        JsonNode mainNode = fileManager.getNodesFromFile(); 
+        JsonNode arrayNode = nodeManager.findFirstNodeFieldThatMatchesFieldName(mainNode, uniqueArrayFieldName);
+        JsonNode nodeTarget = arrayNodeManager.getNodeInArrayByIndex(arrayNode, index);
+        JsonNode nestedNodeArray = nodeManager.findFirstNodeFieldThatMatchesFieldName(nodeTarget, nestedCollectionFieldName);
+        T[] arrayTarget = (T[]) arrayNodeManager.parseNodeArrayToObjectArray(nestedNodeArray, nestedArrayClass);        
+        return arrayTarget;
+    }
 }

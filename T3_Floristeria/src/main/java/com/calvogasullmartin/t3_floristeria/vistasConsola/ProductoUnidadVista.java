@@ -17,8 +17,35 @@ public class ProductoUnidadVista {
     }
 
     public void interactuar(AddProductoControlador controlador) {
-        this.addControlador = controlador;
+        this.addControlador = controlador;        
         enviarToContoladorUnidadesIniciales();
+    }
+    
+    private void enviarToContoladorUnidadesIniciales() {
+        addControlador.almacenarUnidadesIniciales(pedirUnidadesIniciales());
+    }
+
+    private int pedirUnidadesIniciales() {
+        String mensaje = "Introduce la cantidad de este producto que habrá en el stock (>0): ";
+        System.out.println(mensaje);
+        int unidades = pedrirIntCantidad(1) ;
+        return unidades;
+    }
+    
+    
+    private int pedrirIntCantidad(int min) {
+        Scanner sc = new Scanner(System.in);
+        int input;
+        boolean ok = false;
+        do{
+            input = sc.nextInt();
+            if(input>=min){
+                ok = true;
+            }else{
+                System.out.println("Error. Introduce una cantidad superior a "+min);
+            }
+        }while(!ok);
+        return input;
     }
 
     public void interactuar(ModificarProductoControlador modificarControlador) {
@@ -70,7 +97,8 @@ public class ProductoUnidadVista {
 
     private void actualizarUnidades() {
         int cantidadPrevia = modificarControlador.getUnidadesActuales();
-        int incremento =  getInt("En cuantas unidades variamos el stock?", cantidadPrevia*-1);
+        System.out.println("En cuantas unidades variamos el stock?");
+        int incremento =  pedrirIntCantidad( cantidadPrevia*-1);
         boolean modificar = isCorrecto("Estas seguro de querer modificar las unidades en " + incremento + "?\n"
             + "\t1) Si.\n"
             + "\t0) No.\n");
@@ -94,29 +122,14 @@ public class ProductoUnidadVista {
         return input;
     }
 
-    private int getInt(String mensaje, int min) {
-        Scanner sc = new Scanner(System.in);
-        int input;
-        do{
-            System.out.println(mensaje);
-            input = sc.nextInt();
-        }while(input>=min);
-        return input;
-    }
+    
 
     private int obtenerIdProducto() {
         String mensaje = "Introduce el numero de identificación del producto: ";
-        int producto_id = getInt(mensaje, 0) ;
+        System.out.println(mensaje);
+        int producto_id = pedrirIntCantidad(0) ;
         return producto_id;
     }
 
-    private void enviarToContoladorUnidadesIniciales() {
-        addControlador.almacenarUnidadesIniciales(pedirUnidadesIniciales());
-    }
-
-    private int pedirUnidadesIniciales() {
-        String mensaje = "Introduce el numero de identificación del producto: ";
-        int unidades = getInt(mensaje, 0) ;
-        return unidades;
-    }
+    
 }
