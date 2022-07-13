@@ -70,5 +70,14 @@ public class ProductoCompleto {
 
     public void setMaterial(Material material) {
         this.material = material;
-    }    
+    }
+    
+    public String toString(){
+        String string = "";
+        string = string + producto_id+", "+ precio + ", ";
+        if(this.categoria == categoria.ARBOL){
+            string = string + altura;
+        }
+        return string;
+    }
 }

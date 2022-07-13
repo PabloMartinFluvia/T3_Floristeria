@@ -39,5 +39,32 @@ public class ConjuntoProductos {
 
     public void setProductos(List<ProductoUnidad> productos) {
         this.productos = productos;
-    }    
+    }
+
+    public String listaToString(){
+        String string = "";
+        if(productos.size()!=0)
+            for (ProductoUnidad productoUnidad : productos) {
+                string = string + productoUnidad.productoToString();
+            }
+        return string;
+    }
+    
+    public String listaToStringQ(){
+        String string = "";
+        if(productos.size()!=0)
+            for (ProductoUnidad productoUnidad : productos) {
+                string = string + productoUnidad.productoToStringQ();
+            }
+        return string;
+    }
+    
+    public String listaToStringTicket(){
+        String string = "Valor total: "+valor_Productos+".\n";
+        if(productos.size()!=0)
+            for (ProductoUnidad productoUnidad : productos) {
+                string = string + productoUnidad.productoToString();
+            }
+        return string;
+    }
 }

@@ -52,8 +52,10 @@ public class LocalMostrarConjuntoControlador extends LocalControladorPadre imple
             listaConjuntos = factory.getConjuntoProductosDao().findAllTiquets();
         }
         List<String> listaDeConjuntoToString = new LinkedList<>();
-        for (ConjuntoProductos conjunto : listaConjuntos){
-            listaDeConjuntoToString.add(conjuntoToString(conjunto));
+        if(listaDeConjuntoToString.size() != 0){
+            for (ConjuntoProductos conjunto : listaConjuntos){
+                listaDeConjuntoToString.add(conjuntoToString(conjunto));
+            }
         }
         return listaDeConjuntoToString;
     }
@@ -67,10 +69,20 @@ public class LocalMostrarConjuntoControlador extends LocalControladorPadre imple
             /*
             buscar un tiquet por id NO es requerido (por el problema
             */
-        }               
-        return conjuntoToString(conjunto);
+        } 
+        String stock;
+        if(isStock){
+            stock = toString(conjunto);
+        }
+        else if(withUnits){
+            stock = toStringUnits(conjunto);
+        }
+        else{
+            stock = toStringTicket(conjunto);
+        }
+        return stock;
     }
-    
+
     private String conjuntoToString (ConjuntoProductos conjunto){
         assert conjunto != null; 
         String conjuntoToString = null;
@@ -84,8 +96,29 @@ public class LocalMostrarConjuntoControlador extends LocalControladorPadre imple
         ***quizas sería mejor ir a las clases de los modelos y hacer Override al método toString 
         ***y ir implementando lo que se requiere en este metodo por partes.
         */
+
+
         return conjuntoToString;
     }
+
+    private String toString(ConjuntoProductos conjunto){
+        assert conjunto != null; 
+        String String = conjunto.listaToString();
+        return String;
+    }
+    
+    private String toStringUnits(ConjuntoProductos conjunto){
+        assert conjunto != null; 
+        String String = conjunto.listaToStringQ();
+        return String;
+    }
+    
+    private String toStringTicket(ConjuntoProductos conjunto){
+        assert conjunto != null; 
+        String String = conjunto.listaToStringTicket();
+        return String;
+    }
+
 
     @Override
     public void seleccionarMenu() {

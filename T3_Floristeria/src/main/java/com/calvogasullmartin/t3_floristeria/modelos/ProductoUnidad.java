@@ -25,5 +25,16 @@ public class ProductoUnidad {
 
     public void setCantidad(int cantidad) {
         this.cantidad = cantidad;
-    }        
+    }
+    
+    public String productoToString(){
+        String string = producto.toString();
+        return string + ".\n";
+    }
+    
+    public String productoToStringQ(){
+        String string = producto.toString();
+        return string + ", "+ cantidad + ".\n";
+    }
+    
 }
