@@ -28,14 +28,11 @@ public class FloristeriaVista {
             io.writeln(mensage);
             //System.out.println(mensage);
         } catch (IOException ex) {
-<<<<<<< Updated upstream
             /*
             mensaje de que no se ha podido consultar a la BD
             */
-=======
             io.writeln(errorBD);
             //System.err.println(errorBD);
->>>>>>> Stashed changes
         }
     }
     
@@ -49,14 +46,11 @@ public class FloristeriaVista {
                 mostrarTotalVentas();            
             }
         } catch (IOException ex){
-<<<<<<< Updated upstream
             /*
             mensaje de que no se ha podido consultar a la BD
             */
-=======
             io.writeln(errorBD);
             //System.err.println(errorBD);
->>>>>>> Stashed changes
         }
         controladorTotales.seleccionarMenu();
     }
