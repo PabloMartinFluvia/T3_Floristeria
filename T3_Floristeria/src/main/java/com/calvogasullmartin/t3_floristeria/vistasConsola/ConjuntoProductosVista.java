@@ -122,10 +122,9 @@ public class ConjuntoProductosVista {
     }
 
     private boolean isVentaFinalizada() {
-        boolean end = true;
-        /*
-        preguntar por si quiere añadir más productos al tiquet. En caso negativo devolver true
-         */
+        boolean end = isCorrecto("Quiere añadir otro artículo?\n"
+        + "\t1) Si.\n"
+        + "\t0) No.\n");
         return end;
     }
 
@@ -180,7 +179,6 @@ public class ConjuntoProductosVista {
             else{
                 System.out.println("No hay tickets.");
             }
-        
     }
 
     private Integer saberStockId(boolean isAllPosible) {
