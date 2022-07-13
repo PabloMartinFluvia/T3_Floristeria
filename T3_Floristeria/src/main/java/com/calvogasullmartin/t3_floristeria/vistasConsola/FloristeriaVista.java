@@ -7,8 +7,6 @@ import java.io.IOException;
 import java.util.Scanner;
 
 public class FloristeriaVista {
-    
-    final String errorBD = "No se ha podido acceder a la base de datos";
 
     private InOut io;
     
@@ -24,15 +22,10 @@ public class FloristeriaVista {
         try {
             controlador.iniciarFloristeria(nombre);
             controlador.guardarUnicaFloristeria();
-            String mensage = "Floristeria guardada con éxito.";
-            io.writeln(mensage);
-            //System.out.println(mensage);
+            //io.write("Floristeria guardada con éxito.");
+            System.out.println("Floristeria guardada con éxito.");
         } catch (IOException ex) {
-            /*
-            mensaje de que no se ha podido consultar a la BD
-            */
-            io.writeln(errorBD);
-            //System.err.println(errorBD);
+            System.out.println("Base de datos inaxcesible.");
         }
     }
     
@@ -46,11 +39,7 @@ public class FloristeriaVista {
                 mostrarTotalVentas();            
             }
         } catch (IOException ex){
-            /*
-            mensaje de que no se ha podido consultar a la BD
-            */
-            io.writeln(errorBD);
-            //System.err.println(errorBD);
+            System.out.println("Base de datos inaxcesible.");
         }
         controladorTotales.seleccionarMenu();
     }
@@ -67,8 +56,8 @@ public class FloristeriaVista {
     
     private void imprimirTotal(String title, float total){
         String mensage = "El importe total de "+title+" es de: "+total;
-        io.writeln(mensage);
-        //System.out.println(mensage);
+        //io.writeln(mensage);
+        System.out.println(mensage);
     }
 
     private String pedirNombre() {
@@ -76,14 +65,13 @@ public class FloristeriaVista {
         boolean ok = false;
         int minNumChar = 3;        
         do {
-            String mensage = "Introduce el nombre de la floristeria: ";
-            nombre = io.readString(mensage);
-            //Scanner entrada = new Scanner(System.in);
-            //System.out.print(mensage);
-            //nombre = entrada.nextLine();
+            //nombre = io.readString("Introduce el nombre de la floristeria: ");
+            Scanner entrada = new Scanner(System.in);
+            System.out.println("Introduce el nombre de la floristeria: ");
+            nombre = entrada.nextLine();
             if (nombre.length() < minNumChar) {
-                io.writeError("de al menos 3 caracteres");
-                //System.out.println("Error: el nombre debe tener al menos 3 caracteres.");
+                //io.writeError("de al menos 3 caracteres");
+                System.out.println("Error: el nombre debe tener al menos 3 caracteres.");
             } else {
                 ok = true;
             }
