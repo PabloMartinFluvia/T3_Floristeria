@@ -130,6 +130,7 @@ public class ConjuntoProductosVista {
         Mostrar por consola las distintas categorias de producto.
         Si isAllPosible = true -> entonces también mostrar la opción TODOS (para que pueda seleccionar todos los stocks)
         */
+        
     }
     
     private Integer pedirOpcion(boolean isAllPosible){
