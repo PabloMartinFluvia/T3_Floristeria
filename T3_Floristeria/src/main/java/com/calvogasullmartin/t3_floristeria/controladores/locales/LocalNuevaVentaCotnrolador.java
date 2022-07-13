@@ -127,6 +127,7 @@ public class LocalNuevaVentaCotnrolador extends LocalControladorPadre implements
         }
         
         factory.getFloristeriaDao().incrementarValorFloristeria(-importeTiquet);
+        factory.getFloristeriaDao().incrementarFacturacionTotal(importeTiquet);
         
     }
 
