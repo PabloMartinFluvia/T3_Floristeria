@@ -3,6 +3,7 @@ package com.calvogasullmartin.t3_floristeria.vistasConsola;
 import com.calvogasullmartin.t3_floristeria.controladores.AddProductoControlador;
 import com.calvogasullmartin.t3_floristeria.controladores.ModificarProductoControlador;
 import java.io.IOException;
+import java.util.Scanner;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -40,50 +41,72 @@ public class ProductoUnidadVista {
     }
 
     private void eliminarProducto() {
-        boolean eliminar = true;
-        /*
-        pedir confirmacion para eliminar el producto y guardarlo en la variable
-         */
+        boolean eliminar = isCorrecto("Estas seguro de querer eliminar el producto?\n"
+            + "\t1) Si.\n"
+            + "\t0) No.\n");
         if (eliminar) {
             try {                
                 modificarControlador.eliminarProductoUnidad();
                 modificarControlador.disminuirValoresStock();
             } catch (IOException ex) {
-                /*
-                dar mensaje de error que no se ha podido acceder a la BBDD
-                 */
+                System.out.println("Base de datos inaxcesible.");
             }
         }//en el caso contrario no hace nada -> se continua en el metodo interactuar + se sale del bucle + se va al estado en menu
     }
 
+    private boolean isCorrecto(String mensaje) {
+        Scanner sc = new Scanner(System.in);
+        int input;
+        do{
+            System.out.println(mensaje);
+            input = sc.nextInt();
+        }while(input>=0 && input<=1);
+        boolean ok = true;
+        if(input==0){
+            ok=false;
+        }
+        return ok;
+    }
+
     private void actualizarUnidades() {
         int cantidadPrevia = modificarControlador.getUnidadesActuales();
-        int incremento = 0;
-        /*
-         *Pedir el incremento y guardarlo en la variable,
-           el límite inferior és: -cantidadPrevia, ya que no se pueden tener unidades negativas
-         */
-        boolean modificar = true;
-        /*
-            Pedir confirmación para modificar las unidades
-         */
+        int incremento =  getInt("En cuantas unidades variamos el stock?", cantidadPrevia*-1);
+        boolean modificar = isCorrecto("Estas seguro de querer modificar las unidades en " + incremento + "?\n"
+            + "\t1) Si.\n"
+            + "\t0) No.\n");
         if (modificar) {
             try {
                 modificarControlador.incrementarProductoUnidad(incremento);
                 modificarControlador.actualizarValoresStock(incremento);                
             } catch (IOException ex) {
-               /*
-                dar mensaje de error que no se ha podido acceder a la BBDD
-                 */
+                System.out.println("Base de datos inaxcesible.");
             }
         }//en el caso contrario no hace nada -> se continua en el metodo interactuar + se sale del bucle + se va al estado en menu
     }
 
+    private int getInt(String mensaje, int min, int max) {
+        Scanner sc = new Scanner(System.in);
+        int input;
+        do{
+            System.out.println(mensaje);
+            input = sc.nextInt();
+        }while(input>=min && input<=max);
+        return input;
+    }
+
+    private int getInt(String mensaje, int min) {
+        Scanner sc = new Scanner(System.in);
+        int input;
+        do{
+            System.out.println(mensaje);
+            input = sc.nextInt();
+        }while(input>=min);
+        return input;
+    }
+
     private int obtenerIdProducto() {
-        int producto_id = 0;
-        /*
-        pedir al usuario que introduzca un id de algun producto que está en el stock que se acava de mostrar        
-         */
+        String mensaje = "Introduce el numero de identificación del producto: ";
+        int producto_id = getInt(mensaje, 0) ;
         return producto_id;
     }
 
@@ -92,11 +115,8 @@ public class ProductoUnidadVista {
     }
 
     private int pedirUnidadesIniciales() {
-        int unidades = 0; // quitar asignacion de valor al implementar el método
-        /*
-        preguntar cuantas unidades iniciales tendrá este nuevo producto
-        Se le puede dar la opción que por defecto sea una
-         */
+        String mensaje = "Introduce el numero de identificación del producto: ";
+        int unidades = getInt(mensaje, 0) ;
         return unidades;
     }
 }
