@@ -72,12 +72,15 @@ public class LocalMostrarConjuntoControlador extends LocalControladorPadre imple
         } 
         String stock;
         if(isStock){
+            System.out.println("\n\nStock---------------------------------\n");
             stock = toString(conjunto);
         }
         else if(withUnits){
+            System.out.println("\n\nStock con unidades-------------------\n");
             stock = toStringUnits(conjunto);
         }
         else{
+            System.out.println("\n\nTicket--------------------------------\n");
             stock = toStringTicket(conjunto);
         }
         return stock;

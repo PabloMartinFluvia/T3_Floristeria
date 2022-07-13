@@ -16,7 +16,7 @@ public class App {
         Configurador configurador = new Configurador();        
         this.vistaPrincipal = configurador.vistasPorConsola();
         this.logica = configurador.controladoresLocales();
-        configurador.persistenciaTxt();    
+        configurador.persistenciaTxt();   
     }
 
     public static void main(String[] args) {
@@ -26,7 +26,7 @@ public class App {
     private void ejecutar() {
         
         ControladorPadre controlador;        
-        do{            
+        do{           
             controlador = logica.getControladorPadre();
             if (controlador != null){
                 vistaPrincipal.interactuar(controlador);

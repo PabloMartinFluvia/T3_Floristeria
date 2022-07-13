@@ -78,6 +78,12 @@ public class ProductoCompleto {
         if(this.categoria == categoria.ARBOL){
             string = string + altura;
         }
+        if(this.categoria == categoria.FLOR){
+            string = string + color;
+        }
+        if(this.categoria == categoria.DECORACION){
+            string = string + material;
+        }
         return string;
     }
 }

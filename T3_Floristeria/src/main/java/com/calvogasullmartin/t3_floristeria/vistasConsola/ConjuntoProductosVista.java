@@ -138,7 +138,7 @@ public class ConjuntoProductosVista {
         this.modificarControlador = modificarControlador;
         Integer conjunto_id = saberStockId(false);
         try {
-            mostrarUnConjuntoV2(conjunto_id);
+            mostrarUnConjunto(conjunto_id);
             new ProductoUnidadVista().interactuar(modificarControlador);
         } catch (IOException ex) {
             System.out.println("Base de datos inaccesible.");
@@ -223,7 +223,7 @@ public class ConjuntoProductosVista {
         }
     }
     
-    private void mostrarUnConjunto(Integer conjunto_id){
+    private void mostrarUnConjunto(Integer conjunto_id)throws IOException{
         try {
             String conjuntoProductosUnidad = mostrarControlador.getOneConjuntos(conjunto_id);
             System.out.println(conjuntoProductosUnidad);
