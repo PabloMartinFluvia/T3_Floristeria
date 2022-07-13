@@ -5,12 +5,14 @@ import com.calvogasullmartin.t3_floristeria.controladores.ModificarProductoContr
 import com.calvogasullmartin.t3_floristeria.controladores.MostrarConjuntoControlador;
 import com.calvogasullmartin.t3_floristeria.controladores.NuevaVentaControlador;
 import com.calvogasullmartin.t3_floristeria.modelos.Categoria;
+import com.calvogasullmartin.t3_floristeria.utils.InOut;
 import java.io.IOException;
 import java.util.List;
 import java.util.Scanner;
 
 public class ConjuntoProductosVista {
 
+    private InOut io = new InOut();
     private Categoria categoria; // enum con todos los tipos de productos / stocks posibles
     //al ser un enum NO es un pecado que esta vista conozca información del modelo
 
@@ -23,8 +25,10 @@ public class ConjuntoProductosVista {
 
     public void interactuar(AddProductoControlador addProductoControlador) {
         boolean isAllPosible = false;
-        Integer conjunto_Id = saberStockId(isAllPosible);
-        new ProductoCompletoVista().interactuar(addProductoControlador, conjunto_Id);
+        System.out.println("Introduzca la categoria del producto:");
+        Integer conjunto_Id = saberStockId(isAllPosible); 
+        ProductoCompletoVista vista = new ProductoCompletoVista();
+        vista.interactuar(addProductoControlador, conjunto_Id);
         try {
             addProductoControlador.actualizarValoresStock();
         } catch (IOException ex) {
@@ -33,6 +37,84 @@ public class ConjuntoProductosVista {
         finalizar(addProductoControlador);
     }
 
+    private Integer saberStockId(boolean isAllPosible) {
+        mostrarOpciones(isAllPosible);
+        return pedirOpcion(isAllPosible);//si conjunto_id = null -> todos
+    }
+    
+    private void mostrarOpciones(boolean isAllPosible){
+        String mensaje = "Categorias posibles: \n"
+        + "\t1) Arboles.\n"
+        + "\t2) Flores.\n"
+        + "\t3) Adornos.";        
+        if(isAllPosible){
+            mensaje += "\t0) Todos.";
+        }
+        System.out.println(mensaje);
+    }
+    
+    private Integer pedirOpcion(boolean isAllPosible){
+        int min;
+        if(isAllPosible){
+            min = 0;
+        }else{
+            min = 1;
+        }
+        Integer conjunto_id = getInt("Seleccione categoria: ",min,3);   
+        if(conjunto_id.equals(0)){
+            return null;
+        }
+        return conjunto_id;
+    }
+    
+    private int getInt(String mensaje, int min, int max) {
+        Scanner sc = new Scanner(System.in);        
+        int input;
+        boolean ok = false;
+        do{            
+            //io.writeln(mensaje);
+            //System.out.print(mensaje);
+            //input = sc.nextInt();
+            io.writeln(mensaje);
+            input = io.readInt("");
+            if (input>=min && input<=max){
+                ok = true;
+            }else{
+                io.writeln("Error: opcion debe estar entre "+min+" y "+max);
+            }
+                
+        }while(!ok);
+        return input;
+    }
+    
+    private void finalizar(AddProductoControlador controlador){
+        boolean addMore = isCorrecto("Quiere añadir más productos?\n"
+        + "\t1) Si.\n"
+        + "\t0) No.\n");
+        if (!addMore){
+            controlador.seleccionarMenu();
+        }
+    }
+    
+    private boolean isCorrecto(String mensaje) {
+        Scanner sc = new Scanner(System.in);
+        boolean ok = false;
+        int input;
+        do{
+            System.out.println(mensaje);
+            input = sc.nextInt();
+            if (input>=0 && input<=1){
+                ok = true;
+            }
+        }while(!ok);
+        
+        ok = true;
+        if(input==0){
+            ok=false;
+        }
+        return ok;
+    }
+    
     public void interactuar(MostrarConjuntoControlador mostrarControlador) {
         this.mostrarControlador = mostrarControlador;
         mostrarControlador.setWithUnits(true); // por defecto se muestra el conjuno(s) con las unidades de los productos        
@@ -181,48 +263,9 @@ public class ConjuntoProductosVista {
             }
     }
 
-    private Integer saberStockId(boolean isAllPosible) {
-        mostrarOpciones(isAllPosible);
-        return pedirOpcion(isAllPosible);
-    }
     
-    private void mostrarOpciones(boolean isAllPosible){
-        String mensaje = "Mostrar stock de: \n"
-        + "\t1) Arboles.\n"
-        + "\t2) Flores.\n"
-        + "\t3) Adornos.\n"
-        
-        + "\t0) Todos.\n";
-        
-        System.out.println(mensaje);
-        /*
-        Mostrar por consola las distintas categorias de producto.
-        Si isAllPosible = true -> entonces también mostrar la opción TODOS (para que pueda seleccionar todos los stocks)
-        */
-        
-    }
     
-    private Integer pedirOpcion(boolean isAllPosible){
-        Integer conjunto_id = getInt("",0,3);
-        /*0 esnull, que es todso
-        
-        
-        Pedir al usuario que seleccione una opción de las mostradas [1:3] o [0:3]
-        Poner la variable conjunto_id con el valor que elija.
-            En el caso de isAllPosible = true -> si selecciona la opción TODOS devolver conjunto_id = null
-         */
-        return conjunto_id;
-    }
     
-    private int getInt(String mensaje, int min, int max) {
-        Scanner sc = new Scanner(System.in);
-        int input;
-        do{
-            System.out.println(mensaje);
-            input = sc.nextInt();
-        }while(input>=min && input<=max);
-        return input;
-    }
     
     private void preguntarSiIncluirUnidades (){
         boolean incluirUnidades = isCorrecto("Quiere incluir las unidades?\n"
@@ -231,26 +274,5 @@ public class ConjuntoProductosVista {
         mostrarControlador.setWithUnits(incluirUnidades);
     }
     
-    private void finalizar(AddProductoControlador controlador){
-        boolean addMore = isCorrecto("Quiere añadir más productos?\n"
-        + "\t1) Si.\n"
-        + "\t0) No.\n");
-        if (!addMore){
-            controlador.seleccionarMenu();
-        }
-    }
     
-    private boolean isCorrecto(String mensaje) {
-        Scanner sc = new Scanner(System.in);
-        int input;
-        do{
-            System.out.println(mensaje);
-            input = sc.nextInt();
-        }while(input>=0 && input<=1);
-        boolean ok = true;
-        if(input==0){
-            ok=false;
-        }
-        return ok;
-    }
 }

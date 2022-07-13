@@ -82,8 +82,8 @@ public class LocalModificarProductoControlador extends LocalControladorPadre imp
     @Override
     public void disminuirValoresStock() throws IOException {
         float incrementoValor = - productoUnidad.getProducto().getPrecio() * productoUnidad.getCantidad();
-        factory.getFloristeriaDao().addToStockValue(incrementoValor);        
-        factory.getConjuntoProductosDao().addToConjuntoValue(stock.getId(), incrementoValor);
+        factory.getFloristeriaDao().incrementarValorFloristeria(incrementoValor);        
+        factory.getConjuntoProductosDao().incrementarValorUnStockById(stock.getId(), incrementoValor);
     }
 
     @Override
@@ -105,7 +105,7 @@ public class LocalModificarProductoControlador extends LocalControladorPadre imp
     @Override
     public void actualizarValoresStock(int incremento) throws IOException {
         float incrementoValor =  productoUnidad.getProducto().getPrecio() * incremento;
-        factory.getFloristeriaDao().addToStockValue(incrementoValor);        
-        factory.getConjuntoProductosDao().addToConjuntoValue(stock.getId(), incrementoValor);
+        factory.getFloristeriaDao().incrementarValorFloristeria(incrementoValor);        
+        factory.getConjuntoProductosDao().incrementarValorUnStockById(stock.getId(), incrementoValor);
     }
 }

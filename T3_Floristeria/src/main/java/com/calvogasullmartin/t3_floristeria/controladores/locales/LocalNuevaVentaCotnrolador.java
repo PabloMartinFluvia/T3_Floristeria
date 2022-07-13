@@ -123,10 +123,10 @@ public class LocalNuevaVentaCotnrolador extends LocalControladorPadre implements
         
         for(int i = 0; i < Categoria.values().length; i++){
             //actualizar valor de ese stock
-            factory.getConjuntoProductosDao().addToConjuntoValue(i+1, disminucionValor[i]);
+            factory.getConjuntoProductosDao().incrementarValorUnStockById(i+1, disminucionValor[i]);
         }
         
-        factory.getFloristeriaDao().addToStockValue(-importeTiquet);
+        factory.getFloristeriaDao().incrementarValorFloristeria(-importeTiquet);
         
     }
 
