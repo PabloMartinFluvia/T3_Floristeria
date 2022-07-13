@@ -4,7 +4,9 @@ import com.calvogasullmartin.t3_floristeria.modelos.Floristeria;
 import java.io.IOException;
 
 public interface FloristeriaDao extends GenericDao<Floristeria, Integer>{
-    /*
+    
+    public void create(Floristeria floristeria)throws IOException;
+    
     public String findName() throws IOException;
     
     public void addToStockValue(float increment) throws IOException;
@@ -12,5 +14,5 @@ public interface FloristeriaDao extends GenericDao<Floristeria, Integer>{
     public float findTotalStocks() throws IOException;
     
     public float findTotalTiquets() throws IOException;
-    */
+    
 }
