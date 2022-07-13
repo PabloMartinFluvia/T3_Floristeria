@@ -262,10 +262,6 @@ public class ConjuntoProductosVista {
                 System.out.println("No hay tickets.");
             }
     }
-
-    
-    
-    
     
     private void preguntarSiIncluirUnidades (){
         boolean incluirUnidades = isCorrecto("Quiere incluir las unidades?\n"
