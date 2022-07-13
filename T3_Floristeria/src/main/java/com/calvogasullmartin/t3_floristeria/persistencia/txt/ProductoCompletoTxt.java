@@ -5,24 +5,16 @@ import com.calvogasullmartin.t3_floristeria.persistencia.ProductoCompletoDao;
 import java.util.List;
 
 public class ProductoCompletoTxt extends GenericDaoTxt<ProductoCompleto, Integer> implements ProductoCompletoDao{
-    /*
+
     @Override
     public List<ProductoCompleto> findAllInConjuntoId(int id) {
-        
-        //sabiendo el id del ConjuntoProductos, devolver en una 
-        //lista todos los productos que hay en el conjunto
-        
-        return null;
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
 
     @Override
     public ProductoCompleto findById(int id) {
-        ProductoCompleto producto = null;
-        
-        //encontrar un productoCompleto que tenga ese id
-        
-        return producto;
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
-    */
+   
     
 }
