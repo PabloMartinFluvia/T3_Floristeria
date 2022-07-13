@@ -1,16 +1,48 @@
 {
   "floristeria_id" : 1,
   "nombre_floristeria" : "juan",
-  "valorStocksTotal" : 0.0,
+  "valorStocksTotal" : 5870.0,
   "valorTicketsTotal" : 0.0,
   "stocks" : [ {
     "id" : 1,
-    "valor_Productos" : 0.0,
-    "productos" : [ ]
+    "valor_Productos" : 5550.0,
+    "productos" : [ {
+      "producto" : {
+        "producto_id" : 3,
+        "categoria" : "ARBOL",
+        "precio" : 50.0,
+        "altura" : "MUY_ALTO"
+      },
+      "cantidad" : 3
+    }, {
+      "producto" : {
+        "producto_id" : 4,
+        "categoria" : "ARBOL",
+        "precio" : 60.0,
+        "altura" : "ALTO"
+      },
+      "cantidad" : 90
+    } ]
   }, {
     "id" : 2,
-    "valor_Productos" : 0.0,
-    "productos" : [ ]
+    "valor_Productos" : 320.0,
+    "productos" : [ {
+      "producto" : {
+        "producto_id" : 1,
+        "categoria" : "FLOR",
+        "precio" : 15.0,
+        "color" : "azil"
+      },
+      "cantidad" : 8
+    }, {
+      "producto" : {
+        "producto_id" : 2,
+        "categoria" : "FLOR",
+        "precio" : 20.0,
+        "color" : "verde"
+      },
+      "cantidad" : 10
+    } ]
   }, {
     "id" : 3,
     "valor_Productos" : 0.0,
