@@ -52,7 +52,7 @@ public class LocalNuevaVentaCotnrolador extends LocalControladorPadre implements
 
     @Override
     public List<String> getAllStocks() throws IOException {
-        List<ConjuntoProductos> stocks = factory.getConjuntoProductosDao().findAllStocks();        
+        List<ConjuntoProductos> stocks = factory.getConjuntoProductosDao().getAllStocks();        
         List<String> stocksParsedToListString = new LinkedList<>();
         for(ConjuntoProductos stock: stocks){
             stocksParsedToListString.add(conjuntoToString(stock,true));
@@ -110,7 +110,7 @@ public class LocalNuevaVentaCotnrolador extends LocalControladorPadre implements
 
     @Override
     public void guardarTiquet() throws IOException {
-        factory.getConjuntoProductosDao().createTiquet(nuevoTiquet);
+        factory.getConjuntoProductosDao().createNewTiquet(nuevoTiquet);
     }
 
     @Override
@@ -123,7 +123,7 @@ public class LocalNuevaVentaCotnrolador extends LocalControladorPadre implements
         
         for(int i = 0; i < Categoria.values().length; i++){
             //actualizar valor de ese stock
-            factory.getConjuntoProductosDao().incrementarValorUnStockById(i+1, disminucionValor[i]);
+            factory.getConjuntoProductosDao().incrementarValorEnStockById(i+1, disminucionValor[i]);
         }
         
         factory.getFloristeriaDao().incrementarValorFloristeria(-importeTiquet);

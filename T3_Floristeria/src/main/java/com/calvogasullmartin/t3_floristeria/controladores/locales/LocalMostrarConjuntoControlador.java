@@ -47,9 +47,9 @@ public class LocalMostrarConjuntoControlador extends LocalControladorPadre imple
     public List<String> getAllConjuntos() throws IOException {
         List<ConjuntoProductos> listaConjuntos;
         if (isStock){
-            listaConjuntos = factory.getConjuntoProductosDao().findAllStocks();
+            listaConjuntos = factory.getConjuntoProductosDao().getAllStocks();
         }else{
-            listaConjuntos = factory.getConjuntoProductosDao().findAllTiquets();
+            listaConjuntos = factory.getConjuntoProductosDao().getAllTiquets();
         }
         List<String> listaDeConjuntoToString = new LinkedList<>();
         if(listaDeConjuntoToString.size() != 0){
@@ -64,7 +64,7 @@ public class LocalMostrarConjuntoControlador extends LocalControladorPadre imple
     public String getOneConjuntos(int conjundo_id) throws IOException {
         ConjuntoProductos conjunto = null;
         if (conjundo_id <= Categoria.values().length){
-           conjunto = factory.getConjuntoProductosDao().findOneStockById(conjundo_id);
+           conjunto = factory.getConjuntoProductosDao().getOneStockById(conjundo_id);
         }else {
             /*
             buscar un tiquet por id NO es requerido (por el problema

@@ -32,12 +32,12 @@ public class LocalMostrarTotalesControlador extends LocalControladorPadre implem
 
     @Override
     public float getTotalStocks() throws IOException {
-        return factory.getFloristeriaDao().findTotalStocks();
+        return factory.getFloristeriaDao().getValorFloristeria();
     }
 
     @Override
     public float getTotalTiquets() throws IOException {
-        return factory.getFloristeriaDao().findTotalTiquets();
+        return factory.getFloristeriaDao().getFacturacionFloristeria();
     }
     
 }
