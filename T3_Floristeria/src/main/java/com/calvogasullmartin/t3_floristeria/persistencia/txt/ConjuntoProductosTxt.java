@@ -16,25 +16,31 @@ public class ConjuntoProductosTxt extends GenericDaoTxt<ConjuntoProductos, Integ
         int max_id = findMaxProductId();
         tiquet.setId(max_id + 1);
         String arrayFieldName = Floristeria.class.getDeclaredFields()[5].getName();
+        gestor.getMainNodeFromFile();
         gestor.addObjectInUniqueArray(tiquet, arrayFieldName);
+        gestor.saveMainNodeInFile();
     }
     
     private int findMaxProductId() throws IOException{
         String nombreAtributoId = ConjuntoProductos.class.getDeclaredFields()[0].getName();
-        return gestor.findMaxIntInMultipleFieldsWithSameName(nombreAtributoId);
+        gestor.getMainNodeFromFile();
+        return gestor.findMaxIntValueInMultipleChildNodes(nombreAtributoId);
     }
     
     @Override
     public void incrementarValorEnStockById(int stock_id, float increment) throws IOException {
         String stocksFieldName = Floristeria.class.getDeclaredFields()[4].getName(); 
         String stockValueFieldName = ConjuntoProductos.class.getDeclaredFields()[1].getName();
+        gestor.getMainNodeFromFile();
         gestor.incrementFloatFieldOfObjectIndexedInArrayAndSaveInFile(increment,stockValueFieldName,stock_id-1,stocksFieldName);
+        gestor.saveMainNodeInFile();
     }
 
     @Override
     public ConjuntoProductos getOneStockById(int id) throws IOException {
-        String stocksFieldName = Floristeria.class.getDeclaredFields()[4].getName();          
-        ConjuntoProductos stock = (ConjuntoProductos) gestor.getObjectInUniqueArrayInFileByIndex(stocksFieldName,ConjuntoProductos.class, id-1);
+        String stocksFieldName = Floristeria.class.getDeclaredFields()[4].getName();   
+        gestor.getMainNodeFromFile();
+        ConjuntoProductos stock = (ConjuntoProductos) gestor.getObjectIndexedInArray(stocksFieldName,ConjuntoProductos.class, id-1);
         return  stock;
     }
     
@@ -50,8 +56,9 @@ public class ConjuntoProductosTxt extends GenericDaoTxt<ConjuntoProductos, Integ
 
     @Override
     public List<ConjuntoProductos> getAllTiquets() throws IOException {
-        String tiquetsFieldName = Floristeria.class.getDeclaredFields()[5].getName();          
-        ConjuntoProductos[] arrayTiquets =  (ConjuntoProductos[]) gestor.getUniqueArrayInFileParsedToArrayObject(tiquetsFieldName,ConjuntoProductos[].class);        
+        String tiquetsFieldName = Floristeria.class.getDeclaredFields()[5].getName();  
+        gestor.getMainNodeFromFile();
+        ConjuntoProductos[] arrayTiquets =  (ConjuntoProductos[]) gestor.getObjectArray(tiquetsFieldName,ConjuntoProductos[].class);        
         List<ConjuntoProductos> tiquets = Arrays.asList(arrayTiquets);        
         return tiquets;
     }

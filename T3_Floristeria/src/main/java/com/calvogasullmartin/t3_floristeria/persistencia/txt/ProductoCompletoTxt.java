@@ -15,7 +15,9 @@ public class ProductoCompletoTxt extends GenericDaoTxt<ProductoCompleto, Integer
     public List<ProductoCompleto> getProductosSinUnidadesByStockId(int stock_id) throws IOException {
         String stocksFieldName = Floristeria.class.getDeclaredFields()[4].getName(); 
         String productosFieldName = ConjuntoProductos.class.getDeclaredFields()[2].getName(); 
-        ProductoUnidad[] productosUnidad = (ProductoUnidad[]) gestor.goToSpecificIndexInUniqueArrayAndGetNestedCollection(stocksFieldName, stock_id-1,productosFieldName , ProductoUnidad[].class);
+        gestor.getMainNodeFromFile();
+        gestor.setInChildNode_x_getChildNode_ParentIsIndexedInArray(stocksFieldName, stock_id, productosFieldName);
+        ProductoUnidad[] productosUnidad = (ProductoUnidad[]) gestor.getFromChildNode_x_parseNodeArrayToObjectArray(ProductoUnidad[].class);       
         List<ProductoCompleto> productos = new LinkedList<>();
         for (ProductoUnidad productosUnidad1 : productosUnidad) {
             productos.add(productosUnidad1.getProducto());
@@ -28,7 +30,8 @@ public class ProductoCompletoTxt extends GenericDaoTxt<ProductoCompleto, Integer
         String stocksFieldName = Floristeria.class.getDeclaredFields()[4].getName(); 
         String idFieldName = ProductoCompleto.class.getDeclaredFields()[0].getName(); 
         String productosFieldName = ConjuntoProductos.class.getDeclaredFields()[2].getName(); 
-        ProductoCompleto producto = (ProductoCompleto) gestor.findInUniqueArrayFirstObjectByIdField(stocksFieldName, producto_id,idFieldName, productosFieldName,ProductoCompleto.class);
+        gestor.getMainNodeFromFile();
+        ProductoCompleto producto = (ProductoCompleto) gestor.findInFirstArrayNodeFirstObjectByChildIIntNodeValueField(stocksFieldName, producto_id,idFieldName, productosFieldName,ProductoCompleto.class);
         return producto;
     }
    

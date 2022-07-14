@@ -11,23 +11,27 @@ import java.io.IOException;
 public class ProductoUnidadTxt extends GenericDaoTxt<ProductoUnidad, Integer> implements ProductoUnidadDao{
 
     @Override
-    public void createProductoYAsociarloAlStockConUnidades(ProductoUnidad productWithUnits, int idStock) throws IOException {
+    public void createProductoYAsociarloAlStockConUnidades(ProductoUnidad productoUnidad, int idStock) throws IOException {
         assert idStock <= Categoria.values().length;
         int max_id = findMaxProductId();
-        productWithUnits.getProducto().setProducto_id(max_id + 1);
+        productoUnidad.getProducto().setProducto_id(max_id + 1);
         String nombreAtributoConjunto = Floristeria.class.getDeclaredFields()[4].getName(); 
         String nombreAtributoProductos = ConjuntoProductos.class.getDeclaredFields()[2].getName();
-        gestor.goToEspecificObjectInArrayInFileAndAddObjectToNestedArrayAndSave(productWithUnits,nombreAtributoConjunto, idStock-1, nombreAtributoProductos, Floristeria.class);
+        gestor.getMainNodeFromFile();
+        
+        gestor.goToEspecificObjectInArrayInFileAndAddObjectToNestedArrayAndSave(productoUnidad,nombreAtributoConjunto, idStock-1, nombreAtributoProductos, Floristeria.class);
+        gestor.saveMainNodeInFile();
     }
     
     private int findMaxProductId() throws IOException{
         String nombreAtributoId = ProductoCompleto.class.getDeclaredFields()[0].getName();
-        return gestor.findMaxIntInMultipleFieldsWithSameName(nombreAtributoId);
+        gestor.getMainNodeFromFile();
+        return gestor.findMaxIntValueInMultipleChildNodes(nombreAtributoId);
     }
 
     @Override
     public ProductoUnidad findByStockIdAndProductoId(int stock_id,int producto_id) throws IOException{
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+        
         /*
         go to node array (stocks)
         go to indexed node
@@ -35,6 +39,15 @@ public class ProductoUnidadTxt extends GenericDaoTxt<ProductoUnidad, Integer> im
         iterate nodes indexed till first of them who whas a child fieldName with this id value
         return the node indexed
         */
+        gestor.getMainNodeFromFile();
+        gestor.setInChildNode_x_getChildNode_ParentIsIndexedInArray("stocks", stock_id, "productos");
+        //en child node_x está el array d stocks
+        boolean found = gestor.updateChildNode_x_IterateNodeTillChildNodeHasIntValue(producto_id, "producto_id");
+        if(found){            
+            return (ProductoUnidad) gestor.parseChildNode_x_toObject(ProductoUnidad.class);
+        }else{
+            return null;
+        }
     }
     
     @Override
