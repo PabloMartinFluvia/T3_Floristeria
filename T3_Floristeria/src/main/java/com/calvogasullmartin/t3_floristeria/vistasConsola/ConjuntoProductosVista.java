@@ -119,7 +119,7 @@ public class ConjuntoProductosVista {
         this.mostrarControlador = mostrarControlador;
         mostrarControlador.setWithUnits(true); // por defecto se muestra el conjuno(s) con las unidades de los productos        
         try {
-            if (!mostrarControlador.isStock()) {
+            if (!mostrarControlador.isStock()) {                
                 mostrarTodo();
             } else {
                 preguntarSiIncluirUnidades();
@@ -259,7 +259,12 @@ public class ConjuntoProductosVista {
                 }
             }
             else{
-                System.out.println("No hay tickets.");
+                if(mostrarControlador.isStock()){
+                    System.out.println("No hay stocks.");
+                }else {
+                    System.out.println("No hay tickets.");
+                }
+                
             }
     }
     

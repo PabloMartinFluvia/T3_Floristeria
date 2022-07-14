@@ -47,12 +47,12 @@ public class LocalMostrarConjuntoControlador extends LocalControladorPadre imple
     public List<String> getAllConjuntos() throws IOException {
         List<ConjuntoProductos> listaConjuntos;
         if (isStock){
-            listaConjuntos = factory.getConjuntoProductosDao().getAllStocks();
+            listaConjuntos = factory.getConjuntoProductosDao().getAllStocks();            
         }else{
             listaConjuntos = factory.getConjuntoProductosDao().getAllTiquets();
         }
         List<String> listaDeConjuntoToString = new LinkedList<>();
-        if(listaDeConjuntoToString.size() != 0){
+        if(listaConjuntos.size() != 0){            
             for (ConjuntoProductos conjunto : listaConjuntos){
                 listaDeConjuntoToString.add(conjuntoToString(conjunto));
             }
