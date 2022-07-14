@@ -77,12 +77,14 @@ public class LocalMostrarConjuntoControlador extends LocalControladorPadre imple
         assert conjunto != null; 
         String stockToString;
         if(isStock){
-            System.out.println("\n\nStock---------------------------------\n");
-            stockToString = toString(conjunto);
-        }
-        else if(withUnits){
-            System.out.println("\n\nStock con unidades-------------------\n");
-            stockToString = toStringUnits(conjunto);
+            if(withUnits){
+                System.out.println("\n\nStock con unidades-------------------\n");
+                stockToString = toStringUnits(conjunto);
+            }
+            else {
+                System.out.println("\n\nStock---------------------------------\n");
+                stockToString = toString(conjunto);
+            }
         }
         else{
             System.out.println("\n\nTicket--------------------------------\n");
