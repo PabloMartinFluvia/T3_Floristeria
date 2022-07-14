@@ -26,24 +26,50 @@ public class ProductoUnidadTxt extends GenericDaoTxt<ProductoUnidad, Integer> im
     }
 
     @Override
-    public ProductoUnidad findByStockIdAndProductoId(int stock_id, int productoCompleto_id) throws IOException{
+    public ProductoUnidad findByStockIdAndProductoId(int stock_id,int producto_id) throws IOException{
         throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+        /*
+        go to node array (stocks)
+        go to indexed node
+        go to node array (products)
+        iterate nodes indexed till first of them who whas a child fieldName with this id value
+        return the node indexed
+        */
     }
     
     @Override
     public int enCuantosTiquetsEsta(int producto_id) throws IOException {
         throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+        /*
+        got to node array (tiquets)
+        iterate nodes indexed till first of them who whas a child fieldName with this id value
+        return 0 if not found (and >0 if found)
+        */
     }
     
     @Override
     public void actualizarUnidadesProductoByStockId(ProductoUnidad producto, int idConjunt) throws IOException {
         throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
-        //sabiendo en que stock está: actualizar /subsituir la cantidad de este ProductoUnidad
+        /*
+        go to node array (stocks)
+        go to indexed node
+        go to node array (products)
+        iterate nodes indexed till first of them who whas a child fieldName with this id value
+        parse entity to node
+        update node inexed with new enitity node
+        */
     }
     
     @Override
     public void deleteInStock(ProductoUnidad producto, int idConjunt) throws IOException {
         throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
         //sabiendo en que stock está: eliminar producto y cantidades
+        /*
+        go to node array (stocks)
+        go to indexed node
+        go to node array (products)
+        parse this node to ArrayNode
+        recorrerlo mediante un for + if child idNode = id -> arraynode.remove(index of for)
+        */
     }       
 }

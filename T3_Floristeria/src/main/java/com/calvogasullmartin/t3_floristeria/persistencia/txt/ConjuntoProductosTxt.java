@@ -42,8 +42,8 @@ public class ConjuntoProductosTxt extends GenericDaoTxt<ConjuntoProductos, Integ
     public List<ConjuntoProductos> getAllStocks() throws IOException {
         List<ConjuntoProductos> stocks = new LinkedList<>();
         int num_stocks = Categoria.values().length;
-        for (int i = 0; i<num_stocks; i++){
-            stocks.add(getOneStockById(i));
+        for (int i = 0; i<num_stocks; i++){            
+            stocks.add(getOneStockById(i+1));
         }
         return stocks;
     }

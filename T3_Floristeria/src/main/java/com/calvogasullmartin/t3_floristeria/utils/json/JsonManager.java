@@ -135,7 +135,7 @@ public class JsonManager<T> {
         if (!found){
             return null;
         }else{
-            JsonNode targetNode = nodeField.findParent(objectField);
+            JsonNode targetNode = nodeField.findParent(objectField);            
             T objectTarget = nodeManager.parseNodeToObject(targetNode, classObjectTarget);
             return objectTarget;
         }        
@@ -179,5 +179,5 @@ public class JsonManager<T> {
         JsonNode nestedNodeArray = nodeManager.findFirstNodeFieldThatMatchesFieldName(nodeTarget, nestedCollectionFieldName);
         T[] arrayTarget = (T[]) arrayNodeManager.parseNodeArrayToObjectArray(nestedNodeArray, nestedArrayClass);        
         return arrayTarget;
-    }
+    }    
 }
