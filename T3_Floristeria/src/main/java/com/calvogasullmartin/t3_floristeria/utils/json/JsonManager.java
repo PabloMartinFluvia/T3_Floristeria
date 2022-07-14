@@ -7,10 +7,12 @@ import com.calvogasullmartin.t3_floristeria.utils.json.plugins.JsonObjectManager
 import com.calvogasullmartin.t3_floristeria.utils.json.plugins.JsonParserManager;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.node.ArrayNode;
+import com.fasterxml.jackson.databind.node.JsonNodeFactory;
 import com.fasterxml.jackson.databind.node.ObjectNode;
 
 import java.io.File;
 import java.io.IOException;
+import java.math.BigDecimal;
 import java.util.Iterator;
 import java.util.List;
 
@@ -23,8 +25,17 @@ public class JsonManager<T> {
     private final JsonObjectManager<T> objectNodeManager;
     
     private JsonNode mainNode;
-    private JsonNode parentNode_x;
+    
+    private JsonNode auxiliarNode;
+    private List<JsonNode> listAuxiliarNodes;
+    private ArrayNode arrayNode; 
+    
     private JsonNode childNode_x;
+             
+    private JsonNode parentNode_x;    
+    private JsonNode parentNode;
+    private JsonNode targetNode;
+    
 
     public JsonManager() {        
         this.nodeManager = new JsonNodeManager<>();
@@ -45,6 +56,12 @@ public class JsonManager<T> {
     }
     
        
+    public void setAuxiliarNodesNull(){        
+        auxiliarNode = null; 
+        listAuxiliarNodes = null;
+        arrayNode = null;
+    }
+    
     public void writeObjectInFile(T object) throws IOException { 
         fileManager.writeObjectInFileJackson(object);
     }        
@@ -57,10 +74,94 @@ public class JsonManager<T> {
         fileManager.writeNodeInFileJackson(mainNode);
     }
     
+    
+    public void setAuxiliarNode_findFieldByName(String childField){
+        auxiliarNode = mainNode.get(childField);
+    }        
+    
+    public void setListAuxiliarNodes_findAllFieldsByName(String childField){        
+        listAuxiliarNodes = auxiliarNode.findValues(childField);
+    }
+    
+    public void setArrayAuxiliarNode_fromAuxiliarNode(){
+        arrayNode = (ArrayNode)auxiliarNode;
+    }
+    
+    
+    
+    public void replaceAuxiliarNode_nodeInArrayByIndex(int index){
+        JsonNode node = auxiliarNode;
+        assert node.isArray();
+        auxiliarNode = node.get(index);
+    }
+    
+    public void replaceAuxiliarNode_findFieldByName(String childField){          
+        auxiliarNode = auxiliarNode.get(childField);
+    }
+    
+    public boolean replaceAuxliarNode_nodeInArrayWithChildIntValue(String childField,int intValue){
+        JsonNode node = auxiliarNode;
+        assert node.isArray();        
+        Iterator <JsonNode> iterador = node.iterator();
+        boolean found = false;
+        JsonNode nodeTarget;
+        while (!found && iterador.hasNext()){
+            nodeTarget = iterador.next();
+            if(nodeTarget.findValue(childField).asInt() == intValue){
+                found = true;
+                auxiliarNode = nodeTarget;
+            }
+        }
+        return found;   
+    }    
+    
+    
+    
+    public boolean inAuxiliarNodes_hasAnyIntValue(int intValue){
+        List<JsonNode> nodeList = listAuxiliarNodes;               
+        Iterator <JsonNode> iterador = nodeList.iterator();
+        boolean found = false;
+        JsonNode node;
+        while (!found && iterador.hasNext()){
+            node = iterador.next();
+            assert node.isInt();
+            if(node.asInt() == intValue){
+                found = true;                
+            }
+        }
+        return found;
+    }
+    
+    public void upadteAuxiliarNode_setNewFloatValueInField(String childField,float newValue){
+        ((ObjectNode)auxiliarNode).put(childField, newValue);
+    }
+    public void updateArrayAuxiliarNode_deleteFirstElementByCildIntValue(String childField,int intValue){
+        Iterator <JsonNode> iterador = arrayNode.iterator();
+        boolean found = false;
+        JsonNode nodeToDelete;
+        while (!found && iterador.hasNext()){
+            nodeToDelete = iterador.next();            
+            if(nodeToDelete.findValue(childField).asInt() == intValue){
+                iterador.remove();
+            }
+        }
+    }
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
     public T parseChildNode_x_toObject(Class<T> classOfObject){  
         return nodeManager.parseNodeToObject(childNode_x, classOfObject);
     }
-            
+   
     /**
      * Informando de la clase que hay en el archivo, y el atributo de tipo float que se desea midificar:
      * Se le pasa el nuevo valor y lo guarda de nuevo en el archivo.??pendiente: como hacerlo cuando el atributo no esta en el "nivel principal" (sino que está emebebd)
@@ -150,7 +251,7 @@ public class JsonManager<T> {
         }            
     }
     
-    public boolean updateChildNode_x_IterateNodeTillChildNodeHasIntValue(int intValue, String intFieldName) throws IOException{        
+    public boolean updateChildNode_x_IterateArrayNodeTillChildNodeHasIntValue(int intValue, String intFieldName) throws IOException{        
         Iterator <JsonNode> iterador = childNode_x.iterator();
         boolean found = false;
         JsonNode nodeTarget;
@@ -229,12 +330,8 @@ public class JsonManager<T> {
         return arrayTarget;
     }
             
-    public void goToEspecificObjectInArrayInFileAndAddObjectToNestedArrayAndSave(T newElement, String fieldArray, int arrayIndex, String fieldNestedArray, Class<T> classInFile) throws IOException {        
-        //JsonNode mainNode = fileManager.getNodesFromFile();        
-        mainNode = nodeManager.goToEspecificObjectInArrayAndAddObjectToNestedArray(mainNode,newElement, fieldArray, arrayIndex, fieldNestedArray);        
-        // T objectUpdated = nodeManager.parseNodeToObject(mainNode, classInFile);
-        //fileManager.writeObjectInFileJackson(objectUpdated);
-        //fileManager.writeNodeInFileJackson(mainNode);
+    public void goToEspecificObjectInArrayInFileAndAddObjectToNestedArrayAndSave(T newElement, String fieldArray, int arrayIndex, String fieldNestedArray, Class<T> classInFile) throws IOException {                
+        nodeManager.goToEspecificObjectInArrayAndAddObjectToNestedArray(mainNode,newElement, fieldArray, arrayIndex, fieldNestedArray);                
     }  
     
 }

@@ -262,14 +262,16 @@ public class JsonNodeManager <T>{
     
     
     
-    public JsonNode goToEspecificObjectInArrayAndAddObjectToNestedArray(JsonNode mainNode,T newElement, String fieldArray, int arrayIndex, String fieldNestedArray){
-        JsonNode array = findFirstNodeFieldThatMatchesFieldName(mainNode, fieldArray);
-        if (array.isArray()){            
-            JsonNode nodeIndexed = arrayNodeManager.getNodeInArrayByIndex(array, arrayIndex);
-            JsonNode arrayNested = findFirstNodeFieldThatMatchesFieldName(nodeIndexed, fieldNestedArray);                        
+    public JsonNode goToEspecificObjectInArrayAndAddObjectToNestedArray(JsonNode parentNode,T newElement, String arrayFieldNameN1, int indexObjectNodeInArray, String arrayFieldNameN2){
+        JsonNode arrayNode_nx = findFirstChildObjectNodeByChildNodeFieldName(parentNode, arrayFieldNameN1);
+        if (arrayNode_nx.isArray()){            
+            JsonNode nodeIndexed_nx = arrayNodeManager.getNodeInArrayByIndex((ArrayNode)arrayNode_nx, indexObjectNodeInArray);
+            JsonNode arrayNested = findFirstChildObjectNodeByChildNodeFieldName(nodeIndexed_nx, arrayFieldNameN2);                        
             JsonNode newNode = parseObjectToNode(newElement);
-            arrayNested = arrayNodeManager.pushNodeInArrayNode(arrayNested, newNode);                        
+            arrayNested = arrayNodeManager.pushNodeInArrayNode((ArrayNode)arrayNested, newNode);                        
         }
-        return mainNode;
+        return parentNode;
     }  
+    
+    
 }
