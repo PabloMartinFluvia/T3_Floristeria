@@ -229,6 +229,12 @@ public class JsonManager<T> {
         return arrayTarget;
     }
             
-    
+    public void goToEspecificObjectInArrayInFileAndAddObjectToNestedArrayAndSave(T newElement, String fieldArray, int arrayIndex, String fieldNestedArray, Class<T> classInFile) throws IOException {        
+        //JsonNode mainNode = fileManager.getNodesFromFile();        
+        mainNode = nodeManager.goToEspecificObjectInArrayAndAddObjectToNestedArray(mainNode,newElement, fieldArray, arrayIndex, fieldNestedArray);        
+        // T objectUpdated = nodeManager.parseNodeToObject(mainNode, classInFile);
+        //fileManager.writeObjectInFileJackson(objectUpdated);
+        //fileManager.writeNodeInFileJackson(mainNode);
+    }  
     
 }

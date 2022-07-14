@@ -258,4 +258,18 @@ public class JsonNodeManager <T>{
     public JsonNode findParentNodeByFieldName (JsonNode childNode, String parentFieldName){
         return childNode.findParent(parentFieldName);
     }
+    
+    
+    
+    
+    public JsonNode goToEspecificObjectInArrayAndAddObjectToNestedArray(JsonNode mainNode,T newElement, String fieldArray, int arrayIndex, String fieldNestedArray){
+        JsonNode array = findFirstNodeFieldThatMatchesFieldName(mainNode, fieldArray);
+        if (array.isArray()){            
+            JsonNode nodeIndexed = arrayNodeManager.getNodeInArrayByIndex(array, arrayIndex);
+            JsonNode arrayNested = findFirstNodeFieldThatMatchesFieldName(nodeIndexed, fieldNestedArray);                        
+            JsonNode newNode = parseObjectToNode(newElement);
+            arrayNested = arrayNodeManager.pushNodeInArrayNode(arrayNested, newNode);                        
+        }
+        return mainNode;
+    }  
 }
