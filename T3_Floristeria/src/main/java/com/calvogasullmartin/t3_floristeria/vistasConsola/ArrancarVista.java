@@ -4,14 +4,14 @@ import com.calvogasullmartin.t3_floristeria.utils.InOut;
 import com.calvogasullmartin.t3_floristeria.controladores.ArrancarAppControlador;
 import java.io.IOException;
 
-public class BienvenidaVista {
+public class ArrancarVista {
 
     final String errorBD = "No se ha podido acceder a la base de datos";
     
     private InOut io;
     private ArrancarAppControlador controlador;
 
-    public BienvenidaVista() {
+    public ArrancarVista() {
         io = new InOut();
     }
     
