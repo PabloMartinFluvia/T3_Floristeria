@@ -20,14 +20,9 @@ public class LocalLogica implements Logica{
     // se gestiona la aplicacion
      private Manager manager; 
 
-    //atributos:
-    //A) las entidades del modelo (contienen info del
-    //B) els controladors concrets (familia segun que familia concreta de controladores pertenezca esta Logia)        
+    private ArrancarAppControlador arrancarAppControlador;     
     
-   
-        
-    // los controladores se asocian a los modelos con los que "trabajan"
-    private ArrancarAppControlador arrancarAppControlador; 
+    
     
     private MenuControlador menuControlador;
     
@@ -50,8 +45,9 @@ public class LocalLogica implements Logica{
     private Map<Estado,ControladorPadre> mapaEstadosContoladores;            
 
     public LocalLogica() {        
-        manager = new Manager(Estado.INITIAL);        
+        manager = new Manager();    
         this.arrancarAppControlador = new LocalArrancarAppControlador(manager);
+        
         this.menuControlador = new LocalMenuControlador(manager);
         this.addProductoControlador = new LocalAddProductoControlador(manager);
         this.mostrarStockControlador = new LocalMostrarConjuntoControlador(manager, true); //stocks
@@ -67,6 +63,7 @@ public class LocalLogica implements Logica{
     
     private void coordinarControladores(){        
         mapaEstadosContoladores.put(Estado.INITIAL, arrancarAppControlador);  
+        
         mapaEstadosContoladores.put(Estado.EN_MENU, menuControlador); 
         mapaEstadosContoladores.put(Estado.NUEVO_PRODUCTO, addProductoControlador);
         mapaEstadosContoladores.put(Estado.MOSTRAR_STOCK, mostrarStockControlador);
