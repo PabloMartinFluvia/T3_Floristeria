@@ -1,11 +1,11 @@
 package com.calvogasullmartin.t3_floristeria.modelos;
 
 public enum Altura {
-    MUY_ALTO("MUY_ALTO"),
-    ALTO("ALTO"),
-    MEDIANO("MEDIANO"),
-    BAJO("BAJO"),
-    MUY_BAJO("MUY_BAJO");
+    MUY_ALTO("Muy alto"),
+    ALTO("Alto"),
+    MEDIANO("Mediano"),
+    BAJO("Bajo"),
+    MUY_BAJO("Muy bajo");
     
     private String abreviatura;
 

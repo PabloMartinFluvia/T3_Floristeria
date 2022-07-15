@@ -13,14 +13,19 @@ public class ProductoCompletoTxt extends GenericDaoTxt<ProductoCompleto, Integer
 
     @Override
     public List<ProductoCompleto> getProductosSinUnidadesByStockId(int stock_id) throws IOException {
-        String stocksFieldName = Floristeria.class.getDeclaredFields()[4].getName(); 
-        String productosFieldName = ConjuntoProductos.class.getDeclaredFields()[2].getName(); 
-        gestor.getMainNodeFromFile();
-        gestor.setInChildNode_x_getChildNode_ParentIsIndexedInArray(stocksFieldName, stock_id, productosFieldName);
-        ProductoUnidad[] productosUnidad = (ProductoUnidad[]) gestor.getFromChildNode_x_parseNodeArrayToObjectArray(ProductoUnidad[].class);       
+        gestor.setMainNode_FromFile();
+        gestor.setAuxiliarNodesNull();
+        String atributo_stocks = Floristeria.class.getDeclaredFields()[4].getName(); 
+        gestor.setAuxiliarNode_findFieldByName(atributo_stocks);
+        gestor.setArrayAuxiliarNode_fromAuxiliarNode(); // stocks
+        gestor.replaceAuxiliarNode_nodeInAuxiliarArrayNodeByIndex(stock_id-1); //stock
+        String atributo_productos = ConjuntoProductos.class.getDeclaredFields()[2].getName(); 
+        gestor.replaceAuxiliarNode_findFieldByName(atributo_productos);//productos
+        gestor.setArrayAuxiliarNode_fromAuxiliarNode();
+        ProductoUnidad[] productosUnidad = (ProductoUnidad[]) gestor.getAuxiliarArray_asObjectArray(ProductoUnidad[].class);        
         List<ProductoCompleto> productos = new LinkedList<>();
-        for (ProductoUnidad productosUnidad1 : productosUnidad) {
-            productos.add(productosUnidad1.getProducto());
+        for (ProductoUnidad productoUnidad : productosUnidad) {
+            productos.add(productoUnidad.getProducto());
         }
         return productos;
     }
@@ -30,7 +35,7 @@ public class ProductoCompletoTxt extends GenericDaoTxt<ProductoCompleto, Integer
         String stocksFieldName = Floristeria.class.getDeclaredFields()[4].getName(); 
         String idFieldName = ProductoCompleto.class.getDeclaredFields()[0].getName(); 
         String productosFieldName = ConjuntoProductos.class.getDeclaredFields()[2].getName(); 
-        gestor.getMainNodeFromFile();
+        gestor.setMainNode_FromFile();
         ProductoCompleto producto = (ProductoCompleto) gestor.findInFirstArrayNodeFirstObjectByChildIIntNodeValueField(stocksFieldName, producto_id,idFieldName, productosFieldName,ProductoCompleto.class);
         return producto;
     }

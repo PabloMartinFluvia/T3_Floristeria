@@ -1,14 +1,19 @@
-package com.calvogasullmartin.t3_floristeria.utils.json;
+package com.calvogasullmartin.t3_floristeria.utils;
 
-import com.calvogasullmartin.t3_floristeria.utils.json.plugins.JsonArrayNodeManager;
-import com.calvogasullmartin.t3_floristeria.utils.json.plugins.JsonFileManager;
-import com.calvogasullmartin.t3_floristeria.utils.json.plugins.JsonNodeManager;
-import com.calvogasullmartin.t3_floristeria.utils.json.plugins.JsonObjectManager;
-import com.calvogasullmartin.t3_floristeria.utils.json.plugins.JsonParserManager;
+import com.calvogasullmartin.t3_floristeria.utils.json.descartes_xx.JsonArrayNodeManager;
+import com.calvogasullmartin.t3_floristeria.utils.json.descartes_xx.JsonFileManager;
+import com.calvogasullmartin.t3_floristeria.utils.json.descartes_xx.JsonNodeManager;
+import com.calvogasullmartin.t3_floristeria.utils.json.descartes_xx.JsonObjectManager;
+import com.calvogasullmartin.t3_floristeria.utils.json.descartes_xx.JsonParserManager;
+import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.databind.JsonNode;
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.databind.SerializationFeature;
 import com.fasterxml.jackson.databind.node.ArrayNode;
 import com.fasterxml.jackson.databind.node.JsonNodeFactory;
 import com.fasterxml.jackson.databind.node.ObjectNode;
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
 
 import java.io.File;
 import java.io.IOException;
@@ -19,16 +24,15 @@ import java.util.List;
 public class JsonManager<T> {
     
     private JsonFileManager<T> fileManager;
-    private JsonNodeManager<T> nodeManager;
-    private JsonParserManager<T> parserManager;
-    private JsonArrayNodeManager<T> arrayNodeManager;
-    private final JsonObjectManager<T> objectNodeManager;
-    
-    private JsonNode mainNode;
-    
+    private ObjectMapper mapper;
+    private Gson gson;    
+    private JsonNode mainNode;    
     private JsonNode auxiliarNode;
     private List<JsonNode> listAuxiliarNodes;
-    private ArrayNode arrayNode; 
+    private ArrayNode auxiliarArrayNode; 
+    
+    
+    
     
     private JsonNode childNode_x;
              
@@ -36,8 +40,18 @@ public class JsonManager<T> {
     private JsonNode parentNode;
     private JsonNode targetNode;
     
+    private JsonNodeManager<T> nodeManager;
+    private JsonParserManager<T> parserManager;
+    private JsonArrayNodeManager<T> arrayNodeManager;
+    private final JsonObjectManager<T> objectNodeManager;
+    
 
     public JsonManager() {        
+        this.mapper = new ObjectMapper().setSerializationInclusion(JsonInclude.Include.NON_NULL)
+                .enable(SerializationFeature.INDENT_OUTPUT); // serialize nulls: false  
+        this.gson = new GsonBuilder().setPrettyPrinting().create(); //serialize nulls: false
+        
+        
         this.nodeManager = new JsonNodeManager<>();
         this.parserManager = new JsonParserManager<>();
         this.arrayNodeManager = new JsonArrayNodeManager<>();
@@ -49,34 +63,74 @@ public class JsonManager<T> {
         assert archivo.isFile();
         assert archivo.exists();
         this.fileManager = new JsonFileManager<>(archivo);
+        this.mapper = new ObjectMapper().setSerializationInclusion(JsonInclude.Include.NON_NULL)
+                .enable(SerializationFeature.INDENT_OUTPUT); // serialize nulls: false  
+        this.gson = new GsonBuilder().setPrettyPrinting().create(); //serialize nulls: false
+        
+        
         this.nodeManager = new JsonNodeManager<>();
         this.parserManager = new JsonParserManager<>();
         this.arrayNodeManager = new JsonArrayNodeManager<>();
         this.objectNodeManager = new JsonObjectManager<>();
     }
     
-       
+     
+    //INITIAL - END
+    
     public void setAuxiliarNodesNull(){        
         auxiliarNode = null; 
         listAuxiliarNodes = null;
-        arrayNode = null;
+        auxiliarArrayNode = null;
     }
     
+     public void setMainNode_FromFile() throws IOException { 
+        mainNode = fileManager.getNodesFromFile();        
+    }
+         
     public void writeObjectInFile(T object) throws IOException { 
         fileManager.writeObjectInFileJackson(object);
     }        
-    
-    public void getMainNodeFromFile() throws IOException { 
-        mainNode = fileManager.getNodesFromFile();        
-    }
-    
+           
     public void saveMainNodeInFile() throws IOException { 
         fileManager.writeNodeInFileJackson(mainNode);
+    }              
+    
+    
+    //FIND (get) VALUES
+    
+    public String getAuxiliarNode_asText(){
+        assert auxiliarNode.isTextual();
+        return auxiliarNode.asText();
     }
     
+    public int getListAuxiliarNodes_MaxIntValue(){       
+        int maxInt = 0;
+        for(JsonNode node: listAuxiliarNodes){
+            int intValue = node.asInt();
+            if(intValue> maxInt){
+                maxInt =intValue;
+            }
+        }
+        return maxInt;
+    }
+    
+     public T[] getAuxiliarArray_asObjectArray (Class<T> arrayClass){   
+        T[] arrayTarget = (T[])parseNodeArrayToObjectArray(auxiliarArrayNode, arrayClass);         
+        return arrayTarget;
+    }
+    
+    //SET / REPLACE NODES (sin afectar al main node)
+    
+    public void setAuxiliarNode_mainNode(){
+        auxiliarNode = mainNode;
+    }
+    
+    public void setAuxiliarNode_ObjectInput(T object){
+        auxiliarNode = mapper.valueToTree(object);        
+    }
     
     public void setAuxiliarNode_findFieldByName(String childField){
-        auxiliarNode = mainNode.get(childField);
+        auxiliarNode = mainNode.get(childField);        
     }        
     
     public void setListAuxiliarNodes_findAllFieldsByName(String childField){        
@@ -84,23 +138,20 @@ public class JsonManager<T> {
     }
     
     public void setArrayAuxiliarNode_fromAuxiliarNode(){
-        arrayNode = (ArrayNode)auxiliarNode;
+        auxiliarArrayNode = (ArrayNode)auxiliarNode;  
+        System.out.println(auxiliarArrayNode == null);
+        System.out.println(auxiliarArrayNode.isNull());
+        System.out.println(auxiliarArrayNode.isArray());
+        System.out.println(auxiliarArrayNode.isEmpty());        
+        System.out.println(auxiliarNode.toPrettyString()+"\n\n");
     }
     
-    public String getAuxiliarNode_asText(){
-        assert auxiliarNode.isTextual();
-        return auxiliarNode.asText();
-    }
-    
-    
-    public void replaceAuxiliarNode_nodeInArrayByIndex(int index){
-        JsonNode node = auxiliarNode;
-        assert node.isArray();
-        auxiliarNode = node.get(index);
+    public void replaceAuxiliarNode_nodeInAuxiliarArrayNodeByIndex(int index){        
+        auxiliarNode = auxiliarArrayNode.get(index);        
     }
     
     public void replaceAuxiliarNode_findFieldByName(String childField){          
-        auxiliarNode = auxiliarNode.get(childField);
+        auxiliarNode = auxiliarNode.get(childField);        
     }
     
     public boolean replaceAuxliarNode_nodeInArrayWithChildIntValue(String childField,int intValue){
@@ -118,8 +169,8 @@ public class JsonManager<T> {
         }
         return found;   
     }    
-    
-    
+
+    //CHECK NODES (booleans)
     
     public boolean inAuxiliarNodes_hasAnyIntValue(int intValue){
         List<JsonNode> nodeList = listAuxiliarNodes;               
@@ -136,11 +187,32 @@ public class JsonManager<T> {
         return found;
     }
     
+    
+    //UPADATE NODES (afectando al main node)   
+    
     public void upadteAuxiliarNode_setNewFloatValueInField(String childField,float newValue){
         ((ObjectNode)auxiliarNode).put(childField, newValue);
     }
+    
+    public void upadteAuxiliarNode_incrementFloatValueInField(String childField, float increment){
+        float oldValue = auxiliarNode.findValue(childField).floatValue();
+        float newValue = oldValue + increment;
+        upadteAuxiliarNode_setNewFloatValueInField(childField, newValue);
+    }
+    
+    public void updateAuxiliarArray_pushAuxiliarNode(){
+        if(auxiliarArrayNode.size() == 0){
+            auxiliarArrayNode.insert(0, auxiliarNode);
+        }else{
+            auxiliarArrayNode.add(auxiliarNode);    
+        }                             
+    }
+    
+    
+    //DELETE NODES (afectando al main node)
+    
     public void updateArrayAuxiliarNode_deleteFirstElementByCildIntValue(String childField,int intValue){
-        Iterator <JsonNode> iterador = arrayNode.iterator();
+        Iterator <JsonNode> iterador = auxiliarArrayNode.iterator();
         boolean found = false;
         JsonNode nodeToDelete;
         while (!found && iterador.hasNext()){
@@ -152,7 +224,14 @@ public class JsonManager<T> {
     }
     
     
+    //// PARSE
     
+    public T parseNodeArrayToObjectArray(ArrayNode arrayNode, Class<T> arrayClass){  //NombreClasse[].class
+        assert arrayNode != null;
+        String json = arrayNode.toPrettyString();
+        T arrayObject = gson.fromJson(json, arrayClass);        
+        return arrayObject;        
+    }
     
     
     
@@ -176,14 +255,14 @@ public class JsonManager<T> {
      * @throws java.io.IOException 
      */    
     public void incrementMainFloatFieldInFile(String mainFieldName_typeFloat, float increment, Class<T> classInFile) throws IOException{        
-        getMainNodeFromFile();
+        setMainNode_FromFile();
         mainNode = nodeManager.incrementChildValueNode_N1_floatType(mainNode, mainFieldName_typeFloat, increment);                                  
         saveMainNodeInFile();
     }   
     
     public void incrementFloatFieldOfObjectIndexedInArrayAndSaveInFile
         (float increment,String fieldToUpdate, int array_inex,String fieldArray) throws IOException{
-        getMainNodeFromFile();
+        setMainNode_FromFile();
         JsonNode arrayNode = nodeManager.findFirstChildObjectNodeByChildNodeFieldName(mainNode, fieldArray);
         JsonNode nodeInIarray = arrayNodeManager.getNodeInArrayByIndex((ArrayNode)arrayNode, array_inex);
         nodeManager.incrementChildValueNode_N1_floatType(nodeInIarray, fieldToUpdate, increment);

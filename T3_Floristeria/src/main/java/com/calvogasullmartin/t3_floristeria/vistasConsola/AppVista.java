@@ -45,14 +45,16 @@ public class AppVista implements Vista{
        menuVista.interactuar(controlador);
     }
     
-    
-    
     @Override
     public void visitar(AddProductoControlador controlador) {
        assert controlador != null;
-       conjuntoProductosVista.interactuar(controlador);       
+       new AddVista().interactuar(controlador);     
     }
+    
+    
 
+    
+    
     @Override
     public void visitar(MostrarConjuntoControlador controlador) {
        assert controlador != null;

@@ -49,7 +49,7 @@ public interface ConjuntoProductosDao extends GenericDao<ConjuntoProductos, Inte
     b) update  conjunto set valor = valor + increment where stock_id
     c) find flortisteria + set stpck.id.valor: {$incr: increment}
     */    
-    public void incrementarValorEnStockById(int idStock, float incremento) throws IOException;
+    public void incrementarValorEnStockById(int idStock, float incremento) throws IOException; // ok
    
     //no hay más updates, ya que canviar productos/unidades de productos asociados al stock se
     //encarga el dao PorudctoUnidad (que es quien establece relaciones y cantidad entre stock y producto)

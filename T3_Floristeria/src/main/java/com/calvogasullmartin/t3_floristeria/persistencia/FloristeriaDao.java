@@ -50,7 +50,7 @@ public interface FloristeriaDao extends GenericDao<Floristeria, Integer>{
     b) update Floristeria set valorTotal = valorTotal+increment where floristeria_id = 1;
     c)  db.restaurant.updateOne({ "floristeria_id" : 1 },{ $set: { "valorTotal" : : {$incr: increment} }
     */
-    public void incrementarValorFloristeria(float increment) throws IOException;
+    public void incrementarValorFloristeria(float increment) throws IOException; //ok
     
     /*
     Equivale a update
