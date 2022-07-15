@@ -7,7 +7,9 @@ public interface ControladorPadre {
 
     final DaoFactory factory = DaoFactory.getFactory();
     
-    void aceptar(ControladorPadreVisitor controlador);
+    void aceptar(ControladorPadreVisitor controlador);    
+
+    String getErrorBD();
     
     /*
     protected Estado estado;
