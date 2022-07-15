@@ -7,7 +7,7 @@ import java.io.IOException;
 public class ConectorTxt implements Conector{
 
     private final String rutaArchivoTxt;
-    private File archivoTxt;
+    private final File archivoTxt;
 
     public ConectorTxt() {
         rutaArchivoTxt = "floristeria.txt"; // se crea en el mismo directorio que carpetas src y target
