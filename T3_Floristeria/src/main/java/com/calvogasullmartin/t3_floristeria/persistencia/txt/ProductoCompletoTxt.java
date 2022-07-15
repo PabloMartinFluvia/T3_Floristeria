@@ -21,7 +21,7 @@ public class ProductoCompletoTxt extends GenericDaoTxt<ProductoCompleto, Integer
         gestor.replaceAuxiliarNode_nodeInAuxiliarArrayNodeByIndex(stock_id-1); //stock
         String atributo_productos = ConjuntoProductos.class.getDeclaredFields()[2].getName(); 
         gestor.replaceAuxiliarNode_findFieldByName(atributo_productos);//productos
-        gestor.setArrayAuxiliarNode_fromAuxiliarNode();
+        gestor.setArrayAuxiliarNode_fromAuxiliarNode();        
         ProductoUnidad[] productosUnidad = (ProductoUnidad[]) gestor.getAuxiliarArray_asObjectArray(ProductoUnidad[].class);        
         List<ProductoCompleto> productos = new LinkedList<>();
         for (ProductoUnidad productoUnidad : productosUnidad) {

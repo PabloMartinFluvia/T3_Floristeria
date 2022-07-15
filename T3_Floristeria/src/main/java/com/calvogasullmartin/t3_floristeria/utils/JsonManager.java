@@ -187,6 +187,10 @@ public class JsonManager<T> {
         return found;
     }
     
+    public boolean isAuxiliarArrayNode_noLength(){
+        
+    }
+    
     
     //UPADATE NODES (afectando al main node)   
     

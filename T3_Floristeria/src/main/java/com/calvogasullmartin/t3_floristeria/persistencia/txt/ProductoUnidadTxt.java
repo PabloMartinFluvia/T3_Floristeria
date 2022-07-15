@@ -23,6 +23,7 @@ public class ProductoUnidadTxt extends GenericDaoTxt<ProductoUnidad, Integer> im
         gestor.replaceAuxiliarNode_findFieldByName(atributo_productos);//productos
         gestor.setArrayAuxiliarNode_fromAuxiliarNode(); // //productos
         productoUnidad.getProducto().setProducto_id(findMaxProductId()+1);
+        if()
         gestor.setAuxiliarNode_ObjectInput(productoUnidad);
         gestor.updateAuxiliarArray_pushAuxiliarNode();
         gestor.saveMainNodeInFile();
