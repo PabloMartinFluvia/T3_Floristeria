@@ -9,12 +9,12 @@ public interface ArrancarAppControlador extends ControladorPadre{
     public boolean isPrimeraVez() throws IOException;
     
     public void iniciarPersistencia() throws IOException;
-     
-    public void iniciarFloristeria(String nombre) throws IOException;
     
-    public void guardarUnicaFloristeria() throws IOException;
-    
+    public void guardarUnicaFloristeria(String nombre) throws IOException;
+        
     public String getNombreFloristeria() throws IOException;
     
     public void seleccionarMenu();    
+    
+    public void seleccionarExit();
 }
