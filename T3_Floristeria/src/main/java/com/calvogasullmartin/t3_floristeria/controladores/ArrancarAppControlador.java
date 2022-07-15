@@ -6,7 +6,7 @@ public interface ArrancarAppControlador extends ControladorPadre{
     
     //los métodos específicos de un ArrancarAppControlador
     
-    public boolean isPrimeraVez();
+    public boolean isPrimeraVez() throws IOException;
     
     public void iniciarPersistencia() throws IOException;
      
