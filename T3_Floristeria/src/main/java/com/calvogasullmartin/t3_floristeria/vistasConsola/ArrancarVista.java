@@ -4,9 +4,7 @@ import com.calvogasullmartin.t3_floristeria.utils.InOut;
 import com.calvogasullmartin.t3_floristeria.controladores.ArrancarAppControlador;
 import java.io.IOException;
 
-public class ArrancarVista {
-
-    final String errorBD = "No se ha podido acceder a la base de datos";
+public class ArrancarVista {    
     
     private InOut io;
     private ArrancarAppControlador controlador;
@@ -18,8 +16,12 @@ public class ArrancarVista {
     public void interactuar(ArrancarAppControlador controlador) {
         assert controlador != null;
         this.controlador = controlador; 
-        if (controlador.isPrimeraVez()) {
-            pedirInicializacion();
+        try {
+            if (controlador.isPrimeraVez()) {
+                pedirInicializacion();
+            }
+        } catch (IOException ex) {
+            io.writeln(controlador.getErrorBD());
         }
         darBienvienida();
         controlador.seleccionarMenu(); //FIN DE LA FUNCIONALIDAD
@@ -33,8 +35,8 @@ public class ArrancarVista {
             io.writeln("Capa de persistencia inizializada con exito");
             //System.out.println("Capa de persistencia inizializada con exito.");                        
             new FloristeriaVista().interactuar(controlador);
-        } catch (IOException ex) {
-            io.writeln(errorBD);
+        } catch (IOException ex) {            
+            io.writeln(controlador.getErrorBD());
             //System.err.println(errorBD);
         }
     }
@@ -46,7 +48,7 @@ public class ArrancarVista {
             io.writeln("Bienvenid@ al gestor de la floristeria " + nombre + ", desarrollado por CalvoGasullMartin.");
             //System.out.println("Bienvenid@ a " + nombre + "'s Manager, desarrollado por CalvoGasullMartin.\n");
         } catch (IOException ex) {
-            io.writeln(errorBD);
+            io.writeln(controlador.getErrorBD());
             //System.err.println(errorBD);
         }
     }
