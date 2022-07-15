@@ -6,7 +6,7 @@ import com.calvogasullmartin.t3_floristeria.modelos.Estado;
 import java.util.HashMap;
 import java.util.Map;
 import com.calvogasullmartin.t3_floristeria.controladores.MenuControlador;
-import com.calvogasullmartin.t3_floristeria.modelos.Estados;
+import com.calvogasullmartin.t3_floristeria.modelos.Manager;
 import com.calvogasullmartin.t3_floristeria.Logica;
 import com.calvogasullmartin.t3_floristeria.controladores.AddProductoControlador;
 import com.calvogasullmartin.t3_floristeria.controladores.ControladorPadre;
@@ -16,13 +16,18 @@ import com.calvogasullmartin.t3_floristeria.controladores.MostrarTotalesControla
 import com.calvogasullmartin.t3_floristeria.controladores.NuevaVentaControlador;
 
 public class LocalLogica implements Logica{    
+    
+    // clase que proporciona a todos los controladores informacion de como
+    // se gestiona la aplicacion
+     private Manager manager; 
+
     //atributos:
     //A) las entidades del modelo (contienen info del
     //B) els controladors concrets (familia segun que familia concreta de controladores pertenezca esta Logia)
     
     private Aplicacion aplicacion; //floristeria, y otros modelos
     
-    private Estados estados;
+   
         
     // los controladores se asocian a los modelos con los que "trabajan"
     private ArrancarAppControlador arrancarAppControlador; 
@@ -49,17 +54,17 @@ public class LocalLogica implements Logica{
 
     public LocalLogica() {
         aplicacion = new Aplicacion(); 
-        estados = new Estados(Estado.INITIAL);        
-        this.arrancarAppControlador = new LocalArrancarAppControlador(estados, aplicacion.getFloristeria());
-        this.menuControlador = new LocalMenuControlador(estados);
-        this.addProductoControlador = new LocalAddProductoControlador(estados);
-        this.mostrarStockControlador = new LocalMostrarConjuntoControlador(estados, true); //stocks
-        this.mostrarTicketsControlador = new LocalMostrarConjuntoControlador(estados, false); //tiquets
-        this.mostrarTotalValorControlador = new LocalMostrarTotalesControlador(estados, true); // totalValorStocks
-        this.mostrarTotalFacturacionControlador = new LocalMostrarTotalesControlador(estados, false); //totalValorTiquets
-        this.modificarUnidadControlador = new LocalModificarProductoControlador(estados, true); // actualizar unidades de un producto que está en stock
-        this.eliminarProductoControlador = new LocalModificarProductoControlador(estados, false); // eliminar un producto que está en stock
-        this.nuevaVentaControlador = new LocalNuevaVentaCotnrolador(estados);
+        manager = new Manager(Estado.INITIAL);        
+        this.arrancarAppControlador = new LocalArrancarAppControlador(manager, aplicacion.getFloristeria());
+        this.menuControlador = new LocalMenuControlador(manager);
+        this.addProductoControlador = new LocalAddProductoControlador(manager);
+        this.mostrarStockControlador = new LocalMostrarConjuntoControlador(manager, true); //stocks
+        this.mostrarTicketsControlador = new LocalMostrarConjuntoControlador(manager, false); //tiquets
+        this.mostrarTotalValorControlador = new LocalMostrarTotalesControlador(manager, true); // totalValorStocks
+        this.mostrarTotalFacturacionControlador = new LocalMostrarTotalesControlador(manager, false); //totalValorTiquets
+        this.modificarUnidadControlador = new LocalModificarProductoControlador(manager, true); // actualizar unidades de un producto que está en stock
+        this.eliminarProductoControlador = new LocalModificarProductoControlador(manager, false); // eliminar un producto que está en stock
+        this.nuevaVentaControlador = new LocalNuevaVentaCotnrolador(manager);
         mapaEstadosContoladores = new HashMap<>();
         coordinarControladores();
     }
@@ -80,6 +85,6 @@ public class LocalLogica implements Logica{
         
     @Override
     public ControladorPadre getControladorPadre(){          
-        return mapaEstadosContoladores.get(estados.getEstado());               
+        return mapaEstadosContoladores.get(manager.getEstado());               
     }
 }

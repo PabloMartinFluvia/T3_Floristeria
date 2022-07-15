@@ -62,7 +62,7 @@ public class InOut {
 	}
 	
 	public void write(String string) {
-		System.out.print(string);
+		System.out.println(string); // println to fix the bug
 	}
 
 	public void writeln(String string) {

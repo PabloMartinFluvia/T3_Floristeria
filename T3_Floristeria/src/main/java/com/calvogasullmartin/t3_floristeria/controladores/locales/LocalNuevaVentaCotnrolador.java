@@ -5,7 +5,7 @@ import com.calvogasullmartin.t3_floristeria.controladores.NuevaVentaControlador;
 import com.calvogasullmartin.t3_floristeria.modelos.Categoria;
 import com.calvogasullmartin.t3_floristeria.modelos.ConjuntoProductos;
 import com.calvogasullmartin.t3_floristeria.modelos.Estado;
-import com.calvogasullmartin.t3_floristeria.modelos.Estados;
+import com.calvogasullmartin.t3_floristeria.modelos.Manager;
 import com.calvogasullmartin.t3_floristeria.modelos.ProductoCompleto;
 import com.calvogasullmartin.t3_floristeria.modelos.ProductoUnidad;
 import java.io.IOException;
@@ -29,7 +29,7 @@ public class LocalNuevaVentaCotnrolador extends LocalControladorPadre implements
     
     private List<ProductoUnidad> productosUnidadEnStockPostVenta;
     
-    public LocalNuevaVentaCotnrolador(Estados estados) {
+    public LocalNuevaVentaCotnrolador(Manager estados) {
         super(estados);
     }
     

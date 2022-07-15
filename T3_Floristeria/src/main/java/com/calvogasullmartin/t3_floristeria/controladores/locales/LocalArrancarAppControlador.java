@@ -3,7 +3,7 @@ package com.calvogasullmartin.t3_floristeria.controladores.locales;
 import com.calvogasullmartin.t3_floristeria.controladores.ArrancarAppControlador;
 import com.calvogasullmartin.t3_floristeria.modelos.Aplicacion;
 import com.calvogasullmartin.t3_floristeria.modelos.Estado;
-import com.calvogasullmartin.t3_floristeria.modelos.Estados;
+import com.calvogasullmartin.t3_floristeria.modelos.Manager;
 import com.calvogasullmartin.t3_floristeria.modelos.Floristeria;
 import com.calvogasullmartin.t3_floristeria.persistencia.Conector;
 import java.io.IOException;
@@ -14,7 +14,7 @@ public class LocalArrancarAppControlador extends LocalControladorPadre implement
     
     private Floristeria floristeria;
     
-    public LocalArrancarAppControlador(Estados estados, Floristeria floristeria) {        
+    public LocalArrancarAppControlador(Manager estados, Floristeria floristeria) {        
         super(estados);    
         this.floristeria = floristeria;
     }

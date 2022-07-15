@@ -5,7 +5,7 @@ import com.calvogasullmartin.t3_floristeria.controladores.ModificarProductoContr
 import com.calvogasullmartin.t3_floristeria.modelos.Categoria;
 import com.calvogasullmartin.t3_floristeria.modelos.ConjuntoProductos;
 import com.calvogasullmartin.t3_floristeria.modelos.Estado;
-import com.calvogasullmartin.t3_floristeria.modelos.Estados;
+import com.calvogasullmartin.t3_floristeria.modelos.Manager;
 import com.calvogasullmartin.t3_floristeria.modelos.ProductoUnidad;
 import java.io.IOException;
 import java.util.Iterator;
@@ -19,7 +19,7 @@ public class LocalModificarProductoControlador extends LocalControladorPadre imp
     
     private ProductoUnidad productoUnidad;
     
-    public LocalModificarProductoControlador(Estados estados, boolean isUpdate) {
+    public LocalModificarProductoControlador(Manager estados, boolean isUpdate) {
         super(estados);
         this.isUpdateUnits = this.isUpdateUnits;
     }

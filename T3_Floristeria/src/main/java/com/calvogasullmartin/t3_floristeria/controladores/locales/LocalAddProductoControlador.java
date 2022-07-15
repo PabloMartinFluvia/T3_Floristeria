@@ -5,7 +5,7 @@ import com.calvogasullmartin.t3_floristeria.controladores.ControladorPadreVisito
 import com.calvogasullmartin.t3_floristeria.modelos.Altura;
 import com.calvogasullmartin.t3_floristeria.modelos.Categoria;
 import com.calvogasullmartin.t3_floristeria.modelos.Estado;
-import com.calvogasullmartin.t3_floristeria.modelos.Estados;
+import com.calvogasullmartin.t3_floristeria.modelos.Manager;
 import com.calvogasullmartin.t3_floristeria.modelos.Material;
 import com.calvogasullmartin.t3_floristeria.modelos.ProductoCompleto;
 import com.calvogasullmartin.t3_floristeria.modelos.ProductoUnidad;
@@ -19,7 +19,7 @@ public class LocalAddProductoControlador extends LocalControladorPadre implement
     private ProductoCompleto producto;
     private ProductoUnidad productoUnidad;
 
-    public LocalAddProductoControlador(Estados estados) {        
+    public LocalAddProductoControlador(Manager estados) {        
         super(estados);
     }
 

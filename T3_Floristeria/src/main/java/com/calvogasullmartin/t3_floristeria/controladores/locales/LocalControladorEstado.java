@@ -1,13 +1,13 @@
 package com.calvogasullmartin.t3_floristeria.controladores.locales;
 
 import com.calvogasullmartin.t3_floristeria.modelos.Estado;
-import com.calvogasullmartin.t3_floristeria.modelos.Estados;
+import com.calvogasullmartin.t3_floristeria.modelos.Manager;
 
 public abstract class LocalControladorEstado {
     
-    private Estados estados;
+    private Manager estados;
 
-    protected LocalControladorEstado(Estados estados) {
+    protected LocalControladorEstado(Manager estados) {
         assert estados != null;
         this.estados = estados;
     }

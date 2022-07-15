@@ -19,7 +19,7 @@ public class App {
         configurador.persistenciaTxt();   
     }
 
-    public static void main(String[] args) {
+    public static void main(String[] args) {        
         new App().ejecutar();
     }
     
