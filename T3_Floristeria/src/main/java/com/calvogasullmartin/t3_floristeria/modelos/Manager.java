@@ -26,5 +26,5 @@ public class Manager {
 
     public String getErrorBD() {
         return errorBD;
-    }                    
+    }            
 }
