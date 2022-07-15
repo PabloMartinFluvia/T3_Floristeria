@@ -19,7 +19,7 @@ public class LocalArrancarAppControlador extends LocalControladorPadre implement
     }
     
     @Override
-    public boolean isPrimeraVez() {
+    public boolean isPrimeraVez() throws IOException{
         Conector conector = factory.getConector();
         boolean ok = true;
         if(conector.isBDInicizializada()){
