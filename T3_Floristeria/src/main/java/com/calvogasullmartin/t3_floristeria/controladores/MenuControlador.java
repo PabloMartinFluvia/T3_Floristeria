@@ -2,6 +2,10 @@ package com.calvogasullmartin.t3_floristeria.controladores;
 
 public interface MenuControlador extends ControladorPadre{
     
+    public String getMenuMensage();
+    
+    public int getNumOptionsNoExit();
+    
     public void introducirArticulo();
     
     public void modificarUnidades();
