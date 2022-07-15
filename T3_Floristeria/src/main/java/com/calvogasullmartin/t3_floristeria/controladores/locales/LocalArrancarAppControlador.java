@@ -11,11 +11,13 @@ import com.calvogasullmartin.t3_floristeria.controladores.ControladorPadreVisito
 
 public class LocalArrancarAppControlador extends LocalControladorPadre implements ArrancarAppControlador{        
     
-    private Floristeria floristeria;
+    //private Floristeria floristeria;
+    private int numCategorias;    
     
     public LocalArrancarAppControlador(Manager manager) {        
-        super(manager);    
-        this.floristeria = new Floristeria(manager.getNUM_CATEGORIAS());
+        super(manager);   
+        numCategorias = manager.getNUM_CATEGORIAS();        
+        //this.floristeria = new Floristeria(manager.getNUM_CATEGORIAS());
     }
     
     @Override
@@ -31,19 +33,15 @@ public class LocalArrancarAppControlador extends LocalControladorPadre implement
    @Override
     public void iniciarPersistencia() throws IOException {
         factory.getConector().inicializarBD();
-    } 
-    
+    }     
 
     @Override
-    public void iniciarFloristeria(String nombre) {
+    public void guardarUnicaFloristeria(String nombre) throws IOException { 
         assert nombre != null;
         assert nombre.length() >= 3;
         //el id lo pondrá el dao dentro del create
-        floristeria.setNombre_floristeria(nombre);        
-    }
-
-    @Override
-    public void guardarUnicaFloristeria() throws IOException {
+        Floristeria floristeria = new Floristeria(numCategorias);
+        floristeria.setNombre_floristeria(nombre); 
         factory.getFloristeriaDao().create(floristeria);
     }
 
@@ -58,8 +56,15 @@ public class LocalArrancarAppControlador extends LocalControladorPadre implement
     }
     
     @Override
+    public void seleccionarExit() {
+        this.setEstado(Estado.EXIT);
+    }
+    
+    @Override
     public void aceptar(ControladorPadreVisitor controlador) {
         assert controlador != null;
         controlador.visitar(this);
     }          
+
+    
 }
