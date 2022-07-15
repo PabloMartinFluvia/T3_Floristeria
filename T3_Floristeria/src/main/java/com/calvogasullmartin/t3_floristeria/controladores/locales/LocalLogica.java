@@ -24,9 +24,9 @@ public class LocalLogica implements Logica{
     
     private MenuControlador menuControlador;
     
-    
-    
     private AddProductoControlador addProductoControlador;
+    
+    
     
     private MostrarConjuntoControlador mostrarStockControlador;
     
@@ -48,8 +48,8 @@ public class LocalLogica implements Logica{
         manager = new Manager();    
         this.arrancarAppControlador = new LocalArrancarAppControlador(manager);
         this.menuControlador = new LocalMenuControlador(manager);
-        
         this.addProductoControlador = new LocalAddProductoControlador(manager);
+        
         this.mostrarStockControlador = new LocalMostrarConjuntoControlador(manager, true); //stocks
         this.mostrarTicketsControlador = new LocalMostrarConjuntoControlador(manager, false); //tiquets
         this.mostrarTotalValorControlador = new LocalMostrarTotalesControlador(manager, true); // totalValorStocks
