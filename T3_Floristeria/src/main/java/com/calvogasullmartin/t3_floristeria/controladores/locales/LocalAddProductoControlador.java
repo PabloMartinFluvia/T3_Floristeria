@@ -11,16 +11,19 @@ import com.calvogasullmartin.t3_floristeria.modelos.ProductoCompleto;
 import com.calvogasullmartin.t3_floristeria.modelos.ProductoUnidad;
 import java.io.IOException;
 import java.util.Iterator;
-import java.util.LinkedList;
 import java.util.List;
 
 public class LocalAddProductoControlador extends LocalControladorPadre implements AddProductoControlador {
 
     private ProductoCompleto producto;
+
     private ProductoUnidad productoUnidad;
 
-    public LocalAddProductoControlador(Manager estados) {        
-        super(estados);
+    private final int MAX_CANTIDAD;
+
+    public LocalAddProductoControlador(Manager manager) {
+        super(manager);
+        MAX_CANTIDAD = manager.getMAX_UNIDADES_EN_STOCK();
     }
 
     @Override
@@ -31,18 +34,18 @@ public class LocalAddProductoControlador extends LocalControladorPadre implement
     }
 
     @Override
-    public void almacenarCategoria(Categoria categoria) {
-        producto.setCategoria(categoria);
+    public void almacenarCategoria(int indexCategoria) {
+        producto.setCategoria(Categoria.values()[indexCategoria]);
     }
-    
+
     @Override
     public void almacenarPrecio(float precio) {
         producto.setPrecio(precio);
     }
 
     @Override
-    public void almacenarAltura(Altura altura) {
-        producto.setAltura(altura);
+    public void almacenarAltura(int indexAltura) {
+        producto.setAltura(Altura.values()[indexAltura]);
     }
 
     @Override
@@ -51,80 +54,8 @@ public class LocalAddProductoControlador extends LocalControladorPadre implement
     }
 
     @Override
-    public void almacenarMaterial(Material material) {
-        producto.setMaterial(material);
-    }
-    
-    
-    @Override
-    public boolean isNuevo() throws IOException {
-        Categoria categoria = producto.getCategoria();
-        List<ProductoCompleto> listaProductos = factory.getProductoCompletoDao()
-                .getProductosSinUnidadesByStockId(categoria.ordinal()+1);
-        if (listaProductos == null || listaProductos.isEmpty()){
-            return true;
-        }else{ // hay productos de esa categoria ya guardados
-            listaProductos = seleccionarComun(listaProductos); //devuelve solo los que coinciden con el mismo precio
-            switch (categoria) {
-                case ARBOL: listaProductos = compararArboles(listaProductos); break;
-                case FLOR: listaProductos = compararFlores(listaProductos); break;
-                case DECORACION: listaProductos = compararDecoriaciones(listaProductos); break;                    
-            }
-            return listaProductos.size() == 0;
-        }
-    }
-
-    private List<ProductoCompleto> seleccionarComun(List<ProductoCompleto> listaProductos) {  
-        assert listaProductos != null;
-        //no se compara el id, pk el usuario no introduce ids y no sabe como lo gestionamos
-        List<ProductoCompleto> nuevaLista = new LinkedList<>();
-        Iterator<ProductoCompleto> iterador = listaProductos.iterator();
-        while (iterador.hasNext()){
-            ProductoCompleto producto = iterador.next();
-            if(this.producto.getPrecio() == producto.getPrecio()){
-                nuevaLista.add(producto);
-            }
-        }
-        return nuevaLista;
-    }
-
-    private List<ProductoCompleto> compararArboles(List<ProductoCompleto> listaProductos) {
-        assert listaProductos != null;
-        List<ProductoCompleto> nuevaLista = new LinkedList<>();
-        Iterator<ProductoCompleto> iterador = listaProductos.iterator();
-        while (iterador.hasNext()){
-            ProductoCompleto producto = iterador.next();
-            if(this.producto.getAltura().equals(producto.getAltura())){
-                nuevaLista.add(producto);
-            }
-        }
-        return nuevaLista;
-    }
-
-    private List<ProductoCompleto> compararFlores(List<ProductoCompleto> listaProductos) {
-        assert listaProductos != null;
-        List<ProductoCompleto> nuevaLista = new LinkedList<>();
-        Iterator<ProductoCompleto> iterador = listaProductos.iterator();
-        while (iterador.hasNext()){
-            ProductoCompleto producto = iterador.next();
-            if(this.producto.getColor().equals(producto.getColor())){
-                nuevaLista.add(producto);
-            }
-        }
-        return nuevaLista;
-    }
-
-    private List<ProductoCompleto> compararDecoriaciones(List<ProductoCompleto> listaProductos) {
-        assert listaProductos != null;
-        List<ProductoCompleto> nuevaLista = new LinkedList<>();
-        Iterator<ProductoCompleto> iterador = listaProductos.iterator();
-        while (iterador.hasNext()){
-            ProductoCompleto producto = iterador.next();
-            if(this.producto.getMaterial().equals(producto.getMaterial())){
-                nuevaLista.add(producto);
-            }
-        }
-        return nuevaLista;
+    public void almacenarMaterial(int indexMaterial) {
+        producto.setMaterial(Material.values()[indexMaterial]);
     }
 
     @Override
@@ -132,26 +63,22 @@ public class LocalAddProductoControlador extends LocalControladorPadre implement
         assert cantidad > 0;
         productoUnidad.setCantidad(cantidad);
     }
-    
+
     @Override
-    public void addProductoConUnidadesEnStock() throws IOException {        
-        factory.getProductoUnidadesDao().createProductoYAsociarloAlStockConUnidades(productoUnidad, getStockId());        
-    }
-    
-    private int getStockId (){
-        return producto.getCategoria().ordinal()+1;
+    public void addProductoConUnidadesEnStock() throws IOException {
+        factory.getProductoUnidadesDao().createProductoYAsociarloAlStockConUnidades(productoUnidad, getStockId());
     }
 
     @Override
     public void actualizarValoresStock() throws IOException {
         float incrementoValor = producto.getPrecio() * productoUnidad.getCantidad();
-        factory.getFloristeriaDao().incrementarValorFloristeria(incrementoValor);        
+        factory.getFloristeriaDao().incrementarValorFloristeria(incrementoValor);
         factory.getConjuntoProductosDao().incrementarValorEnStockById(getStockId(), incrementoValor);
     }
-
     
-
-    
+    private int getStockId() {
+        return producto.getCategoria().ordinal() + 1;
+    }
 
     @Override
     public void seleccionarMenu() {
@@ -162,5 +89,42 @@ public class LocalAddProductoControlador extends LocalControladorPadre implement
     public void aceptar(ControladorPadreVisitor controlador) {
         controlador.visitar(this);
     }
+
+    @Override
+    public int getMaxCantidad() {
+        return MAX_CANTIDAD;
+    }
+
+    @Override
+    public boolean isNuevo() throws IOException {
+        Categoria categoria = producto.getCategoria();
+        List<ProductoCompleto> listaProductos = factory.getProductoCompletoDao()
+                .getProductosSinUnidadesByStockId(categoria.ordinal() + 1);
+        if (listaProductos == null || listaProductos.isEmpty()) {
+            return true;
+        } else { // hay productos de esa categoria ya guardados
+            Iterator<ProductoCompleto> iterador = listaProductos.iterator();                         
+            while (iterador.hasNext()) {                                
+                if (sonIguales(iterador.next())) {                    
+                    return false;
+                }
+            }
+            return true;
+        }
+    }
+
+    private boolean sonIguales(ProductoCompleto productoEnStock) {
+        //no se compara el id, se deja en null        
+        boolean iguales = productoEnStock.getPrecio() == producto.getPrecio();
+        switch(producto.getCategoria()){
+            case ARBOL: iguales = iguales && productoEnStock.getAltura().equals(producto.getAltura());
+                break;
+            case FLOR: iguales = iguales && productoEnStock.getColor().equals(producto.getColor());
+                break;
+            case DECORACION: iguales = iguales && productoEnStock.getMaterial().equals(producto.getMaterial());  
+                break;
+        }
+        return iguales;
+    }            
 
 }

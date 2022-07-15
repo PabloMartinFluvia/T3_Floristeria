@@ -42,6 +42,20 @@ public class InOut {
 		return input;
 	}
         
+        public float readFloat(String title) {
+		float input = 0;
+		boolean ok = false;
+		do {
+			try {
+				input = Float.parseFloat(this.readString(title));
+				ok = true;
+			} catch (Exception ex) {
+				this.writeError("decimal xx,yy");
+			}
+		} while (!ok);
+		return input;
+	}
+        
         public char readChar(String title) {
 		char charValue = ' ';
 		boolean ok = false;

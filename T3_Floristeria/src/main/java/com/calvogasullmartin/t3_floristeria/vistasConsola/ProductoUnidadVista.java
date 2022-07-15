@@ -2,51 +2,27 @@ package com.calvogasullmartin.t3_floristeria.vistasConsola;
 
 import com.calvogasullmartin.t3_floristeria.controladores.AddProductoControlador;
 import com.calvogasullmartin.t3_floristeria.controladores.ModificarProductoControlador;
+import com.calvogasullmartin.t3_floristeria.utils.PedirEnteroLimitado;
 import java.io.IOException;
 import java.util.Scanner;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 
 public class ProductoUnidadVista {
 
-    private AddProductoControlador addControlador;
-
-    private ModificarProductoControlador modificarControlador;
+    
 
     public ProductoUnidadVista() {
     }
 
-    public void interactuar(AddProductoControlador controlador) {
-        this.addControlador = controlador;        
-        enviarToContoladorUnidadesIniciales();
+    public void pedirUnidadesIniciales(AddProductoControlador controlador) {
+        String mensaje = "Introduce la cantidad inicial de este producto que habrá en el stock (>0): ";
+        PedirEnteroLimitado requerimiento = new PedirEnteroLimitado(mensaje, controlador.getMaxCantidad());        
+        controlador.almacenarUnidadesIniciales(requerimiento.read());
     }
     
-    private void enviarToContoladorUnidadesIniciales() {
-        addControlador.almacenarUnidadesIniciales(pedirUnidadesIniciales());
-    }
+    
+        
 
-    private int pedirUnidadesIniciales() {
-        String mensaje = "Introduce la cantidad de este producto que habrá en el stock (>0): ";
-        System.out.println(mensaje);
-        int unidades = pedrirIntCantidad(1) ;
-        return unidades;
-    }
-    
-    
-    private int pedrirIntCantidad(int min) {
-        Scanner sc = new Scanner(System.in);
-        int input;
-        boolean ok = false;
-        do{
-            input = sc.nextInt();
-            if(input>=min){
-                ok = true;
-            }else{
-                System.out.println("Error. Introduce una cantidad superior a "+min);
-            }
-        }while(!ok);
-        return input;
-    }
+    private ModificarProductoControlador modificarControlador;                    
 
     public void interactuar(ModificarProductoControlador modificarControlador) {
         this.modificarControlador = modificarControlador;
@@ -67,6 +43,22 @@ public class ProductoUnidadVista {
         modificarControlador.seleccionarMenu();
     }
 
+    ////substituirlo por la metodologia de las linias 17-19
+    private int pedrirIntCantidad(int min) {
+        Scanner sc = new Scanner(System.in);
+        int input;
+        boolean ok = false;
+        do{
+            input = sc.nextInt();
+            if(input>=min){
+                ok = true;
+            }else{
+                System.out.println("Error. Introduce una cantidad superior a "+min);
+            }
+        }while(!ok);
+        return input;
+    }
+    
     private void eliminarProducto() {
         boolean eliminar = isCorrecto("Estas seguro de querer eliminar el producto?\n"
             + "\t1) Si.\n"

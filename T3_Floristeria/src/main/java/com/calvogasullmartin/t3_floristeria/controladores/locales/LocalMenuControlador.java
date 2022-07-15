@@ -1,16 +1,27 @@
 package com.calvogasullmartin.t3_floristeria.controladores.locales;
 
+import com.calvogasullmartin.t3_floristeria.controladores.ControladorPadreVisitor;
 import com.calvogasullmartin.t3_floristeria.controladores.MenuControlador;
 import com.calvogasullmartin.t3_floristeria.modelos.Estado;
 import com.calvogasullmartin.t3_floristeria.modelos.Manager;
-import com.calvogasullmartin.t3_floristeria.controladores.ControladorPadreVisitor;
+import com.calvogasullmartin.t3_floristeria.modelos.Menu;
 
 public class LocalMenuControlador extends LocalControladorPadre implements MenuControlador{
-
+        
     public LocalMenuControlador(Manager estados) {
-        super(estados);
+        super(estados);        
     }        
 
+    @Override
+    public String getMenuMensage(){
+        return new Menu().getMenuMensage();
+    }
+    
+    @Override
+    public int getNumOptionsNoExit(){
+        return new Menu().getNumOpcionesSinExit();
+    }
+    
     @Override
     public void introducirArticulo() {
          this.setEstado(Estado.NUEVO_PRODUCTO);

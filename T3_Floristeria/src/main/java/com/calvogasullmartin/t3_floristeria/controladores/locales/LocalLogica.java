@@ -18,15 +18,15 @@ public class LocalLogica implements Logica{
     
     // clase que proporciona a todos los controladores informacion de como
     // se gestiona la aplicacion
-     private Manager manager; 
+    private Manager manager; 
 
     private ArrancarAppControlador arrancarAppControlador;     
-    
-    
     
     private MenuControlador menuControlador;
     
     private AddProductoControlador addProductoControlador;
+    
+    
     
     private MostrarConjuntoControlador mostrarStockControlador;
     
@@ -47,9 +47,9 @@ public class LocalLogica implements Logica{
     public LocalLogica() {        
         manager = new Manager();    
         this.arrancarAppControlador = new LocalArrancarAppControlador(manager);
-        
         this.menuControlador = new LocalMenuControlador(manager);
         this.addProductoControlador = new LocalAddProductoControlador(manager);
+        
         this.mostrarStockControlador = new LocalMostrarConjuntoControlador(manager, true); //stocks
         this.mostrarTicketsControlador = new LocalMostrarConjuntoControlador(manager, false); //tiquets
         this.mostrarTotalValorControlador = new LocalMostrarTotalesControlador(manager, true); // totalValorStocks
@@ -63,9 +63,9 @@ public class LocalLogica implements Logica{
     
     private void coordinarControladores(){        
         mapaEstadosContoladores.put(Estado.INITIAL, arrancarAppControlador);  
-        
         mapaEstadosContoladores.put(Estado.EN_MENU, menuControlador); 
         mapaEstadosContoladores.put(Estado.NUEVO_PRODUCTO, addProductoControlador);
+        
         mapaEstadosContoladores.put(Estado.MOSTRAR_STOCK, mostrarStockControlador);
         mapaEstadosContoladores.put(Estado.MOSTRAR_TIQUETS, mostrarTicketsControlador);
         mapaEstadosContoladores.put(Estado.MOSTRAR_VALOR_TIENDA, mostrarTotalValorControlador);

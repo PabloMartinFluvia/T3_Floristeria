@@ -23,20 +23,14 @@ public class ConjuntoProductosVista {
     public ConjuntoProductosVista() {
     }
 
-    public void interactuar(AddProductoControlador addProductoControlador) {
-        boolean isAllPosible = false;
-        System.out.println("Introduzca la categoria del producto:");
-        Integer conjunto_Id = saberStockId(isAllPosible); 
-        ProductoCompletoVista vista = new ProductoCompletoVista();
-        vista.interactuar(addProductoControlador, conjunto_Id);
-        try {
-            addProductoControlador.actualizarValoresStock();
-        } catch (IOException ex) {
-            System.out.println("No se ha podido modificar el stock.");
-        }
-        finalizar(addProductoControlador);
-    }
+    
+    
+    
+    
+    
 
+    
+    
     private Integer saberStockId(boolean isAllPosible) {        
         mostrarOpciones(isAllPosible);        
         return pedirOpcion(isAllPosible);//si conjunto_id = null -> todos
@@ -85,15 +79,6 @@ public class ConjuntoProductosVista {
                 
         }while(!ok);
         return input;
-    }
-    
-    private void finalizar(AddProductoControlador controlador){
-        boolean addMore = isCorrecto("Quiere añadir más productos?\n"
-        + "\t1) Si.\n"
-        + "\t0) No.\n");
-        if (!addMore){
-            controlador.seleccionarMenu();
-        }
     }
     
     private boolean isCorrecto(String mensaje) {

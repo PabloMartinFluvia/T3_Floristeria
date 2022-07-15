@@ -18,7 +18,7 @@ public interface ProductoUnidadDao extends GenericDao<ProductoUnidad, Integer>{
     c) insertOne producto en coleccion productos + crear documento {producto_id, cantidad} y hacer push en el array de stock.productos
     ***OBS: despúes de llamar a este metodo hay que llamar a incrementarValorFloristeria y a incrementarValorConjuntoById {con sus previos gets antes}
     */
-    public void createProductoYAsociarloAlStockConUnidades(ProductoUnidad producto, int idConjunto) throws IOException;
+    public void createProductoYAsociarloAlStockConUnidades(ProductoUnidad producto, int idConjunto) throws IOException; //ok
     
     
     // read: obtener las unidades que hay de un producto en un determinado conjuno    

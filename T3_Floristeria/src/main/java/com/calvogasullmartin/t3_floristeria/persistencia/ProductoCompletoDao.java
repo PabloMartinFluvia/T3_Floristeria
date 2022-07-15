@@ -22,7 +22,7 @@ public interface ProductoCompletoDao extends GenericDao<ProductoCompleto, Intege
     b) parse stock_id to categoria + select in producto los de la esa categoria
     c) parse stock_id to categoria + find in productos los de esa categoria
     */
-     public List<ProductoCompleto> getProductosSinUnidadesByStockId (int stock_id) throws IOException;
+     public List<ProductoCompleto> getProductosSinUnidadesByStockId (int stock_id) throws IOException;//ok
     
     // -> NO: findAllByTiquetId -> no tiene sentido, lo relevante en un tiquet és el ProductoUnidad
     

@@ -52,13 +52,9 @@ public class FloristeriaVista {
         boolean ok = false;
         int minNumChar = 3;        
         do {
-            nombre = io.readString("Por favor, introduce el nombre de la floristeria: ");
-            //Scanner entrada = new Scanner(System.in);
-            //System.out.println("Introduce el nombre de la floristeria: ");
-            //nombre = entrada.nextLine();
+            nombre = io.readString("Por favor, introduce el nombre de la floristeria: ");            
             if (nombre.length() < minNumChar) {
                 io.writeError("de al menos 3 caracteres.");
-                //System.out.println("Error: el nombre debe tener al menos 3 caracteres.");
             } else {
                 ok = true;
             }
