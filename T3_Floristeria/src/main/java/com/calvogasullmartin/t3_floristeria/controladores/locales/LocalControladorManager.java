@@ -24,4 +24,5 @@ public abstract class LocalControladorManager {
     public String getErrorBD(){
         return manager.getErrorBD();
     }
+    
 }
