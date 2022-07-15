@@ -1,7 +1,6 @@
 package com.calvogasullmartin.t3_floristeria.controladores.locales;
 
 import com.calvogasullmartin.t3_floristeria.controladores.ArrancarAppControlador;
-import com.calvogasullmartin.t3_floristeria.modelos.Aplicacion;
 import com.calvogasullmartin.t3_floristeria.modelos.Estado;
 import com.calvogasullmartin.t3_floristeria.modelos.Manager;
 import com.calvogasullmartin.t3_floristeria.modelos.Floristeria;
@@ -14,9 +13,9 @@ public class LocalArrancarAppControlador extends LocalControladorPadre implement
     
     private Floristeria floristeria;
     
-    public LocalArrancarAppControlador(Manager estados, Floristeria floristeria) {        
-        super(estados);    
-        this.floristeria = floristeria;
+    public LocalArrancarAppControlador(Manager manager) {        
+        super(manager);    
+        this.floristeria = new Floristeria(manager.getNUM_CATEGORIAS());
     }
     
     @Override

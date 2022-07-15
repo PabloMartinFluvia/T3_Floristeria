@@ -5,19 +5,19 @@ import com.calvogasullmartin.t3_floristeria.modelos.Manager;
 
 public abstract class LocalControladorEstado {
     
-    private Manager estados;
+    private Manager manager;
 
-    protected LocalControladorEstado(Manager estados) {
-        assert estados != null;
-        this.estados = estados;
+    protected LocalControladorEstado(Manager manager) {
+        assert manager != null;
+        this.manager = manager;
     }
     
     protected Estado getEstado(){
-	return estados.getEstado();
+	return manager.getEstado();
     }
 	
     public void setEstado(Estado estado){
 	assert estado != null;
-	this.estados.setEstado(estado);
+	this.manager.setEstado(estado);
     }
 }

@@ -1,7 +1,6 @@
 package com.calvogasullmartin.t3_floristeria.controladores.locales;
 
 import com.calvogasullmartin.t3_floristeria.controladores.ArrancarAppControlador;
-import com.calvogasullmartin.t3_floristeria.modelos.Aplicacion;
 import com.calvogasullmartin.t3_floristeria.modelos.Estado;
 import java.util.HashMap;
 import java.util.Map;
@@ -23,9 +22,7 @@ public class LocalLogica implements Logica{
 
     //atributos:
     //A) las entidades del modelo (contienen info del
-    //B) els controladors concrets (familia segun que familia concreta de controladores pertenezca esta Logia)
-    
-    private Aplicacion aplicacion; //floristeria, y otros modelos
+    //B) els controladors concrets (familia segun que familia concreta de controladores pertenezca esta Logia)        
     
    
         
@@ -52,10 +49,9 @@ public class LocalLogica implements Logica{
     
     private Map<Estado,ControladorPadre> mapaEstadosContoladores;            
 
-    public LocalLogica() {
-        aplicacion = new Aplicacion(); 
+    public LocalLogica() {        
         manager = new Manager(Estado.INITIAL);        
-        this.arrancarAppControlador = new LocalArrancarAppControlador(manager, aplicacion.getFloristeria());
+        this.arrancarAppControlador = new LocalArrancarAppControlador(manager);
         this.menuControlador = new LocalMenuControlador(manager);
         this.addProductoControlador = new LocalAddProductoControlador(manager);
         this.mostrarStockControlador = new LocalMostrarConjuntoControlador(manager, true); //stocks

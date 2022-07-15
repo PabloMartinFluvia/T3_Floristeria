@@ -1,6 +1,5 @@
 package com.calvogasullmartin.t3_floristeria.controladores.locales;
 
-import com.calvogasullmartin.t3_floristeria.modelos.Estado;
 import com.calvogasullmartin.t3_floristeria.modelos.Manager;
 import com.calvogasullmartin.t3_floristeria.controladores.ControladorPadre;
 import com.calvogasullmartin.t3_floristeria.controladores.ControladorPadreVisitor;
@@ -8,8 +7,8 @@ import com.calvogasullmartin.t3_floristeria.controladores.ControladorPadreVisito
 
 public abstract class LocalControladorPadre extends LocalControladorEstado implements ControladorPadre{
     
-    public LocalControladorPadre(Manager estados) {
-        super(estados);
+    public LocalControladorPadre(Manager manager) {
+        super(manager);
     }
 
     @Override
