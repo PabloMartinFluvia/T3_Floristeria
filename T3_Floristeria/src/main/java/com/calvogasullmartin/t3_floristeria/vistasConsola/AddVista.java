@@ -26,7 +26,7 @@ public class AddVista {
                 controlador.actualizarValoresStock();
                 io.writeln("Valor del stock actualizado con éxito.");
             } else {
-                io.writeln("Error: ya existe un producto en stock con idénticas características.");
+                io.writeln("ERROR: YA EXIST EN STOCK un producto con idénticas características.");
             }
         } catch (IOException ex) {
             io.writeln(controlador.getErrorBD());

@@ -1,20 +1,60 @@
 {
   "floristeria_id" : 1,
   "nombre_floristeria" : "FloriTest",
-  "valorStocksTotal" : 0.0,
+  "valorStocksTotal" : 476.2,
   "valorTicketsTotal" : 0.0,
   "stocks" : [ {
     "id" : 1,
-    "valor_Productos" : 0.0,
-    "productos" : [ ]
+    "valor_Productos" : 3.0,
+    "productos" : [ {
+      "producto" : {
+        "producto_id" : 1,
+        "categoria" : "ARBOL",
+        "precio" : 1.0,
+        "altura" : "MUY_ALTO"
+      },
+      "cantidad" : 1
+    }, {
+      "producto" : {
+        "producto_id" : 1,
+        "categoria" : "ARBOL",
+        "precio" : 2.0,
+        "altura" : "MUY_ALTO"
+      },
+      "cantidad" : 1
+    } ]
   }, {
     "id" : 2,
-    "valor_Productos" : 0.0,
-    "productos" : [ ]
+    "valor_Productos" : 421.2,
+    "productos" : [ {
+      "producto" : {
+        "producto_id" : 1,
+        "categoria" : "FLOR",
+        "precio" : 5.4,
+        "color" : "rojo"
+      },
+      "cantidad" : 78
+    } ]
   }, {
     "id" : 3,
-    "valor_Productos" : 0.0,
-    "productos" : [ ]
+    "valor_Productos" : 52.0,
+    "productos" : [ {
+      "producto" : {
+        "producto_id" : 1,
+        "categoria" : "DECORACION",
+        "precio" : 5.0,
+        "material" : "PLASTICO"
+      },
+      "cantidad" : 10
+    }, {
+      "producto" : {
+        "producto_id" : 1,
+        "categoria" : "DECORACION",
+        "precio" : 2.0,
+        "material" : "MADERA"
+      },
+      "cantidad" : 1
+    } ]
   } ],
   "tiquets" : [ ]
 }

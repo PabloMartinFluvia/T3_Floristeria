@@ -18,8 +18,8 @@ public class FloristeriaTxt extends GenericDaoTxt<Floristeria, Integer> implemen
     public String getName() throws IOException { 
         gestor.setMainNode_FromFile();
         String atributo_nombre_floristeria = Floristeria.class.getDeclaredFields()[1].getName();
-        gestor.setAuxiliarNode_findFieldByName(atributo_nombre_floristeria);
-        return gestor.getAuxiliarNode_asText();
+        gestor.setNode_findFieldByName_fromMain(atributo_nombre_floristeria);
+        return gestor.getStringValue_fromNode();
     }
 
     @Override
@@ -40,9 +40,9 @@ public class FloristeriaTxt extends GenericDaoTxt<Floristeria, Integer> implemen
     public void incrementarValorFloristeria(float incremento) throws IOException {
         gestor.setMainNode_FromFile();
         gestor.setAuxiliarNodesNull();
-        gestor.setAuxiliarNode_mainNode();
+        gestor.setNode_fromMain();
         String atributo_valorStocksTotal = Floristeria.class.getDeclaredFields()[2].getName(); 
-        gestor.upadteAuxiliarNode_incrementFloatValueInField(atributo_valorStocksTotal, incremento);
+        gestor.updateNode_incrementFloatValueInField(atributo_valorStocksTotal, incremento);
         gestor.saveMainNodeInFile();
     }   
 

@@ -6,6 +6,7 @@ import com.calvogasullmartin.t3_floristeria.utils.json.descartes_xx.JsonNodeMana
 import com.calvogasullmartin.t3_floristeria.utils.json.descartes_xx.JsonObjectManager;
 import com.calvogasullmartin.t3_floristeria.utils.json.descartes_xx.JsonParserManager;
 import com.fasterxml.jackson.annotation.JsonInclude;
+import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.SerializationFeature;
@@ -17,9 +18,10 @@ import com.google.gson.GsonBuilder;
 
 import java.io.File;
 import java.io.IOException;
-import java.math.BigDecimal;
 import java.util.Iterator;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 public class JsonManager<T> {
     
@@ -27,9 +29,9 @@ public class JsonManager<T> {
     private ObjectMapper mapper;
     private Gson gson;    
     private JsonNode mainNode;    
+    private JsonNode node;
+    private List<JsonNode> listNodes;
     private JsonNode auxiliarNode;
-    private List<JsonNode> listAuxiliarNodes;
-    private ArrayNode auxiliarArrayNode; 
     
     
     
@@ -78,9 +80,9 @@ public class JsonManager<T> {
     //INITIAL - END
     
     public void setAuxiliarNodesNull(){        
-        auxiliarNode = null; 
-        listAuxiliarNodes = null;
-        auxiliarArrayNode = null;
+        node = null; 
+        listNodes = null;
+        auxiliarNode = null;
     }
     
      public void setMainNode_FromFile() throws IOException { 
@@ -98,64 +100,50 @@ public class JsonManager<T> {
     
     //FIND (get) VALUES
     
-    public String getAuxiliarNode_asText(){
-        assert auxiliarNode.isTextual();
-        return auxiliarNode.asText();
+    public String getStringValue_fromNode(){
+        assert node.isTextual();
+        return node.asText();
     }
     
-    public int getListAuxiliarNodes_MaxIntValue(){       
+    public int getMaxIntValue_fromListNodes(){       
         int maxInt = 0;
-        for(JsonNode node: listAuxiliarNodes){
+        for(JsonNode node: listNodes){
             int intValue = node.asInt();
             if(intValue> maxInt){
                 maxInt =intValue;
             }
         }
         return maxInt;
-    }
-    
-     public T[] getAuxiliarArray_asObjectArray (Class<T> arrayClass){   
-        T[] arrayTarget = (T[])parseNodeArrayToObjectArray(auxiliarArrayNode, arrayClass);         
-        return arrayTarget;
-    }
+    }         
     
     //SET / REPLACE NODES (sin afectar al main node)
     
-    public void setAuxiliarNode_mainNode(){
-        auxiliarNode = mainNode;
+    public void setNode_fromMain(){
+        node = mainNode;
     }
     
-    public void setAuxiliarNode_ObjectInput(T object){
-        auxiliarNode = mapper.valueToTree(object);        
+    public void setAuxiliarNode_ObjectInput(T object){           
+        auxiliarNode = mapper.convertValue(object, JsonNode.class);        
     }
     
-    public void setAuxiliarNode_findFieldByName(String childField){
-        auxiliarNode = mainNode.get(childField);        
+    public void setNode_findFieldByName_fromMain(String childField){
+        node = mainNode.get(childField);        
     }        
     
-    public void setListAuxiliarNodes_findAllFieldsByName(String childField){        
-        listAuxiliarNodes = auxiliarNode.findValues(childField);
+    public void setListNodes_findAllFieldsByName(String childField){        
+        listNodes = node.findValues(childField);
+    }    
+    
+    public void replaceNode_isArray_nodeByIndex(int index){        
+        assert node.isArray();
+        node = node.get(index);           
     }
     
-    public void setArrayAuxiliarNode_fromAuxiliarNode(){
-        auxiliarArrayNode = (ArrayNode)auxiliarNode;  
-        System.out.println(auxiliarArrayNode == null);
-        System.out.println(auxiliarArrayNode.isNull());
-        System.out.println(auxiliarArrayNode.isArray());
-        System.out.println(auxiliarArrayNode.isEmpty());        
-        System.out.println(auxiliarNode.toPrettyString()+"\n\n");
-    }
+    public void replaceNode_findFieldByName(String childField){          
+        node = node.get(childField);                         
+    }    
     
-    public void replaceAuxiliarNode_nodeInAuxiliarArrayNodeByIndex(int index){        
-        auxiliarNode = auxiliarArrayNode.get(index);        
-    }
-    
-    public void replaceAuxiliarNode_findFieldByName(String childField){          
-        auxiliarNode = auxiliarNode.get(childField);        
-    }
-    
-    public boolean replaceAuxliarNode_nodeInArrayWithChildIntValue(String childField,int intValue){
-        JsonNode node = auxiliarNode;
+    public boolean replaceNode_isArray_NodeIndexedWithChildIntValue(String childField,int intValue){        
         assert node.isArray();        
         Iterator <JsonNode> iterador = node.iterator();
         boolean found = false;
@@ -164,7 +152,7 @@ public class JsonManager<T> {
             nodeTarget = iterador.next();
             if(nodeTarget.findValue(childField).asInt() == intValue){
                 found = true;
-                auxiliarNode = nodeTarget;
+                node = nodeTarget;
             }
         }
         return found;   
@@ -172,51 +160,50 @@ public class JsonManager<T> {
 
     //CHECK NODES (booleans)
     
-    public boolean inAuxiliarNodes_hasAnyIntValue(int intValue){
-        List<JsonNode> nodeList = listAuxiliarNodes;               
+    public boolean inListNodes_hasAnyIntValue(int intValue){
+        List<JsonNode> nodeList = listNodes;               
         Iterator <JsonNode> iterador = nodeList.iterator();
         boolean found = false;
-        JsonNode node;
+        JsonNode listedNode;
         while (!found && iterador.hasNext()){
-            node = iterador.next();
-            assert node.isInt();
-            if(node.asInt() == intValue){
+            listedNode = iterador.next();
+            assert listedNode.isInt();
+            if(listedNode.asInt() == intValue){
                 found = true;                
             }
         }
         return found;
     }
     
-    public boolean isAuxiliarArrayNode_noLength(){
-        
-    }
+   
     
     
     //UPADATE NODES (afectando al main node)   
     
-    public void upadteAuxiliarNode_setNewFloatValueInField(String childField,float newValue){
-        ((ObjectNode)auxiliarNode).put(childField, newValue);
+    public void updateNode_setNewFloatValueInField(String childField,float newValue){
+        ((ObjectNode)node).put(childField, newValue);
     }
     
-    public void upadteAuxiliarNode_incrementFloatValueInField(String childField, float increment){
-        float oldValue = auxiliarNode.findValue(childField).floatValue();
+    public void updateNode_incrementFloatValueInField(String childField, float increment){
+        float oldValue = node.findValue(childField).floatValue();
         float newValue = oldValue + increment;
-        upadteAuxiliarNode_setNewFloatValueInField(childField, newValue);
+        updateNode_setNewFloatValueInField(childField, newValue);
     }
     
-    public void updateAuxiliarArray_pushAuxiliarNode(){
-        if(auxiliarArrayNode.size() == 0){
-            auxiliarArrayNode.insert(0, auxiliarNode);
-        }else{
-            auxiliarArrayNode.add(auxiliarNode);    
-        }                             
+    public void updateNode_isArray_pushAuxiliarNode(){        
+        ((ArrayNode)node).add(auxiliarNode);
     }
     
+    
+    public String test(){
+        return node.toPrettyString();
+    }
     
     //DELETE NODES (afectando al main node)
     
-    public void updateArrayAuxiliarNode_deleteFirstElementByCildIntValue(String childField,int intValue){
-        Iterator <JsonNode> iterador = auxiliarArrayNode.iterator();
+    public void updateNode_isArray_deleteFirstElementByChildIntValue(String childField,int intValue){
+        assert node.isArray();
+        Iterator <JsonNode> iterador = node.iterator();
         boolean found = false;
         JsonNode nodeToDelete;
         while (!found && iterador.hasNext()){
@@ -229,10 +216,14 @@ public class JsonManager<T> {
     
     
     //// PARSE
-    
-    public T parseNodeArrayToObjectArray(ArrayNode arrayNode, Class<T> arrayClass){  //NombreClasse[].class
-        assert arrayNode != null;
-        String json = arrayNode.toPrettyString();
+    /**
+     * si vui que em retorni un MiClasse[] -> dir que la classe es MiClase[].class
+     * @param arrayClass
+     * @return 
+     */
+    public T parseNodeToObject(Class<T> arrayClass){  
+        assert node != null;
+        String json = node.toPrettyString();
         T arrayObject = gson.fromJson(json, arrayClass);        
         return arrayObject;        
     }

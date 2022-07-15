@@ -103,27 +103,28 @@ public class LocalAddProductoControlador extends LocalControladorPadre implement
         if (listaProductos == null || listaProductos.isEmpty()) {
             return true;
         } else { // hay productos de esa categoria ya guardados
-            Iterator<ProductoCompleto> iterador = listaProductos.iterator();             
-            boolean found = false;
-            while (!found && iterador.hasNext()) {                
-                ProductoCompleto productoAuxiliar = clonarSinId(iterador.next());
-                if (producto.equals(productoAuxiliar)) {
-                    found = true;
+            Iterator<ProductoCompleto> iterador = listaProductos.iterator();                         
+            while (iterador.hasNext()) {                                
+                if (sonIguales(iterador.next())) {                    
+                    return false;
                 }
             }
-            return found;
+            return true;
         }
     }
 
-    private ProductoCompleto clonarSinId(ProductoCompleto productoEnStock) {
-        //no se compara el id, se deja en null
-        ProductoCompleto productoAuxiliar = new ProductoCompleto();
-        productoAuxiliar.setPrecio(productoEnStock.getPrecio());
-        productoAuxiliar.setCategoria(productoEnStock.getCategoria());
-        productoAuxiliar.setAltura(productoEnStock.getAltura());
-        productoAuxiliar.setColor(productoEnStock.getColor());
-        productoAuxiliar.setMaterial(productoEnStock.getMaterial());
-        return productoAuxiliar;
+    private boolean sonIguales(ProductoCompleto productoEnStock) {
+        //no se compara el id, se deja en null        
+        boolean iguales = productoEnStock.getPrecio() == producto.getPrecio();
+        switch(producto.getCategoria()){
+            case ARBOL: iguales = iguales && productoEnStock.getAltura().equals(producto.getAltura());
+                break;
+            case FLOR: iguales = iguales && productoEnStock.getColor().equals(producto.getColor());
+                break;
+            case DECORACION: iguales = iguales && productoEnStock.getMaterial().equals(producto.getMaterial());  
+                break;
+        }
+        return iguales;
     }            
 
 }

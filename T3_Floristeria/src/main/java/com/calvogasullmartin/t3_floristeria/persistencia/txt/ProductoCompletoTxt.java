@@ -16,13 +16,11 @@ public class ProductoCompletoTxt extends GenericDaoTxt<ProductoCompleto, Integer
         gestor.setMainNode_FromFile();
         gestor.setAuxiliarNodesNull();
         String atributo_stocks = Floristeria.class.getDeclaredFields()[4].getName(); 
-        gestor.setAuxiliarNode_findFieldByName(atributo_stocks);
-        gestor.setArrayAuxiliarNode_fromAuxiliarNode(); // stocks
-        gestor.replaceAuxiliarNode_nodeInAuxiliarArrayNodeByIndex(stock_id-1); //stock
+        gestor.setNode_findFieldByName_fromMain(atributo_stocks);        
+        gestor.replaceNode_isArray_nodeByIndex(stock_id-1); //stock
         String atributo_productos = ConjuntoProductos.class.getDeclaredFields()[2].getName(); 
-        gestor.replaceAuxiliarNode_findFieldByName(atributo_productos);//productos
-        gestor.setArrayAuxiliarNode_fromAuxiliarNode();        
-        ProductoUnidad[] productosUnidad = (ProductoUnidad[]) gestor.getAuxiliarArray_asObjectArray(ProductoUnidad[].class);        
+        gestor.replaceNode_findFieldByName(atributo_productos);//productos        
+        ProductoUnidad[] productosUnidad = (ProductoUnidad[]) gestor.parseNodeToObject(ProductoUnidad[].class);        
         List<ProductoCompleto> productos = new LinkedList<>();
         for (ProductoUnidad productoUnidad : productosUnidad) {
             productos.add(productoUnidad.getProducto());

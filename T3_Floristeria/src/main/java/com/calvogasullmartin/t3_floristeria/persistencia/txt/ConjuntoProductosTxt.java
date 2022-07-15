@@ -32,11 +32,10 @@ public class ConjuntoProductosTxt extends GenericDaoTxt<ConjuntoProductos, Integ
         gestor.setMainNode_FromFile();
         gestor.setAuxiliarNodesNull();
         String atributo_stocks = Floristeria.class.getDeclaredFields()[4].getName(); 
-        gestor.setAuxiliarNode_findFieldByName(atributo_stocks); //stocks
-        gestor.setArrayAuxiliarNode_fromAuxiliarNode(); //stocks array
-        gestor.replaceAuxiliarNode_nodeInAuxiliarArrayNodeByIndex(stock_id-1); //stock
+        gestor.setNode_findFieldByName_fromMain(atributo_stocks); //stocks        
+        gestor.replaceNode_isArray_nodeByIndex(stock_id-1); //stock
         String atributo_valorProductos = ConjuntoProductos.class.getDeclaredFields()[1].getName();        
-        gestor.upadteAuxiliarNode_incrementFloatValueInField(atributo_valorProductos, increment);//stock field updated
+        gestor.updateNode_incrementFloatValueInField(atributo_valorProductos, increment);//stock field updated
         gestor.saveMainNodeInFile();        
     }
 
