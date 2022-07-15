@@ -3,11 +3,16 @@ package com.calvogasullmartin.t3_floristeria.utils.json;
 import com.calvogasullmartin.t3_floristeria.utils.json.plugins.JsonArrayNodeManager;
 import com.calvogasullmartin.t3_floristeria.utils.json.plugins.JsonFileManager;
 import com.calvogasullmartin.t3_floristeria.utils.json.plugins.JsonNodeManager;
+import com.calvogasullmartin.t3_floristeria.utils.json.plugins.JsonObjectManager;
 import com.calvogasullmartin.t3_floristeria.utils.json.plugins.JsonParserManager;
 import com.fasterxml.jackson.databind.JsonNode;
+import com.fasterxml.jackson.databind.node.ArrayNode;
+import com.fasterxml.jackson.databind.node.JsonNodeFactory;
+import com.fasterxml.jackson.databind.node.ObjectNode;
 
 import java.io.File;
 import java.io.IOException;
+import java.math.BigDecimal;
 import java.util.Iterator;
 import java.util.List;
 
@@ -17,12 +22,26 @@ public class JsonManager<T> {
     private JsonNodeManager<T> nodeManager;
     private JsonParserManager<T> parserManager;
     private JsonArrayNodeManager<T> arrayNodeManager;
+    private final JsonObjectManager<T> objectNodeManager;
+    
+    private JsonNode mainNode;
+    
+    private JsonNode auxiliarNode;
+    private List<JsonNode> listAuxiliarNodes;
+    private ArrayNode arrayNode; 
+    
+    private JsonNode childNode_x;
+             
+    private JsonNode parentNode_x;    
+    private JsonNode parentNode;
+    private JsonNode targetNode;
     
 
     public JsonManager() {        
         this.nodeManager = new JsonNodeManager<>();
         this.parserManager = new JsonParserManager<>();
         this.arrayNodeManager = new JsonArrayNodeManager<>();
+        this.objectNodeManager = new JsonObjectManager<>();
     }
     
     public JsonManager (File archivo) {
@@ -33,13 +52,116 @@ public class JsonManager<T> {
         this.nodeManager = new JsonNodeManager<>();
         this.parserManager = new JsonParserManager<>();
         this.arrayNodeManager = new JsonArrayNodeManager<>();
+        this.objectNodeManager = new JsonObjectManager<>();
     }
     
        
-    public void writeObjectInFile(T entidad) throws IOException { 
-        fileManager.writeObjectInFileJackson(entidad);
+    public void setAuxiliarNodesNull(){        
+        auxiliarNode = null; 
+        listAuxiliarNodes = null;
+        arrayNode = null;
+    }
+    
+    public void writeObjectInFile(T object) throws IOException { 
+        fileManager.writeObjectInFileJackson(object);
     }        
     
+    public void getMainNodeFromFile() throws IOException { 
+        mainNode = fileManager.getNodesFromFile();        
+    }
+    
+    public void saveMainNodeInFile() throws IOException { 
+        fileManager.writeNodeInFileJackson(mainNode);
+    }
+    
+    
+    public void setAuxiliarNode_findFieldByName(String childField){
+        auxiliarNode = mainNode.get(childField);
+    }        
+    
+    public void setListAuxiliarNodes_findAllFieldsByName(String childField){        
+        listAuxiliarNodes = auxiliarNode.findValues(childField);
+    }
+    
+    public void setArrayAuxiliarNode_fromAuxiliarNode(){
+        arrayNode = (ArrayNode)auxiliarNode;
+    }
+    
+    
+    
+    public void replaceAuxiliarNode_nodeInArrayByIndex(int index){
+        JsonNode node = auxiliarNode;
+        assert node.isArray();
+        auxiliarNode = node.get(index);
+    }
+    
+    public void replaceAuxiliarNode_findFieldByName(String childField){          
+        auxiliarNode = auxiliarNode.get(childField);
+    }
+    
+    public boolean replaceAuxliarNode_nodeInArrayWithChildIntValue(String childField,int intValue){
+        JsonNode node = auxiliarNode;
+        assert node.isArray();        
+        Iterator <JsonNode> iterador = node.iterator();
+        boolean found = false;
+        JsonNode nodeTarget;
+        while (!found && iterador.hasNext()){
+            nodeTarget = iterador.next();
+            if(nodeTarget.findValue(childField).asInt() == intValue){
+                found = true;
+                auxiliarNode = nodeTarget;
+            }
+        }
+        return found;   
+    }    
+    
+    
+    
+    public boolean inAuxiliarNodes_hasAnyIntValue(int intValue){
+        List<JsonNode> nodeList = listAuxiliarNodes;               
+        Iterator <JsonNode> iterador = nodeList.iterator();
+        boolean found = false;
+        JsonNode node;
+        while (!found && iterador.hasNext()){
+            node = iterador.next();
+            assert node.isInt();
+            if(node.asInt() == intValue){
+                found = true;                
+            }
+        }
+        return found;
+    }
+    
+    public void upadteAuxiliarNode_setNewFloatValueInField(String childField,float newValue){
+        ((ObjectNode)auxiliarNode).put(childField, newValue);
+    }
+    public void updateArrayAuxiliarNode_deleteFirstElementByCildIntValue(String childField,int intValue){
+        Iterator <JsonNode> iterador = arrayNode.iterator();
+        boolean found = false;
+        JsonNode nodeToDelete;
+        while (!found && iterador.hasNext()){
+            nodeToDelete = iterador.next();            
+            if(nodeToDelete.findValue(childField).asInt() == intValue){
+                iterador.remove();
+            }
+        }
+    }
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    public T parseChildNode_x_toObject(Class<T> classOfObject){  
+        return nodeManager.parseNodeToObject(childNode_x, classOfObject);
+    }
+   
     /**
      * Informando de la clase que hay en el archivo, y el atributo de tipo float que se desea midificar:
      * Se le pasa el nuevo valor y lo guarda de nuevo en el archivo.??pendiente: como hacerlo cuando el atributo no esta en el "nivel principal" (sino que está emebebd)
@@ -50,134 +172,166 @@ public class JsonManager<T> {
      * @throws java.io.IOException 
      */    
     public void incrementMainFloatFieldInFile(String mainFieldName_typeFloat, float increment, Class<T> classInFile) throws IOException{        
-        JsonNode nodos = fileManager.getNodesFromFile();        
-        nodos = nodeManager.incrementTopLevelFloatField(nodos, mainFieldName_typeFloat, increment);                          
-        //T objectUpdated = nodeManager.parseNodeToObject(nodos, classInFile);
-        //fileManager.writeObjectInFileJackson(objectUpdated);
-        fileManager.writeNodeInFileJackson(nodos);
+        getMainNodeFromFile();
+        mainNode = nodeManager.incrementChildValueNode_N1_floatType(mainNode, mainFieldName_typeFloat, increment);                                  
+        saveMainNodeInFile();
     }   
     
     public void incrementFloatFieldOfObjectIndexedInArrayAndSaveInFile
         (float increment,String fieldToUpdate, int array_inex,String fieldArray) throws IOException{
-        JsonNode mainNode = fileManager.getNodesFromFile();
-        JsonNode arrayNode = nodeManager.findFirstNodeFieldThatMatchesFieldName(mainNode, fieldArray);
-        JsonNode nodeInIarray = arrayNodeManager.getNodeInArrayByIndex(arrayNode, array_inex);
-        nodeManager.incrementTopLevelFloatField(nodeInIarray, fieldToUpdate, increment);
-        fileManager.writeNodeInFileJackson(mainNode);
-    }
-        
-    
+        getMainNodeFromFile();
+        JsonNode arrayNode = nodeManager.findFirstChildObjectNodeByChildNodeFieldName(mainNode, fieldArray);
+        JsonNode nodeInIarray = arrayNodeManager.getNodeInArrayByIndex((ArrayNode)arrayNode, array_inex);
+        nodeManager.incrementChildValueNode_N1_floatType(nodeInIarray, fieldToUpdate, increment);
+        saveMainNodeInFile();
+    }            
     
     /**
-     * Looks for the FIRST field that matches that name in the file (child nodes INCLUDED),
+     * Looks for the FIRST chield field that matches that name (parent is the main node)
      * and returns the value in String format 
      * (must be valid for parse toSritng -> String, Number, Boolean, NULL).Otherwise (field not found OR is not a field value) -> returns null
      * 
-     * @param fieldName
+     * @param childFieldName
      * @return value in string format 
      * @throws java.io.IOException 
      */
-    public String getValueParsedToStringOfFirstFieldMatchesName_fromFile(String fieldName) throws IOException{
-        assert fieldName != null;  
-        JsonNode node = fileManager.getNodesFromFile();        
-        JsonNode fieldNode = nodeManager.findFirstNodeValueFieldThatMatchesFieldName(node, fieldName);            
-        if (fieldNode != null && fieldNode.isValueNode()){ //node not NULL && value: String, Numbre, Boolean, NULL
-            return fieldNode.asText();
-        }else {
-            return null;
-        }        
+    public String getValueParsedToStingOfFirstChildNode_x(String childFieldName) throws IOException{
+        assert childFieldName != null;        
+        JsonNode childNode = nodeManager.findFirstChildValueNodeByChildNodeFieldName(mainNode, childFieldName);            
+        return nodeManager.getStringValueOfNode(childNode);
     }
     
     /**
-     * Looks for the FIRST field that matches that name in the file (child nodes INCLUDED),
+     * Looks for the FIRST chield field that matches that name (parent is the main node)
      * and returns the value in Float format (must be posible to parse to float).Otherwise (field not found) -> returns null
      * 
-     * @param fieldName
+     * @param childFieldName
      * @return value in string format 
      * @throws java.io.IOException 
      */
-    public Float getValueParsedToFloatOfFirstFieldMatchesName_fromFile(String fieldName) throws IOException {
-        assert fieldName != null;        
-        JsonNode node = fileManager.getNodesFromFile();            
-        JsonNode fieldNode = nodeManager.findFirstNodeValueFieldThatMatchesFieldName(node, fieldName);         
-        if (fieldNode != null && fieldNode.isNumber()){ //node not NULL && value is numberic                        
-            return fieldNode.floatValue();
-        }else {
-            return null;
-        }        
+    public Float getValueParsedToFloatOfFirstChildNode_x(String childFieldName) throws IOException {
+        assert childFieldName != null;                          
+        JsonNode childNode = nodeManager.findFirstChildValueNodeByChildNodeFieldName(mainNode, childFieldName);         
+       return nodeManager.getFloatValueOfNode(childNode);
     }
     
-    public int findMaxIntInMultipleFieldsWithSameName(String nombreAtributoId) throws IOException{
-        JsonNode mainNode = fileManager.getNodesFromFile();
-        List<JsonNode> nodos = nodeManager.finAllNodes(mainNode, nombreAtributoId);
+    /**
+     * Looks for all child Nodes with that name (parent node is main node) ang returns
+     * max value.
+     * Values of the child nodes MUST be int type
+     * @param childFieldName_intType
+     * @return
+     * @throws IOException 
+     */
+    public int findMaxIntValueInMultipleChildNodes(String childFieldName_intType) throws IOException{        
+        List<JsonNode> childNodesList = nodeManager.finAllChildNodesByChildNodeFieldName(mainNode, childFieldName_intType);
         int maxInt = 0;
-        for(JsonNode nodo: nodos){
-            if(nodo.isInt() && nodo.asInt()> maxInt){
-                maxInt = nodo.asInt();
+        for(JsonNode childNode: childNodesList){
+            int intValue = nodeManager.getIntValueOfNode(childNode);
+            if(intValue> maxInt){
+                maxInt =intValue;
             }
         }
         return maxInt;
     }
     
-    public T findInUniqueArrayFirstObjectByIdField (String arrayFieldName, int id, String idFieldName, String objectField, Class<T> classObjectTarget) throws IOException{
-        JsonNode mainNode = fileManager.getNodesFromFile();
-        JsonNode arrayNode = nodeManager.findFirstNodeFieldThatMatchesFieldName(mainNode, arrayFieldName);
-        List<JsonNode> nodos = nodeManager.finAllNodes(arrayNode, idFieldName);
-        boolean found = false;
-        Iterator<JsonNode> iterator = nodos.iterator();
-        JsonNode nodeField = null;
-        while (!found && iterator.hasNext()){
-            nodeField = iterator.next();
-            if (nodeField.asInt() == id){
-                found = true;
-            }
-        }
-        if (!found){
+    public T findInFirstArrayNodeFirstObjectByChildIIntNodeValueField (String arrayFieldName, int intValue, String intFieldName, String objectField, Class<T> classObjectTarget) throws IOException{        
+        JsonNode arrayNode = nodeManager.findFirstChildObjectNodeByChildNodeFieldName(mainNode, arrayFieldName);
+        JsonNode childNode = nodeManager.findFirstChildNodeWithSpecificIntValue(arrayNode, intFieldName, intValue);
+        if (childNode.isNull()){
             return null;
         }else{
-            JsonNode targetNode = nodeField.findParent(objectField);            
-            T objectTarget = nodeManager.parseNodeToObject(targetNode, classObjectTarget);
-            return objectTarget;
-        }        
+            JsonNode objectNode = nodeManager.findParentNodeByFieldName(childNode, objectField);
+            if (objectNode != null){
+                T objectTarget = nodeManager.parseNodeToObject(objectNode, classObjectTarget);
+                return objectTarget;
+            } else{
+                return null;
+            }                     
+        }            
     }
     
-    public void addObjectInUniqueArray(T newElement, String arrayFieldName) throws IOException{
-        JsonNode mainNode = fileManager.getNodesFromFile();
-        JsonNode arrayNode = nodeManager.findFirstNodeFieldThatMatchesFieldName(mainNode, arrayFieldName);
+    public boolean updateChildNode_x_IterateArrayNodeTillChildNodeHasIntValue(int intValue, String intFieldName) throws IOException{        
+        Iterator <JsonNode> iterador = childNode_x.iterator();
+        boolean found = false;
+        JsonNode nodeTarget;
+        while (!found && iterador.hasNext()){
+            nodeTarget = iterador.next();
+            if(nodeTarget.findValue(intFieldName).asInt() == intValue){
+                found = true;
+                childNode_x = nodeTarget;
+            }
+        }
+        return found;          
+    }
+    
+    /**
+     * Find first arrayNode (in childrens) and push de element (parent is mainNode)
+     * @param newElement
+     * @param arrayFieldName
+     * @throws IOException 
+     */
+    public void addObjectInUniqueArray(T newElement, String arrayFieldName) throws IOException{        
+        JsonNode arrayNode = nodeManager.findFirstChildObjectNodeByChildNodeFieldName(mainNode, arrayFieldName);
         JsonNode newNode = nodeManager.parseObjectToNode(newElement);
-        arrayNodeManager.pushNodeInArrayNode(arrayNode, newNode);
-        fileManager.writeNodeInFileJackson(mainNode);
+        arrayNodeManager.pushNodeInArrayNode((ArrayNode)arrayNode, newNode);        
     }
     
-    public T getObjectInUniqueArrayInFileByIndex(String uniqueArrayFieldName,Class<T> objectClass, int index) throws IOException{
-        JsonNode mainNode = fileManager.getNodesFromFile();
-        JsonNode arrayNode = nodeManager.findFirstNodeFieldThatMatchesFieldName(mainNode, uniqueArrayFieldName);
-        JsonNode nodeTarget = arrayNodeManager.getNodeInArrayByIndex(arrayNode, index);
+    /**
+     * Get first arrayNode found with that name + parse it to Object[]
+     * @param arrayFieldName
+     * @param arrayObjecClass
+     * @return
+     * @throws IOException 
+     */
+    public T[] getObjectArray(String arrayFieldName,Class<T> arrayObjecClass) throws IOException{        
+        JsonNode arrayNode = nodeManager.findFirstChildObjectNodeByChildNodeFieldName(mainNode, arrayFieldName);
+        T[] arrayTarget = (T[]) arrayNodeManager.parseNodeArrayToObjectArray((ArrayNode)arrayNode, arrayObjecClass);        
+        return arrayTarget;
+    }
+    
+    /**
+     * get the node indexed in the first arrayNode found with that name + parse it to Object.
+     * Parent is main node
+     * @param arrayFieldName
+     * @param objectClass
+     * @param index
+     * @return
+     * @throws IOException 
+     */
+    public T getObjectIndexedInArray(String arrayFieldName,Class<T> objectClass, int index) throws IOException{        
+        JsonNode arrayNode = nodeManager.findFirstChildObjectNodeByChildNodeFieldName(mainNode, arrayFieldName);
+        JsonNode nodeTarget = arrayNodeManager.getNodeInArrayByIndex((ArrayNode)arrayNode, index);
         T objectTarget = nodeManager.parseNodeToObject(nodeTarget, objectClass);
         return objectTarget;
+    }            
+
+    /**
+     * Looks for the array of parents + get the parent by Id + get the node and save it in childNode_x
+     * 
+     * @param parentsArrayFieldName
+     * @param parent_index_in_arrayTop
+     * @param arrayNestedFieldName 
+     */
+    public void setInChildNode_x_getChildNode_ParentIsIndexedInArray(String parentsArrayFieldName, int parent_index_in_arrayTop, String arrayNestedFieldName){        
+        JsonNode arrayNode = nodeManager.findFirstChildObjectNodeByChildNodeFieldName(mainNode, parentsArrayFieldName);
+        JsonNode nodeTarget = arrayNodeManager.getNodeInArrayByIndex((ArrayNode)arrayNode, parent_index_in_arrayTop);
+        childNode_x = nodeManager.findFirstChildObjectNodeByChildNodeFieldName(nodeTarget, arrayNestedFieldName);
     }
     
-    public T[] getUniqueArrayInFileParsedToArrayObject(String uniqueArrayFieldName,Class<T> arrayObjecClass) throws IOException{
-        JsonNode mainNode = fileManager.getNodesFromFile();
-        JsonNode arrayNode = nodeManager.findFirstNodeFieldThatMatchesFieldName(mainNode, uniqueArrayFieldName);
-        T[] arrayTarget = (T[]) arrayNodeManager.parseNodeArrayToObjectArray(arrayNode, arrayObjecClass);        
+    /**
+     * gets the value in childNode_x atribute and parse it to the class of the array (MyClass[].class)
+     * 
+     * @param arrayClass
+     * @return 
+     */
+    public T[] getFromChildNode_x_parseNodeArrayToObjectArray (Class<T> arrayClass){
+        T[] arrayTarget = (T[]) arrayNodeManager.parseNodeArrayToObjectArray((ArrayNode)childNode_x, arrayClass);        
         return arrayTarget;
     }
+            
+    public void goToEspecificObjectInArrayInFileAndAddObjectToNestedArrayAndSave(T newElement, String fieldArray, int arrayIndex, String fieldNestedArray, Class<T> classInFile) throws IOException {                
+        nodeManager.goToEspecificObjectInArrayAndAddObjectToNestedArray(mainNode,newElement, fieldArray, arrayIndex, fieldNestedArray);                
+    }  
     
-    public void goToEspecificObjectInArrayInFileAndAddObjectToNestedArrayAndSave(T newElement, String fieldArray, int arrayIndex, String fieldNestedArray, Class<T> classInFile) throws IOException {        
-        JsonNode mainNode = fileManager.getNodesFromFile();        
-        mainNode = nodeManager.goToEspecificObjectInArrayAndAddObjectToNestedArray(mainNode,newElement, fieldArray, arrayIndex, fieldNestedArray);        
-        // T objectUpdated = nodeManager.parseNodeToObject(mainNode, classInFile);
-        //fileManager.writeObjectInFileJackson(objectUpdated);
-        fileManager.writeNodeInFileJackson(mainNode);
-    }       
-    
-    public T[] goToSpecificIndexInUniqueArrayAndGetNestedCollection(String uniqueArrayFieldName, int index, String nestedCollectionFieldName, Class<T> nestedArrayClass) throws IOException{
-        JsonNode mainNode = fileManager.getNodesFromFile(); 
-        JsonNode arrayNode = nodeManager.findFirstNodeFieldThatMatchesFieldName(mainNode, uniqueArrayFieldName);
-        JsonNode nodeTarget = arrayNodeManager.getNodeInArrayByIndex(arrayNode, index);
-        JsonNode nestedNodeArray = nodeManager.findFirstNodeFieldThatMatchesFieldName(nodeTarget, nestedCollectionFieldName);
-        T[] arrayTarget = (T[]) arrayNodeManager.parseNodeArrayToObjectArray(nestedNodeArray, nestedArrayClass);        
-        return arrayTarget;
-    }    
 }

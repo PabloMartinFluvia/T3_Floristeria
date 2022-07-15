@@ -44,18 +44,17 @@ public class LocalModificarProductoControlador extends LocalControladorPadre imp
     
     //casi COPY PASTE DE mostrar controlador
     private String conjuntoToString (ConjuntoProductos conjunto){
+        assert conjunto != null;         
+        String stockToString;
+        System.out.println("\n\nStock con unidades-------------------\n");
+        stockToString = toStringUnits(conjunto);        
+        return stockToString;
+    }        
+    
+    private String toStringUnits(ConjuntoProductos conjunto){
         assert conjunto != null; 
-        String conjuntoToString = null;
-        /*
-        passar el stock a String
-        mostrar unidades
-        **para hacer estas distinciones usar los atributos de esta clase
-        **recordar que los campos con valor null no deben mostrarse
-        
-        ***quizas sería mejor ir a las clases de los modelos y hacer Override al método toString 
-        ***y ir implementando lo que se requiere en este metodo por partes.
-        */
-        return conjuntoToString;
+        String String = conjunto.listaToStringQ();
+        return String;
     }
     
     @Override
@@ -88,9 +87,12 @@ public class LocalModificarProductoControlador extends LocalControladorPadre imp
 
     @Override
     public void eliminarProductoUnidad() throws IOException {
-        int nVecesEnTiquet = factory.getProductoUnidadesDao().enCuantosTiquetsEsta(productoUnidad.getProducto().getProducto_id());
-        if (nVecesEnTiquet > 0){
-            productoUnidad.setCantidad(-1);
+        boolean vendidoAlgunaVez = factory.getProductoUnidadesDao().isVendidoAlgunaVezByProductId(productoUnidad.getProducto().getProducto_id());
+        if (vendidoAlgunaVez){
+            // para indicar que ya no está a la venta, aunque la info se guarda 
+            // si en algun momento se da la funcionalidad de eliminar tiquets entonces es cuando se
+            // podría eliminar completamente el producto
+            productoUnidad.setCantidad(-1); 
             factory.getProductoUnidadesDao().actualizarUnidadesProductoByStockId(productoUnidad, stock.getId());
         }{
             factory.getProductoUnidadesDao().deleteInStock(productoUnidad, stock.getId());

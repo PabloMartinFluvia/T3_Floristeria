@@ -22,23 +22,32 @@ public interface ProductoUnidadDao extends GenericDao<ProductoUnidad, Integer>{
     
     
     // read: obtener las unidades que hay de un producto en un determinado conjuno    
+    /*
+    b) select cantidad form conjunto_has_product where stock_id & product id
+    c) find conjunto by id + find producto by id + project candidad
+    */
     public ProductoUnidad findByStockIdAndProductoId(int stock_id, int productoCompleto_id) throws IOException;
     // findAllByStockId:???? necesario???
     // NO: findAllByTiquetId -> no se requiere, ya que no se consulta un tiquet en concreto.
     
     //para saber si alguna vez se ha vendido (cosa que imposibilitat eliminar el registro productos)
-    // -> ya el controlador se encargara de poner las unidades actuales en -1
-    public int enCuantosTiquetsEsta(int producto_id) throws IOException;
+    /*
+    b) select from conjunto_has_products where producto_id & conjuno_id > nStocks + if elements from iterator > 0 return true
+    c) agregate: find tiquet + look for product_id match + if documents size >0 return true
+    */
+    public boolean isVendidoAlgunaVezByProductId(int producto_id) throws IOException;
     
     //update: modificar las unidades de un producto en un determinado stock (en un tiquet ya creado no se permite)
-    public void actualizarUnidadesProductoByStockId(ProductoUnidad producto, int idConjunt) throws IOException;
+    public boolean actualizarUnidadesProductoByStockId(ProductoUnidad producto, int idConjunt) throws IOException;
     
     //delete: eliminar unidades y relación de este producto con un determinado stock
     //  **con un tiquet no es posible
-    public void deleteInStock(ProductoUnidad producto, int idConjunt) throws IOException;
-    //-> posible si no está asociado a ningun tiquet (nunca se ha vendido)
-    //      -> si alguna vez se ha vendido hay que dejarlo, para no modificar el tiquet,
-    //          -> però habrá que eliminar (mediante ProductoUnidadDao) la relación con el stock y las unidades en stock
+    //  ** en el stock: solo si no se ha vendido alguna vez (para no perder la info del producto si está asociado a algun tiquet)
+    /*
+    b)delete in producto where id (and by cascade units will be deleted in conjunto_has_products
+    c) delete document in producto Collection + and delete producto Document emebebed inside stocks in floristeria Collection
+    */
+    public void deleteInStock(ProductoUnidad producto, int idConjunt) throws IOException;    
     
     
     

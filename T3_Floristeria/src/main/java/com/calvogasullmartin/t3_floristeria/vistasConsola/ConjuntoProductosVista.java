@@ -37,8 +37,8 @@ public class ConjuntoProductosVista {
         finalizar(addProductoControlador);
     }
 
-    private Integer saberStockId(boolean isAllPosible) {
-        mostrarOpciones(isAllPosible);
+    private Integer saberStockId(boolean isAllPosible) {        
+        mostrarOpciones(isAllPosible);        
         return pedirOpcion(isAllPosible);//si conjunto_id = null -> todos
     }
     
@@ -134,11 +134,11 @@ public class ConjuntoProductosVista {
         mostrarControlador.seleccionarMenu();
     }
 
-    public void interactuar(ModificarProductoControlador modificarControlador) {
+    public void interactuar(ModificarProductoControlador modificarControlador) {        
         this.modificarControlador = modificarControlador;
-        Integer conjunto_id = saberStockId(false);
+        Integer conjunto_id = saberStockId(false);        
         try {
-            mostrarUnConjunto(conjunto_id);
+            mostrarUnConjuntoV2(conjunto_id);
             new ProductoUnidadVista().interactuar(modificarControlador);
         } catch (IOException ex) {
             System.out.println("Base de datos inaccesible.");
@@ -224,23 +224,26 @@ public class ConjuntoProductosVista {
     }
     
     private void mostrarUnConjunto(Integer conjunto_id)throws IOException{
-        try {
+        try {            
             String conjuntoProductosUnidad = mostrarControlador.getOneConjuntos(conjunto_id);
             System.out.println(conjuntoProductosUnidad);
         } catch (IOException ex) {
             System.out.println("Base de datos inaccesible.");
         }
     }
+    
+    
+    
+    
 
     //chapuza para que funcione con otro controlador el controlador mostrar y el controlador modificar tienen cosas comunes
-    private void mostrarUnConjuntoV2(Integer conjunto_id) throws IOException{        
-        String conjuntoProductosUnidad = modificarControlador.getOneConjuntos(conjunto_id);
-        /*
-            mostrar la lista de productos (en formato string)
-            ** prguntandole al controlador.isWithUnits i .isStock se puede saber si son todos
-               los tiquets o todos los stocks, i si incluyen unidades (los tiquets siempre la incluyen)
-            ** Con Categoria.values()[conjunto_id-1] se puede saber qué estock es
-         */
+    private void mostrarUnConjuntoV2(Integer conjunto_id) throws IOException{                
+        try {            
+            String conjuntoProductosUnidad = modificarControlador.getOneConjuntos(conjunto_id);
+            System.out.println(conjuntoProductosUnidad);
+        } catch (IOException ex) {
+            System.out.println("Base de datos inaccesible.");
+        }
     }
 
     private void mostrarTodo() throws IOException {
