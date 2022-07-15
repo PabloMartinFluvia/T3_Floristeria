@@ -15,7 +15,7 @@ public class ConectorTxt implements Conector{
     }
             
     @Override
-    public boolean isBDInicizializada() {       
+    public boolean isBDInicizializada() throws IOException{       
         return archivoTxt.exists() && !archivoTxt.isDirectory();
     }
 
