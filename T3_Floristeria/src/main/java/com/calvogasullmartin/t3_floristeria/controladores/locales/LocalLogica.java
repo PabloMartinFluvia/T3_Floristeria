@@ -64,8 +64,8 @@ public class LocalLogica implements Logica{
     private void coordinarControladores(){        
         mapaEstadosContoladores.put(Estado.INITIAL, arrancarAppControlador);  
         mapaEstadosContoladores.put(Estado.EN_MENU, menuControlador); 
-        
         mapaEstadosContoladores.put(Estado.NUEVO_PRODUCTO, addProductoControlador);
+        
         mapaEstadosContoladores.put(Estado.MOSTRAR_STOCK, mostrarStockControlador);
         mapaEstadosContoladores.put(Estado.MOSTRAR_TIQUETS, mostrarTicketsControlador);
         mapaEstadosContoladores.put(Estado.MOSTRAR_VALOR_TIENDA, mostrarTotalValorControlador);
