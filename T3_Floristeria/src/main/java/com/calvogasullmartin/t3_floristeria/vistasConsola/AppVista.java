@@ -10,9 +10,7 @@ import com.calvogasullmartin.t3_floristeria.controladores.MostrarConjuntoControl
 import com.calvogasullmartin.t3_floristeria.controladores.MostrarTotalesControlador;
 import com.calvogasullmartin.t3_floristeria.controladores.NuevaVentaControlador;
 
-public class AppVista implements Vista{
-   
-    private ArrancarVista arrancarVista;
+public class AppVista implements Vista{       
     
     
     
@@ -23,7 +21,6 @@ public class AppVista implements Vista{
     private FloristeriaVista floristeriaVista;
 
     public AppVista() {
-        arrancarVista = new ArrancarVista();
         
         menuVista = new MenuPrincipalVista();
         conjuntoProductosVista = new ConjuntoProductosVista();
@@ -39,7 +36,7 @@ public class AppVista implements Vista{
     @Override
     public void visitar(ArrancarAppControlador controlador) {
         assert controlador != null;
-        arrancarVista.interactuar(controlador);
+        new ArrancarVista().interactuar(controlador);        
     }
     
     
