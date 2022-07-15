@@ -6,8 +6,8 @@ public class Manager {
     
     private final int NUM_CATEGORIAS = 3; //3 tipos de productos = 3 stocks distintos    
 
-    public Manager(Estado estado) {
-        this.estado = estado;
+    public Manager() {
+        this.estado = Estado.INITIAL; // cuando se crea el manager se pone el estado inicial
     }
 
     public Estado getEstado() {
