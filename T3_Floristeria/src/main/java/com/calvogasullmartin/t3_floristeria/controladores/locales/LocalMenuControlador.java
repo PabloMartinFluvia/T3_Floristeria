@@ -2,12 +2,12 @@ package com.calvogasullmartin.t3_floristeria.controladores.locales;
 
 import com.calvogasullmartin.t3_floristeria.controladores.MenuControlador;
 import com.calvogasullmartin.t3_floristeria.modelos.Estado;
-import com.calvogasullmartin.t3_floristeria.modelos.Estados;
+import com.calvogasullmartin.t3_floristeria.modelos.Manager;
 import com.calvogasullmartin.t3_floristeria.controladores.ControladorPadreVisitor;
 
 public class LocalMenuControlador extends LocalControladorPadre implements MenuControlador{
 
-    public LocalMenuControlador(Estados estados) {
+    public LocalMenuControlador(Manager estados) {
         super(estados);
     }        
 

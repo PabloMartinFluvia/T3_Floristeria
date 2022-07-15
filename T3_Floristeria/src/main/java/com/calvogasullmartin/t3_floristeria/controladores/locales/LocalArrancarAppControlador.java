@@ -1,9 +1,8 @@
 package com.calvogasullmartin.t3_floristeria.controladores.locales;
 
 import com.calvogasullmartin.t3_floristeria.controladores.ArrancarAppControlador;
-import com.calvogasullmartin.t3_floristeria.modelos.Aplicacion;
 import com.calvogasullmartin.t3_floristeria.modelos.Estado;
-import com.calvogasullmartin.t3_floristeria.modelos.Estados;
+import com.calvogasullmartin.t3_floristeria.modelos.Manager;
 import com.calvogasullmartin.t3_floristeria.modelos.Floristeria;
 import com.calvogasullmartin.t3_floristeria.persistencia.Conector;
 import java.io.IOException;
@@ -12,15 +11,17 @@ import com.calvogasullmartin.t3_floristeria.controladores.ControladorPadreVisito
 
 public class LocalArrancarAppControlador extends LocalControladorPadre implements ArrancarAppControlador{        
     
-    private Floristeria floristeria;
+    //private Floristeria floristeria;
+    private int numCategorias;    
     
-    public LocalArrancarAppControlador(Estados estados, Floristeria floristeria) {        
-        super(estados);    
-        this.floristeria = floristeria;
+    public LocalArrancarAppControlador(Manager manager) {        
+        super(manager);   
+        numCategorias = manager.getNUM_CATEGORIAS();        
+        //this.floristeria = new Floristeria(manager.getNUM_CATEGORIAS());
     }
     
     @Override
-    public boolean isPrimeraVez() {
+    public boolean isPrimeraVez() throws IOException{
         Conector conector = factory.getConector();
         boolean ok = true;
         if(conector.isBDInicizializada()){
@@ -32,19 +33,15 @@ public class LocalArrancarAppControlador extends LocalControladorPadre implement
    @Override
     public void iniciarPersistencia() throws IOException {
         factory.getConector().inicializarBD();
-    } 
-    
+    }     
 
     @Override
-    public void iniciarFloristeria(String nombre) {
+    public void guardarUnicaFloristeria(String nombre) throws IOException { 
         assert nombre != null;
         assert nombre.length() >= 3;
         //el id lo pondrá el dao dentro del create
-        floristeria.setNombre_floristeria(nombre);        
-    }
-
-    @Override
-    public void guardarUnicaFloristeria() throws IOException {
+        Floristeria floristeria = new Floristeria(numCategorias);
+        floristeria.setNombre_floristeria(nombre); 
         factory.getFloristeriaDao().create(floristeria);
     }
 
@@ -59,8 +56,15 @@ public class LocalArrancarAppControlador extends LocalControladorPadre implement
     }
     
     @Override
+    public void seleccionarExit() {
+        this.setEstado(Estado.EXIT);
+    }
+    
+    @Override
     public void aceptar(ControladorPadreVisitor controlador) {
         assert controlador != null;
         controlador.visitar(this);
     }          
+
+    
 }

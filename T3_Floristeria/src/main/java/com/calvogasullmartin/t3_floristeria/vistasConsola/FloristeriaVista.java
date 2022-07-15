@@ -15,19 +15,6 @@ public class FloristeriaVista {
     public FloristeriaVista() {        
         this.io = new InOut();        
     }
-
-    public void interactuar(ArrancarAppControlador controlador) {
-        assert controlador != null;
-        String nombre = pedirNombre();        
-        try {
-            controlador.iniciarFloristeria(nombre);
-            controlador.guardarUnicaFloristeria();
-            //io.write("Floristeria guardada con éxito.");
-            System.out.println("Floristeria guardada con éxito.");
-        } catch (IOException ex) {
-            System.out.println("Base de datos inaccesible.");
-        }
-    }
     
     public void interactuar(MostrarTotalesControlador controlador){
         assert controlador != null;
@@ -60,18 +47,18 @@ public class FloristeriaVista {
         System.out.println(mensage);
     }
 
-    private String pedirNombre() {
+    public String pedirNombre() {
         String nombre = null;
         boolean ok = false;
         int minNumChar = 3;        
         do {
-            //nombre = io.readString("Introduce el nombre de la floristeria: ");
-            Scanner entrada = new Scanner(System.in);
-            System.out.println("Introduce el nombre de la floristeria: ");
-            nombre = entrada.nextLine();
+            nombre = io.readString("Por favor, introduce el nombre de la floristeria: ");
+            //Scanner entrada = new Scanner(System.in);
+            //System.out.println("Introduce el nombre de la floristeria: ");
+            //nombre = entrada.nextLine();
             if (nombre.length() < minNumChar) {
-                //io.writeError("de al menos 3 caracteres");
-                System.out.println("Error: el nombre debe tener al menos 3 caracteres.");
+                io.writeError("de al menos 3 caracteres.");
+                //System.out.println("Error: el nombre debe tener al menos 3 caracteres.");
             } else {
                 ok = true;
             }

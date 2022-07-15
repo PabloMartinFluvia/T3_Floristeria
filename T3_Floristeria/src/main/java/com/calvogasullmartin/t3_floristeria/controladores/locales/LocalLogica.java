@@ -1,12 +1,11 @@
 package com.calvogasullmartin.t3_floristeria.controladores.locales;
 
 import com.calvogasullmartin.t3_floristeria.controladores.ArrancarAppControlador;
-import com.calvogasullmartin.t3_floristeria.modelos.Aplicacion;
 import com.calvogasullmartin.t3_floristeria.modelos.Estado;
 import java.util.HashMap;
 import java.util.Map;
 import com.calvogasullmartin.t3_floristeria.controladores.MenuControlador;
-import com.calvogasullmartin.t3_floristeria.modelos.Estados;
+import com.calvogasullmartin.t3_floristeria.modelos.Manager;
 import com.calvogasullmartin.t3_floristeria.Logica;
 import com.calvogasullmartin.t3_floristeria.controladores.AddProductoControlador;
 import com.calvogasullmartin.t3_floristeria.controladores.ControladorPadre;
@@ -16,16 +15,14 @@ import com.calvogasullmartin.t3_floristeria.controladores.MostrarTotalesControla
 import com.calvogasullmartin.t3_floristeria.controladores.NuevaVentaControlador;
 
 public class LocalLogica implements Logica{    
-    //atributos:
-    //A) las entidades del modelo (contienen info del
-    //B) els controladors concrets (familia segun que familia concreta de controladores pertenezca esta Logia)
     
-    private Aplicacion aplicacion; //floristeria, y otros modelos
+    // clase que proporciona a todos los controladores informacion de como
+    // se gestiona la aplicacion
+     private Manager manager; 
+
+    private ArrancarAppControlador arrancarAppControlador;     
     
-    private Estados estados;
-        
-    // los controladores se asocian a los modelos con los que "trabajan"
-    private ArrancarAppControlador arrancarAppControlador; 
+    
     
     private MenuControlador menuControlador;
     
@@ -47,25 +44,26 @@ public class LocalLogica implements Logica{
     
     private Map<Estado,ControladorPadre> mapaEstadosContoladores;            
 
-    public LocalLogica() {
-        aplicacion = new Aplicacion(); 
-        estados = new Estados(Estado.INITIAL);        
-        this.arrancarAppControlador = new LocalArrancarAppControlador(estados, aplicacion.getFloristeria());
-        this.menuControlador = new LocalMenuControlador(estados);
-        this.addProductoControlador = new LocalAddProductoControlador(estados);
-        this.mostrarStockControlador = new LocalMostrarConjuntoControlador(estados, true); //stocks
-        this.mostrarTicketsControlador = new LocalMostrarConjuntoControlador(estados, false); //tiquets
-        this.mostrarTotalValorControlador = new LocalMostrarTotalesControlador(estados, true); // totalValorStocks
-        this.mostrarTotalFacturacionControlador = new LocalMostrarTotalesControlador(estados, false); //totalValorTiquets
-        this.modificarUnidadControlador = new LocalModificarProductoControlador(estados, true); // actualizar unidades de un producto que está en stock
-        this.eliminarProductoControlador = new LocalModificarProductoControlador(estados, false); // eliminar un producto que está en stock
-        this.nuevaVentaControlador = new LocalNuevaVentaCotnrolador(estados);
+    public LocalLogica() {        
+        manager = new Manager();    
+        this.arrancarAppControlador = new LocalArrancarAppControlador(manager);
+        
+        this.menuControlador = new LocalMenuControlador(manager);
+        this.addProductoControlador = new LocalAddProductoControlador(manager);
+        this.mostrarStockControlador = new LocalMostrarConjuntoControlador(manager, true); //stocks
+        this.mostrarTicketsControlador = new LocalMostrarConjuntoControlador(manager, false); //tiquets
+        this.mostrarTotalValorControlador = new LocalMostrarTotalesControlador(manager, true); // totalValorStocks
+        this.mostrarTotalFacturacionControlador = new LocalMostrarTotalesControlador(manager, false); //totalValorTiquets
+        this.modificarUnidadControlador = new LocalModificarProductoControlador(manager, true); // actualizar unidades de un producto que está en stock
+        this.eliminarProductoControlador = new LocalModificarProductoControlador(manager, false); // eliminar un producto que está en stock
+        this.nuevaVentaControlador = new LocalNuevaVentaCotnrolador(manager);
         mapaEstadosContoladores = new HashMap<>();
         coordinarControladores();
     }
     
     private void coordinarControladores(){        
         mapaEstadosContoladores.put(Estado.INITIAL, arrancarAppControlador);  
+        
         mapaEstadosContoladores.put(Estado.EN_MENU, menuControlador); 
         mapaEstadosContoladores.put(Estado.NUEVO_PRODUCTO, addProductoControlador);
         mapaEstadosContoladores.put(Estado.MOSTRAR_STOCK, mostrarStockControlador);
@@ -80,6 +78,6 @@ public class LocalLogica implements Logica{
         
     @Override
     public ControladorPadre getControladorPadre(){          
-        return mapaEstadosContoladores.get(estados.getEstado());               
+        return mapaEstadosContoladores.get(manager.getEstado());               
     }
 }

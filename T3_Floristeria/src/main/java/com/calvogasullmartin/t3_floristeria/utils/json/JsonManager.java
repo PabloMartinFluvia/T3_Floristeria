@@ -87,6 +87,10 @@ public class JsonManager<T> {
         arrayNode = (ArrayNode)auxiliarNode;
     }
     
+    public String getAuxiliarNode_asText(){
+        assert auxiliarNode.isTextual();
+        return auxiliarNode.asText();
+    }
     
     
     public void replaceAuxiliarNode_nodeInArrayByIndex(int index){

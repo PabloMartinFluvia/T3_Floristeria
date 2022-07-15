@@ -3,14 +3,14 @@ package com.calvogasullmartin.t3_floristeria.controladores.locales;
 import com.calvogasullmartin.t3_floristeria.controladores.ControladorPadreVisitor;
 import com.calvogasullmartin.t3_floristeria.controladores.MostrarTotalesControlador;
 import com.calvogasullmartin.t3_floristeria.modelos.Estado;
-import com.calvogasullmartin.t3_floristeria.modelos.Estados;
+import com.calvogasullmartin.t3_floristeria.modelos.Manager;
 import java.io.IOException;
 
 public class LocalMostrarTotalesControlador extends LocalControladorPadre implements MostrarTotalesControlador{
 
     private boolean mostrarValorTienda; // si false -> muestra total Facturacion
     
-    public LocalMostrarTotalesControlador(Estados estados, boolean mostrarValorTienda) {
+    public LocalMostrarTotalesControlador(Manager estados, boolean mostrarValorTienda) {
         super(estados);
         this.mostrarValorTienda = mostrarValorTienda;
     }

@@ -10,15 +10,16 @@ public class FloristeriaTxt extends GenericDaoTxt<Floristeria, Integer> implemen
     @Override
     public void create(Floristeria floristeria) throws IOException {
         assert floristeria != null;
-        floristeria.setFloristeria_id(1); //se l'assigna aquí
-        gestor.writeObjectInFile(floristeria);// nulls fields ignored + no appendable        
+        floristeria.setFloristeria_id(1); //se assigna el id aqui
+        gestor.writeObjectInFile(floristeria);
     }
         
     @Override
-    public String getName() throws IOException { //no hay findById, ya que solo hay una floristeria
-        String nombreAtributoNombre = Floristeria.class.getDeclaredFields()[1].getName();   
+    public String getName() throws IOException { 
         gestor.getMainNodeFromFile();
-        return gestor.getValueParsedToStingOfFirstChildNode_x(nombreAtributoNombre);
+        String atributo_nombre_floristeria = Floristeria.class.getDeclaredFields()[1].getName();
+        gestor.setAuxiliarNode_findFieldByName(atributo_nombre_floristeria);
+        return gestor.getAuxiliarNode_asText();
     }
 
     @Override

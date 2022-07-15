@@ -11,16 +11,20 @@ public interface FloristeriaDao extends GenericDao<Floristeria, Integer>{
     b) El registro de la tabla Floristeria (insert into) + la creación de todas las tablas de la BD
     c) ídem a (a) (insertOne)
     */
-    public void create(Floristeria floristeria)throws IOException;
+    public void create(Floristeria floristeria)throws IOException; //ok
+    
+    
+    //READ
+    
+    //no hay findById, ya que solo hay una floristeria
     
     /*
-    Equivale a read
     a) el valor del campo nombre, en el documento de la floristeria
     b) select name from Floristeria where floristeria_id = 1
     c) find floristeria + project nombre (y luego coger el valor del bson document)    
     si no encutra el campo o el valor no es un string devuelve null
     */
-    public String getName() throws IOException;
+    public String getName() throws IOException; //ok
     
     /*
     Equivale a read
