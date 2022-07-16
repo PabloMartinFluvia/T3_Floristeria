@@ -26,7 +26,7 @@ public class ConjuntoProductos {
         this.id = id;
     }
 
-    public Float getValor_Productos() {
+    public float getValor_Productos() {
         return valor_Productos;
     }
 
@@ -41,6 +41,29 @@ public class ConjuntoProductos {
     public void setProductos(List<ProductoUnidad> productos) {
         this.productos = productos;
     }
+    
+    public int getCantidadProductoByIndex(int productoIndex){
+        return this.productos.get(productoIndex).getCantidad();
+    }
+    
+    public float getPrecioProductoByIndex(int productoIndex){
+        return this.productos.get(productoIndex).getPrecioProductoByIndex(productoIndex);        
+    }
+    
+    public String getIntroProductoByIndex(int productoIndex){
+        return this.productos.get(productoIndex).getIntroProductoByIndex(productoIndex);
+    }
+    
+    public String getDetallesProductoByIndex(int productoIndex){
+        return this.productos.get(productoIndex).getDetallesProductoByIndex(productoIndex);
+    }
+
+    
+    
+    
+    
+    
+    
 
     public String listaToString(){
         String string = "";

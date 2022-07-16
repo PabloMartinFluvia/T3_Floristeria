@@ -72,6 +72,28 @@ public class ProductoCompleto {
         this.material = material;
     }
     
+    public String getIntroProducto(){
+        return "ID: "+producto_id+") ";
+    }
+    
+    public String getDetallesProducto(){
+        String detalles = null;
+        switch(categoria){
+            case ARBOL: 
+                detalles = "Arbol con altura "+altura+". ";
+                break;
+            case FLOR: 
+                detalles = "Flor de color "+color+". ";
+                break;
+            case DECORACION: 
+                detalles = "Decoración de material "+material+". ";
+                break;
+        }
+        return detalles;
+    }
+    
+    
+    
     public String toString(){
         String string = "";
         string = string + producto_id+", "+ precio + ", ";

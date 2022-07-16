@@ -14,7 +14,7 @@ public class MenuVista {
 
     public void interactuar(MenuControlador controlador) {
         assert controlador != null;
-        io.writeln(controlador.getMenuMensage());
+        io.writeln("\n"+controlador.getMenuMensage());
         String mensage = "Seleccione una opción";
         int max = controlador.getNumOptionsNoExit();
         PedirEnteroLimitado solicitud = new PedirEnteroLimitado(mensage, 0,max);

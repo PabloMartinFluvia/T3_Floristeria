@@ -1,28 +1,38 @@
 package com.calvogasullmartin.t3_floristeria.vistasConsola;
 
 import com.calvogasullmartin.t3_floristeria.controladores.AddProductoControlador;
-import com.calvogasullmartin.t3_floristeria.controladores.ModificarProductoControlador;
 import com.calvogasullmartin.t3_floristeria.utils.PedirEnteroLimitado;
 import java.io.IOException;
 import java.util.Scanner;
+import com.calvogasullmartin.t3_floristeria.controladores.ModificarProductoControlador;
+import com.calvogasullmartin.t3_floristeria.controladores.MostrarStocksControlador;
+import com.calvogasullmartin.t3_floristeria.utils.InOut;
 
 public class ProductoUnidadVista {
 
-    
+    InOut io;
 
     public ProductoUnidadVista() {
+        io = new InOut();
     }
 
     public void pedirUnidadesIniciales(AddProductoControlador controlador) {
         String mensaje = "Introduce la cantidad inicial de este producto que habrá en el stock (>0): ";
-        PedirEnteroLimitado requerimiento = new PedirEnteroLimitado(mensaje, controlador.getMaxCantidad());        
+        PedirEnteroLimitado requerimiento = new PedirEnteroLimitado(mensaje, controlador.getMaxCantidad());
         controlador.almacenarUnidadesIniciales(requerimiento.read());
+    }
+
+    public void muestraProductoUnidadInStocks(MostrarStocksControlador controlador, int stockIndex, int productoIndex) {
+        int cantidad = controlador.getCantidadProductoInStock(stockIndex, productoIndex);
+        new ProductoCompletoVista().muestraProductoCompletoInStocks(controlador, stockIndex, productoIndex);
+        io.writeln("\t\t"+"Cantidad actual en stock: " + cantidad + " unidades\n");
     }
     
     
-        
+    
+    
 
-    private ModificarProductoControlador modificarControlador;                    
+    private ModificarProductoControlador modificarControlador;
 
     public void interactuar(ModificarProductoControlador modificarControlador) {
         this.modificarControlador = modificarControlador;
@@ -48,23 +58,23 @@ public class ProductoUnidadVista {
         Scanner sc = new Scanner(System.in);
         int input;
         boolean ok = false;
-        do{
+        do {
             input = sc.nextInt();
-            if(input>=min){
+            if (input >= min) {
                 ok = true;
-            }else{
-                System.out.println("Error. Introduce una cantidad superior a "+min);
+            } else {
+                System.out.println("Error. Introduce una cantidad superior a " + min);
             }
-        }while(!ok);
+        } while (!ok);
         return input;
     }
-    
+
     private void eliminarProducto() {
         boolean eliminar = isCorrecto("Estas seguro de querer eliminar el producto?\n"
-            + "\t1) Si.\n"
-            + "\t0) No.\n");
+                + "\t1) Si.\n"
+                + "\t0) No.\n");
         if (eliminar) {
-            try {                
+            try {
                 modificarControlador.eliminarProductoUnidad();
                 modificarControlador.disminuirValoresStock();
             } catch (IOException ex) {
@@ -76,13 +86,13 @@ public class ProductoUnidadVista {
     private boolean isCorrecto(String mensaje) {
         Scanner sc = new Scanner(System.in);
         int input;
-        do{
+        do {
             System.out.println(mensaje);
             input = sc.nextInt();
-        }while(input<0 || input>1);
+        } while (input < 0 || input > 1);
         boolean ok = true;
-        if(input==0){
-            ok=false;
+        if (input == 0) {
+            ok = false;
         }
         return ok;
     }
@@ -90,14 +100,14 @@ public class ProductoUnidadVista {
     private void actualizarUnidades() {
         int cantidadPrevia = modificarControlador.getUnidadesActuales();
         System.out.println("En cuantas unidades variamos el stock?");
-        int incremento =  pedrirIntCantidad( cantidadPrevia*-1);
+        int incremento = pedrirIntCantidad(cantidadPrevia * -1);
         boolean modificar = isCorrecto("Estas seguro de querer modificar las unidades en " + incremento + "?\n"
-            + "\t1) Si.\n"
-            + "\t0) No.\n");
+                + "\t1) Si.\n"
+                + "\t0) No.\n");
         if (modificar) {
             try {
                 modificarControlador.incrementarProductoUnidad(incremento);
-                modificarControlador.actualizarValoresStock(incremento);                
+                modificarControlador.actualizarValoresStock(incremento);
             } catch (IOException ex) {
                 System.out.println("Base de datos inaxcesible.");
             }
@@ -107,21 +117,18 @@ public class ProductoUnidadVista {
     private int getInt(String mensaje, int min, int max) {
         Scanner sc = new Scanner(System.in);
         int input;
-        do{
+        do {
             System.out.println(mensaje);
             input = sc.nextInt();
-        }while(input<min || input>max);
+        } while (input < min || input > max);
         return input;
     }
-
-    
 
     private int obtenerIdProducto() {
         String mensaje = "Introduce el numero de identificación del producto: ";
         System.out.println(mensaje);
-        int producto_id = pedrirIntCantidad(0) ;
+        int producto_id = pedrirIntCantidad(0);
         return producto_id;
     }
 
-    
 }

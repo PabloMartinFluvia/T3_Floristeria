@@ -1,11 +1,11 @@
 {
   "floristeria_id" : 1,
   "nombre_floristeria" : "FloriTest",
-  "valorStocksTotal" : 476.2,
+  "valorStocksTotal" : 1167.2,
   "valorTicketsTotal" : 0.0,
   "stocks" : [ {
     "id" : 1,
-    "valor_Productos" : 3.0,
+    "valor_Productos" : 148.0,
     "productos" : [ {
       "producto" : {
         "producto_id" : 1,
@@ -22,6 +22,36 @@
         "altura" : "MUY_ALTO"
       },
       "cantidad" : 1
+    }, {
+      "producto" : {
+        "producto_id" : 1,
+        "categoria" : "ARBOL",
+        "precio" : 8.0,
+        "altura" : "MUY_BAJO",
+        "introProducto" : "ID: 1) ",
+        "detallesProducto" : "Arbol con altura Muy bajo. "
+      },
+      "cantidad" : 5
+    }, {
+      "producto" : {
+        "producto_id" : 1,
+        "categoria" : "ARBOL",
+        "precio" : 5.0,
+        "altura" : "MUY_ALTO",
+        "introProducto" : "ID: 1) ",
+        "detallesProducto" : "Arbol con altura Muy alto. "
+      },
+      "cantidad" : 5
+    }, {
+      "producto" : {
+        "producto_id" : 2,
+        "categoria" : "ARBOL",
+        "precio" : 8.0,
+        "altura" : "MEDIANO",
+        "introProducto" : "ID: 2) ",
+        "detallesProducto" : "Arbol con altura Mediano. "
+      },
+      "cantidad" : 10
     } ]
   }, {
     "id" : 2,
@@ -37,7 +67,7 @@
     } ]
   }, {
     "id" : 3,
-    "valor_Productos" : 52.0,
+    "valor_Productos" : 598.0,
     "productos" : [ {
       "producto" : {
         "producto_id" : 1,
@@ -54,6 +84,14 @@
         "material" : "MADERA"
       },
       "cantidad" : 1
+    }, {
+      "producto" : {
+        "producto_id" : 1,
+        "categoria" : "DECORACION",
+        "precio" : 78.0,
+        "material" : "PLASTICO"
+      },
+      "cantidad" : 7
     } ]
   } ],
   "tiquets" : [ ]

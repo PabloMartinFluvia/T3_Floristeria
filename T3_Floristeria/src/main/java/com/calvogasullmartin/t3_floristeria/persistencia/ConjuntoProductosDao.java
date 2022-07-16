@@ -25,14 +25,14 @@ public interface ConjuntoProductosDao extends GenericDao<ConjuntoProductos, Inte
     b) join conjunto con conjunto_has_productos por el id del stock & join con productos con el id del producto
     c) find floristeria y proyectar solo el documento que este en el indice de stocks coherente con el id de stock buscado
     */
-    public ConjuntoProductos getOneStockById (int id)throws IOException;
+    public ConjuntoProductos getOneStockById (int idStock)throws IOException; //ok
     
     /*
     a)
     b) hacer 3 veces el método anterior, uno para cada id
     c) find floristeria y proyectar solo el stocks
     */
-    public List<ConjuntoProductos> getAllStocks ()throws IOException;
+    public List<ConjuntoProductos> getAllStocks ()throws IOException; //ok
     
     /*
     a)

@@ -8,7 +8,9 @@ public interface ControladorPadreVisitor {
     
     void visitar(AddProductoControlador controlador);
     
-    void visitar(MostrarConjuntoControlador controlador);
+    void visitar (MostrarStocksControlador controlador);
+    
+    void visitar(Z_OLD_MostrarConjuntoControlador controlador);
     
     void visitar(MostrarTotalesControlador controlador);
     

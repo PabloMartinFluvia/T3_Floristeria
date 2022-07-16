@@ -1,28 +1,24 @@
 package com.calvogasullmartin.t3_floristeria.vistasConsola;
 
 import com.calvogasullmartin.t3_floristeria.controladores.AddProductoControlador;
+import com.calvogasullmartin.t3_floristeria.controladores.MostrarStocksControlador;
 import com.calvogasullmartin.t3_floristeria.modelos.Altura;
 import com.calvogasullmartin.t3_floristeria.modelos.Categoria;
 import com.calvogasullmartin.t3_floristeria.modelos.Material;
-import com.calvogasullmartin.t3_floristeria.utils.InOut;
 import com.calvogasullmartin.t3_floristeria.utils.PedirEnteroLimitado;
 
-public class ProductoCompletoVista {
-    
-    private InOut io;
+public class ProductoCompletoVista extends CategoriaVista{        
     
     private Categoria categoria;
 
     private AddProductoControlador controlador;
 
-    public ProductoCompletoVista() {
-        io = new InOut();
+    public ProductoCompletoVista() {        
     }
-    
-    
+        
     public void requerirNuevoProducto(AddProductoControlador controlador){   
         //el id no se pide
-        int index = pedirCategoria("del producto");
+        int index = pedirCategoria("la familia del producto a añadir");
         controlador.almacenarCategoria(index);
         controlador.almacenarPrecio(io.readFloat("Introduzca el precio: "));
         switch(index){
@@ -32,18 +28,9 @@ public class ProductoCompletoVista {
         }
     }
     
-    //devuelve indice en el enum
-    public int pedirCategoria(String tipo_categoria){
-        int numOpciones = Categoria.values().length;
-        io.writeln("Opciones: ");
-        for (int i = 0; i<numOpciones; i++){
-            String categoria = "\t"+(i+1)+") "+Categoria.values()[i];
-            io.writeln(categoria);
-        }
-        String mensage = "Seleccione la categoria "+tipo_categoria;
-        PedirEnteroLimitado solicitud = new PedirEnteroLimitado(mensage,numOpciones);
-        int opcion = solicitud.read();
-        return opcion-1;
+    @Override
+    protected int ofrecerOpcionTodos() {
+        return 1;
     }
     
     //devuelve indice en el enum
@@ -86,5 +73,12 @@ public class ProductoCompletoVista {
         PedirEnteroLimitado solicitud = new PedirEnteroLimitado("Seleccione opción",numOpciones);
         int opcion = solicitud.read();
         return opcion-1;
-    }                 
+    }   
+    
+    public void muestraProductoCompletoInStocks(MostrarStocksControlador controlador, int stockIndex, int productoIndex){
+        String intro = controlador.getIntroProductoInStock(stockIndex, productoIndex);
+        float precio = controlador.getPrecioProductoInStock(stockIndex, productoIndex);
+        String detalles = controlador.getDetallesProductoInStock(stockIndex, productoIndex);
+        io.writeln("\t"+intro+"Tiene un precio de "+precio+". "+detalles);
+    }
 }
