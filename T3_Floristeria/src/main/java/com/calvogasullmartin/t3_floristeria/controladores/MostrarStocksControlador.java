@@ -4,8 +4,12 @@ import java.io.IOException;
 
 public interface MostrarStocksControlador extends ControladorPadre{
     
-    public void seleccionarMenu();
+    public void seleccionarMenu(); //idem a todos los que salen del menú
     
+    
+    /////////////////////////////////////////////////////////////////
+    //esta parte se repite para todos los controladores que necesitan acceder y mostrar los stocks
+    /////////////////////////////////////////////////////////////////
     public void getStocks(int stock_index) throws IOException;
     
     public int getNumConjuntosToShow();

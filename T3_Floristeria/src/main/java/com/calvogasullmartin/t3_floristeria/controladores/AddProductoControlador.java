@@ -1,10 +1,12 @@
 package com.calvogasullmartin.t3_floristeria.controladores;
 
-import com.calvogasullmartin.t3_floristeria.modelos.Altura;
-import com.calvogasullmartin.t3_floristeria.modelos.Material;
 import java.io.IOException;
 
 public interface AddProductoControlador extends ControladorPadre{
+    
+    public void seleccionarMenu(); //idem a todos los que salen del menú
+    
+    
     
     void inicializarNuevoProducto();
     
@@ -24,9 +26,7 @@ public interface AddProductoControlador extends ControladorPadre{
     
     void addProductoConUnidadesEnStock() throws IOException;
     
-    void actualizarValoresStock() throws IOException;
-    
-    void seleccionarMenu();
+    void actualizarValoresStock() throws IOException;        
     
     int getMaxCantidad();
 }
