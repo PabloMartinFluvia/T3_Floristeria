@@ -4,16 +4,16 @@ import com.calvogasullmartin.t3_floristeria.controladores.AddProductoControlador
 import com.calvogasullmartin.t3_floristeria.utils.PedirEnteroLimitado;
 import java.io.IOException;
 import java.util.Scanner;
-import com.calvogasullmartin.t3_floristeria.controladores.ModificarProductoControlador;
 import com.calvogasullmartin.t3_floristeria.controladores.MostrarStocksControlador;
 import com.calvogasullmartin.t3_floristeria.utils.InOut;
+import com.calvogasullmartin.t3_floristeria.controladores.Z_OLD_ModificarProductoControlador;
 
 public class ProductoUnidadVista {
 
     InOut io;
 
-    public ProductoUnidadVista() {
-        io = new InOut();
+    public ProductoUnidadVista() { 
+       io = new InOut();
     }
 
     public void pedirUnidadesIniciales(AddProductoControlador controlador) {
@@ -32,9 +32,9 @@ public class ProductoUnidadVista {
     
     
 
-    private ModificarProductoControlador modificarControlador;
+    private Z_OLD_ModificarProductoControlador modificarControlador;
 
-    public void interactuar(ModificarProductoControlador modificarControlador) {
+    public void interactuar (Z_OLD_ModificarProductoControlador modificarControlador) {
         this.modificarControlador = modificarControlador;
         boolean exit = false;
         do {

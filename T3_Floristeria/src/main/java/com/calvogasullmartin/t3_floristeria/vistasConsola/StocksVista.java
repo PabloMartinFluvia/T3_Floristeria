@@ -2,17 +2,10 @@ package com.calvogasullmartin.t3_floristeria.vistasConsola;
 
 import com.calvogasullmartin.t3_floristeria.controladores.MostrarStocksControlador;
 
-public class StocksVista extends CategoriaVista {
+public class StocksVista extends AllCategoariasVista {
 
     public StocksVista() {
-    }
-
-    @Override
-    protected int ofrecerOpcionTodos() {
-        String mensage = "\n\t0) TODOS";
-        io.writeln(mensage);
-        return 0;
-    }
+    }    
 
     public void mostrarStock(MostrarStocksControlador controlador, int stockIndex, boolean conUnidades) {
         String titulo = controlador.getStockTitleInStocks(stockIndex);

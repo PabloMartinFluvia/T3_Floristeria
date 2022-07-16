@@ -43,12 +43,12 @@ public class LocalMostrarStocksControlador extends LocalControladorPadre impleme
         }
     }
     
-    private void getAllStocks() throws IOException{   
+    protected void getAllStocks() throws IOException{   
         stocks = factory.getConjuntoProductosDao().getAllStocks();  
         numStocksToShow = stocks.size();
     }
     
-    private void getOneStock(int stock_index) throws IOException{
+    protected void getOneStock(int stock_index) throws IOException{
         assert stock_index >= 0 && stock_index<NUM_CATEGORIAS;
         stock = factory.getConjuntoProductosDao().getOneStockById(stock_index + 1); 
         numStocksToShow = 1;

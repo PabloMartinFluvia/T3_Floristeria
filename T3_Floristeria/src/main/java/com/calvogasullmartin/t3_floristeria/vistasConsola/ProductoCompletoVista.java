@@ -7,7 +7,7 @@ import com.calvogasullmartin.t3_floristeria.modelos.Categoria;
 import com.calvogasullmartin.t3_floristeria.modelos.Material;
 import com.calvogasullmartin.t3_floristeria.utils.PedirEnteroLimitado;
 
-public class ProductoCompletoVista extends CategoriaVista{        
+public class ProductoCompletoVista extends UnaCategoriasVista{        
     
     private Categoria categoria;
 
@@ -27,12 +27,7 @@ public class ProductoCompletoVista extends CategoriaVista{
             case 2: controlador.almacenarMaterial(pedirMaterial());break;
         }
     }
-    
-    @Override
-    protected int ofrecerOpcionTodos() {
-        return 1;
-    }
-    
+            
     //devuelve indice en el enum
     private int pedirAltura(){
         int numOpciones = Altura.values().length;

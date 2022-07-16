@@ -2,7 +2,7 @@ package com.calvogasullmartin.t3_floristeria.controladores;
 
 import java.io.IOException;
 
-public interface ModificarProductoControlador extends ControladorPadre{
+public interface Z_OLD_ModificarProductoControlador extends ControladorPadre{
     
     //ojo, pk hereda de MostrarConjuntoControlador (para heredar sus metodos). Dará problemas en accept / visit?
     
