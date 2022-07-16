@@ -5,11 +5,12 @@ import com.calvogasullmartin.t3_floristeria.controladores.MenuControlador;
 import com.calvogasullmartin.t3_floristeria.Vista;
 import com.calvogasullmartin.t3_floristeria.controladores.AddProductoControlador;
 import com.calvogasullmartin.t3_floristeria.controladores.ControladorPadre;
+import com.calvogasullmartin.t3_floristeria.controladores.IncrementarUnidadesStockControlador;
 import com.calvogasullmartin.t3_floristeria.controladores.MostrarTotalesControlador;
 import com.calvogasullmartin.t3_floristeria.controladores.NuevaVentaControlador;
-import com.calvogasullmartin.t3_floristeria.controladores.ModificarProductoControlador;
 import com.calvogasullmartin.t3_floristeria.controladores.MostrarStocksControlador;
 import com.calvogasullmartin.t3_floristeria.controladores.Z_OLD_MostrarConjuntoControlador;
+import com.calvogasullmartin.t3_floristeria.controladores.Z_OLD_ModificarProductoControlador;
 
 public class AppVista implements Vista{       
     
@@ -58,7 +59,11 @@ public class AppVista implements Vista{
         new MostrarStocksVista().interactuar(controlador);
     }
 
-    
+    @Override
+    public void visitar(IncrementarUnidadesStockControlador controlador) {
+        assert controlador != null;
+        new IncrementarUnidadesVista().interacturar(controlador);
+    }
     
     
     
@@ -75,7 +80,7 @@ public class AppVista implements Vista{
     }
 
     @Override
-    public void visitar(ModificarProductoControlador controlador) {
+    public void visitar(Z_OLD_ModificarProductoControlador controlador) {
         assert controlador != null;
         conjuntoProductosVista.interactuar(controlador);
     }
@@ -85,6 +90,8 @@ public class AppVista implements Vista{
        assert controlador != null;
        conjuntoProductosVista.interactuar(controlador);
     }
+
+    
 
     
     

@@ -27,6 +27,16 @@ public class LocalAddProductoControlador extends LocalControladorPadre implement
     }
 
     @Override
+    public void seleccionarMenu() {
+        this.setEstado(Estado.EN_MENU);
+    }
+
+    @Override
+    public void aceptar(ControladorPadreVisitor controlador) {
+        controlador.visitar(this);
+    }
+    
+    @Override
     public void inicializarNuevoProducto() {
         producto = new ProductoCompleto();
         productoUnidad = new ProductoUnidad();
@@ -78,17 +88,7 @@ public class LocalAddProductoControlador extends LocalControladorPadre implement
     
     private int getStockId() {
         return producto.getCategoria().ordinal() + 1;
-    }
-
-    @Override
-    public void seleccionarMenu() {
-        this.setEstado(Estado.EN_MENU);
-    }
-
-    @Override
-    public void aceptar(ControladorPadreVisitor controlador) {
-        controlador.visitar(this);
-    }
+    }   
 
     @Override
     public int getMaxCantidad() {        

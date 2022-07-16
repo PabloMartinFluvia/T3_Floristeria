@@ -7,8 +7,8 @@ import com.calvogasullmartin.t3_floristeria.utils.InOut;
 import java.io.IOException;
 import java.util.List;
 import java.util.Scanner;
-import com.calvogasullmartin.t3_floristeria.controladores.ModificarProductoControlador;
 import com.calvogasullmartin.t3_floristeria.controladores.Z_OLD_MostrarConjuntoControlador;
+import com.calvogasullmartin.t3_floristeria.controladores.Z_OLD_ModificarProductoControlador;
 
 public class Z_OLD_ConjuntoProductosVista {
 
@@ -17,7 +17,7 @@ public class Z_OLD_ConjuntoProductosVista {
     //al ser un enum NO es un pecado que esta vista conozca información del modelo
 
     private Z_OLD_MostrarConjuntoControlador mostrarControlador;
-    private ModificarProductoControlador modificarControlador;
+    private Z_OLD_ModificarProductoControlador modificarControlador;
     private NuevaVentaControlador nuevaVentaControlador;
 
     public Z_OLD_ConjuntoProductosVista() {
@@ -119,7 +119,7 @@ public class Z_OLD_ConjuntoProductosVista {
         mostrarControlador.seleccionarMenu();
     }
 
-    public void interactuar(ModificarProductoControlador modificarControlador) {        
+    public void interactuar(Z_OLD_ModificarProductoControlador modificarControlador) {        
         this.modificarControlador = modificarControlador;
         Integer conjunto_id = saberStockId(false);        
         try {

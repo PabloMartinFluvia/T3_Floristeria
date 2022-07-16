@@ -1,17 +1,17 @@
 package com.calvogasullmartin.t3_floristeria.vistasConsola;
 
 import com.calvogasullmartin.t3_floristeria.controladores.AddProductoControlador;
-import com.calvogasullmartin.t3_floristeria.controladores.MostrarStocksControlador;
+import com.calvogasullmartin.t3_floristeria.controladores.StocksController;
 import com.calvogasullmartin.t3_floristeria.modelos.Altura;
 import com.calvogasullmartin.t3_floristeria.modelos.Categoria;
 import com.calvogasullmartin.t3_floristeria.modelos.Material;
 import com.calvogasullmartin.t3_floristeria.utils.PedirEnteroLimitado;
 
-public class ProductoCompletoVista extends CategoriaVista{        
+public class ProductoCompletoVista extends UnaOpcionCategoriaVista{        
     
-    private Categoria categoria;
+    //private Categoria categoria;
 
-    private AddProductoControlador controlador;
+    //private AddProductoControlador controlador;
 
     public ProductoCompletoVista() {        
     }
@@ -27,12 +27,7 @@ public class ProductoCompletoVista extends CategoriaVista{
             case 2: controlador.almacenarMaterial(pedirMaterial());break;
         }
     }
-    
-    @Override
-    protected int ofrecerOpcionTodos() {
-        return 1;
-    }
-    
+            
     //devuelve indice en el enum
     private int pedirAltura(){
         int numOpciones = Altura.values().length;
@@ -75,7 +70,7 @@ public class ProductoCompletoVista extends CategoriaVista{
         return opcion-1;
     }   
     
-    public void muestraProductoCompletoInStocks(MostrarStocksControlador controlador, int stockIndex, int productoIndex){
+    public void muestraProductoCompletoInStocks(StocksController controlador, int stockIndex, int productoIndex){
         String intro = controlador.getIntroProductoInStock(stockIndex, productoIndex);
         float precio = controlador.getPrecioProductoInStock(stockIndex, productoIndex);
         String detalles = controlador.getDetallesProductoInStock(stockIndex, productoIndex);

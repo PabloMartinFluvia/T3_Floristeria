@@ -143,7 +143,7 @@ public class JsonManager<T> {
         node = node.get(childField);                         
     }    
     
-    public boolean replaceNode_isArray_NodeIndexedWithChildIntValue(String childField,int intValue){        
+    public void replaceNode_isArray_NodeIndexedWithChildIntValue(String childField,int intValue){        
         assert node.isArray();        
         Iterator <JsonNode> iterador = node.iterator();
         boolean found = false;
@@ -154,8 +154,7 @@ public class JsonManager<T> {
                 found = true;
                 node = nodeTarget;
             }
-        }
-        return found;   
+        }  
     }    
 
     //CHECK NODES (booleans)

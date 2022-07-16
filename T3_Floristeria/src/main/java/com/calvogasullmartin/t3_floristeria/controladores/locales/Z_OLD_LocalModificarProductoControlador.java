@@ -9,9 +9,9 @@ import com.calvogasullmartin.t3_floristeria.modelos.ProductoUnidad;
 import java.io.IOException;
 import java.util.Iterator;
 import java.util.List;
-import com.calvogasullmartin.t3_floristeria.controladores.ModificarProductoControlador;
+import com.calvogasullmartin.t3_floristeria.controladores.Z_OLD_ModificarProductoControlador;
 
-public class LocalModificarProductoControlador extends LocalControladorPadre implements ModificarProductoControlador{
+public class Z_OLD_LocalModificarProductoControlador extends LocalControladorPadre implements Z_OLD_ModificarProductoControlador{
 
     private boolean isUpdateUnits; //si falso -> is delete product
     
@@ -19,7 +19,7 @@ public class LocalModificarProductoControlador extends LocalControladorPadre imp
     
     private ProductoUnidad productoUnidad;
     
-    public LocalModificarProductoControlador(Manager estados, boolean isUpdate) {
+    public Z_OLD_LocalModificarProductoControlador(Manager estados, boolean isUpdate) {
         super(estados);
         this.isUpdateUnits = this.isUpdateUnits;
     }

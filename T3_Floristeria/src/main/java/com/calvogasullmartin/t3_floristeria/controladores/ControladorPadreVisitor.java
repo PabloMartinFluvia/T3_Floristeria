@@ -10,11 +10,15 @@ public interface ControladorPadreVisitor {
     
     void visitar (MostrarStocksControlador controlador);
     
+    void visitar (IncrementarUnidadesStockControlador controlador);
+    
+    
+    
     void visitar(Z_OLD_MostrarConjuntoControlador controlador);
     
     void visitar(MostrarTotalesControlador controlador);
     
-    void visitar(ModificarProductoControlador controlador);
+    void visitar(Z_OLD_ModificarProductoControlador controlador);
     
     void visitar(NuevaVentaControlador controlador);
 }
