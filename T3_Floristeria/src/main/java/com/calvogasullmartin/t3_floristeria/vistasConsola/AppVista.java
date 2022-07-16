@@ -5,10 +5,11 @@ import com.calvogasullmartin.t3_floristeria.controladores.MenuControlador;
 import com.calvogasullmartin.t3_floristeria.Vista;
 import com.calvogasullmartin.t3_floristeria.controladores.AddProductoControlador;
 import com.calvogasullmartin.t3_floristeria.controladores.ControladorPadre;
-import com.calvogasullmartin.t3_floristeria.controladores.ModificarProductoControlador;
-import com.calvogasullmartin.t3_floristeria.controladores.MostrarConjuntoControlador;
 import com.calvogasullmartin.t3_floristeria.controladores.MostrarTotalesControlador;
 import com.calvogasullmartin.t3_floristeria.controladores.NuevaVentaControlador;
+import com.calvogasullmartin.t3_floristeria.controladores.ModificarProductoControlador;
+import com.calvogasullmartin.t3_floristeria.controladores.MostrarStocksControlador;
+import com.calvogasullmartin.t3_floristeria.controladores.Z_OLD_MostrarConjuntoControlador;
 
 public class AppVista implements Vista{       
     
@@ -16,14 +17,14 @@ public class AppVista implements Vista{
     
     
     
-    private ConjuntoProductosVista conjuntoProductosVista;
+    private Z_OLD_ConjuntoProductosVista conjuntoProductosVista;
     
     private FloristeriaVista floristeriaVista;
 
     public AppVista() {
         menuVista = new MenuVista();
         
-        conjuntoProductosVista = new ConjuntoProductosVista();
+        conjuntoProductosVista = new Z_OLD_ConjuntoProductosVista();
         floristeriaVista = new FloristeriaVista();
     }
     
@@ -51,14 +52,20 @@ public class AppVista implements Vista{
        new AddVista().interactuar(controlador);     
     }
     
-    
+    @Override
+    public void visitar(MostrarStocksControlador controlador) {
+        assert controlador != null;
+        new MostrarStocksVista().interactuar(controlador);
+    }
 
     
     
+    
+    
     @Override
-    public void visitar(MostrarConjuntoControlador controlador) {
-       assert controlador != null;
-       conjuntoProductosVista.interactuar(controlador);
+    public void visitar(Z_OLD_MostrarConjuntoControlador old_controlador) {
+       assert old_controlador != null;
+       conjuntoProductosVista.interactuar(old_controlador);
     }
 
     @Override
@@ -78,6 +85,8 @@ public class AppVista implements Vista{
        assert controlador != null;
        conjuntoProductosVista.interactuar(controlador);
     }
+
+    
     
     
 }

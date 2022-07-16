@@ -91,7 +91,7 @@ public class LocalAddProductoControlador extends LocalControladorPadre implement
     }
 
     @Override
-    public int getMaxCantidad() {
+    public int getMaxCantidad() {        
         return MAX_CANTIDAD;
     }
 

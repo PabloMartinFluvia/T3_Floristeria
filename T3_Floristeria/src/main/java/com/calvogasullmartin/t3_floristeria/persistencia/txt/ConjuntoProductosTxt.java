@@ -40,10 +40,15 @@ public class ConjuntoProductosTxt extends GenericDaoTxt<ConjuntoProductos, Integ
     }
 
     @Override
-    public ConjuntoProductos getOneStockById(int id) throws IOException {
+    public ConjuntoProductos getOneStockById(int stock_id) throws IOException {
         String stocksFieldName = Floristeria.class.getDeclaredFields()[4].getName();   
         gestor.setMainNode_FromFile();
-        ConjuntoProductos stock = (ConjuntoProductos) gestor.getObjectIndexedInArray(stocksFieldName,ConjuntoProductos.class, id-1);
+        gestor.setAuxiliarNodesNull();
+        gestor.setNode_findFieldByName_fromMain(stocksFieldName);
+        gestor.replaceNode_isArray_nodeByIndex(stock_id-1);        
+        ConjuntoProductos stock = (ConjuntoProductos) gestor.parseNodeToObject(ConjuntoProductos.class);
+        
+        //ConjuntoProductos stock = (ConjuntoProductos) gestor.getObjectIndexedInArray(stocksFieldName,ConjuntoProductos.class, id-1);
         return  stock;
     }
     

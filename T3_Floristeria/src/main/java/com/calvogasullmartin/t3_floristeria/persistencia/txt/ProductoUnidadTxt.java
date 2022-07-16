@@ -14,8 +14,7 @@ public class ProductoUnidadTxt extends GenericDaoTxt<ProductoUnidad, Integer> im
     @SuppressWarnings("unchecked")
     public void createProductoYAsociarloAlStockConUnidades(ProductoUnidad productoUnidad, int stock_id) throws IOException {
         assert stock_id <= Categoria.values().length && stock_id>0;
-        productoUnidad.getProducto().setProducto_id(findMaxProductId()+1);
-        
+        productoUnidad.getProducto().setProducto_id(findMaxProductId()+1);        
         gestor.setMainNode_FromFile();
         gestor.setAuxiliarNodesNull();                
         String atributo_stocks = Floristeria.class.getDeclaredFields()[4].getName();
@@ -33,8 +32,10 @@ public class ProductoUnidadTxt extends GenericDaoTxt<ProductoUnidad, Integer> im
         gestor.setAuxiliarNodesNull();
         String atributo_stocks = Floristeria.class.getDeclaredFields()[4].getName();
         gestor.setNode_findFieldByName_fromMain(atributo_stocks);//stocks
+        System.out.println(gestor.test());
         String atributo_producto_id = ProductoCompleto.class.getDeclaredFields()[0].getName();
-        gestor.setListNodes_findAllFieldsByName(atributo_stocks); // all producto_id in stockS
+        gestor.setListNodes_findAllFieldsByName(atributo_producto_id); // all producto_id in stockS
+        System.out.println(gestor.testList());
         return gestor.getMaxIntValue_fromListNodes();
     }
         

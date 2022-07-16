@@ -3,7 +3,7 @@ package com.calvogasullmartin.t3_floristeria.controladores;
 import java.io.IOException;
 import java.util.List;
 
-public interface MostrarConjuntoControlador extends ControladorPadre{
+public interface Z_OLD_MostrarConjuntoControlador extends ControladorPadre{
     
     public boolean isStock();
     

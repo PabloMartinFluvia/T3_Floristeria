@@ -27,6 +27,23 @@ public class ProductoUnidad {
         this.cantidad = cantidad;
     }
     
+    public float getPrecioProductoByIndex (int productoIndex){
+        return this.producto.getPrecio();        
+    }
+    
+    public String getIntroProductoByIndex(int productoIndex){
+        return this.producto.getIntroProducto();
+    }
+    
+    public String getDetallesProductoByIndex(int productoIndex){
+        return this.producto.getDetallesProducto();
+    }
+    
+    
+    
+    
+    
+    
     public String productoToString(){
         String string = producto.toString();
         return string + ".\n";

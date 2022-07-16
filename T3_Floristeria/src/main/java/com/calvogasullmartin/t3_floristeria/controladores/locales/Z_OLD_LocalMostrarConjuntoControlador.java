@@ -1,7 +1,6 @@
 package com.calvogasullmartin.t3_floristeria.controladores.locales;
 
 import com.calvogasullmartin.t3_floristeria.controladores.ControladorPadreVisitor;
-import com.calvogasullmartin.t3_floristeria.controladores.MostrarConjuntoControlador;
 import com.calvogasullmartin.t3_floristeria.modelos.Categoria;
 import com.calvogasullmartin.t3_floristeria.modelos.ConjuntoProductos;
 import com.calvogasullmartin.t3_floristeria.modelos.Estado;
@@ -9,13 +8,14 @@ import com.calvogasullmartin.t3_floristeria.modelos.Manager;
 import java.io.IOException;
 import java.util.LinkedList;
 import java.util.List;
+import com.calvogasullmartin.t3_floristeria.controladores.Z_OLD_MostrarConjuntoControlador;
 
-public class LocalMostrarConjuntoControlador extends LocalControladorPadre implements MostrarConjuntoControlador{
+public class Z_OLD_LocalMostrarConjuntoControlador extends LocalControladorPadre implements Z_OLD_MostrarConjuntoControlador{
 
     private boolean isStock; // si true se ocupa de stocks, si falso entonces se ocupa de tiquets.
     private boolean withUnits; // si true, devuelve los productos con sus unidades; si false se ignoran las unidades
     
-    public LocalMostrarConjuntoControlador(Manager estados, boolean isStock) {
+    public Z_OLD_LocalMostrarConjuntoControlador(Manager estados, boolean isStock) {
         /*
         de momento nada, aun no se necesite un atributo de tipo ConjuntoProductos
         */

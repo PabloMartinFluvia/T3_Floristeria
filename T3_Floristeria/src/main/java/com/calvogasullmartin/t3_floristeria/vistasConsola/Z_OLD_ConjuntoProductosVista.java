@@ -1,26 +1,26 @@
 package com.calvogasullmartin.t3_floristeria.vistasConsola;
 
 import com.calvogasullmartin.t3_floristeria.controladores.AddProductoControlador;
-import com.calvogasullmartin.t3_floristeria.controladores.ModificarProductoControlador;
-import com.calvogasullmartin.t3_floristeria.controladores.MostrarConjuntoControlador;
 import com.calvogasullmartin.t3_floristeria.controladores.NuevaVentaControlador;
 import com.calvogasullmartin.t3_floristeria.modelos.Categoria;
 import com.calvogasullmartin.t3_floristeria.utils.InOut;
 import java.io.IOException;
 import java.util.List;
 import java.util.Scanner;
+import com.calvogasullmartin.t3_floristeria.controladores.ModificarProductoControlador;
+import com.calvogasullmartin.t3_floristeria.controladores.Z_OLD_MostrarConjuntoControlador;
 
-public class ConjuntoProductosVista {
+public class Z_OLD_ConjuntoProductosVista {
 
     private InOut io = new InOut();
     private Categoria categoria; // enum con todos los tipos de productos / stocks posibles
     //al ser un enum NO es un pecado que esta vista conozca información del modelo
 
-    private MostrarConjuntoControlador mostrarControlador;
+    private Z_OLD_MostrarConjuntoControlador mostrarControlador;
     private ModificarProductoControlador modificarControlador;
     private NuevaVentaControlador nuevaVentaControlador;
 
-    public ConjuntoProductosVista() {
+    public Z_OLD_ConjuntoProductosVista() {
     }
 
     
@@ -100,7 +100,7 @@ public class ConjuntoProductosVista {
         return ok;
     }
     
-    public void interactuar(MostrarConjuntoControlador mostrarControlador) {
+    public void interactuar(Z_OLD_MostrarConjuntoControlador mostrarControlador) {
         this.mostrarControlador = mostrarControlador;
         mostrarControlador.setWithUnits(true); // por defecto se muestra el conjuno(s) con las unidades de los productos        
         try {

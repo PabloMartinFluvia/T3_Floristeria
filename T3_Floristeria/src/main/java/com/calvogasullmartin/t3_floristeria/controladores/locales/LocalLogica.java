@@ -9,15 +9,14 @@ import com.calvogasullmartin.t3_floristeria.modelos.Manager;
 import com.calvogasullmartin.t3_floristeria.Logica;
 import com.calvogasullmartin.t3_floristeria.controladores.AddProductoControlador;
 import com.calvogasullmartin.t3_floristeria.controladores.ControladorPadre;
-import com.calvogasullmartin.t3_floristeria.controladores.ModificarProductoControlador;
-import com.calvogasullmartin.t3_floristeria.controladores.MostrarConjuntoControlador;
 import com.calvogasullmartin.t3_floristeria.controladores.MostrarTotalesControlador;
 import com.calvogasullmartin.t3_floristeria.controladores.NuevaVentaControlador;
+import com.calvogasullmartin.t3_floristeria.controladores.ModificarProductoControlador;
+import com.calvogasullmartin.t3_floristeria.controladores.MostrarStocksControlador;
+import com.calvogasullmartin.t3_floristeria.controladores.Z_OLD_MostrarConjuntoControlador;
 
 public class LocalLogica implements Logica{    
-    
-    // clase que proporciona a todos los controladores informacion de como
-    // se gestiona la aplicacion
+        
     private Manager manager; 
 
     private ArrancarAppControlador arrancarAppControlador;     
@@ -26,11 +25,13 @@ public class LocalLogica implements Logica{
     
     private AddProductoControlador addProductoControlador;
     
+    private MostrarStocksControlador mostrarStocksControlador;
     
     
-    private MostrarConjuntoControlador mostrarStockControlador;
     
-    private MostrarConjuntoControlador mostrarTicketsControlador;
+    private Z_OLD_MostrarConjuntoControlador old_mostrarStockControlador;
+    
+    private Z_OLD_MostrarConjuntoControlador mostrarTicketsControlador;
     
     private MostrarTotalesControlador mostrarTotalValorControlador;
     
@@ -49,9 +50,10 @@ public class LocalLogica implements Logica{
         this.arrancarAppControlador = new LocalArrancarAppControlador(manager);
         this.menuControlador = new LocalMenuControlador(manager);
         this.addProductoControlador = new LocalAddProductoControlador(manager);
+        this.mostrarStocksControlador = new LocalMostrarStocksControlador(manager);
         
-        this.mostrarStockControlador = new LocalMostrarConjuntoControlador(manager, true); //stocks
-        this.mostrarTicketsControlador = new LocalMostrarConjuntoControlador(manager, false); //tiquets
+        this.old_mostrarStockControlador = new Z_OLD_LocalMostrarConjuntoControlador(manager, true); //stocks
+        this.mostrarTicketsControlador = new Z_OLD_LocalMostrarConjuntoControlador(manager, false); //tiquets
         this.mostrarTotalValorControlador = new LocalMostrarTotalesControlador(manager, true); // totalValorStocks
         this.mostrarTotalFacturacionControlador = new LocalMostrarTotalesControlador(manager, false); //totalValorTiquets
         this.modificarUnidadControlador = new LocalModificarProductoControlador(manager, true); // actualizar unidades de un producto que está en stock
@@ -65,8 +67,11 @@ public class LocalLogica implements Logica{
         mapaEstadosContoladores.put(Estado.INITIAL, arrancarAppControlador);  
         mapaEstadosContoladores.put(Estado.EN_MENU, menuControlador); 
         mapaEstadosContoladores.put(Estado.NUEVO_PRODUCTO, addProductoControlador);
+        mapaEstadosContoladores.put(Estado.MOSTRAR_STOCK, mostrarStocksControlador);
         
-        mapaEstadosContoladores.put(Estado.MOSTRAR_STOCK, mostrarStockControlador);
+        
+        //mapaEstadosContoladores.put(Estado.MOSTRAR_STOCK, old_mostrarStockControlador);
+        
         mapaEstadosContoladores.put(Estado.MOSTRAR_TIQUETS, mostrarTicketsControlador);
         mapaEstadosContoladores.put(Estado.MOSTRAR_VALOR_TIENDA, mostrarTotalValorControlador);
         mapaEstadosContoladores.put(Estado.MOSTRAR_FACTURACION_TOTAL, mostrarTotalFacturacionControlador);

@@ -199,6 +199,17 @@ public class JsonManager<T> {
         return node.toPrettyString();
     }
     
+    public String testList(){
+        String test = "";
+        Iterator<JsonNode> iterador = listNodes.iterator();
+        while (iterador.hasNext()){
+            JsonNode nodeListed = iterador.next();
+            test = test + "\n\n" + nodeListed.toPrettyString();
+        }
+        
+        return test;
+    }
+    
     //DELETE NODES (afectando al main node)
     
     public void updateNode_isArray_deleteFirstElementByChildIntValue(String childField,int intValue){
@@ -218,13 +229,13 @@ public class JsonManager<T> {
     //// PARSE
     /**
      * si vui que em retorni un MiClasse[] -> dir que la classe es MiClase[].class
-     * @param arrayClass
+     * @param objectClass
      * @return 
      */
-    public T parseNodeToObject(Class<T> arrayClass){  
+    public T parseNodeToObject(Class<T> objectClass){  
         assert node != null;
         String json = node.toPrettyString();
-        T arrayObject = gson.fromJson(json, arrayClass);        
+        T arrayObject = gson.fromJson(json, objectClass);        
         return arrayObject;        
     }
     
