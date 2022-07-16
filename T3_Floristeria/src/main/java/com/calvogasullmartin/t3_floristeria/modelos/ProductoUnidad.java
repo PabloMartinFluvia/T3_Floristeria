@@ -39,6 +39,9 @@ public class ProductoUnidad {
         return this.producto.getDetallesProducto();
     }
     
+    public int getProductoId(){
+        return this.producto.getProducto_id();
+    }
     
     
     

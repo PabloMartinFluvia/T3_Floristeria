@@ -1,9 +1,9 @@
 package com.calvogasullmartin.t3_floristeria.vistasConsola;
 
-public abstract class AllCategoariasVista extends CategoriaVista{
+public abstract class TodasOpcionCategoriaVista extends OpcionCategoriaVista{
 
     @Override
-    protected int ofrecerOpcionTodos() {
+    protected int isSoloUnaOpcion() {
         String mensage = "\n\t0) TODOS";
         io.writeln(mensage);
         return 0;

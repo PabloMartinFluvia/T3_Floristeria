@@ -1,28 +1,28 @@
 package com.calvogasullmartin.t3_floristeria.controladores.locales;
 
-import static com.calvogasullmartin.t3_floristeria.controladores.ControladorPadre.factory;
 import com.calvogasullmartin.t3_floristeria.controladores.ControladorPadreVisitor;
 import com.calvogasullmartin.t3_floristeria.controladores.IncrementarUnidadesStockControlador;
-import com.calvogasullmartin.t3_floristeria.modelos.Categoria;
-import com.calvogasullmartin.t3_floristeria.modelos.ConjuntoProductos;
 import com.calvogasullmartin.t3_floristeria.modelos.Estado;
 import com.calvogasullmartin.t3_floristeria.modelos.Manager;
+import com.calvogasullmartin.t3_floristeria.modelos.ProductoUnidad;
 import java.io.IOException;
+import java.util.Iterator;
 import java.util.List;
 
-public class LocalIntrementarUnidadesStockControlador extends LocalControladorPadre implements IncrementarUnidadesStockControlador{
-
-    private final int NUM_CATEGORIAS;
+public class LocalIntrementarUnidadesStockControlador extends LocalStocksController implements IncrementarUnidadesStockControlador{    
     
-    private List<ConjuntoProductos> stocks;
+    private final int MAX_CANTIDAD;
     
-    private ConjuntoProductos stock;
+    private ProductoUnidad producto;
     
-    private int numStocksToShow;
+    private int maxIncrement;
+    
+    private int minIncrement;
     
     public LocalIntrementarUnidadesStockControlador(Manager manager) {
-        super(manager);
-        this.NUM_CATEGORIAS = manager.getNUM_CATEGORIAS();
+        super(manager);    
+        this.conUnidades = true;
+        this.MAX_CANTIDAD = manager.getMAX_UNIDADES_EN_STOCK();
     }
     
     @Override
@@ -33,94 +33,41 @@ public class LocalIntrementarUnidadesStockControlador extends LocalControladorPa
     @Override
     public void seleccionarMenu() {
         this.setEstado(Estado.EN_MENU);
+    }    
+
+    @Override
+    public boolean isIdValid(int producto_id) {
+        List<ProductoUnidad> listaProductos = stock.getProductos();
+        Iterator<ProductoUnidad> iterador = listaProductos.iterator();
+        ProductoUnidad productoEnStock;
+        while (iterador.hasNext()){
+            productoEnStock = iterador.next();
+            if(productoEnStock.getProductoId() == producto_id){
+                producto = productoEnStock;
+                maxIncrement = MAX_CANTIDAD - producto.getCantidad();
+                minIncrement = - producto.getCantidad();
+                return true;
+            }
+        }
+        return false;
     }
     
     @Override
-    public void getStocks(int stock_index) throws IOException{        
-        if(stock_index<0){//all
-            getAllStocks();
-        } else {            
-            getOneStock(stock_index);
-        }
-    }
-    
-    protected void getAllStocks() throws IOException{   
-        stocks = factory.getConjuntoProductosDao().getAllStocks();  
-        numStocksToShow = stocks.size();
-    }
-    
-    protected void getOneStock(int stock_index) throws IOException{
-        assert stock_index >= 0 && stock_index<NUM_CATEGORIAS;
-        stock = factory.getConjuntoProductosDao().getOneStockById(stock_index + 1); 
-        numStocksToShow = 1;
-    }               
-
-    @Override
-    public int getNumConjuntosToShow() {
-        return numStocksToShow;
+    public int getMaxIncrement() {
+        return maxIncrement;
     }
 
     @Override
-    public String getStockTitleInStocks(int stockIndex) {
-        if(numStocksToShow == 1){                        
-            return "STOCK: "+Categoria.values()[stock.getId()-1];
-        }else{            
-            return "STOCK: "+Categoria.values()[stocks.get(stockIndex).getId()-1];        
-        }
+    public int getMinIncrement() {
+        return minIncrement;
     }
 
     @Override
-    public float getStockValueInStocks(int stockIndex) {
-        if(numStocksToShow == 1){                        
-            return stock.getValor_Productos();
-        }else{            
-            return stocks.get(stockIndex).getValor_Productos();
-        }
+    public void actualizarCantidad(int incremento) throws IOException{       
+        int oldCantidad = producto.getCantidad();
+        producto.setCantidad(oldCantidad + incremento);
+        factory.getProductoUnidadesDao().actualizarUnidadesProductoByStockId(producto, stock.getId());
     }
 
-    @Override
-    public int getNumProductsInStocks(int stockIndex) {
-        if(numStocksToShow == 1){                        
-            return stock.getProductos().size();
-        }else{            
-            return stocks.get(stockIndex).getProductos().size();
-        }
-    }
-
-    @Override
-    public int getCantidadProductoInStock(int stockIndex, int productIndex) {
-        if(numStocksToShow == 1){                        
-            return stock.getCantidadProductoByIndex(productIndex);
-        }else{            
-            return stocks.get(stockIndex).getCantidadProductoByIndex(productIndex);
-        }        
-    }
-
-    @Override
-    public String getIntroProductoInStock(int stockIndex, int productoIndex) {
-        if(numStocksToShow == 1){                        
-            return stock.getIntroProductoByIndex(productoIndex);
-        }else{            
-            return stocks.get(stockIndex).getIntroProductoByIndex(productoIndex);
-        }
-    }
-
-    @Override
-    public float getPrecioProductoInStock(int stockIndex, int productoIndex) {
-        if(numStocksToShow == 1){                        
-            return stock.getPrecioProductoByIndex(productoIndex);
-        }else{            
-            return stocks.get(stockIndex).getPrecioProductoByIndex(productoIndex);
-        }
-    }
-
-    @Override
-    public String getDetallesProductoInStock(int stockIndex, int productoIndex) {
-        if(numStocksToShow == 1){                        
-            return stock.getDetallesProductoByIndex(productoIndex);
-        }else{            
-            return stocks.get(stockIndex).getDetallesProductoByIndex(productoIndex);
-        }
-    }
     
 }

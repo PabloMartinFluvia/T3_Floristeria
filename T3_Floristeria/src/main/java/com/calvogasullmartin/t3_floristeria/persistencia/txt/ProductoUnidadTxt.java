@@ -73,31 +73,21 @@ public class ProductoUnidadTxt extends GenericDaoTxt<ProductoUnidad, Integer> im
     }
     
     @Override
-    public boolean actualizarUnidadesProductoByStockId(ProductoUnidad producto, int idConjunto) throws IOException {
-       
-        /*
-        go to node array (stocks)
-        go to indexed node
-        go to node array (products)
-        iterate nodes indexed till first of them who whas a child fieldName with this id value
-        parse entity to node
-        update node inexed with new enitity node
-        */
+    public void actualizarUnidadesProductoByStockId(ProductoUnidad producto, int idConjunto) throws IOException {       
         gestor.setMainNode_FromFile();
         gestor.setAuxiliarNodesNull();
         String atributo_stocks = Floristeria.class.getDeclaredFields()[4].getName();
-        gestor.setNode_findFieldByName_fromMain(atributo_stocks); //stocks array        
+        gestor.setNode_findFieldByName_fromMain(atributo_stocks); //stocks array    
         gestor.replaceNode_isArray_nodeByIndex(idConjunto-1);  //stock
         String atributo_productos = ConjuntoProductos.class.getDeclaredFields()[2].getName();
         gestor.replaceNode_findFieldByName(atributo_productos); //products array
         String atributo_producto_id = ProductoCompleto.class.getDeclaredFields()[0].getName();
         int id = producto.getProducto().getProducto_id();
-        boolean found = gestor.replaceNode_isArray_NodeIndexedWithChildIntValue(atributo_producto_id,id);//product with that id
-        if (found){
-            gestor.updateNode_setNewFloatValueInField("cantidad", producto.getCantidad());
-        }                
-        gestor.saveMainNodeInFile();
-        return found;
+        //product with that id , ya antes me he assegurado de que existe
+        gestor.replaceNode_isArray_NodeIndexedWithChildIntValue(atributo_producto_id,id);
+        String atributo_cantidad = ProductoUnidad.class.getDeclaredFields()[1].getName();
+        gestor.updateNode_setNewFloatValueInField(atributo_cantidad, producto.getCantidad());
+        gestor.saveMainNodeInFile();       
     }
     
     @Override

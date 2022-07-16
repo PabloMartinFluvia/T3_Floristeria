@@ -51,7 +51,7 @@
         "introProducto" : "ID: 2) ",
         "detallesProducto" : "Arbol con altura Mediano. "
       },
-      "cantidad" : 10
+      "cantidad" : 5.0
     } ]
   }, {
     "id" : 2,
