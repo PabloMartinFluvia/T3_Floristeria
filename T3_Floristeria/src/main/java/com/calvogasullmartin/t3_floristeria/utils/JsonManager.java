@@ -116,6 +116,11 @@ public class JsonManager<T> {
         return maxInt;
     }         
     
+    public float getFloatValue_fromNode(){
+        assert node.isNumber();
+        return node.floatValue();
+    }
+    
     //SET / REPLACE NODES (sin afectar al main node)
     
     public void setNode_fromMain(){

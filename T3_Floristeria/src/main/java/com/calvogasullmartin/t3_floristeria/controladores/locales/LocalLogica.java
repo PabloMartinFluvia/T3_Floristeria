@@ -10,7 +10,6 @@ import java.util.Map;
 import com.calvogasullmartin.t3_floristeria.controladores.MenuControlador;
 import com.calvogasullmartin.t3_floristeria.modelos.Manager;
 import com.calvogasullmartin.t3_floristeria.Logica;
-import com.calvogasullmartin.t3_floristeria.controladores.Z_OLD.MostrarTotalesControlador;
 import com.calvogasullmartin.t3_floristeria.controladores.Z_OLD.NuevaVentaControlador;
 import com.calvogasullmartin.t3_floristeria.controladores.MostrarStocksControlador;
 import com.calvogasullmartin.t3_floristeria.controladores.Z_OLD.Z_OLD_MostrarConjuntoControlador;
@@ -19,6 +18,9 @@ import com.calvogasullmartin.t3_floristeria.controladores.auxiliares.AppControla
 import com.calvogasullmartin.t3_floristeria.controladores.NuevoProductoControlador;
 import com.calvogasullmartin.t3_floristeria.controladores.InicioControlador;
 import com.calvogasullmartin.t3_floristeria.controladores.IncrementarUnidadesControlador;
+import com.calvogasullmartin.t3_floristeria.controladores.VerValorFloristeriaController;
+import com.calvogasullmartin.t3_floristeria.controladores.Z_OLD.Z_OLD_MostrarTotalesControlador;
+import com.calvogasullmartin.t3_floristeria.controladores.locales.auxiliares.LocalTotalesController;
 
 public class LocalLogica implements Logica{    
         
@@ -34,11 +36,14 @@ public class LocalLogica implements Logica{
     
     private IncrementarUnidadesControlador incrementarUnidadesStockControlador;
     
+    private VerValorFloristeriaController verValorFloristeriaControlador;
     
+    
+    private Z_OLD_MostrarTotalesControlador mostrarTotalValorControlador;
     
     private Z_OLD_MostrarConjuntoControlador mostrarTicketsControlador;    
-    private MostrarTotalesControlador mostrarTotalValorControlador;    
-    private MostrarTotalesControlador mostrarTotalFacturacionControlador;            
+        
+    private Z_OLD_MostrarTotalesControlador mostrarTotalFacturacionControlador;            
     private Z_OLD_ModificarProductoControlador eliminarProductoControlador;    
     private NuevaVentaControlador nuevaVentaControlador;
     
@@ -55,7 +60,7 @@ public class LocalLogica implements Logica{
         this.addProductoControlador = new LocalNuevoProductoControlador(manager);
         this.mostrarStocksControlador = new LocalMostrarStocksControlador(manager);
         this.incrementarUnidadesStockControlador = new LocalIncrementarUnidadesControlador(manager);
-        
+        this.verValorFloristeriaControlador = new LocalTotalesController(manager);
         
         this.mostrarTicketsControlador = new Z_OLD_LocalMostrarConjuntoControlador(manager, false); //tiquets
         this.mostrarTotalValorControlador = new LocalMostrarTotalesControlador(manager, true); // totalValorStocks
@@ -75,12 +80,13 @@ public class LocalLogica implements Logica{
         mapaEstadosContoladores.put(Estado.NUEVO_PRODUCTO, addProductoControlador);
         mapaEstadosContoladores.put(Estado.MOSTRAR_STOCK, mostrarStocksControlador);
         mapaEstadosContoladores.put(Estado.ACTUALIZAR_UNIDADES, incrementarUnidadesStockControlador);
+        mapaEstadosContoladores.put(Estado.MOSTRAR_VALOR_TIENDA, verValorFloristeriaControlador);
         
         //mapaEstadosContoladores.put(Estado.MOSTRAR_STOCK, old_mostrarStockControlador);
         //mapaEstadosContoladores.put(Estado.ACTUALIZAR_UNIDADES, old_modificarUnidadControlador);
         
         mapaEstadosContoladores.put(Estado.MOSTRAR_TIQUETS, mostrarTicketsControlador);
-        mapaEstadosContoladores.put(Estado.MOSTRAR_VALOR_TIENDA, mostrarTotalValorControlador);
+        
         mapaEstadosContoladores.put(Estado.MOSTRAR_FACTURACION_TOTAL, mostrarTotalFacturacionControlador);        
         mapaEstadosContoladores.put(Estado.RETIRAR_PRODUCTO, eliminarProductoControlador);
         mapaEstadosContoladores.put(Estado.REALIZAR_VENTA, nuevaVentaControlador);

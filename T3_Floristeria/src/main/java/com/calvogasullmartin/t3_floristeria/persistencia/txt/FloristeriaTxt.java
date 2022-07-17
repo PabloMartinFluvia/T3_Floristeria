@@ -23,10 +23,13 @@ public class FloristeriaTxt extends GenericDaoTxt<Floristeria, Integer> implemen
     }
 
     @Override
-    public float getValorFloristeria() throws IOException {
-        String nombreAtributoValor = Floristeria.class.getDeclaredFields()[2].getName();    
+    public float getValorFloristeria() throws IOException {            
         gestor.setMainNode_FromFile();
-        return gestor.getValueParsedToFloatOfFirstChildNode_x(nombreAtributoValor);
+        gestor.setAuxiliarNodesNull();
+        String atributo_valorFloristeria = Floristeria.class.getDeclaredFields()[2].getName();
+        gestor.setNode_findFieldByName_fromMain(atributo_valorFloristeria);
+        System.out.println(gestor.test());
+        return gestor.getFloatValue_fromNode();
     }
 
     @Override

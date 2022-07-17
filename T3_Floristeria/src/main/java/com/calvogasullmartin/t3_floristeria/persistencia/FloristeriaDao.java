@@ -33,7 +33,7 @@ public interface FloristeriaDao extends GenericDao<Floristeria, Integer>{
     c) find floristeria + project valor del stock (y luego coger el valor del bson document)    
     si no encutra el campo o el valor no es un string devuelve null
     */
-    public float getValorFloristeria() throws IOException;
+    public float getValorFloristeria() throws IOException; //doing
     
     /*
     Equivale a read
@@ -42,7 +42,7 @@ public interface FloristeriaDao extends GenericDao<Floristeria, Integer>{
     c) find floristeria + project valor del total facturacion (y luego coger el valor del bson document)    
     si no encutra el campo o el valor no es un string devuelve null
     */
-    public float getFacturacionFloristeria() throws IOException;
+    public float getFacturacionFloristeria() throws IOException; 
     
     /*
     Equivale a update

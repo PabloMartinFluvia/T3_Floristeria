@@ -38,7 +38,7 @@ public interface ProductoUnidadDao extends GenericDao<ProductoUnidad, Integer>{
     public boolean isVendidoAlgunaVezByProductId(int producto_id) throws IOException;
     
     //update: modificar las unidades de un producto en un determinado stock (en un tiquet ya creado no se permite)
-    public void actualizarUnidadesProductoByStockId(ProductoUnidad producto, int idConjunto) throws IOException;//doing
+    public void actualizarUnidadesProductoByStockId(ProductoUnidad producto, int idConjunto) throws IOException;//ok
     
     //delete: eliminar unidades y relación de este producto con un determinado stock
     //  **con un tiquet no es posible
