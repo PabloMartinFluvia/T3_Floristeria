@@ -1,4 +1,4 @@
-package com.calvogasullmartin.t3_floristeria.zDescartes.modelos;
+package com.calvogasullmartin.t3_floristeria.zDescartes.modelos_xxx;
 
 import com.calvogasullmartin.t3_floristeria.modelos.Material;
 import com.calvogasullmartin.t3_floristeria.modelos.Material;

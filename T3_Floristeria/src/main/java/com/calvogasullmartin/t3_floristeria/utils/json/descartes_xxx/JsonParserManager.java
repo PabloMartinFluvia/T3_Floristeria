@@ -1,4 +1,4 @@
-package com.calvogasullmartin.t3_floristeria.utils.json.descartes_xx;
+package com.calvogasullmartin.t3_floristeria.utils.json.descartes_xxx;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;

@@ -1,6 +1,6 @@
-package com.calvogasullmartin.t3_floristeria.zDescartes.modelos;
+package com.calvogasullmartin.t3_floristeria.zDescartes.modelos_xxx;
 
-import com.calvogasullmartin.t3_floristeria.zDescartes.modelos.ProductoManager;
+import com.calvogasullmartin.t3_floristeria.zDescartes.modelos_xxx.ProductoManager;
 
 public class Ticket extends ProductoManager{
     // id heredado // //1:1 composicion -> embebed

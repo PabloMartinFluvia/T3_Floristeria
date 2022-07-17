@@ -1,4 +1,4 @@
-package com.calvogasullmartin.t3_floristeria.zDescartes.modelos;
+package com.calvogasullmartin.t3_floristeria.zDescartes.modelos_xxx;
 
 public class Arbol extends Producto{
     
