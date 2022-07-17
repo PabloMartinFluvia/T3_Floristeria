@@ -69,9 +69,9 @@ public class LocalMenuControlador extends LocalAppControlador implements MenuCon
     }
 
     @Override
-    public void aceptar(AppControladorVisitor controlador) {
-        assert controlador != null;
-        controlador.visitar(this);
+    public void aceptar(AppControladorVisitor visitor) {
+        assert visitor != null;
+        visitor.visitar(this);
     }
     
 }

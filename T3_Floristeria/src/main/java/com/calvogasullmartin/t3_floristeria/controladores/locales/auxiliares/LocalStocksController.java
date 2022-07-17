@@ -26,7 +26,7 @@ public abstract class LocalStocksController extends LocalPersistenciaControlador
     }
 
     @Override
-    public abstract void aceptar(AppControladorVisitor controlador);
+    public abstract void aceptar(AppControladorVisitor visitor);
 
     @Override
     public boolean isConUnidades() {

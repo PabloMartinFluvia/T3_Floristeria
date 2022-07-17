@@ -29,8 +29,8 @@ public class LocalIncrementarUnidadesControlador extends LocalStocksController i
     }
     
     @Override
-    public void aceptar(AppControladorVisitor controlador) {
-        controlador.visitar(this);
+    public void aceptar(AppControladorVisitor visitor) {
+        visitor.visitar(this);
     }       
     
     @Override

@@ -15,7 +15,7 @@ public abstract class LocalPersistenciaControlador extends LocalAppControlador i
     }
     
     @Override
-    public abstract void aceptar(AppControladorVisitor controlador);     
+    public abstract void aceptar(AppControladorVisitor visitor);     
     
     @Override
     public String getErrorBD(){

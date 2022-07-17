@@ -12,8 +12,8 @@ public class LocalMostrarStocksControlador extends LocalStocksController impleme
     }
 
     @Override
-    public void aceptar(AppControladorVisitor controlador) {
-        controlador.visitar(this);
+    public void aceptar(AppControladorVisitor visitor) {
+        visitor.visitar(this);
     }
 
     @Override

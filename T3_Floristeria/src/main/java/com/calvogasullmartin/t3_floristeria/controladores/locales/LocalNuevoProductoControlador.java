@@ -29,8 +29,8 @@ public class LocalNuevoProductoControlador extends LocalPersistenciaControlador 
     }
 
     @Override
-    public void aceptar(AppControladorVisitor controlador) {
-        controlador.visitar(this);
+    public void aceptar(AppControladorVisitor visitor) {
+        visitor.visitar(this);
     }
     
     @Override

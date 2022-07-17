@@ -20,7 +20,6 @@ import com.calvogasullmartin.t3_floristeria.controladores.InicioControlador;
 import com.calvogasullmartin.t3_floristeria.controladores.IncrementarUnidadesControlador;
 import com.calvogasullmartin.t3_floristeria.controladores.VerValorFloristeriaController;
 import com.calvogasullmartin.t3_floristeria.controladores.Z_OLD.Z_OLD_MostrarTotalesControlador;
-import com.calvogasullmartin.t3_floristeria.controladores.locales.auxiliares.LocalTotalesController;
 
 public class LocalLogica implements Logica{    
         
@@ -60,7 +59,7 @@ public class LocalLogica implements Logica{
         this.addProductoControlador = new LocalNuevoProductoControlador(manager);
         this.mostrarStocksControlador = new LocalMostrarStocksControlador(manager);
         this.incrementarUnidadesStockControlador = new LocalIncrementarUnidadesControlador(manager);
-        this.verValorFloristeriaControlador = new LocalTotalesController(manager);
+        this.verValorFloristeriaControlador = new LocalVerValorFloristeriaController(manager);
         
         this.mostrarTicketsControlador = new Z_OLD_LocalMostrarConjuntoControlador(manager, false); //tiquets
         this.mostrarTotalValorControlador = new LocalMostrarTotalesControlador(manager, true); // totalValorStocks

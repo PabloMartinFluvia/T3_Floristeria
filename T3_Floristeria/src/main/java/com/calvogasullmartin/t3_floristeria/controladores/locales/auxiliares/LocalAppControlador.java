@@ -16,7 +16,7 @@ public abstract class LocalAppControlador implements AppControlador{
     }
 
     @Override
-    public abstract void aceptar(AppControladorVisitor controlador);
+    public abstract void aceptar(AppControladorVisitor visitor);
     
     @Override
     public void setEstado(Estado estado){
