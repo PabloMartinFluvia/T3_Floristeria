@@ -1,5 +1,7 @@
 package com.calvogasullmartin.t3_floristeria.vistasConsola;
 
+import com.calvogasullmartin.t3_floristeria.vistasConsola.auxiliares.StocksView;
+import com.calvogasullmartin.t3_floristeria.vistasConsola.vistasModelos.StockVista;
 import com.calvogasullmartin.t3_floristeria.controladores.MostrarStocksControlador;
 import com.calvogasullmartin.t3_floristeria.utils.InOut;
 import com.calvogasullmartin.t3_floristeria.utils.YesNoDialog;
@@ -25,7 +27,7 @@ public class MostrarStocksVista extends StocksView{
     
     @Override
     protected int obtenerStockIndex(String mensage) {
-        return new StocksVista().pedirCategoria(mensage);
+        return new StockVista().pedirCategoria(mensage);
     }
                 
     private void esperar(String mensage){

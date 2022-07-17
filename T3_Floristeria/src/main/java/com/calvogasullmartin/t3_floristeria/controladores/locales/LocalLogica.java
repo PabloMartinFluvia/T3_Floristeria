@@ -1,34 +1,38 @@
 package com.calvogasullmartin.t3_floristeria.controladores.locales;
 
-import com.calvogasullmartin.t3_floristeria.controladores.ArrancarAppControlador;
+import com.calvogasullmartin.t3_floristeria.controladores.locales.Z_OLD.LocalMostrarTotalesControlador;
+import com.calvogasullmartin.t3_floristeria.controladores.locales.Z_OLD.LocalNuevaVentaCotnrolador;
+import com.calvogasullmartin.t3_floristeria.controladores.locales.Z_OLD.Z_OLD_LocalModificarProductoControlador;
+import com.calvogasullmartin.t3_floristeria.controladores.locales.Z_OLD.Z_OLD_LocalMostrarConjuntoControlador;
 import com.calvogasullmartin.t3_floristeria.modelos.Estado;
 import java.util.HashMap;
 import java.util.Map;
 import com.calvogasullmartin.t3_floristeria.controladores.MenuControlador;
 import com.calvogasullmartin.t3_floristeria.modelos.Manager;
 import com.calvogasullmartin.t3_floristeria.Logica;
-import com.calvogasullmartin.t3_floristeria.controladores.AddProductoControlador;
-import com.calvogasullmartin.t3_floristeria.controladores.ControladorPadre;
-import com.calvogasullmartin.t3_floristeria.controladores.IncrementarUnidadesStockControlador;
-import com.calvogasullmartin.t3_floristeria.controladores.MostrarTotalesControlador;
-import com.calvogasullmartin.t3_floristeria.controladores.NuevaVentaControlador;
+import com.calvogasullmartin.t3_floristeria.controladores.Z_OLD.MostrarTotalesControlador;
+import com.calvogasullmartin.t3_floristeria.controladores.Z_OLD.NuevaVentaControlador;
 import com.calvogasullmartin.t3_floristeria.controladores.MostrarStocksControlador;
-import com.calvogasullmartin.t3_floristeria.controladores.Z_OLD_MostrarConjuntoControlador;
-import com.calvogasullmartin.t3_floristeria.controladores.Z_OLD_ModificarProductoControlador;
+import com.calvogasullmartin.t3_floristeria.controladores.Z_OLD.Z_OLD_MostrarConjuntoControlador;
+import com.calvogasullmartin.t3_floristeria.controladores.Z_OLD.Z_OLD_ModificarProductoControlador;
+import com.calvogasullmartin.t3_floristeria.controladores.auxiliares.AppControlador;
+import com.calvogasullmartin.t3_floristeria.controladores.NuevoProductoControlador;
+import com.calvogasullmartin.t3_floristeria.controladores.InicioControlador;
+import com.calvogasullmartin.t3_floristeria.controladores.IncrementarUnidadesControlador;
 
 public class LocalLogica implements Logica{    
         
     private Manager manager; 
 
-    private ArrancarAppControlador arrancarAppControlador;     
+    private InicioControlador arrancarAppControlador;     
     
     private MenuControlador menuControlador;
     
-    private AddProductoControlador addProductoControlador;
+    private NuevoProductoControlador addProductoControlador;
     
     private MostrarStocksControlador mostrarStocksControlador;
     
-    private IncrementarUnidadesStockControlador incrementarUnidadesStockControlador;
+    private IncrementarUnidadesControlador incrementarUnidadesStockControlador;
     
     
     
@@ -42,15 +46,15 @@ public class LocalLogica implements Logica{
     private Z_OLD_MostrarConjuntoControlador old_mostrarStockControlador;
     private Z_OLD_ModificarProductoControlador old_modificarUnidadControlador;
     
-    private Map<Estado,ControladorPadre> mapaEstadosContoladores;            
+    private Map<Estado,AppControlador> mapaEstadosContoladores;            
 
     public LocalLogica() {        
         manager = new Manager();    
-        this.arrancarAppControlador = new LocalArrancarAppControlador(manager);
+        this.arrancarAppControlador = new LocalInicioControlador(manager);
         this.menuControlador = new LocalMenuControlador(manager);
-        this.addProductoControlador = new LocalAddProductoControlador(manager);
+        this.addProductoControlador = new LocalNuevoProductoControlador(manager);
         this.mostrarStocksControlador = new LocalMostrarStocksControlador(manager);
-        this.incrementarUnidadesStockControlador = new LocalIntrementarUnidadesStockControlador(manager);
+        this.incrementarUnidadesStockControlador = new LocalIncrementarUnidadesControlador(manager);
         
         
         this.mostrarTicketsControlador = new Z_OLD_LocalMostrarConjuntoControlador(manager, false); //tiquets
@@ -84,7 +88,7 @@ public class LocalLogica implements Logica{
     }
         
     @Override
-    public ControladorPadre getControladorPadre(){          
+    public AppControlador getControladorPadre(){          
         return mapaEstadosContoladores.get(manager.getEstado());               
     }
 }

@@ -1,6 +1,6 @@
 package com.calvogasullmartin.t3_floristeria;
 
-import com.calvogasullmartin.t3_floristeria.controladores.ControladorPadre;
+import com.calvogasullmartin.t3_floristeria.controladores.auxiliares.AppControlador;
 
 public class App {
 
@@ -25,7 +25,7 @@ public class App {
     
     private void ejecutar() {
         
-        ControladorPadre controlador;        
+        AppControlador controlador;        
         do{           
             controlador = logica.getControladorPadre();
             if (controlador != null){

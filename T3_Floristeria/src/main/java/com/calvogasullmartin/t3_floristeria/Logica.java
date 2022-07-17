@@ -1,8 +1,8 @@
 package com.calvogasullmartin.t3_floristeria;
 
-import com.calvogasullmartin.t3_floristeria.controladores.ControladorPadre;
+import com.calvogasullmartin.t3_floristeria.controladores.auxiliares.AppControlador;
 
 public interface Logica {
     
-    ControladorPadre getControladorPadre();         
+    AppControlador getControladorPadre();         
 }
