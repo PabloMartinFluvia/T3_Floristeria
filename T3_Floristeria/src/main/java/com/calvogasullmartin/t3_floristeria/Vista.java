@@ -1,9 +1,9 @@
 package com.calvogasullmartin.t3_floristeria;
 
-import com.calvogasullmartin.t3_floristeria.controladores.ControladorPadre;
-import com.calvogasullmartin.t3_floristeria.controladores.ControladorPadreVisitor;
+import com.calvogasullmartin.t3_floristeria.controladores.auxiliares.AppControlador;
+import com.calvogasullmartin.t3_floristeria.controladores.AppControladorVisitor;
 
-public interface Vista extends ControladorPadreVisitor{
+public interface Vista extends AppControladorVisitor{
         
-    public void interactuar(ControladorPadre controlador);
+    public void interactuar(AppControlador controlador);
 }

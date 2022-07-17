@@ -1,12 +1,13 @@
 package com.calvogasullmartin.t3_floristeria.controladores.locales;
 
-import com.calvogasullmartin.t3_floristeria.controladores.ControladorPadreVisitor;
+import com.calvogasullmartin.t3_floristeria.controladores.locales.auxiliares.LocalAppControlador;
 import com.calvogasullmartin.t3_floristeria.controladores.MenuControlador;
 import com.calvogasullmartin.t3_floristeria.modelos.Estado;
 import com.calvogasullmartin.t3_floristeria.modelos.Manager;
 import com.calvogasullmartin.t3_floristeria.modelos.Menu;
+import com.calvogasullmartin.t3_floristeria.controladores.AppControladorVisitor;
 
-public class LocalMenuControlador extends LocalControladorPadre implements MenuControlador{
+public class LocalMenuControlador extends LocalAppControlador implements MenuControlador{
         
     public LocalMenuControlador(Manager estados) {
         super(estados);        
@@ -68,7 +69,7 @@ public class LocalMenuControlador extends LocalControladorPadre implements MenuC
     }
 
     @Override
-    public void aceptar(ControladorPadreVisitor controlador) {
+    public void aceptar(AppControladorVisitor controlador) {
         assert controlador != null;
         controlador.visitar(this);
     }

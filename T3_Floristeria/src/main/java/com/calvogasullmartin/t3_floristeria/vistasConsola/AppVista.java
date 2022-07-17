@@ -1,16 +1,19 @@
 package com.calvogasullmartin.t3_floristeria.vistasConsola;
 
-import com.calvogasullmartin.t3_floristeria.controladores.ArrancarAppControlador;
+import com.calvogasullmartin.t3_floristeria.vistasConsola.vistasModelos.FloristeriaVista;
+import com.calvogasullmartin.t3_floristeria.vistasConsola.Z_OLD.Z_OLD_ConjuntoProductosVista;
+import com.calvogasullmartin.t3_floristeria.vistasConsola.vistasModelos.MenuVista;
 import com.calvogasullmartin.t3_floristeria.controladores.MenuControlador;
 import com.calvogasullmartin.t3_floristeria.Vista;
-import com.calvogasullmartin.t3_floristeria.controladores.AddProductoControlador;
-import com.calvogasullmartin.t3_floristeria.controladores.ControladorPadre;
-import com.calvogasullmartin.t3_floristeria.controladores.IncrementarUnidadesStockControlador;
-import com.calvogasullmartin.t3_floristeria.controladores.MostrarTotalesControlador;
-import com.calvogasullmartin.t3_floristeria.controladores.NuevaVentaControlador;
+import com.calvogasullmartin.t3_floristeria.controladores.Z_OLD.MostrarTotalesControlador;
+import com.calvogasullmartin.t3_floristeria.controladores.Z_OLD.NuevaVentaControlador;
 import com.calvogasullmartin.t3_floristeria.controladores.MostrarStocksControlador;
-import com.calvogasullmartin.t3_floristeria.controladores.Z_OLD_MostrarConjuntoControlador;
-import com.calvogasullmartin.t3_floristeria.controladores.Z_OLD_ModificarProductoControlador;
+import com.calvogasullmartin.t3_floristeria.controladores.Z_OLD.Z_OLD_MostrarConjuntoControlador;
+import com.calvogasullmartin.t3_floristeria.controladores.Z_OLD.Z_OLD_ModificarProductoControlador;
+import com.calvogasullmartin.t3_floristeria.controladores.auxiliares.AppControlador;
+import com.calvogasullmartin.t3_floristeria.controladores.NuevoProductoControlador;
+import com.calvogasullmartin.t3_floristeria.controladores.InicioControlador;
+import com.calvogasullmartin.t3_floristeria.controladores.IncrementarUnidadesControlador;
 
 public class AppVista implements Vista{       
     
@@ -30,15 +33,15 @@ public class AppVista implements Vista{
     }
     
     @Override
-    public void interactuar(ControladorPadre controlador) {
+    public void interactuar(AppControlador controlador) {
         assert controlador != null;
         controlador.aceptar(this);
     }
 
     @Override
-    public void visitar(ArrancarAppControlador controlador) {
+    public void visitar(InicioControlador controlador) {
         assert controlador != null;
-        new ArrancarVista().interactuar(controlador);        
+        new InicioControladorVista().interactuar(controlador);        
     }
     
     @Override
@@ -48,9 +51,9 @@ public class AppVista implements Vista{
     }
     
     @Override
-    public void visitar(AddProductoControlador controlador) {
+    public void visitar(NuevoProductoControlador controlador) {
        assert controlador != null;
-       new AddVista().interactuar(controlador);     
+       new NuevoProductoVista().interactuar(controlador);     
     }
     
     @Override
@@ -60,7 +63,7 @@ public class AppVista implements Vista{
     }
 
     @Override
-    public void visitar(IncrementarUnidadesStockControlador controlador) {
+    public void visitar(IncrementarUnidadesControlador controlador) {
         assert controlador != null;
         new IncrementarUnidadesVista().interacturar(controlador);
     }
