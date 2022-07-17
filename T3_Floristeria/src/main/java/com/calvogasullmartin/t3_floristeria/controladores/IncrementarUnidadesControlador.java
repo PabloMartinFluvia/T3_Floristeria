@@ -3,9 +3,7 @@ package com.calvogasullmartin.t3_floristeria.controladores;
 import com.calvogasullmartin.t3_floristeria.controladores.auxiliares.StocksController;
 import java.io.IOException;
 
-public interface IncrementarUnidadesControlador extends StocksController{
-    
-    public void seleccionarMenu(); //idem a todos los que salen del menú
+public interface IncrementarUnidadesControlador extends StocksController{                
     
     boolean isIdValid(int producto_id);
     
@@ -14,4 +12,6 @@ public interface IncrementarUnidadesControlador extends StocksController{
     int getMinIncrement();
     
     void actualizarCantidad(int incremento) throws IOException;
+    
+    public void incrementarValores() throws IOException;
 }

@@ -72,11 +72,15 @@ public class ProductoCompleto {
         this.material = material;
     }
     
-    public String getIntroProducto(){
+    
+    
+    
+    ///métodes problematics per a la persistencia
+    public String obtainIntroProducto(){
         return "ID: "+producto_id+") ";
     }
     
-    public String getDetallesProducto(){
+    public String obtainDetallesProducto(){
         String detalles = null;
         switch(categoria){
             case ARBOL: 
@@ -93,6 +97,10 @@ public class ProductoCompleto {
     }
     
     
+    public int obtainCategoriaIndex(){
+        return categoria.ordinal();
+    }
+    
     
     public String toString(){
         String string = "";
@@ -108,4 +116,5 @@ public class ProductoCompleto {
         }
         return string;
     }
+    
 }

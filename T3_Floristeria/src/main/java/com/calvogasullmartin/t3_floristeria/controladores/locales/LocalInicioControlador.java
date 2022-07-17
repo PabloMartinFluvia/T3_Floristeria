@@ -50,11 +50,6 @@ public class LocalInicioControlador extends LocalPersistenciaControlador impleme
     public String getNombreFloristeria() throws IOException {
         return factory.getFloristeriaDao().getName();
     }
-
-    @Override
-    public void seleccionarMenu() {          
-        this.setEstado(Estado.EN_MENU); 
-    }
     
     @Override
     public void seleccionarExit() {

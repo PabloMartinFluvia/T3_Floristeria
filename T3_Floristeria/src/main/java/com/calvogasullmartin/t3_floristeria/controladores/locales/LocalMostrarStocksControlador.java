@@ -2,7 +2,6 @@ package com.calvogasullmartin.t3_floristeria.controladores.locales;
 
 import com.calvogasullmartin.t3_floristeria.controladores.locales.auxiliares.LocalStocksController;
 import com.calvogasullmartin.t3_floristeria.controladores.MostrarStocksControlador;
-import com.calvogasullmartin.t3_floristeria.modelos.Estado;
 import com.calvogasullmartin.t3_floristeria.modelos.Manager;
 import com.calvogasullmartin.t3_floristeria.controladores.AppControladorVisitor;
 
@@ -15,11 +14,6 @@ public class LocalMostrarStocksControlador extends LocalStocksController impleme
     @Override
     public void aceptar(AppControladorVisitor controlador) {
         controlador.visitar(this);
-    }
-
-    @Override
-    public void seleccionarMenu() {
-        this.setEstado(Estado.EN_MENU);
     }
 
     @Override

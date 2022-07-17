@@ -7,4 +7,6 @@ public interface PersistenciaControlador extends AppControlador{
     final DaoFactory factory = DaoFactory.getFactory();
     
     String getErrorBD();
+    
+    public void seleccionarMenu();
 }

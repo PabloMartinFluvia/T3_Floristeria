@@ -3,7 +3,6 @@ package com.calvogasullmartin.t3_floristeria.controladores.locales;
 import com.calvogasullmartin.t3_floristeria.controladores.locales.auxiliares.LocalPersistenciaControlador;
 import com.calvogasullmartin.t3_floristeria.modelos.Altura;
 import com.calvogasullmartin.t3_floristeria.modelos.Categoria;
-import com.calvogasullmartin.t3_floristeria.modelos.Estado;
 import com.calvogasullmartin.t3_floristeria.modelos.Manager;
 import com.calvogasullmartin.t3_floristeria.modelos.Material;
 import com.calvogasullmartin.t3_floristeria.modelos.ProductoCompleto;
@@ -21,15 +20,12 @@ public class LocalNuevoProductoControlador extends LocalPersistenciaControlador 
     private ProductoUnidad productoUnidad;
 
     private final int MAX_CANTIDAD;
+    
+    private float incrementoValor;
 
     public LocalNuevoProductoControlador(Manager manager) {
         super(manager);
         MAX_CANTIDAD = manager.getMAX_UNIDADES_EN_STOCK();
-    }
-
-    @Override
-    public void seleccionarMenu() {
-        this.setEstado(Estado.EN_MENU);
     }
 
     @Override
@@ -76,22 +72,6 @@ public class LocalNuevoProductoControlador extends LocalPersistenciaControlador 
     }
 
     @Override
-    public void addProductoConUnidadesEnStock() throws IOException {
-        factory.getProductoUnidadesDao().createProductoYAsociarloAlStockConUnidades(productoUnidad, getStockId());
-    }
-
-    @Override
-    public void actualizarValoresStock() throws IOException {
-        float incrementoValor = producto.getPrecio() * productoUnidad.getCantidad();
-        factory.getFloristeriaDao().incrementarValorFloristeria(incrementoValor);
-        factory.getConjuntoProductosDao().incrementarValorEnStockById(getStockId(), incrementoValor);
-    }
-    
-    private int getStockId() {
-        return producto.getCategoria().ordinal() + 1;
-    }   
-
-    @Override
     public int getMaxCantidad() {        
         return MAX_CANTIDAD;
     }
@@ -99,12 +79,12 @@ public class LocalNuevoProductoControlador extends LocalPersistenciaControlador 
     @Override
     public boolean isNuevo() throws IOException {
         Categoria categoria = producto.getCategoria();
-        List<ProductoCompleto> listaProductos = factory.getProductoCompletoDao()
+        List<ProductoCompleto> productosExistentesEnStock = factory.getProductoCompletoDao()
                 .getProductosSinUnidadesByStockId(categoria.ordinal() + 1);
-        if (listaProductos == null || listaProductos.isEmpty()) {
+        if (productosExistentesEnStock == null || productosExistentesEnStock.isEmpty()) {
             return true;
         } else { // hay productos de esa categoria ya guardados
-            Iterator<ProductoCompleto> iterador = listaProductos.iterator();                         
+            Iterator<ProductoCompleto> iterador = productosExistentesEnStock.iterator();                         
             while (iterador.hasNext()) {                                
                 if (sonIguales(iterador.next())) {                    
                     return false;
@@ -126,6 +106,31 @@ public class LocalNuevoProductoControlador extends LocalPersistenciaControlador 
                 break;
         }
         return iguales;
-    }            
+    }
+    
+    @Override
+    public void addProductoConUnidadesEnStock() throws IOException {
+        setIncrementoValor(productoUnidad.getCantidad());
+        factory.getProductoUnidadesDao().createProductoYAsociarloAlStockConUnidades(productoUnidad, getStockId());
+    }
+
+    
+    
+    //COMU AMB INCREMENTAR UNIDADES
+    @Override
+    public void incrementarValores() throws IOException {        
+        factory.getFloristeriaDao().incrementarValorFloristeria(incrementoValor);        
+        factory.getConjuntoProductosDao().incrementarValorEnStockById(getStockId(), incrementoValor);
+    }
+    
+    private void setIncrementoValor(int incremento){
+        incrementoValor = productoUnidad.obtainPrecioProducto()*incremento;
+    }
+    
+    private int getStockId() {
+        return productoUnidad.obtainIndexCategoria()+ 1;
+    }   
+
+                
 
 }
