@@ -1,0 +1,11 @@
+package com.calvogasullmartin.t3_floristeria.zDescartes.modelos_xxx;
+
+import com.calvogasullmartin.t3_floristeria.zDescartes.modelos_xxx.ProductoManager;
+
+public class Stock extends ProductoManager{
+    // id heredado // //1:1 composicion -> embebed
+    
+    // Map<Producto,Integer> productos heredado //1:0_N composición ->
+                            //array de documentos (Producto concreto, cantidad) embebed en json / mongo
+                            // tabla extra en mysql registros stock_id / producto_id / cantidad
+}

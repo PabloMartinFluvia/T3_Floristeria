@@ -1,9 +1,9 @@
 package com.calvogasullmartin.t3_floristeria.controladores;
 
-import com.calvogasullmartin.t3_floristeria.controladores.Z_OLD.MostrarTotalesControlador;
 import com.calvogasullmartin.t3_floristeria.controladores.Z_OLD.NuevaVentaControlador;
 import com.calvogasullmartin.t3_floristeria.controladores.Z_OLD.Z_OLD_MostrarConjuntoControlador;
 import com.calvogasullmartin.t3_floristeria.controladores.Z_OLD.Z_OLD_ModificarProductoControlador;
+import com.calvogasullmartin.t3_floristeria.controladores.Z_OLD.Z_OLD_MostrarTotalesControlador;
 
 public interface AppControladorVisitor {
         
@@ -17,11 +17,13 @@ public interface AppControladorVisitor {
     
     void visitar (IncrementarUnidadesControlador controlador);
     
+    void visitar (VerValorFloristeriaController controlador);
     
     
-    void visitar(Z_OLD_MostrarConjuntoControlador controlador);
     
-    void visitar(MostrarTotalesControlador controlador);
+    void visitar(Z_OLD_MostrarTotalesControlador controlador);
+    
+    void visitar(Z_OLD_MostrarConjuntoControlador controlador);        
     
     void visitar(Z_OLD_ModificarProductoControlador controlador);
     

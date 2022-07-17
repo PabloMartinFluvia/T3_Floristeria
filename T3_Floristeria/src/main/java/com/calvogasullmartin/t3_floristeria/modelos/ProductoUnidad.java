@@ -27,20 +27,27 @@ public class ProductoUnidad {
         this.cantidad = cantidad;
     }
     
-    public float getPrecioProductoByIndex (int productoIndex){
+    
+    
+    ///métodes problematics per a la persistencia
+    public float obtainPrecioProducto (){
         return this.producto.getPrecio();        
     }
     
-    public String getIntroProductoByIndex(int productoIndex){
-        return this.producto.getIntroProducto();
+    public String obtainIntroProducto(){
+        return this.producto.obtainIntroProducto();
     }
     
-    public String getDetallesProductoByIndex(int productoIndex){
-        return this.producto.getDetallesProducto();
+    public String obtainDetallesProducto(){
+        return this.producto.obtainDetallesProducto();
     }
     
-    public int getProductoId(){
+    public int obtainProductoId(){
         return this.producto.getProducto_id();
+    }
+    
+    public int obtainIndexCategoria(){
+        return this.producto.obtainCategoriaIndex();
     }
     
     

@@ -11,6 +11,8 @@ public interface StocksController extends PersistenciaControlador{
     
     public boolean isConUnidades();
     
+    boolean isStockEmpty();
+    
     public String getStockTitleInStocks(int stockIndex);
             
     public float getStockValueInStocks(int stockIndex);

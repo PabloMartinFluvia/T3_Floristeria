@@ -42,20 +42,22 @@ public class ConjuntoProductos {
         this.productos = productos;
     }
     
-    public int getCantidadProductoByIndex(int productoIndex){
+    
+    ///métodes problematics per a la persistencia
+    public int obtainCantidadProductoByIndex(int productoIndex){
         return this.productos.get(productoIndex).getCantidad();
     }
     
-    public float getPrecioProductoByIndex(int productoIndex){
-        return this.productos.get(productoIndex).getPrecioProductoByIndex(productoIndex);        
+    public float obtainPrecioProductoByIndex(int productoIndex){
+        return this.productos.get(productoIndex).obtainPrecioProducto();        
     }
     
-    public String getIntroProductoByIndex(int productoIndex){
-        return this.productos.get(productoIndex).getIntroProductoByIndex(productoIndex);
+    public String obtainIntroProductoByIndex(int productoIndex){
+        return this.productos.get(productoIndex).obtainIntroProducto();
     }
     
-    public String getDetallesProductoByIndex(int productoIndex){
-        return this.productos.get(productoIndex).getDetallesProductoByIndex(productoIndex);
+    public String obtainDetallesProductoByIndex(int productoIndex){
+        return this.productos.get(productoIndex).obtainDetallesProducto();
     }
 
     

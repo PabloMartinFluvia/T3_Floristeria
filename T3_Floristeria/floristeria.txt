@@ -1,11 +1,11 @@
 {
   "floristeria_id" : 1,
   "nombre_floristeria" : "FloriTest",
-  "valorStocksTotal" : 1167.2,
+  "valorStocksTotal" : 15.0,
   "valorTicketsTotal" : 0.0,
   "stocks" : [ {
     "id" : 1,
-    "valor_Productos" : 148.0,
+    "valor_Productos" : 15.0,
     "productos" : [ {
       "producto" : {
         "producto_id" : 1,
@@ -13,86 +13,16 @@
         "precio" : 1.0,
         "altura" : "MUY_ALTO"
       },
-      "cantidad" : 1
-    }, {
-      "producto" : {
-        "producto_id" : 1,
-        "categoria" : "ARBOL",
-        "precio" : 2.0,
-        "altura" : "MUY_ALTO"
-      },
-      "cantidad" : 1
-    }, {
-      "producto" : {
-        "producto_id" : 1,
-        "categoria" : "ARBOL",
-        "precio" : 8.0,
-        "altura" : "MUY_BAJO",
-        "introProducto" : "ID: 1) ",
-        "detallesProducto" : "Arbol con altura Muy bajo. "
-      },
-      "cantidad" : 5
-    }, {
-      "producto" : {
-        "producto_id" : 1,
-        "categoria" : "ARBOL",
-        "precio" : 5.0,
-        "altura" : "MUY_ALTO",
-        "introProducto" : "ID: 1) ",
-        "detallesProducto" : "Arbol con altura Muy alto. "
-      },
-      "cantidad" : 5
-    }, {
-      "producto" : {
-        "producto_id" : 2,
-        "categoria" : "ARBOL",
-        "precio" : 8.0,
-        "altura" : "MEDIANO",
-        "introProducto" : "ID: 2) ",
-        "detallesProducto" : "Arbol con altura Mediano. "
-      },
-      "cantidad" : 5.0
+      "cantidad" : 15.0
     } ]
   }, {
     "id" : 2,
-    "valor_Productos" : 421.2,
-    "productos" : [ {
-      "producto" : {
-        "producto_id" : 1,
-        "categoria" : "FLOR",
-        "precio" : 5.4,
-        "color" : "rojo"
-      },
-      "cantidad" : 78
-    } ]
+    "valor_Productos" : 0.0,
+    "productos" : [ ]
   }, {
     "id" : 3,
-    "valor_Productos" : 598.0,
-    "productos" : [ {
-      "producto" : {
-        "producto_id" : 1,
-        "categoria" : "DECORACION",
-        "precio" : 5.0,
-        "material" : "PLASTICO"
-      },
-      "cantidad" : 10
-    }, {
-      "producto" : {
-        "producto_id" : 1,
-        "categoria" : "DECORACION",
-        "precio" : 2.0,
-        "material" : "MADERA"
-      },
-      "cantidad" : 1
-    }, {
-      "producto" : {
-        "producto_id" : 1,
-        "categoria" : "DECORACION",
-        "precio" : 78.0,
-        "material" : "PLASTICO"
-      },
-      "cantidad" : 7
-    } ]
+    "valor_Productos" : 0.0,
+    "productos" : [ ]
   } ],
   "tiquets" : [ ]
 }

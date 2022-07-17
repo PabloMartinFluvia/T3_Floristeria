@@ -5,7 +5,6 @@ import com.calvogasullmartin.t3_floristeria.vistasConsola.Z_OLD.Z_OLD_ConjuntoPr
 import com.calvogasullmartin.t3_floristeria.vistasConsola.vistasModelos.MenuVista;
 import com.calvogasullmartin.t3_floristeria.controladores.MenuControlador;
 import com.calvogasullmartin.t3_floristeria.Vista;
-import com.calvogasullmartin.t3_floristeria.controladores.Z_OLD.MostrarTotalesControlador;
 import com.calvogasullmartin.t3_floristeria.controladores.Z_OLD.NuevaVentaControlador;
 import com.calvogasullmartin.t3_floristeria.controladores.MostrarStocksControlador;
 import com.calvogasullmartin.t3_floristeria.controladores.Z_OLD.Z_OLD_MostrarConjuntoControlador;
@@ -14,6 +13,8 @@ import com.calvogasullmartin.t3_floristeria.controladores.auxiliares.AppControla
 import com.calvogasullmartin.t3_floristeria.controladores.NuevoProductoControlador;
 import com.calvogasullmartin.t3_floristeria.controladores.InicioControlador;
 import com.calvogasullmartin.t3_floristeria.controladores.IncrementarUnidadesControlador;
+import com.calvogasullmartin.t3_floristeria.controladores.VerValorFloristeriaController;
+import com.calvogasullmartin.t3_floristeria.controladores.Z_OLD.Z_OLD_MostrarTotalesControlador;
 
 public class AppVista implements Vista{       
     
@@ -68,6 +69,12 @@ public class AppVista implements Vista{
         new IncrementarUnidadesVista().interacturar(controlador);
     }
     
+    @Override
+    public void visitar(VerValorFloristeriaController controlador) {
+        new VerValorFloristeriaVista().interactuar(controlador);
+    }
+    
+    
     
     
     @Override
@@ -77,9 +84,9 @@ public class AppVista implements Vista{
     }
 
     @Override
-    public void visitar(MostrarTotalesControlador controlador) {
+    public void visitar(Z_OLD_MostrarTotalesControlador controlador) {
         assert controlador != null;
-        floristeriaVista.interactuar(controlador);
+        //floristeriaVista.interactuar(controlador);
     }
 
     @Override
@@ -93,6 +100,8 @@ public class AppVista implements Vista{
        assert controlador != null;
        conjuntoProductosVista.interactuar(controlador);
     }
+
+    
 
     
 

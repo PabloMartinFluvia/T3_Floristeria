@@ -1,13 +1,13 @@
 package com.calvogasullmartin.t3_floristeria.controladores.locales.Z_OLD;
 
-import com.calvogasullmartin.t3_floristeria.controladores.Z_OLD.MostrarTotalesControlador;
 import com.calvogasullmartin.t3_floristeria.controladores.locales.auxiliares.LocalPersistenciaControlador;
 import com.calvogasullmartin.t3_floristeria.modelos.Estado;
 import com.calvogasullmartin.t3_floristeria.modelos.Manager;
 import java.io.IOException;
 import com.calvogasullmartin.t3_floristeria.controladores.AppControladorVisitor;
+import com.calvogasullmartin.t3_floristeria.controladores.Z_OLD.Z_OLD_MostrarTotalesControlador;
 
-public class LocalMostrarTotalesControlador extends LocalPersistenciaControlador implements MostrarTotalesControlador{
+public class LocalMostrarTotalesControlador extends LocalPersistenciaControlador implements Z_OLD_MostrarTotalesControlador{
 
     private boolean mostrarValorTienda; // si false -> muestra total Facturacion
     
@@ -20,12 +20,12 @@ public class LocalMostrarTotalesControlador extends LocalPersistenciaControlador
     public void aceptar(AppControladorVisitor controlador) {
         controlador.visitar(this);
     }
-
+/*
     @Override
     public boolean isMostrarValorTienda() {
         return mostrarValorTienda;
     }
-
+    */
     @Override
     public void seleccionarMenu() {
         this.setEstado(Estado.EN_MENU);

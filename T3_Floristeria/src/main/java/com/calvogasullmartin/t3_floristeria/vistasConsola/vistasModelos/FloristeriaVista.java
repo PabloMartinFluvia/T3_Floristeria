@@ -1,10 +1,8 @@
 package com.calvogasullmartin.t3_floristeria.vistasConsola.vistasModelos;
 
 import com.calvogasullmartin.t3_floristeria.utils.InOut;
-import com.calvogasullmartin.t3_floristeria.controladores.Z_OLD.MostrarTotalesControlador;
 import java.io.IOException;
-import java.util.Scanner;
-import com.calvogasullmartin.t3_floristeria.controladores.InicioControlador;
+import com.calvogasullmartin.t3_floristeria.controladores.Z_OLD.Z_OLD_MostrarTotalesControlador;
 
 public class FloristeriaVista {
 
@@ -29,17 +27,19 @@ public class FloristeriaVista {
         return nombre;
     }
     
+    public void mostrarValorFloristeria(String campo, float valor){
+        io.writeln("El valor actual "+campo+" és de: "+valor);
+    }
     
     
     
     
     
-    
-    private MostrarTotalesControlador controladorTotales;
+    private Z_OLD_MostrarTotalesControlador controladorTotales;
 
     
-    
-    public void interactuar(MostrarTotalesControlador controlador){
+    /*
+    public void interactuar(Z_OLD_MostrarTotalesControlador controlador){
         assert controlador != null;
         this.controladorTotales = controlador;
         try {
@@ -70,6 +70,6 @@ public class FloristeriaVista {
         System.out.println(mensage);
     }
 
-    
+    */
 
 }

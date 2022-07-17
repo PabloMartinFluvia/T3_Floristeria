@@ -14,7 +14,7 @@ public class LocalMenuControlador extends LocalAppControlador implements MenuCon
     }        
 
     @Override
-    public String getMenuMensage(){
+    public String getMenuMensage(){       
         return new Menu().getMenuMensage();
     }
     

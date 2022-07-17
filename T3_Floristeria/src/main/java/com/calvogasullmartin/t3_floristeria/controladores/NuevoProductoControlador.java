@@ -4,11 +4,7 @@ import com.calvogasullmartin.t3_floristeria.controladores.auxiliares.Persistenci
 import java.io.IOException;
 
 public interface NuevoProductoControlador extends PersistenciaControlador{
-    
-    public void seleccionarMenu(); //idem a todos los que salen del menú
-    
-    
-    
+        
     void inicializarNuevoProducto();
     
     void almacenarCategoria(int indexCategoria);
@@ -27,7 +23,7 @@ public interface NuevoProductoControlador extends PersistenciaControlador{
     
     void addProductoConUnidadesEnStock() throws IOException;
     
-    void actualizarValoresStock() throws IOException;        
+    void incrementarValores() throws IOException;        
     
     int getMaxCantidad();
 }

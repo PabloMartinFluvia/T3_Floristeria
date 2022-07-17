@@ -13,9 +13,7 @@ public interface InicioControlador extends PersistenciaControlador{
     
     public void guardarUnicaFloristeria(String nombre) throws IOException;
         
-    public String getNombreFloristeria() throws IOException;
-    
-    public void seleccionarMenu();    
+    public String getNombreFloristeria() throws IOException;         
     
     public void seleccionarExit();
 }

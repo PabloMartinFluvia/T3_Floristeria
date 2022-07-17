@@ -2,12 +2,9 @@ package com.calvogasullmartin.t3_floristeria.vistasConsola.auxiliares;
 
 import com.calvogasullmartin.t3_floristeria.vistasConsola.vistasModelos.StockVista;
 import com.calvogasullmartin.t3_floristeria.controladores.auxiliares.StocksController;
-import com.calvogasullmartin.t3_floristeria.utils.InOut;
 import java.io.IOException;
 
-public abstract class StocksView {
-
-    protected InOut io;
+public abstract class StocksView extends RepetirFuncionalidadVista{    
 
     // devuelve index (posición en array de stocks / array de categoria). devuelve -1 si todos        
     protected abstract int obtenerStockIndex(String mensage);

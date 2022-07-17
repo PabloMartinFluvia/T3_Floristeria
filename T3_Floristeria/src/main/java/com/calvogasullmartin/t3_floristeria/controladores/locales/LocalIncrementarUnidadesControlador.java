@@ -1,7 +1,6 @@
 package com.calvogasullmartin.t3_floristeria.controladores.locales;
 
 import com.calvogasullmartin.t3_floristeria.controladores.locales.auxiliares.LocalStocksController;
-import com.calvogasullmartin.t3_floristeria.modelos.Estado;
 import com.calvogasullmartin.t3_floristeria.modelos.Manager;
 import com.calvogasullmartin.t3_floristeria.modelos.ProductoUnidad;
 import java.io.IOException;
@@ -14,11 +13,14 @@ public class LocalIncrementarUnidadesControlador extends LocalStocksController i
     
     private final int MAX_CANTIDAD;
     
-    private ProductoUnidad producto;
+    private ProductoUnidad productoUnidadTarget;
     
     private int maxIncrement;
     
     private int minIncrement;
+    
+    private float incrementoValor;
+    
     
     public LocalIncrementarUnidadesControlador(Manager manager) {
         super(manager);    
@@ -29,13 +31,8 @@ public class LocalIncrementarUnidadesControlador extends LocalStocksController i
     @Override
     public void aceptar(AppControladorVisitor controlador) {
         controlador.visitar(this);
-    }
+    }       
     
-    @Override
-    public void seleccionarMenu() {
-        this.setEstado(Estado.EN_MENU);
-    }    
-
     @Override
     public boolean isIdValid(int producto_id) {
         List<ProductoUnidad> listaProductos = stock.getProductos();
@@ -43,10 +40,10 @@ public class LocalIncrementarUnidadesControlador extends LocalStocksController i
         ProductoUnidad productoEnStock;
         while (iterador.hasNext()){
             productoEnStock = iterador.next();
-            if(productoEnStock.getProductoId() == producto_id){
-                producto = productoEnStock;
-                maxIncrement = MAX_CANTIDAD - producto.getCantidad();
-                minIncrement = - producto.getCantidad();
+            if(productoEnStock.obtainProductoId() == producto_id){
+                productoUnidadTarget = productoEnStock;
+                maxIncrement = MAX_CANTIDAD - productoUnidadTarget.getCantidad();
+                minIncrement = - productoUnidadTarget.getCantidad();
                 return true;
             }
         }
@@ -65,10 +62,26 @@ public class LocalIncrementarUnidadesControlador extends LocalStocksController i
 
     @Override
     public void actualizarCantidad(int incremento) throws IOException{       
-        int oldCantidad = producto.getCantidad();
-        producto.setCantidad(oldCantidad + incremento);
-        factory.getProductoUnidadesDao().actualizarUnidadesProductoByStockId(producto, stock.getId());
+        setIncrementoValor(incremento);
+        productoUnidadTarget.setCantidad(productoUnidadTarget.getCantidad() + incremento);
+        factory.getProductoUnidadesDao().actualizarUnidadesProductoByStockId(productoUnidadTarget, getStockId());
     }
+    
+           
+    //COMU AMB NUEVO PRODUCTO
+    private void setIncrementoValor(int incremento){
+        incrementoValor = productoUnidadTarget.obtainPrecioProducto()*incremento;
+    }
+    
+    @Override
+    public void incrementarValores() throws IOException {        
+        factory.getFloristeriaDao().incrementarValorFloristeria(incrementoValor);        
+        factory.getConjuntoProductosDao().incrementarValorEnStockById(getStockId(), incrementoValor);
+    }
+    
+    private int getStockId() {
+        return productoUnidadTarget.obtainIndexCategoria()+ 1;
+    } 
 
     
 }
