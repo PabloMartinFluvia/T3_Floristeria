@@ -4,7 +4,7 @@ import com.calvogasullmartin.t3_floristeria.controladores.auxiliares.ExitC;
 import com.calvogasullmartin.t3_floristeria.controladores.auxiliares.PersistenciaC;
 import java.io.IOException;
 
-public interface StartC extends PersistenciaC, ExitC{
+public interface StartC extends AppC, PersistenciaC, ExitC{
     
     public boolean isPrimeraVez() throws IOException;
     

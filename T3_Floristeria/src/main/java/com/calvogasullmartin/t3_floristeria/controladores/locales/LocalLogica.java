@@ -21,8 +21,8 @@ public class LocalLogica implements Logica{
     }
     
     private void coordinarControladores(){  
-        StartC inicial = new LocalStartC(manager);
-        controladores.put(Estado.INITIAL, inicial);
+        StartC start = new LocalStartC(manager);
+        controladores.put(Estado.INITIAL, start);
         controladores.put(Estado.EXIT, null);
     }
         
