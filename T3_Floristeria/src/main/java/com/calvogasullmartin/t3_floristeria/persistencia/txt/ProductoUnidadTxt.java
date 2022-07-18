@@ -44,16 +44,16 @@ public class ProductoUnidadTxt extends GenericDaoTxt<ProductoUnidad, Integer> im
         String nombreAtributoProductos = ConjuntoProductos.class.getDeclaredFields()[2].getName();
         String nombreAtributProductoId = ProductoCompleto.class.getDeclaredFields()[0].getName();
         gestor.setMainNode_FromFile();
-        gestor.setInChildNode_x_getChildNode_ParentIsIndexedInArray
-        (nombreAtributoConjunto, stock_id-1, nombreAtributoProductos);
+        //gestor.setInChildNode_x_getChildNode_ParentIsIndexedInArray
+        //(nombreAtributoConjunto, stock_id-1, nombreAtributoProductos);
         //en child node_x está el array d stocks
-        boolean found = gestor.updateChildNode_x_IterateArrayNodeTillChildNodeHasIntValue
-            (producto_id, nombreAtributProductoId);
-        if(found){            
-            return (ProductoUnidad) gestor.parseChildNode_x_toObject(ProductoUnidad.class);
-        }else{
+        //boolean found = gestor.updateChildNode_x_IterateArrayNodeTillChildNodeHasIntValue
+        //    (producto_id, nombreAtributProductoId);
+        //if(found){            
+        //    return (ProductoUnidad) gestor.parseChildNode_x_toObject(ProductoUnidad.class);
+        //}else{
             return null;
-        }
+        //}pendent
     }
     
     @Override

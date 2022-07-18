@@ -34,8 +34,9 @@ public class ProductoCompletoTxt extends GenericDaoTxt<ProductoCompleto, Integer
         String idFieldName = ProductoCompleto.class.getDeclaredFields()[0].getName(); 
         String productosFieldName = ConjuntoProductos.class.getDeclaredFields()[2].getName(); 
         gestor.setMainNode_FromFile();
-        ProductoCompleto producto = (ProductoCompleto) gestor.findInFirstArrayNodeFirstObjectByChildIIntNodeValueField(stocksFieldName, producto_id,idFieldName, productosFieldName,ProductoCompleto.class);
-        return producto;
+        //ProductoCompleto producto = (ProductoCompleto) gestor.findInFirstArrayNodeFirstObjectByChildIIntNodeValueField(stocksFieldName, producto_id,idFieldName, productosFieldName,ProductoCompleto.class);
+        //return producto;
+        return null;//PENDENT
     }
    
     

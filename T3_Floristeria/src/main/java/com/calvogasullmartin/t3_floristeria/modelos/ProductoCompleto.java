@@ -71,16 +71,16 @@ public class ProductoCompleto {
     public void setMaterial(Material material) {
         this.material = material;
     }
-    
-    
-    
-    
-    ///métodes problematics per a la persistencia
-    public String obtainIntroProducto(){
+                    
+    public String introProducto(){
         return "ID: "+producto_id+") ";
     }
     
-    public String obtainDetallesProducto(){
+    public int categoriaIndex(){
+        return categoria.ordinal();
+    }
+    
+    public String detallesProducto(){
         String detalles = null;
         switch(categoria){
             case ARBOL: 
@@ -94,27 +94,5 @@ public class ProductoCompleto {
                 break;
         }
         return detalles;
-    }
-    
-    
-    public int obtainCategoriaIndex(){
-        return categoria.ordinal();
-    }
-    
-    
-    public String toString(){
-        String string = "";
-        string = string + producto_id+", "+ precio + ", ";
-        if(this.categoria == categoria.ARBOL){
-            string = string + altura;
-        }
-        if(this.categoria == categoria.FLOR){
-            string = string + color;
-        }
-        if(this.categoria == categoria.DECORACION){
-            string = string + material;
-        }
-        return string;
-    }
-    
+    }                        
 }

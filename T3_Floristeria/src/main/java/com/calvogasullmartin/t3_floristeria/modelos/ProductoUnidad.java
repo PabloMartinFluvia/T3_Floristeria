@@ -25,43 +25,5 @@ public class ProductoUnidad {
 
     public void setCantidad(int cantidad) {
         this.cantidad = cantidad;
-    }
-    
-    
-    
-    ///métodes problematics per a la persistencia
-    public float obtainPrecioProducto (){
-        return this.producto.getPrecio();        
-    }
-    
-    public String obtainIntroProducto(){
-        return this.producto.obtainIntroProducto();
-    }
-    
-    public String obtainDetallesProducto(){
-        return this.producto.obtainDetallesProducto();
-    }
-    
-    public int obtainProductoId(){
-        return this.producto.getProducto_id();
-    }
-    
-    public int obtainIndexCategoria(){
-        return this.producto.obtainCategoriaIndex();
-    }
-    
-    
-    
-    
-    
-    public String productoToString(){
-        String string = producto.toString();
-        return string + ".\n";
-    }
-    
-    public String productoToStringQ(){
-        String string = producto.toString();
-        return string + ", "+ cantidad + ".\n";
-    }
-    
+    }        
 }

@@ -17,14 +17,16 @@ public class ConjuntoProductosTxt extends GenericDaoTxt<ConjuntoProductos, Integ
         tiquet.setId(max_id + 1);
         String arrayFieldName = Floristeria.class.getDeclaredFields()[5].getName();
         gestor.setMainNode_FromFile();
-        gestor.addObjectInUniqueArray(tiquet, arrayFieldName);
-        gestor.saveMainNodeInFile();
+        //gestor.addObjectInUniqueArray(tiquet, arrayFieldName);
+        //gestor.saveMainNodeInFile();PENDENT
     }
     
     private int findMaxProductId() throws IOException{
         String nombreAtributoId = ConjuntoProductos.class.getDeclaredFields()[0].getName();
-        gestor.setMainNode_FromFile();
-        return gestor.findMaxIntValueInMultipleChildNodes(nombreAtributoId);
+       // gestor.setMainNode_FromFile();
+        //return gestor.findMaxIntValueInMultipleChildNodes(nombreAtributoId);
+        //PENDENT
+        return 0;
     }
     
     @Override
@@ -66,9 +68,11 @@ public class ConjuntoProductosTxt extends GenericDaoTxt<ConjuntoProductos, Integ
     public List<ConjuntoProductos> getAllTiquets() throws IOException {
         String tiquetsFieldName = Floristeria.class.getDeclaredFields()[5].getName();  
         gestor.setMainNode_FromFile();
-        ConjuntoProductos[] arrayTiquets =  (ConjuntoProductos[]) gestor.getObjectArray(tiquetsFieldName,ConjuntoProductos[].class);        
-        List<ConjuntoProductos> tiquets = Arrays.asList(arrayTiquets);        
-        return tiquets;
+        //ConjuntoProductos[] arrayTiquets =  (ConjuntoProductos[]) gestor.getObjectArray(tiquetsFieldName,ConjuntoProductos[].class);        
+        //List<ConjuntoProductos> tiquets = Arrays.asList(arrayTiquets);        
+        //return tiquets;
+        //PENDENT 
+        return null;
     }
 
     

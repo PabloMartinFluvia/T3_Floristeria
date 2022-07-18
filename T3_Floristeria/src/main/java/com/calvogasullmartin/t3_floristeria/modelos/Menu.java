@@ -4,7 +4,7 @@ public class Menu {
     
     private String menuMensage;
     
-    private int numOpcionesSinExit;
+    private final int numOpcionesSinExit;
     
     public Menu(){
         iniciarMensage();
