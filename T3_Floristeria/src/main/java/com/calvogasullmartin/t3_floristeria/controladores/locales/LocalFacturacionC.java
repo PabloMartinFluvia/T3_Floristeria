@@ -18,7 +18,7 @@ public class LocalFacturacionC extends LocalPersistenciaC implements Facturacion
 
     @Override
     public float getFacturacion() throws IOException {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+        return factory.getFloristeriaDao().getFacturacionFloristeria();
     }
 
     

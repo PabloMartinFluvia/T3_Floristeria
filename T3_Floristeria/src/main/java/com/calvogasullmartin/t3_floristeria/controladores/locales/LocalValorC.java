@@ -18,7 +18,7 @@ public class LocalValorC extends LocalPersistenciaC implements ValorC{
 
     @Override
     public float getValor() throws IOException {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+        return factory.getFloristeriaDao().getValorFloristeria();
     }
 
     

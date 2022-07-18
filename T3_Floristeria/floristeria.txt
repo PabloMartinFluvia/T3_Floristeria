@@ -1,8 +1,8 @@
 {
   "floristeria_id" : 1,
   "nombre_floristeria" : "FloriTest",
-  "valorStocksTotal" : 0.0,
-  "valorTicketsTotal" : 0.0,
+  "valorStocksTotal" : 15.2,
+  "valorTicketsTotal" : 99.87,
   "stocks" : [ {
     "id" : 1,
     "valor_Productos" : 0.0,

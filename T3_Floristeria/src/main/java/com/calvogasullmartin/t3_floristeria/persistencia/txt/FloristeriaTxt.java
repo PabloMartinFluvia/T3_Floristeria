@@ -6,7 +6,9 @@ import java.io.IOException;
 
 public class FloristeriaTxt extends GenericDaoTxt<Floristeria, Integer> implements FloristeriaDao{
 
-    private final String atributo_nombre_floristeria = Floristeria.class.getDeclaredFields()[1].getName();
+    private final String atributo_nombre = Floristeria.class.getDeclaredFields()[1].getName();
+    private final String atributo_valor = Floristeria.class.getDeclaredFields()[2].getName();
+    private final String atributo_facturacion = Floristeria.class.getDeclaredFields()[3].getName();
     
     @Override
     @SuppressWarnings("unchecked")
@@ -19,7 +21,23 @@ public class FloristeriaTxt extends GenericDaoTxt<Floristeria, Integer> implemen
     @Override
     public String getName() throws IOException { 
         gestor.setMainNode_FromFile();        
-        gestor.setNode_findFieldByName_fromMain(atributo_nombre_floristeria);
+        gestor.setNode_findFieldByName_fromMain(atributo_nombre);
         return gestor.getStringValue_fromNode();
+    }
+
+    @Override
+    public float getValorFloristeria() throws IOException {
+        gestor.setMainNode_FromFile();
+        gestor.setAuxiliarNodesNull();        
+        gestor.setNode_findFieldByName_fromMain(atributo_valor);        
+        return gestor.getFloatValue_fromNode();
+    }
+
+    @Override
+    public float getFacturacionFloristeria() throws IOException {
+        gestor.setMainNode_FromFile();
+        gestor.setAuxiliarNodesNull();        
+        gestor.setNode_findFieldByName_fromMain(atributo_facturacion);        
+        return gestor.getFloatValue_fromNode();
     }
 }
