@@ -6,6 +6,7 @@ import java.io.IOException;
 
 public class FloristeriaTxt extends GenericDaoTxt<Floristeria, Integer> implements FloristeriaDao{
 
+    private String atributo_nombre_floristeria = Floristeria.class.getDeclaredFields()[1].getName();
     
     @Override
     public void create(Floristeria floristeria) throws IOException {
@@ -16,51 +17,8 @@ public class FloristeriaTxt extends GenericDaoTxt<Floristeria, Integer> implemen
         
     @Override
     public String getName() throws IOException { 
-        gestor.setMainNode_FromFile();
-        String atributo_nombre_floristeria = Floristeria.class.getDeclaredFields()[1].getName();
+        gestor.setMainNode_FromFile();        
         gestor.setNode_findFieldByName_fromMain(atributo_nombre_floristeria);
         return gestor.getStringValue_fromNode();
     }
-
-    @Override
-    public float getValorFloristeria() throws IOException {            
-        gestor.setMainNode_FromFile();
-        gestor.setAuxiliarNodesNull();
-        String atributo_valorFloristeria = Floristeria.class.getDeclaredFields()[2].getName();
-        gestor.setNode_findFieldByName_fromMain(atributo_valorFloristeria);
-        System.out.println(gestor.test());
-        return gestor.getFloatValue_fromNode();
-    }
-
-    @Override
-    public float getFacturacionFloristeria() throws IOException {
-        gestor.setMainNode_FromFile();
-        gestor.setAuxiliarNodesNull();
-        String atributo_valorFloristeria = Floristeria.class.getDeclaredFields()[3].getName();
-        gestor.setNode_findFieldByName_fromMain(atributo_valorFloristeria);
-        System.out.println(gestor.test());
-        return gestor.getFloatValue_fromNode();
-    }
-    
-    @Override
-    public void incrementarValorFloristeria(float incremento) throws IOException {
-        gestor.setMainNode_FromFile();
-        gestor.setAuxiliarNodesNull();
-        gestor.setNode_fromMain();
-        String atributo_valorStocksTotal = Floristeria.class.getDeclaredFields()[2].getName(); 
-        gestor.updateNode_incrementFloatValueInField(atributo_valorStocksTotal, incremento);
-        gestor.saveMainNodeInFile();
-    }   
-
-    @Override
-    public void incrementarFacturacionTotal(float incremento) throws IOException {
-        gestor.setMainNode_FromFile();
-        gestor.setAuxiliarNodesNull();
-        gestor.setNode_fromMain();
-        String atributo_valorStocksTotal = Floristeria.class.getDeclaredFields()[3].getName(); 
-        gestor.updateNode_incrementFloatValueInField(atributo_valorStocksTotal, incremento);
-        gestor.saveMainNodeInFile();
-    }
-   
-    
 }

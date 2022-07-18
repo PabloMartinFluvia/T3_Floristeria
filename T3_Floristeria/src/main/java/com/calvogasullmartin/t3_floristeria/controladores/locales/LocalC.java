@@ -4,13 +4,13 @@ import com.calvogasullmartin.t3_floristeria.modelos.Estado;
 import com.calvogasullmartin.t3_floristeria.modelos.Manager;
 import com.calvogasullmartin.t3_floristeria.persistencia.DaoFactory;
 
-public abstract class LocalControlador {
+public abstract class LocalC {
     
     private Manager manager;
     
     protected final DaoFactory factory;
 
-    public LocalControlador(Manager manager) {
+    public LocalC(Manager manager) {
         this.manager = manager;
         this. factory = DaoFactory.getFactory();
     }
