@@ -1,20 +1,12 @@
 {
   "floristeria_id" : 1,
   "nombre_floristeria" : "FloriTest",
-  "valorStocksTotal" : 15.0,
+  "valorStocksTotal" : 0.0,
   "valorTicketsTotal" : 0.0,
   "stocks" : [ {
     "id" : 1,
-    "valor_Productos" : 15.0,
-    "productos" : [ {
-      "producto" : {
-        "producto_id" : 1,
-        "categoria" : "ARBOL",
-        "precio" : 1.0,
-        "altura" : "MUY_ALTO"
-      },
-      "cantidad" : 15.0
-    } ]
+    "valor_Productos" : 0.0,
+    "productos" : [ ]
   }, {
     "id" : 2,
     "valor_Productos" : 0.0,

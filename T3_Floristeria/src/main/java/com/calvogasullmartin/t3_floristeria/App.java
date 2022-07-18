@@ -9,14 +9,18 @@ public class App {
     private Vista vistaPrincipal;
 
     public App() {
-        configurarDependencias();
+        Configurador configurador = new Configurador();
+        configurarFamiliaPersistencia(configurador);
+        inyectarDependencias(configurador);
+    }
+    
+    private void configurarFamiliaPersistencia(Configurador configurador){
+        configurador.persistenciaTxt();
     }
 
-    private void configurarDependencias() {
-        Configurador configurador = new Configurador();        
+    private void inyectarDependencias(Configurador configurador) {                
         this.vistaPrincipal = configurador.vistasPorConsola();
-        this.logica = configurador.controladoresLocales();
-        configurador.persistenciaTxt();   
+        this.logica = configurador.controladoresLocales();           
     }
 
     public static void main(String[] args) {        

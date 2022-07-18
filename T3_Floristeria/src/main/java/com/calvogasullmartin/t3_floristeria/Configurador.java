@@ -8,7 +8,7 @@ import com.calvogasullmartin.t3_floristeria.vistasConsola.AppV;
 
 public class Configurador{
           
-    public void persistenciaTxt() {        
+    public void persistenciaTxt() {
         DaoFactory.setFactory(new DaoFactoryTxt());
     }
     
