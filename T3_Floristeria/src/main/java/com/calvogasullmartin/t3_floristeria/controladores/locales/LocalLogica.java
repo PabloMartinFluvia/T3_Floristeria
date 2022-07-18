@@ -6,8 +6,10 @@ import com.calvogasullmartin.t3_floristeria.modelos.Manager;
 import java.util.HashMap;
 import java.util.Map;
 import com.calvogasullmartin.t3_floristeria.controladores.AppC;
+import com.calvogasullmartin.t3_floristeria.controladores.FacturacionC;
 import com.calvogasullmartin.t3_floristeria.controladores.MenuC;
 import com.calvogasullmartin.t3_floristeria.controladores.StartC;
+import com.calvogasullmartin.t3_floristeria.controladores.ValorC;
 
 public class LocalLogica implements Logica{    
         
@@ -26,6 +28,10 @@ public class LocalLogica implements Logica{
         controladores.put(Estado.INITIAL, start);
         MenuC menu = new LocalMenuC(manager);
         controladores.put(Estado.EN_MENU, menu);
+        ValorC valor = new LocalValorC(manager);
+        controladores.put(Estado.MOSTRAR_VALOR_TIENDA, valor);
+        FacturacionC facturacion = new LocalFacturacionC(manager);
+        controladores.put(Estado.MOSTRAR_FACTURACION_TOTAL, facturacion);
         controladores.put(Estado.EXIT, null);
     }
         

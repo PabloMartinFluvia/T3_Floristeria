@@ -8,7 +8,7 @@ import com.calvogasullmartin.t3_floristeria.modelos.Manager;
 import com.calvogasullmartin.t3_floristeria.persistencia.Conector;
 import java.io.IOException;
 
-public class LocalStartC extends LocalAppC implements StartC{
+public class LocalStartC extends LocalPersistenciaC implements StartC{
 
     public LocalStartC(Manager manager) {
         super(manager);
@@ -47,12 +47,7 @@ public class LocalStartC extends LocalAppC implements StartC{
     @Override
     public String getNombreFloristeria() throws IOException {
         return factory.getFloristeriaDao().getName();
-    }
-
-    @Override
-    public void seleccionarMenu() {
-        this.setEstado(Estado.EN_MENU);
-    }
+    }    
 
     @Override
     public void seleccionarExit() {

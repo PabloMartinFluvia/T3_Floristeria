@@ -5,8 +5,7 @@ public class Manager {
     private Estado estado;
     
     private final int NUM_CATEGORIAS = 3; //3 tipos de productos = 3 stocks distintos  
-    
-    final String errorBD = "No se ha podido acceder a la base de datos";
+        
     
     private final int MAX_UNIDADES_EN_STOCK = 999999;
 
@@ -24,10 +23,6 @@ public class Manager {
 
     public int getNUM_CATEGORIAS() {
         return NUM_CATEGORIAS;
-    }
-
-    public String getErrorBD() {
-        return errorBD;
     }       
 
     public int getMAX_UNIDADES_EN_STOCK() {

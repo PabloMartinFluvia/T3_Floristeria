@@ -6,9 +6,10 @@ import java.io.IOException;
 
 public class FloristeriaTxt extends GenericDaoTxt<Floristeria, Integer> implements FloristeriaDao{
 
-    private String atributo_nombre_floristeria = Floristeria.class.getDeclaredFields()[1].getName();
+    private final String atributo_nombre_floristeria = Floristeria.class.getDeclaredFields()[1].getName();
     
     @Override
+    @SuppressWarnings("unchecked")
     public void create(Floristeria floristeria) throws IOException {
         assert floristeria != null;
         floristeria.setFloristeria_id(1); //se assigna el id aqui

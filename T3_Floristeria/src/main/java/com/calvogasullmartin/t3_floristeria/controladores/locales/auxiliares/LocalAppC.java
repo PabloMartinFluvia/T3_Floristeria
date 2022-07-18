@@ -1,5 +1,6 @@
-package com.calvogasullmartin.t3_floristeria.controladores.locales;
+package com.calvogasullmartin.t3_floristeria.controladores.locales.auxiliares;
 
+import com.calvogasullmartin.t3_floristeria.controladores.locales.auxiliares.LocalC;
 import com.calvogasullmartin.t3_floristeria.modelos.Manager;
 import com.calvogasullmartin.t3_floristeria.controladores.AppC;
 import com.calvogasullmartin.t3_floristeria.controladores.AppCVisitor;

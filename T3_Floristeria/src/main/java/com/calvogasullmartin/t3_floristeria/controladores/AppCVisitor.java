@@ -6,4 +6,8 @@ public interface AppCVisitor {
     
     void visitar(MenuC controlador);
     
+    void visitar(ValorC controlador);
+    
+    void visitar(FacturacionC controlador);
+    
 }

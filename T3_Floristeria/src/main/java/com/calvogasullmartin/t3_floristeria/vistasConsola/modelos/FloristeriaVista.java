@@ -24,4 +24,12 @@ public class FloristeriaVista {
         } while (!ok);
         return nombre;
     }
+    
+    public void mostrarValor(float valor){
+        io.writeln("El valor total actual de la floristeria es de: "+valor);
+    }
+    
+    public void mostrarFacturacion(float facturacion){
+        io.writeln("El total de la facturación ha fecha de hoy es de: "+facturacion);
+    }
 }

@@ -1,18 +1,14 @@
-package com.calvogasullmartin.t3_floristeria.controladores.locales;
+package com.calvogasullmartin.t3_floristeria.controladores.locales.auxiliares;
 
 import com.calvogasullmartin.t3_floristeria.modelos.Estado;
 import com.calvogasullmartin.t3_floristeria.modelos.Manager;
-import com.calvogasullmartin.t3_floristeria.persistencia.DaoFactory;
 
 public abstract class LocalC {
     
     private Manager manager;
-    
-    protected final DaoFactory factory;
-
+        
     public LocalC(Manager manager) {
-        this.manager = manager;
-        this. factory = DaoFactory.getFactory();
+        this.manager = manager;        
     }
                 
     public void setEstado(Estado estado){
@@ -26,11 +22,7 @@ public abstract class LocalC {
     
     public int getNUM_CATEGORIAS() {
         return this.manager.getNUM_CATEGORIAS();
-    }
-
-    public String getErrorBD() {
-        return this.manager.getErrorBD();
-    }       
+    }           
 
     public int getMAX_UNIDADES_EN_STOCK() {
         return this.manager.getMAX_UNIDADES_EN_STOCK();
