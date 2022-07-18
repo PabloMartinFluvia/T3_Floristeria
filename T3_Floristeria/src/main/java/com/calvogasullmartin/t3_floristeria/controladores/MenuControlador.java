@@ -1,7 +1,5 @@
 package com.calvogasullmartin.t3_floristeria.controladores;
 
-import com.calvogasullmartin.t3_floristeria.controladores.auxiliares.AppControlador;
-
 public interface MenuControlador extends AppControlador{
     
     public String getMenuMensage();

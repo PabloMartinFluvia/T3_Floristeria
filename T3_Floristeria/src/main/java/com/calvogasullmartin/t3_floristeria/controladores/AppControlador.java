@@ -1,4 +1,4 @@
-package com.calvogasullmartin.t3_floristeria.controladores.auxiliares;
+package com.calvogasullmartin.t3_floristeria.controladores;
 
 import com.calvogasullmartin.t3_floristeria.modelos.Estado;
 import com.calvogasullmartin.t3_floristeria.controladores.AppControladorVisitor;
