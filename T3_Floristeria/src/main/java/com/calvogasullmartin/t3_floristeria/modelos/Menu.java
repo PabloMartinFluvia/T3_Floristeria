@@ -11,7 +11,7 @@ public class Menu {
         numOpcionesSinExit = 8;
     }
     
-    public final void iniciarMensage(){
+    private void iniciarMensage(){
         menuMensage = "MENU INICAL:\n"
                 + "\t1) Añadir un articulo.\n"
                 + "\t2) Modificar unidades de un articulo.\n"

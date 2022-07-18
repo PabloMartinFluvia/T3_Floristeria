@@ -51,7 +51,7 @@ public class LocalStartC extends LocalAppC implements StartC{
 
     @Override
     public void seleccionarMenu() {
-        this.setEstado(Estado.EXIT);
+        this.setEstado(Estado.EN_MENU);
     }
 
     @Override
