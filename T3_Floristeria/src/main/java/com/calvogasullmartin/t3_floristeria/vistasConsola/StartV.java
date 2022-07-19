@@ -8,18 +8,21 @@ import java.io.IOException;
 public class StartV {
     
     private InOut io;
+    
+    private StartC controlador;
 
-    public StartV() {
+    public StartV(StartC controlador) {
         io = new InOut();
+        this.controlador = controlador;
     }
     
-    public void interactuar(StartC controlador) {
+    public void interactuar() {
         assert controlador != null;
         try {
             if (controlador.isPrimeraVez()) {
-                inizializar(controlador);
+                inizializar();
             }
-            darBienvienida(controlador);
+            darBienvienida();
             controlador.seleccionarMenu(); 
         } catch (IOException ex) {
             io.writeln(controlador.getErrorBD());
@@ -27,7 +30,7 @@ public class StartV {
         }
     }    
     
-    private void inizializar(StartC controlador) throws IOException {
+    private void inizializar() throws IOException {
         io.writeln("Aplicación ejecutandose por primera vez ...");
         controlador.iniciarPersistencia();
         io.writeln("Capa de persistencia inizializada con exito");   
@@ -37,7 +40,7 @@ public class StartV {
         io.writeln();
     }
 
-    private void darBienvienida(StartC controlador) throws IOException {
+    private void darBienvienida() throws IOException {
         String nombre = controlador.getNombreFloristeria();              
         io.writeln("Bienvenid@ al gestor de la floristeria " + nombre + ", desarrollado por CalvoGasullMartin.");        
         io.writeln();

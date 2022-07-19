@@ -18,13 +18,13 @@ public class AppV implements Vista{
     @Override
     public void visitar(StartC controlador) {
         assert controlador != null;        
-        new StartV().interactuar(controlador);
+        new StartV(controlador).interactuar();
     }
 
     @Override
     public void visitar(MenuC controlador) {
         assert controlador != null; 
-        new MenuV().interactuar(controlador);
+        new MenuV(controlador).interactuar();
     }
 
     @Override

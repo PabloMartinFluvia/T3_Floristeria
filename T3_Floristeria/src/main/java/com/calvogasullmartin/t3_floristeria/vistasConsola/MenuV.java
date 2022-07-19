@@ -8,24 +8,27 @@ public class MenuV {
     
     private InOut io;
     
+    private MenuC controlador;
+    
     private final int MIN_OPTION = 0;
 
-    public MenuV() {
+    public MenuV(MenuC controlador) {
         io = new InOut();
+        this.controlador = controlador;
     }
 
-    public void interactuar(MenuC controlador) {
+    public void interactuar() {
         assert controlador != null;
         io.writeln("\n"+controlador.getMenuMensage());
         String mensage = "Seleccione una opción";
         int max = controlador.getNumOptionsNoExit();
         PedirEnteroLimitado solicitud = new PedirEnteroLimitado(mensage,MIN_OPTION,max);
         int opcion = solicitud.read();
-        indicarFuncionalidad(opcion,controlador);
+        indicarFuncionalidad(opcion);
     }
     
     //No me gusta este switch
-    private void indicarFuncionalidad(int opcion, MenuC controlador){
+    private void indicarFuncionalidad(int opcion){
         assert opcion >= 0 && opcion <= controlador.getNumOptionsNoExit();
         switch (opcion) {
             case 1:
