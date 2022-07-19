@@ -1,10 +1,11 @@
 package com.calvogasullmartin.t3_floristeria.controladores;
 
 import com.calvogasullmartin.t3_floristeria.controladores.auxiliares.CategoriaC;
+import com.calvogasullmartin.t3_floristeria.controladores.auxiliares.IncrementadorC;
 import com.calvogasullmartin.t3_floristeria.controladores.auxiliares.PersistenciaC;
 import java.io.IOException;
 
-public interface NuevoC extends CategoriaC, PersistenciaC{
+public interface NuevoC extends CategoriaC, PersistenciaC, IncrementadorC{
     
     void resetProductoUnidad();
     
@@ -17,4 +18,6 @@ public interface NuevoC extends CategoriaC, PersistenciaC{
     void setMaterialIdx(int materialIndex);
     
     boolean estaEnStock() throws IOException;
+    
+    void guardarProductoUnidad() throws IOException;
 }
