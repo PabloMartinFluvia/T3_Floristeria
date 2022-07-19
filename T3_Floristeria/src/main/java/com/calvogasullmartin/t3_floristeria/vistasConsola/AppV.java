@@ -1,7 +1,7 @@
 package com.calvogasullmartin.t3_floristeria.vistasConsola;
 
 import com.calvogasullmartin.t3_floristeria.Vista;
-import com.calvogasullmartin.t3_floristeria.controladores.AppC;
+import com.calvogasullmartin.t3_floristeria.controladores.auxiliares.AppC;
 import com.calvogasullmartin.t3_floristeria.controladores.FacturacionC;
 import com.calvogasullmartin.t3_floristeria.controladores.MenuC;
 import com.calvogasullmartin.t3_floristeria.controladores.StartC;

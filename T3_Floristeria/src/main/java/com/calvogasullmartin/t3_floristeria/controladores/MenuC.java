@@ -1,5 +1,6 @@
 package com.calvogasullmartin.t3_floristeria.controladores;
 
+import com.calvogasullmartin.t3_floristeria.controladores.auxiliares.AppC;
 import com.calvogasullmartin.t3_floristeria.controladores.auxiliares.ExitC;
 
 public interface MenuC extends ExitC, AppC{

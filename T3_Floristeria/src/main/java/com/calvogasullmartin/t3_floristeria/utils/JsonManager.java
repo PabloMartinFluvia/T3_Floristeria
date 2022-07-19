@@ -142,10 +142,7 @@ public class JsonManager<T> {
         }
         return found;
     }
-    
-   
-    
-    
+               
     //UPADATE NODES (afectando al main node)   
     
     public void updateNode_setNewFloatValueInField(String childField,float newValue){
@@ -160,23 +157,7 @@ public class JsonManager<T> {
     
     public void updateNode_isArray_pushAuxiliarNode(){        
         ((ArrayNode)node).add(auxiliarNode);
-    }
-    
-    
-    public String test(){
-        return node.toPrettyString();
-    }
-    
-    public String testList(){
-        String test = "";
-        Iterator<JsonNode> iterador = listNodes.iterator();
-        while (iterador.hasNext()){
-            JsonNode nodeListed = iterador.next();
-            test = test + "\n\n" + nodeListed.toPrettyString();
-        }
-        
-        return test;
-    }
+    }            
     
     //DELETE NODES (afectando al main node)
     
@@ -191,8 +172,7 @@ public class JsonManager<T> {
                 iterador.remove();
             }
         }
-    }
-    
+    }    
     
     //// PARSE
     /**
@@ -205,5 +185,20 @@ public class JsonManager<T> {
         String json = node.toPrettyString();
         T arrayObject = gson.fromJson(json, objectClass);        
         return arrayObject;        
-    }    
+    }  
+    
+    //TEST: para verificar seqüencia de metodos
+    public String test(){
+        return node.toPrettyString();
+    }
+    
+    public String testList(){
+        String test = "";
+        Iterator<JsonNode> iterador = listNodes.iterator();
+        while (iterador.hasNext()){
+            JsonNode nodeListed = iterador.next();
+            test = test + "\n\n" + nodeListed.toPrettyString();
+        }        
+        return test;
+    }
 }

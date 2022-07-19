@@ -1,6 +1,6 @@
 package com.calvogasullmartin.t3_floristeria;
 
-import com.calvogasullmartin.t3_floristeria.controladores.AppC;
+import com.calvogasullmartin.t3_floristeria.controladores.auxiliares.AppC;
 
 public class App {
 
