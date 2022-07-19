@@ -5,7 +5,10 @@ import com.calvogasullmartin.t3_floristeria.persistencia.txt.*;
 public class DaoFactoryTxt extends DaoFactory{
     
     private Conector conector;
+    
     private FloristeriaDao floristeriaDao;
+    
+    private ConjuntoProductosDao conjuntoProductosDao;
        
 
     @Override
@@ -22,6 +25,14 @@ public class DaoFactoryTxt extends DaoFactory{
             floristeriaDao = new FloristeriaTxt();
         }
         return floristeriaDao;
+    }
+
+    @Override
+    public ConjuntoProductosDao getConjuntoProductosDao() {
+        if (conjuntoProductosDao == null) {
+            conjuntoProductosDao = new ConjuntoProductosTxt();
+        }
+        return conjuntoProductosDao;
     }
 
                  

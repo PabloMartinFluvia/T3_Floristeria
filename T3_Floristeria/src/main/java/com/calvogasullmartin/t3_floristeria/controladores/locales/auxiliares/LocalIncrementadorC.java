@@ -12,6 +12,8 @@ public abstract class LocalIncrementadorC extends LocalPersistenciaC implements 
     
     protected float incrementoValor;
     
+    protected float[] incrementoValorStocks;
+    
     public LocalIncrementadorC(Manager manager) {
         super(manager);
     }
@@ -27,6 +29,7 @@ public abstract class LocalIncrementadorC extends LocalPersistenciaC implements 
     @Override
     public void resetIncrValor(){
         incrementoValor = 0f;
+        incrementoValorStocks = new float[getNUM_CATEGORIAS()];
     }
 
     @Override
@@ -50,13 +53,19 @@ public abstract class LocalIncrementadorC extends LocalPersistenciaC implements 
     public abstract void addIncrValor();
     
     @Override
+    public abstract void addIncrValorStock();
+    
+    @Override
     public void updateValorTotal() throws IOException{
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+        factory.getFloristeriaDao().incrementarValorFloristeria(incrementoValor);
     }
 
     @Override
     public void updateValorStock() throws IOException{
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+        int idStock = this.getStockId();
+        factory.getConjuntoProductosDao().incrementarValorEnStockById(idStock, incrementoValor);
     }
+    
+    protected abstract int getStockId();
     
 }

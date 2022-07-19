@@ -16,14 +16,14 @@ public class IncrementadorV {
         this.controlador = controlador;
     }
     
-    public void requerirIncremento(){
+    public void requerirIncremento(String mensage){
         controlador.resetIncr();
         controlador.resetIncrValor();
         int max = controlador.getMaxIncr();
-        int min = controlador.getMinIncr();
-        String mensage = "la cantidad inicial en stock";
+        int min = controlador.getMinIncr();        
         controlador.setIncr(new ProductoUnidadV().pedirIncremento(mensage, min, max));
         controlador.addIncrValor();
+        controlador.addIncrValorStock();
     }
     
     public void actualizarTotalesStock() throws IOException{

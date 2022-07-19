@@ -16,6 +16,8 @@ public interface IncrementadorC extends PersistenciaC{
     
     void addIncrValor();
     
+    void addIncrValorStock();
+    
     void updateValorTotal() throws IOException;
     
     void updateValorStock() throws IOException;

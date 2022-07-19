@@ -41,4 +41,12 @@ public interface FloristeriaDao extends GenericDao<Floristeria, Integer>{
     si no encutra el campo o el valor no es un string devuelve null
     */
     public float getFacturacionFloristeria() throws IOException; 
+    
+    /*
+    Equivale a update
+    a)
+    b) update Floristeria set valorTotal = valorTotal+increment where floristeria_id = 1;
+    c)  db.restaurant.updateOne({ "floristeria_id" : 1 },{ $set: { "valorTotal" : : {$incr: increment} }
+    */
+    public void incrementarValorFloristeria(float incremento) throws IOException; //ok
 }

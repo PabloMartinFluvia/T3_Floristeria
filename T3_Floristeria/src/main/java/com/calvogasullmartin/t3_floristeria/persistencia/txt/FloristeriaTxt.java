@@ -40,4 +40,13 @@ public class FloristeriaTxt extends GenericDaoTxt<Floristeria, Integer> implemen
         gestor.setNode_findFieldByName_fromMain(atributo_facturacion);        
         return gestor.getFloatValue_fromNode();
     }
+
+    @Override
+    public void incrementarValorFloristeria(float incremento) throws IOException {
+        gestor.setMainNode_FromFile();
+        gestor.setAuxiliarNodesNull();
+        gestor.setNode_fromMain();
+        gestor.updateNode_incrementFloatValueInField(atributo_valor, incremento);
+        gestor.saveMainNodeInFile();
+    }
 }
