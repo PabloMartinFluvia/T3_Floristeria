@@ -2,11 +2,15 @@ package com.calvogasullmartin.t3_floristeria.controladores.auxiliares;
 
 import java.io.IOException;
 
-public interface IncrementadorC extends PersistenciaC{
+public interface UnidadesC extends PersistenciaC{
+    
+    void resetProductoUnidad();
     
     void resetIncr();
     
     void resetIncrValor();
+    
+    void resetIncrValorStocks();
     
     int getMaxIncr();
     
@@ -20,5 +24,5 @@ public interface IncrementadorC extends PersistenciaC{
     
     void updateValorTotal() throws IOException;
     
-    void updateValorStock() throws IOException;
+    void updateValoresStock() throws IOException;
 }

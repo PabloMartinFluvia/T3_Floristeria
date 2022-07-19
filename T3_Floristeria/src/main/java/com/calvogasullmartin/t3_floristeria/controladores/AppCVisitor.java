@@ -10,4 +10,5 @@ public interface AppCVisitor {
     
     void visitar(FacturacionC controlador);
     
+    void visitar(NuevoC controlador);
 }

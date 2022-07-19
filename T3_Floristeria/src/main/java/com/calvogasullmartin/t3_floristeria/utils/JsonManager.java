@@ -12,6 +12,7 @@ import com.google.gson.GsonBuilder;
 import java.io.File;
 import java.io.IOException;
 import java.util.Iterator;
+import java.util.LinkedList;
 import java.util.List;
 
 public class JsonManager<T> {
@@ -78,7 +79,12 @@ public class JsonManager<T> {
             }
         }
         return maxInt;
-    }         
+    }  
+    
+    public int getIntValue_fromNode(){
+        assert node.isInt();
+        return node.asInt();
+    }
     
     public float getFloatValue_fromNode(){
         assert node.isNumber();
@@ -125,6 +131,40 @@ public class JsonManager<T> {
             }
         }  
     }    
+    
+    /**
+     * if list node is empty -> puts a new Node in node
+     */
+    public void replaceNode_fromUniqueElementInListNode(){
+        assert listNodes.size() == 1;        
+        node = listNodes.get(0);        
+    }
+    
+    public void replaceList_NodesListWithChildFloatValue(String childField,float floatValue){  
+        Iterator<JsonNode> iterator = listNodes.iterator();
+        List<JsonNode> newNodeList = new LinkedList<>();
+        JsonNode nodeAux;
+        while (iterator.hasNext()){
+            nodeAux = iterator.next();
+            if(nodeAux.findValue(childField).floatValue() == floatValue){
+                newNodeList.add(nodeAux);
+            }
+        }
+        listNodes = newNodeList;
+    }
+    
+    public void replaceList_NodesListWithChildStringValue(String childField,String value){  
+        Iterator<JsonNode> iterator = listNodes.iterator();
+        List<JsonNode> newNodeList = new LinkedList<>();
+        JsonNode nodeAux;
+        while (iterator.hasNext()){
+            nodeAux = iterator.next();
+            if(nodeAux.findValue(childField).asText().equals(value)){
+                newNodeList.add(nodeAux);
+            } 
+        }
+        listNodes = newNodeList;
+    }
 
     //CHECK NODES (booleans)
     
@@ -146,6 +186,10 @@ public class JsonManager<T> {
     //UPADATE NODES (afectando al main node)   
     
     public void updateNode_setNewFloatValueInField(String childField,float newValue){
+        ((ObjectNode)node).put(childField, newValue);
+    }
+    
+    public void updateNode_setNewIntValueInField(String childField,int newValue){
         ((ObjectNode)node).put(childField, newValue);
     }
     
@@ -186,6 +230,11 @@ public class JsonManager<T> {
         T arrayObject = gson.fromJson(json, objectClass);        
         return arrayObject;        
     }  
+    
+    //CHECK
+    public boolean isListNodesEmpty(){
+        return listNodes.isEmpty();
+    }
     
     //TEST: para verificar seqüencia de metodos
     public String test(){

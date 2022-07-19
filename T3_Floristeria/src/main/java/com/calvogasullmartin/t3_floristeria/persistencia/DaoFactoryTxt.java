@@ -9,7 +9,10 @@ public class DaoFactoryTxt extends DaoFactory{
     private FloristeriaDao floristeriaDao;
     
     private ConjuntoProductosDao conjuntoProductosDao;
-       
+    
+    private ProductoUnidadDao productoUnidadDao;
+    
+    private ProductoCompletoDao productoCompletoDao;
 
     @Override
     public Conector getConector() {
@@ -33,7 +36,21 @@ public class DaoFactoryTxt extends DaoFactory{
             conjuntoProductosDao = new ConjuntoProductosTxt();
         }
         return conjuntoProductosDao;
+    }    
+    
+    @Override
+    public ProductoUnidadDao getProductoUnidadDao() {
+        if (productoUnidadDao == null) {
+            productoUnidadDao = new ProductoUnidadTxt();
+        }
+        return productoUnidadDao;
+    }  
+    
+    @Override
+    public ProductoCompletoDao getProductoCompletoDao() {
+        if (productoCompletoDao == null) {
+            productoCompletoDao = new ProductoCompletoTxt();
+        }
+        return productoCompletoDao;
     }
-
-                 
 }

@@ -16,18 +16,32 @@ public class ProductoCompletoV {
         
     public void requerirNuevoProducto(NuevoC controlador){           
         //el id no se pide, se encarga el dao que guarde el producto
+        controlador.resetProductoUnidad();
         int categoriaIdx = new CategoriaV(false, "la familia del producto a añadir")
                 .pedirIndexCategoria();        
         controlador.setCategoriaIdx(categoriaIdx);
         
-        controlador.setPrecio(io.readFloat("Introduzca el precio: "));
+        controlador.setPrecio(pedirPrecio());
         switch(categoriaIdx){
             case 0: controlador.setAlturaIdx(pedirAltura());break;
             case 1: controlador.setColor(pedirColor());break;
             case 2: controlador.setMaterialIdx(pedirMaterial());break;
         }
     }
-            
+    
+    /*
+    estaria bien hacer en utils un pedir float limitado
+    */
+    private float pedirPrecio(){
+        float precio = 0;
+        do{
+            precio = io.readFloat("Introduzca el precio: ");
+            if(precio <= 0){
+                io.writeln("Error: precio debe ser > 0,");
+            }
+        }while(!(precio > 0));
+        return precio;
+    }
     /*
     estaria bien hacer en utils una clase similar a CategoriaV, però que funcionara
     con cualquier clase de enum.
@@ -44,6 +58,10 @@ public class ProductoCompletoV {
         return opcion-1;
     }
     
+    /**
+     * estaria bien hacer un pedir String limitado en utils
+     * @return 
+     */
     private String pedirColor() {
         String mensaje = "Introduzca el color de la flor:";
         int min = 1,max = 20;
