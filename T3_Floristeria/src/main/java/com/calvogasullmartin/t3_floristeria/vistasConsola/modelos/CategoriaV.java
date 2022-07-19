@@ -35,7 +35,7 @@ public class CategoriaV {
     }
     
     private void mostrar(){
-        io.writeln("Opciones: ");
+        io.writeln("\nOpciones: ");
         for (int i = 0; i<maxOpciones; i++){
             String categoria = "\t"+(i+1)+") "+Categoria.values()[i];
             io.writeln(categoria);

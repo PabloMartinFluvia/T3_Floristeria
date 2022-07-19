@@ -12,7 +12,7 @@ public class ProductoUnidadV {
     }
     
     public int pedirIncremento(String mensage, int min, int max) {
-        PedirEnteroLimitado requerimiento = new PedirEnteroLimitado("Introduzca ", min, max);
+        PedirEnteroLimitado requerimiento = new PedirEnteroLimitado("Introduzca "+mensage, min, max);
         return requerimiento.read();
     }
 }

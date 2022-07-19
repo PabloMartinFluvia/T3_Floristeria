@@ -51,7 +51,7 @@ public class JsonManager<T> {
     }
     
      public void setMainNode_FromFile() throws IOException { 
-        mainNode = fileManager.getNodesFromFile();        
+        mainNode = fileManager.getNodesFromFile();             
     }
          
     public void writeObjectInFile(T object) throws IOException { 
@@ -102,7 +102,9 @@ public class JsonManager<T> {
     }
     
     public void setNode_findFieldByName_fromMain(String childField){
-        node = mainNode.get(childField);        
+        //System.out.println(mainNode.toPrettyString());
+        node = mainNode.get(childField);       
+        //System.out.println(node.toPrettyString());
     }        
     
     public void setListNodes_findAllFieldsByName(String childField){        
@@ -153,13 +155,15 @@ public class JsonManager<T> {
         listNodes = newNodeList;
     }
     
-    public void replaceList_NodesListWithChildStringValue(String childField,String value){  
+    public void replaceList_NodesListWithChildStringValue(String childField,String stringValue){  
         Iterator<JsonNode> iterator = listNodes.iterator();
         List<JsonNode> newNodeList = new LinkedList<>();
         JsonNode nodeAux;
+        JsonNode value;
         while (iterator.hasNext()){
             nodeAux = iterator.next();
-            if(nodeAux.findValue(childField).asText().equals(value)){
+            value = nodeAux.findValue(childField);
+            if(value != null && value.asText().equals(stringValue)){
                 newNodeList.add(nodeAux);
             } 
         }
@@ -249,5 +253,9 @@ public class JsonManager<T> {
             test = test + "\n\n" + nodeListed.toPrettyString();
         }        
         return test;
+    }
+    
+    public String testMain(){
+        return mainNode.toPrettyString();
     }
 }

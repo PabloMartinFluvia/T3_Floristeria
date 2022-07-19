@@ -30,9 +30,17 @@ public class ProductoCompletoTxt extends GenericDaoTxt<ProductoCompleto, Integer
         gestor.setListNodes_findAllFieldsByName(atributo_producto);//productosCompletos  lista (en todos los stocks)   
         //no se mira ni el stock ni la categoria -> ya lo filtraran otros
         gestor.replaceList_NodesListWithChildFloatValue(atributo_precio, producto.getPrecio());
-        gestor.replaceList_NodesListWithChildStringValue(atributo_altura, producto.getAltura().name());
-        gestor.replaceList_NodesListWithChildStringValue(atributo_color, producto.getColor());
-        gestor.replaceList_NodesListWithChildStringValue(atributo_material, producto.getMaterial().name());
+        if(producto.getAltura()!=null){        
+            gestor.replaceList_NodesListWithChildStringValue(atributo_altura, producto.getAltura().name());
+        }
+        if(producto.getColor()!=null){
+            gestor.replaceList_NodesListWithChildStringValue(atributo_color, producto.getColor());   
+        }
+        if(producto.getMaterial()!=null){
+            gestor.replaceList_NodesListWithChildStringValue(atributo_material, producto.getMaterial().name());
+        }
+        
+              
         if(gestor.isListNodesEmpty()){
             return 0;
         }else{

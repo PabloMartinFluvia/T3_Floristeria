@@ -10,12 +10,13 @@ public class ToMenuV {
     
     private PersistenciaC controlador;
 
-    public ToMenuV(PersistenciaC controlador) {
+    public ToMenuV(PersistenciaC controlador) {        
         this.io = new InOut();
+        this.controlador = controlador;
     }
     
     public void isMore(String mensage) {
-        YesNoDialog requerimiento = new YesNoDialog("Desea "+mensage+" o volver al menú");
+        YesNoDialog requerimiento = new YesNoDialog("Desea "+mensage+" o volver al menú");        
         if (!requerimiento.read()) {
             controlador.seleccionarMenu();
         }

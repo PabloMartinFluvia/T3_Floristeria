@@ -77,10 +77,10 @@ public abstract class LocalUnidadesC extends LocalPersistenciaC implements Unida
 
     @Override
     public void updateValoresStock() throws IOException{
-        for (int stockIndex = 0; stockIndex < this.getNUM_CATEGORIAS(); stockIndex++){
-            float incrementoStock = incrementoValorStocks[stockIndex];
+        for (int stock_id = 1; stock_id <= this.getNUM_CATEGORIAS(); stock_id++){
+            float incrementoStock = incrementoValorStocks[stock_id-1];
             if(incrementoStock != 0){
-                factory.getConjuntoProductosDao().incrementarValorEnStockById(stockIndex, incrementoStock);
+                factory.getConjuntoProductosDao().incrementarValorEnStockById(stock_id, incrementoStock);
             }
         }
     }

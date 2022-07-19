@@ -13,10 +13,10 @@ public class ConjuntoProductosTxt extends GenericDaoTxt<ConjuntoProductos, Integ
     
     @Override
     public void incrementarValorEnStockById(int idStock, float incremento) throws IOException {
-        gestor.setMainNode_FromFile();
-        gestor.setAuxiliarNodesNull();
-        gestor.setNode_findFieldByName_fromMain(atributo_stocks); //stocks        
-        gestor.replaceNode_isArray_nodeByIndex(idStock-1); //stock        
+        gestor.setMainNode_FromFile();        
+        gestor.setAuxiliarNodesNull();        
+        gestor.setNode_findFieldByName_fromMain(atributo_stocks); //stocks                
+        gestor.replaceNode_isArray_nodeByIndex(idStock-1); //stock  
         gestor.updateNode_incrementFloatValueInField(atributo_valorProductos, incremento);//stock field updated
         gestor.saveMainNodeInFile();  
     }

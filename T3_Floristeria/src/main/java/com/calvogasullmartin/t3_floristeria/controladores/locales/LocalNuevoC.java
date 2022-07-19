@@ -52,7 +52,7 @@ public class LocalNuevoC extends LocalUnidadesC implements NuevoC{
     }
     
     @Override
-    public boolean estaEnStock() throws IOException {
+    public boolean estaEnStock() throws IOException {        
         int producto_id = factory.getProductoCompletoDao().getProductoId(productoUnidad.getProducto());
         if(producto_id == 0){
             productoUnidad.setCantidad(-1);

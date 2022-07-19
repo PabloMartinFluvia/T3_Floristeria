@@ -7,7 +7,7 @@ public class ProductoUnidad {
     private int cantidad;
 
     public ProductoUnidad() {
-        producto = null;
+        producto = new ProductoCompleto();
         cantidad = 0;
     }
 
