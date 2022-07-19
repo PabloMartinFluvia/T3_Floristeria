@@ -2,10 +2,9 @@ package com.calvogasullmartin.t3_floristeria.controladores;
 
 import com.calvogasullmartin.t3_floristeria.controladores.auxiliares.CategoriaC;
 import com.calvogasullmartin.t3_floristeria.controladores.auxiliares.IncrementadorC;
-import com.calvogasullmartin.t3_floristeria.controladores.auxiliares.PersistenciaC;
 import java.io.IOException;
 
-public interface NuevoC extends CategoriaC, PersistenciaC, IncrementadorC{
+public interface NuevoC extends CategoriaC, IncrementadorC{
     
     void resetProductoUnidad();
     
