@@ -7,8 +7,8 @@ import com.calvogasullmartin.t3_floristeria.controladores.MenuC;
 import com.calvogasullmartin.t3_floristeria.controladores.NuevoC;
 import com.calvogasullmartin.t3_floristeria.controladores.StartC;
 import com.calvogasullmartin.t3_floristeria.controladores.StocksC;
-import com.calvogasullmartin.t3_floristeria.controladores.TiquetsC;
 import com.calvogasullmartin.t3_floristeria.controladores.ValorC;
+import com.calvogasullmartin.t3_floristeria.controladores.TicketsC;
 
 public class AppV implements Vista{       
     
@@ -49,15 +49,15 @@ public class AppV implements Vista{
     }
 
     @Override
-    public void visitar(TiquetsC controlador) {
+    public void visitar(TicketsC controlador) {
         assert controlador != null; 
-        new TiquetsV(controlador).interactuar();
+        new TiquetsV().interactuar(controlador);
     }
 
     @Override
     public void visitar(StocksC controlador) {
         assert controlador != null; 
-        new StocksV(controlador).interactuar();
+        new StocksV().interactuar(controlador);
     }
 
     

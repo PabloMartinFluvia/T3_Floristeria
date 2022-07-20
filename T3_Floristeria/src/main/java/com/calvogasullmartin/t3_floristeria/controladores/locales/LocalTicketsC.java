@@ -1,14 +1,14 @@
 package com.calvogasullmartin.t3_floristeria.controladores.locales;
 
-import com.calvogasullmartin.t3_floristeria.controladores.TiquetsC;
 import com.calvogasullmartin.t3_floristeria.controladores.locales.auxiliares.LocalConjuntosC;
 import java.io.IOException;
 import com.calvogasullmartin.t3_floristeria.controladores.AppCVisitorC;
 import com.calvogasullmartin.t3_floristeria.modelos.Manager;
+import com.calvogasullmartin.t3_floristeria.controladores.TicketsC;
 
-public class LocalTiquetsC extends LocalConjuntosC implements TiquetsC{
+public class LocalTicketsC extends LocalConjuntosC implements TicketsC{
 
-    public LocalTiquetsC(Manager manager) {
+    public LocalTicketsC(Manager manager) {
         super(manager);
     }
 
