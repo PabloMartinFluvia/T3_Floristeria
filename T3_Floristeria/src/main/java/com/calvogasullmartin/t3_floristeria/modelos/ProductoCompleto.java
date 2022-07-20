@@ -81,10 +81,6 @@ public class ProductoCompleto {
     public void setMaterial(Material material) {
         this.material = material;
     }
-                    
-    public String introProducto(){
-        return "ID: "+producto_id+") ";
-    }
     
     public int categoriaIndex(){
         return categoria.ordinal();
@@ -94,13 +90,13 @@ public class ProductoCompleto {
         String detalles = null;
         switch(categoria){
             case ARBOL: 
-                detalles = "Arbol: "+nombre+", altura "+altura+". ";
+                detalles = "Arbol: "+nombre+", con altura "+altura+".";
                 break;
             case FLOR: 
-                detalles = "Flor: "+nombre+", de color "+color+". ";
+                detalles = "Flor: "+nombre+", de color "+color+".";
                 break;
             case DECORACION: 
-                detalles = "Decoración: "+nombre+", tipo de material "+material+". ";
+                detalles = "Decoración: "+nombre+", de material "+material+".";
                 break;
         }
         return detalles;

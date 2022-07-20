@@ -18,10 +18,10 @@ public class ValorV {
         assert controlador != null;
         try {
             new FloristeriaVista().mostrarValor(controlador.getValor());
-            new YesWaiting("\nHa finalizado de ver el valor").bucleYes();
-            controlador.seleccionarMenu(); 
+            new YesWaiting("\nHa finalizado de ver el valor").bucleYes();            
         } catch (IOException ex) {
             io.writeln(controlador.getErrorBD());            
         }
+        controlador.seleccionarMenu(); 
     }
 }

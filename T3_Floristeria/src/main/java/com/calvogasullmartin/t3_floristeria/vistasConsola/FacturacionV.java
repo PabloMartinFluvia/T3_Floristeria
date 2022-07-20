@@ -18,10 +18,10 @@ public class FacturacionV {
         assert controlador != null;
         try {
             new FloristeriaVista().mostrarFacturacion(controlador.getFacturacion());
-            new YesWaiting("\nHa finalizado de ver la facturación").bucleYes();
-            controlador.seleccionarMenu(); 
+            new YesWaiting("\nHa finalizado de ver la facturación").bucleYes();            
         } catch (IOException ex) {
             io.writeln(controlador.getErrorBD());            
         }
+        controlador.seleccionarMenu(); 
     }
 }

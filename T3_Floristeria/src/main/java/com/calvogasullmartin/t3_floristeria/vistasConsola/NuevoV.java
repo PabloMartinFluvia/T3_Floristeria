@@ -30,6 +30,7 @@ public class NuevoV {
         } catch (IOException ex) {
             io.writeln(controlador.getErrorBD());
         }
+        controlador.setModelsNull();
         new ToMenuV(controlador).isMore("añadir más articulos");
     }
 
@@ -38,7 +39,6 @@ public class NuevoV {
         incrV.requerirIncremento("la cantidad inicial en stock");
         controlador.guardarNuevoProductoUnidad();
         io.writeln("Producto añadido con éxito.");
-        incrV.actualizarTotalesStock();
-        controlador.setModelsNull();
+        incrV.actualizarTotalesStock();        
     }
 }

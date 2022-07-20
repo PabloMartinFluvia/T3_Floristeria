@@ -1,6 +1,7 @@
 package com.calvogasullmartin.t3_floristeria.vistasConsola.modelos;
 
 import com.calvogasullmartin.t3_floristeria.controladores.NuevoC;
+import com.calvogasullmartin.t3_floristeria.controladores.auxiliares.ConjuntosC;
 import com.calvogasullmartin.t3_floristeria.modelos.Altura;
 import com.calvogasullmartin.t3_floristeria.modelos.Material;
 import com.calvogasullmartin.t3_floristeria.utils.InOut;
@@ -12,6 +13,13 @@ public class ProductoCompletoV {
     
     public ProductoCompletoV() {
         io = new InOut();
+    }
+    
+    public void mostrarProducto(ConjuntosC controlador, int[] indexs){
+        String intro = controlador.getId(indexs); //puede ser "" si el controlador decide no mostrar-lo
+        float precio = controlador.getPrecio(indexs);
+        String detalles = controlador.getDetalles(indexs);
+        io.writeln("\t"+intro+detalles+" Precio de "+precio+".");
     }
         
     public void requerirNuevoProducto(NuevoC controlador){           

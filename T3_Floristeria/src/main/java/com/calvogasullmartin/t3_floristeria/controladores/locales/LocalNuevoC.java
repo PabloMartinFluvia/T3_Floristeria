@@ -1,6 +1,5 @@
 package com.calvogasullmartin.t3_floristeria.controladores.locales;
 
-import com.calvogasullmartin.t3_floristeria.controladores.AppCVisitor;
 import com.calvogasullmartin.t3_floristeria.controladores.NuevoC;
 import com.calvogasullmartin.t3_floristeria.controladores.locales.auxiliares.LocalUnidadesC;
 import com.calvogasullmartin.t3_floristeria.modelos.Altura;
@@ -8,6 +7,7 @@ import com.calvogasullmartin.t3_floristeria.modelos.Categoria;
 import com.calvogasullmartin.t3_floristeria.modelos.Manager;
 import com.calvogasullmartin.t3_floristeria.modelos.Material;
 import java.io.IOException;
+import com.calvogasullmartin.t3_floristeria.controladores.AppCVisitorC;
 
 public class LocalNuevoC extends LocalUnidadesC implements NuevoC{    
     
@@ -16,7 +16,7 @@ public class LocalNuevoC extends LocalUnidadesC implements NuevoC{
     }
     
     @Override
-    public void aceptar(AppCVisitor controlador) {
+    public void aceptar(AppCVisitorC controlador) {
         controlador.visitar(this);
     }
     

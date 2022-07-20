@@ -1,11 +1,11 @@
 package com.calvogasullmartin.t3_floristeria.controladores.locales.auxiliares;
 
-import com.calvogasullmartin.t3_floristeria.controladores.AppCVisitor;
 import com.calvogasullmartin.t3_floristeria.controladores.locales.LocalPersistenciaC;
 import com.calvogasullmartin.t3_floristeria.modelos.Manager;
 import java.io.IOException;
 import com.calvogasullmartin.t3_floristeria.controladores.auxiliares.UnidadesC;
 import com.calvogasullmartin.t3_floristeria.modelos.ProductoUnidad;
+import com.calvogasullmartin.t3_floristeria.controladores.AppCVisitorC;
 
 public abstract class LocalUnidadesC extends LocalPersistenciaC implements UnidadesC {
 
@@ -22,7 +22,7 @@ public abstract class LocalUnidadesC extends LocalPersistenciaC implements Unida
     }
 
     @Override
-    public abstract void aceptar(AppCVisitor controlador);
+    public abstract void aceptar(AppCVisitorC controlador);
 
     @Override
     public void resetModels() {

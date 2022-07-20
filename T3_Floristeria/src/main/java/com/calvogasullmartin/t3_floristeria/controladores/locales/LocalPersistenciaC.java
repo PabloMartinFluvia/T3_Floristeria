@@ -1,11 +1,11 @@
 package com.calvogasullmartin.t3_floristeria.controladores.locales;
 
-import com.calvogasullmartin.t3_floristeria.controladores.AppCVisitor;
 import com.calvogasullmartin.t3_floristeria.controladores.auxiliares.PersistenciaC;
 import com.calvogasullmartin.t3_floristeria.controladores.locales.auxiliares.LocalAppC;
 import com.calvogasullmartin.t3_floristeria.modelos.Estado;
 import com.calvogasullmartin.t3_floristeria.modelos.Manager;
 import com.calvogasullmartin.t3_floristeria.persistencia.DaoFactory;
+import com.calvogasullmartin.t3_floristeria.controladores.AppCVisitorC;
 
 public abstract class LocalPersistenciaC extends LocalAppC implements PersistenciaC{
 
@@ -20,7 +20,7 @@ public abstract class LocalPersistenciaC extends LocalAppC implements Persistenc
 
     
     @Override
-    public abstract void aceptar(AppCVisitor controlador);
+    public abstract void aceptar(AppCVisitorC controlador);
 
     @Override
     public void seleccionarMenu() {

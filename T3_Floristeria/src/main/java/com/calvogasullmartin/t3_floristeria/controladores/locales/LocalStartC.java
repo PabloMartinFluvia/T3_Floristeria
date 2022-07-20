@@ -1,12 +1,12 @@
 package com.calvogasullmartin.t3_floristeria.controladores.locales;
 
-import com.calvogasullmartin.t3_floristeria.controladores.AppCVisitor;
 import com.calvogasullmartin.t3_floristeria.controladores.StartC;
 import com.calvogasullmartin.t3_floristeria.modelos.Estado;
 import com.calvogasullmartin.t3_floristeria.modelos.Floristeria;
 import com.calvogasullmartin.t3_floristeria.modelos.Manager;
 import com.calvogasullmartin.t3_floristeria.persistencia.Conector;
 import java.io.IOException;
+import com.calvogasullmartin.t3_floristeria.controladores.AppCVisitorC;
 
 public class LocalStartC extends LocalPersistenciaC implements StartC{
 
@@ -15,7 +15,7 @@ public class LocalStartC extends LocalPersistenciaC implements StartC{
     }
         
     @Override
-    public void aceptar(AppCVisitor controlador) {
+    public void aceptar(AppCVisitorC controlador) {
         controlador.visitar(this);
     }
 

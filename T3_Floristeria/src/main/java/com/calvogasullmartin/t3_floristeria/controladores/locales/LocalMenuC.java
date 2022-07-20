@@ -1,11 +1,11 @@
 package com.calvogasullmartin.t3_floristeria.controladores.locales;
 
 import com.calvogasullmartin.t3_floristeria.controladores.locales.auxiliares.LocalAppC;
-import com.calvogasullmartin.t3_floristeria.controladores.AppCVisitor;
 import com.calvogasullmartin.t3_floristeria.controladores.MenuC;
 import com.calvogasullmartin.t3_floristeria.modelos.Estado;
 import com.calvogasullmartin.t3_floristeria.modelos.Manager;
 import com.calvogasullmartin.t3_floristeria.modelos.Menu;
+import com.calvogasullmartin.t3_floristeria.controladores.AppCVisitorC;
 
 public class LocalMenuC extends LocalAppC implements MenuC{
 
@@ -17,7 +17,7 @@ public class LocalMenuC extends LocalAppC implements MenuC{
     }
     
     @Override
-    public void aceptar(AppCVisitor controlador) {
+    public void aceptar(AppCVisitorC controlador) {
         controlador.visitar(this);
     }
 

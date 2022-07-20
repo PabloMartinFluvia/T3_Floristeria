@@ -1,6 +1,6 @@
 package com.calvogasullmartin.t3_floristeria.controladores;
 
-public interface AppCVisitor {
+public interface AppCVisitorC {
         
     void visitar(StartC controlador);
     
@@ -11,4 +11,6 @@ public interface AppCVisitor {
     void visitar(FacturacionC controlador);
     
     void visitar(NuevoC controlador);
+    
+    void visitar(TiquetsC controlador);
 }

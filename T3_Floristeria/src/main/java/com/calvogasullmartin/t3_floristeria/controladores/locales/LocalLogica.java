@@ -10,6 +10,7 @@ import com.calvogasullmartin.t3_floristeria.controladores.FacturacionC;
 import com.calvogasullmartin.t3_floristeria.controladores.MenuC;
 import com.calvogasullmartin.t3_floristeria.controladores.NuevoC;
 import com.calvogasullmartin.t3_floristeria.controladores.StartC;
+import com.calvogasullmartin.t3_floristeria.controladores.TiquetsC;
 import com.calvogasullmartin.t3_floristeria.controladores.ValorC;
 
 public class LocalLogica implements Logica{    
@@ -35,6 +36,8 @@ public class LocalLogica implements Logica{
         controladores.put(Estado.MOSTRAR_FACTURACION_TOTAL, facturacion);
         NuevoC nuevo = new LocalNuevoC(manager);
         controladores.put(Estado.NUEVO_PRODUCTO, nuevo);
+        TiquetsC tiquets = new LocalTiquetsC(manager);
+        controladores.put(Estado.MOSTRAR_TIQUETS, tiquets);
         controladores.put(Estado.EXIT, null);
     }
         
