@@ -13,4 +13,6 @@ public interface AppCVisitorC {
     void visitar(NuevoC controlador);
     
     void visitar(TiquetsC controlador);
+    
+    void visitar(StocksC controlador);
 }
