@@ -1,0 +1,47 @@
+{
+  "floristeria_id" : 1,
+  "nombre_floristeria" : "FloriTest",
+  "valorStocksTotal" : 600.5,
+  "valorTicketsTotal" : 0.0,
+  "stocks" : [ {
+    "id" : 1,
+    "valor_Productos" : 200.5,
+    "productos" : [ {
+      "producto" : {
+        "producto_id" : 1,
+        "categoria" : "ARBOL",
+        "nombre" : "Sequoya americana",
+        "precio" : 200.5,
+        "altura" : "MUY_ALTO"
+      },
+      "cantidad" : 1
+    } ]
+  }, {
+    "id" : 2,
+    "valor_Productos" : 300.0,
+    "productos" : [ {
+      "producto" : {
+        "producto_id" : 2,
+        "categoria" : "FLOR",
+        "nombre" : "Ramo de rosas",
+        "precio" : 3.0,
+        "color" : "rojo"
+      },
+      "cantidad" : 100
+    } ]
+  }, {
+    "id" : 3,
+    "valor_Productos" : 100.0,
+    "productos" : [ {
+      "producto" : {
+        "producto_id" : 3,
+        "categoria" : "DECORACION",
+        "nombre" : "Jarrón transparente",
+        "precio" : 5.0,
+        "material" : "PLASTICO"
+      },
+      "cantidad" : 20
+    } ]
+  } ],
+  "tiquets" : [ ]
+}

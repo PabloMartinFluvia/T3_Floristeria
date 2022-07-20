@@ -31,5 +31,6 @@ public class UnidadesV {
         controlador.updateValorTotal();
         controlador.updateValoresStock();
         io.writeln("Valor en stock actualizado con éxito.");
+        controlador.setIncrsNull();
     }
 }

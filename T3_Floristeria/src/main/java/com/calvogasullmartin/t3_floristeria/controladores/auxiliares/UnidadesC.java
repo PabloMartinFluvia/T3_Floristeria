@@ -2,9 +2,7 @@ package com.calvogasullmartin.t3_floristeria.controladores.auxiliares;
 
 import java.io.IOException;
 
-public interface UnidadesC extends PersistenciaC{
-    
-    void resetProductoUnidad();
+public interface UnidadesC extends PersistenciaC, NullC{        
     
     void resetIncr();
     
@@ -25,4 +23,6 @@ public interface UnidadesC extends PersistenciaC{
     void updateValorTotal() throws IOException;
     
     void updateValoresStock() throws IOException;
+    
+    void setIncrsNull();
 }

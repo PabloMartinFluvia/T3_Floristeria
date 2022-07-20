@@ -16,7 +16,7 @@ public class ProductoCompletoV {
         
     public void requerirNuevoProducto(NuevoC controlador){           
         //el id no se pide, se encarga el dao que guarde el producto
-        controlador.resetProductoUnidad();
+        controlador.resetModels();
         int categoriaIdx = new CategoriaV(false, "la familia del producto a añadir")
                 .pedirIndexCategoria();        
         controlador.setCategoriaIdx(categoriaIdx);

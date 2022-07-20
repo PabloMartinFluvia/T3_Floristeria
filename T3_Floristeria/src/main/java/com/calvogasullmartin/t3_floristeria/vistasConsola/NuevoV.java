@@ -39,5 +39,6 @@ public class NuevoV {
         controlador.guardarNuevoProductoUnidad();
         io.writeln("Producto añadido con éxito.");
         incrV.actualizarTotalesStock();
+        controlador.setModelsNull();
     }
 }
