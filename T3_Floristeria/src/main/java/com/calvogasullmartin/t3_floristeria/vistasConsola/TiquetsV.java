@@ -10,13 +10,19 @@ public class TiquetsV{
     
     private InOut io;
     
+    private boolean withUnits;
+    
+    private boolean withProductId;
+    
     public TiquetsV(){
         io = new InOut();
+        withUnits = true;
+        withProductId = false;
     }
     
     public void interactuar(TicketsC controlador){                
         try {
-            new MostradorConjuntosV(true, false).showTiquets(controlador);
+            new MostradorConjuntosV(withUnits, withProductId).showTiquets(controlador);
             new YesWaiting("\nHa finalizado de ver la lista de tiquets").bucleYes();            
         } catch (IOException ex) {
             io.writeln(controlador.getErrorBD());

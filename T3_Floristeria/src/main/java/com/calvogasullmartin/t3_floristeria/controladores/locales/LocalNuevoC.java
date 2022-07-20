@@ -1,7 +1,7 @@
 package com.calvogasullmartin.t3_floristeria.controladores.locales;
 
 import com.calvogasullmartin.t3_floristeria.controladores.NuevoC;
-import com.calvogasullmartin.t3_floristeria.controladores.locales.auxiliares.LocalUnidadesC;
+import com.calvogasullmartin.t3_floristeria.controladores.locales.auxiliares.LocalIncrementosC;
 import com.calvogasullmartin.t3_floristeria.modelos.Altura;
 import com.calvogasullmartin.t3_floristeria.modelos.Categoria;
 import com.calvogasullmartin.t3_floristeria.modelos.Manager;
@@ -9,7 +9,7 @@ import com.calvogasullmartin.t3_floristeria.modelos.Material;
 import java.io.IOException;
 import com.calvogasullmartin.t3_floristeria.controladores.AppCVisitorC;
 
-public class LocalNuevoC extends LocalUnidadesC implements NuevoC{    
+public class LocalNuevoC extends LocalIncrementosC implements NuevoC{    
     
     public LocalNuevoC(Manager manager) {
         super(manager);

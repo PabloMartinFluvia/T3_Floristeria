@@ -27,4 +27,8 @@ public abstract class LocalC {
     public int getMAX_UNIDADES_EN_STOCK() {
         return this.manager.getMAX_UNIDADES_EN_STOCK();
     }
+
+    public Manager getManager() {
+        return manager;
+    }
 }

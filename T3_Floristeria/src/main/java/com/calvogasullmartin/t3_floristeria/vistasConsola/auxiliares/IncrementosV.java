@@ -3,15 +3,15 @@ package com.calvogasullmartin.t3_floristeria.vistasConsola.auxiliares;
 import com.calvogasullmartin.t3_floristeria.utils.InOut;
 import com.calvogasullmartin.t3_floristeria.vistasConsola.modelos.ProductoUnidadV;
 import java.io.IOException;
-import com.calvogasullmartin.t3_floristeria.controladores.auxiliares.UnidadesC;
+import com.calvogasullmartin.t3_floristeria.controladores.auxiliares.IncrementosC;
 
-public class UnidadesV {
+public class IncrementosV {
     
     private InOut io;
     
-    private UnidadesC controlador;
+    private IncrementosC controlador;
 
-    public UnidadesV(UnidadesC controlador) {
+    public IncrementosV(IncrementosC controlador) {
         io = new InOut();
         this.controlador = controlador;
     }

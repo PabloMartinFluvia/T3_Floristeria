@@ -3,11 +3,11 @@ package com.calvogasullmartin.t3_floristeria.controladores.locales.auxiliares;
 import com.calvogasullmartin.t3_floristeria.controladores.locales.LocalPersistenciaC;
 import com.calvogasullmartin.t3_floristeria.modelos.Manager;
 import java.io.IOException;
-import com.calvogasullmartin.t3_floristeria.controladores.auxiliares.UnidadesC;
 import com.calvogasullmartin.t3_floristeria.modelos.ProductoUnidad;
 import com.calvogasullmartin.t3_floristeria.controladores.AppCVisitorC;
+import com.calvogasullmartin.t3_floristeria.controladores.auxiliares.IncrementosC;
 
-public abstract class LocalUnidadesC extends LocalPersistenciaC implements UnidadesC {
+public abstract class LocalIncrementosC extends LocalPersistenciaC implements IncrementosC {
 
     protected ProductoUnidad productoUnidad;
 
@@ -17,7 +17,7 @@ public abstract class LocalUnidadesC extends LocalPersistenciaC implements Unida
 
     protected float[] incrementoValorStocks;
 
-    public LocalUnidadesC(Manager manager) {
+    public LocalIncrementosC(Manager manager) {
         super(manager);
     }
 

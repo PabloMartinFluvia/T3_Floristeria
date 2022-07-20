@@ -2,7 +2,7 @@ package com.calvogasullmartin.t3_floristeria.vistasConsola;
 
 import com.calvogasullmartin.t3_floristeria.controladores.NuevoC;
 import com.calvogasullmartin.t3_floristeria.utils.InOut;
-import com.calvogasullmartin.t3_floristeria.vistasConsola.auxiliares.UnidadesV;
+import com.calvogasullmartin.t3_floristeria.vistasConsola.auxiliares.IncrementosV;
 import com.calvogasullmartin.t3_floristeria.vistasConsola.auxiliares.ToMenuV;
 import com.calvogasullmartin.t3_floristeria.vistasConsola.modelos.ProductoCompletoV;
 import java.io.IOException;
@@ -35,7 +35,7 @@ public class NuevoV {
     }
 
     private void add() throws IOException {
-        UnidadesV incrV = new UnidadesV(controlador);        
+        IncrementosV incrV = new IncrementosV(controlador);        
         incrV.requerirIncremento("la cantidad inicial en stock");
         controlador.guardarNuevoProductoUnidad();
         io.writeln("Producto añadido con éxito.");

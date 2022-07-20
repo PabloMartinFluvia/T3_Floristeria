@@ -11,15 +11,21 @@ public class StocksV{
     
     private InOut io;
     
+    private boolean withProductId;
+    
+    private boolean isAllOptionsPosible;
+    
     public StocksV(){
         io = new InOut();
+        withProductId = false;
+        isAllOptionsPosible = true;
     }
     
     public void interactuar(StocksC controlador){        
         YesNoDialog requerimiento = new YesNoDialog("Desea visualizar las unidades");                        
         try {
-            new MostradorConjuntosV(requerimiento.read(),false).
-                    showStocks(controlador, true, "que stock(s) desea ver");                     
+            new MostradorConjuntosV(requerimiento.read(),withProductId).
+                    showStocks(controlador, isAllOptionsPosible, "que stock(s) desea ver");                     
         } catch (IOException ex) {
             io.writeln(controlador.getErrorBD());
         }
