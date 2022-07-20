@@ -1,11 +1,11 @@
 {
   "floristeria_id" : 1,
   "nombre_floristeria" : "FloriTest",
-  "valorStocksTotal" : 600.5,
+  "valorStocksTotal" : 6900.5,
   "valorTicketsTotal" : 0.0,
   "stocks" : [ {
     "id" : 1,
-    "valor_Productos" : 200.5,
+    "valor_Productos" : 6500.5,
     "productos" : [ {
       "producto" : {
         "producto_id" : 1,
@@ -15,6 +15,24 @@
         "altura" : "MUY_ALTO"
       },
       "cantidad" : 1
+    }, {
+      "producto" : {
+        "producto_id" : 4,
+        "categoria" : "ARBOL",
+        "nombre" : "Bonsai japonés",
+        "precio" : 90.0,
+        "altura" : "MUY_BAJO"
+      },
+      "cantidad" : 50
+    }, {
+      "producto" : {
+        "producto_id" : 5,
+        "categoria" : "ARBOL",
+        "nombre" : "Manzao común",
+        "precio" : 30.0,
+        "altura" : "MEDIANO"
+      },
+      "cantidad" : 60
     } ]
   }, {
     "id" : 2,

@@ -90,13 +90,13 @@ public class ProductoCompleto {
         String detalles = null;
         switch(categoria){
             case ARBOL: 
-                detalles = "Arbol: "+nombre+", con altura "+altura+".";
+                detalles = nombre+" (árbol), con altura "+altura+".";
                 break;
             case FLOR: 
-                detalles = "Flor: "+nombre+", de color "+color+".";
+                detalles = nombre+" (flor), de color "+color+".";
                 break;
             case DECORACION: 
-                detalles = "Decoración: "+nombre+", de material "+material+".";
+                detalles = nombre+"+ (decoracion), de material "+material+".";
                 break;
         }
         return detalles;
