@@ -6,7 +6,7 @@ import java.io.IOException;
 public interface ProductoCompletoDao extends GenericDao<ProductoCompleto, Integer>{
     
     /*
-    b) select id from productos (tabla) where categoria = categoria & altura = and color = and material     
+    b) select id from productos (tabla) where categoria = categoria & altura = and color = and material= and name=   
     c) find idem en productos collection
     */
     

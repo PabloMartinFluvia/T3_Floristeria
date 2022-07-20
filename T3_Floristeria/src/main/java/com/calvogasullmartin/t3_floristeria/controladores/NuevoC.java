@@ -6,6 +6,8 @@ import com.calvogasullmartin.t3_floristeria.controladores.auxiliares.UnidadesC;
 
 public interface NuevoC extends CategoriaC, UnidadesC{        
     
+    void setNombre(String nombre);
+    
     void setPrecio(float precio);
     
     void setAlturaIdx(int alturaIndex);

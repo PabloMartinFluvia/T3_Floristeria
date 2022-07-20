@@ -20,13 +20,33 @@ public class ProductoCompletoV {
         int categoriaIdx = new CategoriaV(false, "la familia del producto a añadir")
                 .pedirIndexCategoria();        
         controlador.setCategoriaIdx(categoriaIdx);
-        
+        controlador.setNombre(pedirNombre());
         controlador.setPrecio(pedirPrecio());
         switch(categoriaIdx){
             case 0: controlador.setAlturaIdx(pedirAltura());break;
             case 1: controlador.setColor(pedirColor());break;
             case 2: controlador.setMaterialIdx(pedirMaterial());break;
         }
+    }
+    
+    /**
+     * estaria bien hacer un pedir String limitado en utils
+     * @return 
+     */
+    private String pedirNombre() {
+        String mensaje = "Introduzca un nombre/descripción:";
+        int min = 5,max = 20;
+        String input;
+        boolean ok = false;
+        do{
+            input = io.readString(mensaje);
+            if(input.length()>=min && input.length()<=max){
+                ok = true;
+            }else{
+                System.out.println("Error: el número de caracteres debe estar entre "+min+" y "+max);
+            }
+        }while(!ok);
+        return input;
     }
     
     /*
@@ -64,7 +84,7 @@ public class ProductoCompletoV {
      */
     private String pedirColor() {
         String mensaje = "Introduzca el color de la flor:";
-        int min = 1,max = 20;
+        int min = 3,max = 20;
         String input;
         boolean ok = false;
         do{

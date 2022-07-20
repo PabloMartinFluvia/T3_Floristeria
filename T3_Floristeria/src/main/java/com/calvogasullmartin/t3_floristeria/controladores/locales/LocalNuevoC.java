@@ -27,6 +27,13 @@ public class LocalNuevoC extends LocalUnidadesC implements NuevoC{
     }
     
     @Override
+    public void setNombre(String nombre){
+        assert nombre != null;
+        assert nombre.length() >=5 && nombre.length()<=20;
+        productoUnidad.getProducto().setNombre(nombre);
+    }
+    
+    @Override
     public void setPrecio(float precio) {
         assert precio > 0;
         productoUnidad.getProducto().setPrecio(precio);
@@ -41,7 +48,7 @@ public class LocalNuevoC extends LocalUnidadesC implements NuevoC{
     @Override
     public void setColor(String color) {
         assert color != null;
-        assert color.length() >0 && color.length()<21;
+        assert color.length() >=3 && color.length()<=20;
         productoUnidad.getProducto().setColor(color);
     }
 

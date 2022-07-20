@@ -2,22 +2,24 @@ package com.calvogasullmartin.t3_floristeria.modelos;
 
 public class ProductoCompleto {
     
-    private int producto_id; //todos
+    private int producto_id; 
     
-    private Categoria categoria; //todos
+    private Categoria categoria; 
     
-    private float precio; //todos
+    private String nombre;
     
-    private Altura altura; //opcional
+    private float precio; 
     
-    private String color; //opcional
+    private Altura altura;
     
-    private Material material; //opcional
+    private String color; 
+    
+    private Material material; 
 
-    public ProductoCompleto() {
-        // constructor -> todo null
+    public ProductoCompleto() {        
         producto_id = 0;
         categoria = null;
+        nombre = null;
         precio = 0;
         altura = null;
         color = null;
@@ -38,6 +40,14 @@ public class ProductoCompleto {
 
     public void setCategoria(Categoria categoria) {
         this.categoria = categoria;
+    }
+    
+    public String getNombre(){
+        return nombre;
+    }
+    
+    public void setNombre(String nombre){
+        this.nombre = nombre;
     }
 
     public float getPrecio() {
@@ -84,13 +94,13 @@ public class ProductoCompleto {
         String detalles = null;
         switch(categoria){
             case ARBOL: 
-                detalles = "Arbol con altura "+altura+". ";
+                detalles = "Arbol: "+nombre+", altura "+altura+". ";
                 break;
             case FLOR: 
-                detalles = "Flor de color "+color+". ";
+                detalles = "Flor: "+nombre+", de color "+color+". ";
                 break;
             case DECORACION: 
-                detalles = "Decoración de material "+material+". ";
+                detalles = "Decoración: "+nombre+", tipo de material "+material+". ";
                 break;
         }
         return detalles;
