@@ -50,7 +50,7 @@ public class AppV implements Vista{
     @Override
     public void visitar(TiquetsC controlador) {
         assert controlador != null; 
-        new TiquetsV().interactuar(controlador);
+        new TiquetsV(controlador).interactuar();
     }
 
     

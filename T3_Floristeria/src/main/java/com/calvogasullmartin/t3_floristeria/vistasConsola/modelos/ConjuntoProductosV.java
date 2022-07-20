@@ -14,12 +14,6 @@ public class ConjuntoProductosV {
         this.controlador = controlador;
     }
 
-    public void inicializar(boolean withUnits, boolean withId) {
-        controlador.setConUnidades(withUnits);
-        controlador.setConId(withId);
-        controlador.resetModels();
-    }
-
     public void mostrarConjuntos() {
         int numConjuntosToShow = controlador.getNumConjuntosToShow();
         if (numConjuntosToShow == 0) {

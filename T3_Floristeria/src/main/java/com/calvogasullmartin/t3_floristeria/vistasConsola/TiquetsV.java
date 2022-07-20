@@ -3,24 +3,25 @@ package com.calvogasullmartin.t3_floristeria.vistasConsola;
 import com.calvogasullmartin.t3_floristeria.controladores.TiquetsC;
 import com.calvogasullmartin.t3_floristeria.utils.InOut;
 import com.calvogasullmartin.t3_floristeria.utils.YesWaiting;
-import com.calvogasullmartin.t3_floristeria.vistasConsola.modelos.ConjuntoProductosV;
+import com.calvogasullmartin.t3_floristeria.vistasConsola.auxiliares.MostrarConjuntoV;
 import java.io.IOException;
 
-public class TiquetsV {
+public class TiquetsV extends MostrarConjuntoV {
     
     private InOut io;
 
-    public TiquetsV() {
+    private TiquetsC controlador;
+    
+    public TiquetsV(TiquetsC controlador){
         io = new InOut();
+        this.controlador = controlador;
     }
     
-    public void interactuar(TiquetsC controlador){
-        assert controlador != null;
-        ConjuntoProductosV conjuntoV = new ConjuntoProductosV(controlador);
-        conjuntoV.inicializar(true,false); //mostrar unidades, pero no id
+    public void interactuar(){        
+        inicializar(controlador, true, true);        
         try {
-            controlador.getAllTiquets();
-            conjuntoV.mostrarConjuntos();
+            readConjunto();
+            mostrarConjuntos(controlador);
             new YesWaiting("\nHa finalizado de ver la lista de tiquets").bucleYes();            
         } catch (IOException ex) {
             io.writeln(controlador.getErrorBD());
@@ -28,4 +29,13 @@ public class TiquetsV {
         controlador.setModelsNull();
         controlador.seleccionarMenu();
     }
+
+    @Override
+    protected void readConjunto() throws IOException {
+        controlador.getAllTiquets();
+    }
+
+    
+    
+    
 }
