@@ -7,5 +7,5 @@ public interface SeleccionadorC extends IncrementosC{
     
     StocksC getNewStocksC();
         
-    boolean isIdValid(int productoId) throws IOException; //lo busca y se lo guarda
+    boolean isIdValid(int productoId, int stock_id) throws IOException; //lo busca y se lo guarda
 }

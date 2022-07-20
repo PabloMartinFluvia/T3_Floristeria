@@ -25,15 +25,15 @@ public abstract class SeleccionadorV {
     
     
     protected boolean seleccionarIdProducto(SeleccionadorC controlador, String operationOption) throws IOException {
-        mostrarStock(controlador.getNewStocksC(),
+        int stock_id = mostrarStock(controlador.getNewStocksC(),
                 "el tipo de producto que desea"+operationOption);
         int productoId = 0;
         boolean out = false;
         boolean seleccionado = false;
         do{           
-           productoId = io.readInt("Introduzca el ID del producto que desea"+operationOption);
+           productoId = io.readInt("Introduzca el ID del producto que desea"+operationOption+": ");
            controlador.resetModels();
-           if(controlador.isIdValid(productoId)){
+           if(controlador.isIdValid(productoId, stock_id)){
                seleccionado = true;
                out = true;
            }else{
@@ -44,8 +44,8 @@ public abstract class SeleccionadorV {
         return seleccionado;
     }    
     
-    private void mostrarStock(StocksC stocks,String mensageOption) throws IOException{
-        new MostradorConjuntosV(withUnits,withProductId).
+    private int mostrarStock(StocksC stocks,String mensageOption) throws IOException{
+        return new MostradorConjuntosV(withUnits,withProductId).
                     showStocks(stocks, isAllOptionsPosible, mensageOption);        
     }
     

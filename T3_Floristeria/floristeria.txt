@@ -1,11 +1,11 @@
 {
   "floristeria_id" : 1,
   "nombre_floristeria" : "FloriTest",
-  "valorStocksTotal" : 6900.5,
+  "valorStocksTotal" : 15561.0,
   "valorTicketsTotal" : 0.0,
   "stocks" : [ {
     "id" : 1,
-    "valor_Productos" : 6500.5,
+    "valor_Productos" : 15226.0,
     "productos" : [ {
       "producto" : {
         "producto_id" : 1,
@@ -14,7 +14,7 @@
         "precio" : 200.5,
         "altura" : "MUY_ALTO"
       },
-      "cantidad" : 1
+      "cantidad" : 52
     }, {
       "producto" : {
         "producto_id" : 4,
@@ -32,11 +32,11 @@
         "precio" : 30.0,
         "altura" : "MEDIANO"
       },
-      "cantidad" : 60
+      "cantidad" : 10
     } ]
   }, {
     "id" : 2,
-    "valor_Productos" : 300.0,
+    "valor_Productos" : 330.0,
     "productos" : [ {
       "producto" : {
         "producto_id" : 2,
@@ -45,11 +45,11 @@
         "precio" : 3.0,
         "color" : "rojo"
       },
-      "cantidad" : 100
+      "cantidad" : 110
     } ]
   }, {
     "id" : 3,
-    "valor_Productos" : 100.0,
+    "valor_Productos" : 5.0,
     "productos" : [ {
       "producto" : {
         "producto_id" : 3,
@@ -58,7 +58,7 @@
         "precio" : 5.0,
         "material" : "PLASTICO"
       },
-      "cantidad" : 20
+      "cantidad" : 1
     } ]
   } ],
   "tiquets" : [ ]

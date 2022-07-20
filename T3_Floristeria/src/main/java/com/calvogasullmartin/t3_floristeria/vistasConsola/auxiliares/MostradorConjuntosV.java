@@ -19,10 +19,11 @@ public class MostradorConjuntosV{
         this.withProductId = withProductId;
     }       
     
-    public void showStocks(StocksC stocks, boolean isAllPosible, String mensageOptions) throws IOException{
+    public int showStocks(StocksC stocks, boolean isAllPosible, String mensageOptions) throws IOException{
         inicializar(stocks, withUnits, withProductId);
-        readStocks(stocks, isAllPosible, mensageOptions);
+        int stock_id = readStocks(stocks, isAllPosible, mensageOptions);
         mostrarConjuntos(stocks);
+        return stock_id;
     }      
     
     public void showTiquets(TicketsC tickets) throws IOException{
@@ -37,9 +38,10 @@ public class MostradorConjuntosV{
         controlador.resetModels();
     }
                 
-    private void readStocks(StocksC stocks, boolean isAllPosible, String mensageOptions) throws IOException {
+    private int readStocks(StocksC stocks, boolean isAllPosible, String mensageOptions) throws IOException {
         int indexStock = new CategoriaV(isAllPosible,mensageOptions).pedirIndexCategoria();
         stocks.getStocks(indexStock);
+        return indexStock +1 ;
     }
     
     private void readTickets(TicketsC tickets) throws IOException{

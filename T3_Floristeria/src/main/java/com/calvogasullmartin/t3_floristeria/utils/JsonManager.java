@@ -132,6 +132,9 @@ public class JsonManager<T> {
                 node = nodeTarget;
             }
         }  
+        if(!found){
+            node = null;
+        }
     }    
     
     /**
@@ -236,6 +239,10 @@ public class JsonManager<T> {
     }  
     
     //CHECK
+    public boolean isNodeNull(){
+        return node == null;
+    }
+    
     public boolean isListNodesEmpty(){
         return listNodes.isEmpty();
     }

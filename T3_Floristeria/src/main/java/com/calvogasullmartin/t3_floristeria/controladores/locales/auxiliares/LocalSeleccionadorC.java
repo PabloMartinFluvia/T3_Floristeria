@@ -5,6 +5,7 @@ import com.calvogasullmartin.t3_floristeria.controladores.StocksC;
 import com.calvogasullmartin.t3_floristeria.controladores.auxiliares.SeleccionadorC;
 import com.calvogasullmartin.t3_floristeria.controladores.locales.LocalStocksC;
 import com.calvogasullmartin.t3_floristeria.modelos.Manager;
+import com.calvogasullmartin.t3_floristeria.modelos.ProductoCompleto;
 import java.io.IOException;
 
 public abstract class LocalSeleccionadorC extends LocalIncrementosC implements SeleccionadorC{
@@ -23,23 +24,27 @@ public abstract class LocalSeleccionadorC extends LocalIncrementosC implements S
     }
     
     @Override
-    public boolean isIdValid(int productoId) throws IOException {
-        //facotry find productoUnidadById in stocks
-        //+ save in atribute
+    public boolean isIdValid(int productoId, int stock_id) throws IOException {               
+        ProductoCompleto producto = factory.getProductoCompletoDao().
+                findProductoByIdInStockId(productoId, stock_id);        
+        if(producto != null){
+            productoUnidad.setProducto(producto);
+            int cantidad = factory.getProductoUnidadDao()
+                    .getCantidadEnStockBy(stock_id, productoId);
+            if(cantidad >=0){
+                productoUnidad.setCantidad(cantidad);
+                return true;
+            }else{
+                return false;
+            }
+        }else {
+            return false;
+        }
     }
     
     @Override
-    public void addIncrValor() {
-        incrementoValor += incremento * productoUnidad.getProducto().getPrecio();
-    }
+    public abstract void addIncrValor();
 
     @Override
-    public void addIncrValorStock() {
-        incrementoValorStocks[getStockId()-1] += incremento * productoUnidad.getProducto().getPrecio();
-    }
-
-    
-
-    
-    
+    public abstract void addIncrValorStock();   
 }

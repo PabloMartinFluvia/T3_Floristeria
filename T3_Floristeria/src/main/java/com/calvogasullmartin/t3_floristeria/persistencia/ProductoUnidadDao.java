@@ -18,7 +18,7 @@ public interface ProductoUnidadDao extends GenericDao<ProductoUnidad, Integer>{
      * @param stock_id
      * @throws IOException 
      */
-    public void createNuevoProductoUnidadEnStocks(ProductoUnidad productoUnidad, int stock_id) throws IOException;
+    public void createNuevoProductoUnidadEnStocks(ProductoUnidad productoUnidad, int stock_id) throws IOException;        
     
    /**
     * si no existe la relación entre el producto y el stock -> el dao devuelve un número
@@ -29,4 +29,11 @@ public interface ProductoUnidadDao extends GenericDao<ProductoUnidad, Integer>{
     * @throws IOException 
     */
     public int getCantidadEnStockBy(int stock_id, int producto_id) throws IOException;
+    
+    //update: modificar las unidades de un producto en un determinado stock (en un tiquet ya creado no se permite)
+    /*
+    b) get the id from producto and new cantidad + update conjuntos_has_products cantidad where id's
+    c) find in floristeria collections conjunto.idConjunto the one with idProductos as reference and set cantidad
+    */
+    public void actualizarUnidadesProductoByStockId(ProductoUnidad producto, int idConjunto) throws IOException;//ok
 }

@@ -4,6 +4,7 @@ import com.calvogasullmartin.t3_floristeria.Vista;
 import com.calvogasullmartin.t3_floristeria.controladores.auxiliares.AppC;
 import com.calvogasullmartin.t3_floristeria.controladores.FacturacionC;
 import com.calvogasullmartin.t3_floristeria.controladores.MenuC;
+import com.calvogasullmartin.t3_floristeria.controladores.ModificadorC;
 import com.calvogasullmartin.t3_floristeria.controladores.NuevoC;
 import com.calvogasullmartin.t3_floristeria.controladores.StartC;
 import com.calvogasullmartin.t3_floristeria.controladores.StocksC;
@@ -58,6 +59,12 @@ public class AppV implements Vista{
     public void visitar(StocksC controlador) {
         assert controlador != null; 
         new StocksV().interactuar(controlador);
+    }
+
+    @Override
+    public void visitar(ModificadorC controlador) {
+        assert controlador != null;
+        new ModificadorV(controlador).interactuar();
     }
 
     

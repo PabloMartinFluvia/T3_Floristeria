@@ -30,7 +30,8 @@ public class ProductoUnidadTxt extends GenericDaoTxt<ProductoUnidad, Integer> im
         gestor.replaceNode_findFieldByName(atributo_productos);//productos         
         int assigned_id = productoUnidad.getProducto().getProducto_id();
         if (assigned_id > 0) {
-            gestor.replaceNode_isArray_NodeIndexedWithChildIntValue(atributo_id,assigned_id);            
+            gestor.replaceNode_isArray_NodeIndexedWithChildIntValue(atributo_id,assigned_id);   
+            assert !gestor.isNodeNull();
             gestor.updateNode_setNewIntValueInField(atributo_cantidad, productoUnidad.getCantidad());                 
         }else{
             productoUnidad.getProducto().setProducto_id(maxActualId + 1);
@@ -58,8 +59,28 @@ public class ProductoUnidadTxt extends GenericDaoTxt<ProductoUnidad, Integer> im
         gestor.replaceNode_isArray_nodeByIndex(stock_id - 1); //stock  
         gestor.replaceNode_findFieldByName(atributo_productos);//productos        
         gestor.replaceNode_isArray_NodeIndexedWithChildIntValue(atributo_id, producto_id); //productoUnidad con ese id en producto
-        gestor.replaceNode_findFieldByName(atributo_cantidad);
-        return gestor.getIntValue_fromNode();
+        if(gestor.isNodeNull()){ // not found
+            return -1;
+        }else{
+           gestor.replaceNode_findFieldByName(atributo_cantidad);
+           return gestor.getIntValue_fromNode(); 
+        }        
     }
+
+    @Override
+    public void actualizarUnidadesProductoByStockId(ProductoUnidad producto, int idConjunto) throws IOException {
+        gestor.setMainNode_FromFile();
+        gestor.setAuxiliarNodesNull();
+        gestor.setNode_findFieldByName_fromMain(atributo_stocks); //stocks array    
+        gestor.replaceNode_isArray_nodeByIndex(idConjunto-1);  //stock
+        gestor.replaceNode_findFieldByName(atributo_productos); //products array
+        int id = producto.getProducto().getProducto_id();
+        //product with that id , ya antes me he assegurado de que existe
+        gestor.replaceNode_isArray_NodeIndexedWithChildIntValue(atributo_id,id);
+        gestor.updateNode_setNewIntValueInField(atributo_cantidad, producto.getCantidad());
+        gestor.saveMainNodeInFile(); 
+    }
+
+    
 
 }
