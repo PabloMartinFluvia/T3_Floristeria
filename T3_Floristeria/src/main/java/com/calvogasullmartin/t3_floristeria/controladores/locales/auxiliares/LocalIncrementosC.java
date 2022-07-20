@@ -1,10 +1,9 @@
 package com.calvogasullmartin.t3_floristeria.controladores.locales.auxiliares;
 
-import com.calvogasullmartin.t3_floristeria.controladores.locales.LocalPersistenciaC;
 import com.calvogasullmartin.t3_floristeria.modelos.Manager;
 import java.io.IOException;
 import com.calvogasullmartin.t3_floristeria.modelos.ProductoUnidad;
-import com.calvogasullmartin.t3_floristeria.controladores.AppCVisitorC;
+import com.calvogasullmartin.t3_floristeria.controladores.auxiliares.AppCVisitorC;
 import com.calvogasullmartin.t3_floristeria.controladores.auxiliares.IncrementosC;
 
 public abstract class LocalIncrementosC extends LocalPersistenciaC implements IncrementosC {

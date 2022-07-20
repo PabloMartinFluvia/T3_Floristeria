@@ -1,11 +1,11 @@
-package com.calvogasullmartin.t3_floristeria.controladores.locales;
+package com.calvogasullmartin.t3_floristeria.controladores.locales.auxiliares;
 
 import com.calvogasullmartin.t3_floristeria.controladores.auxiliares.PersistenciaC;
 import com.calvogasullmartin.t3_floristeria.controladores.locales.auxiliares.LocalAppC;
 import com.calvogasullmartin.t3_floristeria.modelos.Estado;
 import com.calvogasullmartin.t3_floristeria.modelos.Manager;
 import com.calvogasullmartin.t3_floristeria.persistencia.DaoFactory;
-import com.calvogasullmartin.t3_floristeria.controladores.AppCVisitorC;
+import com.calvogasullmartin.t3_floristeria.controladores.auxiliares.AppCVisitorC;
 
 public abstract class LocalPersistenciaC extends LocalAppC implements PersistenciaC{
 

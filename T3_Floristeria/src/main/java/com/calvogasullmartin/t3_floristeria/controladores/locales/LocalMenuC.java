@@ -5,7 +5,7 @@ import com.calvogasullmartin.t3_floristeria.controladores.MenuC;
 import com.calvogasullmartin.t3_floristeria.modelos.Estado;
 import com.calvogasullmartin.t3_floristeria.modelos.Manager;
 import com.calvogasullmartin.t3_floristeria.modelos.Menu;
-import com.calvogasullmartin.t3_floristeria.controladores.AppCVisitorC;
+import com.calvogasullmartin.t3_floristeria.controladores.auxiliares.AppCVisitorC;
 
 public class LocalMenuC extends LocalAppC implements MenuC{
 

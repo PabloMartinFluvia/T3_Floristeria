@@ -6,14 +6,7 @@ import com.calvogasullmartin.t3_floristeria.modelos.Manager;
 import java.util.HashMap;
 import java.util.Map;
 import com.calvogasullmartin.t3_floristeria.controladores.auxiliares.AppC;
-import com.calvogasullmartin.t3_floristeria.controladores.FacturacionC;
-import com.calvogasullmartin.t3_floristeria.controladores.MenuC;
-import com.calvogasullmartin.t3_floristeria.controladores.ModificadorC;
-import com.calvogasullmartin.t3_floristeria.controladores.NuevoC;
-import com.calvogasullmartin.t3_floristeria.controladores.StartC;
-import com.calvogasullmartin.t3_floristeria.controladores.StocksC;
-import com.calvogasullmartin.t3_floristeria.controladores.ValorC;
-import com.calvogasullmartin.t3_floristeria.controladores.TicketsC;
+import com.calvogasullmartin.t3_floristeria.controladores.*;
 
 public class LocalLogica implements Logica{    
         

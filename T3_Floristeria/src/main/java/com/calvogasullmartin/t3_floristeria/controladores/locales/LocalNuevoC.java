@@ -7,7 +7,7 @@ import com.calvogasullmartin.t3_floristeria.modelos.Categoria;
 import com.calvogasullmartin.t3_floristeria.modelos.Manager;
 import com.calvogasullmartin.t3_floristeria.modelos.Material;
 import java.io.IOException;
-import com.calvogasullmartin.t3_floristeria.controladores.AppCVisitorC;
+import com.calvogasullmartin.t3_floristeria.controladores.auxiliares.AppCVisitorC;
 
 public class LocalNuevoC extends LocalIncrementosC implements NuevoC{    
     

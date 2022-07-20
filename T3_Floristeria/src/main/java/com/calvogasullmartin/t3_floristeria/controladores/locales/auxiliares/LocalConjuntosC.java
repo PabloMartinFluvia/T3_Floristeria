@@ -1,13 +1,12 @@
 package com.calvogasullmartin.t3_floristeria.controladores.locales.auxiliares;
 
 import com.calvogasullmartin.t3_floristeria.controladores.auxiliares.ConjuntosC;
-import com.calvogasullmartin.t3_floristeria.controladores.locales.LocalPersistenciaC;
 import com.calvogasullmartin.t3_floristeria.modelos.ConjuntoProductos;
 import com.calvogasullmartin.t3_floristeria.modelos.Manager;
 import com.calvogasullmartin.t3_floristeria.modelos.ProductoUnidad;
 import java.util.LinkedList;
 import java.util.List;
-import com.calvogasullmartin.t3_floristeria.controladores.AppCVisitorC;
+import com.calvogasullmartin.t3_floristeria.controladores.auxiliares.AppCVisitorC;
 
 public abstract class LocalConjuntosC extends LocalPersistenciaC implements ConjuntosC{
 
