@@ -35,7 +35,7 @@ public class NuevoV {
     }
 
     private void add() throws IOException {
-        IncrementosV incrV = new IncrementosV(controlador);        
+        IncrementosV incrV = new IncrementosV(controlador);  
         incrV.requerirIncremento("la cantidad inicial en stock");
         controlador.guardarNuevoProductoUnidad();
         io.writeln("Producto añadido con éxito.");

@@ -34,7 +34,7 @@ public class ModificadorV extends SeleccionadorV{
 
     @Override
     protected void step2() throws IOException {
-        IncrementosV incrV = new IncrementosV(controlador); 
+        IncrementosV incrV = new IncrementosV(controlador);         
         incrV.requerirIncremento("en cuanto desea incrementar/disminuir la cantidad en stock");
         controlador.modificarCantidadEnStock();
         io.writeln("Producto añadido con éxito.");
