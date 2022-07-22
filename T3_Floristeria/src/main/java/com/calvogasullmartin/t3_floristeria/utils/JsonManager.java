@@ -206,6 +206,12 @@ public class JsonManager<T> {
         updateNode_setNewFloatValueInField(childField, newValue);
     }
     
+    public void updateNode_incrementIntValueInField(String childField, int increment){
+        int oldValue = node.findValue(childField).asInt();
+        int newValue = oldValue + increment;
+        updateNode_setNewIntValueInField(childField, newValue);
+    }
+    
     public void updateNode_isArray_pushAuxiliarNode(){        
         ((ArrayNode)node).add(auxiliarNode);
     }            

@@ -36,4 +36,11 @@ public interface ProductoUnidadDao extends GenericDao<ProductoUnidad, Integer>{
     c) find in floristeria collections conjunto.idConjunto the one with idProductos as reference and set cantidad
     */
     public void actualizarUnidadesProductoByStockId(ProductoUnidad producto, int idConjunto) throws IOException;//ok
+    
+    /*
+    unpdate conjunto_has_products cantidad = cantidad + incremento where conjuntoId= and productoId =
+    find in floristeria  stocks.id-1.products with one has reference to productoId 
+    + set cantidad: {$incr:}
+    */
+    public void incrementarCantidadByStockIdProductoId (int stockId,int productoId,int incremento) throws IOException;
 }

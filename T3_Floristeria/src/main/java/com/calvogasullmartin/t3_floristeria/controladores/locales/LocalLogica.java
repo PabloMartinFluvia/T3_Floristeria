@@ -37,6 +37,8 @@ public class LocalLogica implements Logica{
         controladores.put(Estado.MOSTRAR_STOCK, stocks);
         ModificadorC modificador = new LocalModificadorC(manager);
         controladores.put(Estado.ACTUALIZAR_UNIDADES, modificador);
+        VentaC venta = new LocalVentaC(manager);
+        controladores.put(Estado.REALIZAR_VENTA, venta);
         controladores.put(Estado.EXIT, null);
     }
         

@@ -6,6 +6,16 @@ import java.util.List;
 
 public interface ConjuntoProductosDao extends GenericDao<ConjuntoProductos, Integer>{
 
+   
+    /*
+    b) insert into conjuntos (nuevo id + valor) 
+        + insert into conjuntos_has_products varios registros uno por cada producto en el tiquet
+        con la cantidad vendida
+    c) push, dentro de floristeria.tiquets nuevo documento tiquet (id + valor + array de documentos
+    {referencia al producto:, cantidad: }
+    */
+    public void createTiquet(ConjuntoProductos tiquet) throws IOException;
+    
     /*
     a)
     b) join conjunto con conjunto_has_productos por el id del stock & join con productos con el id del producto

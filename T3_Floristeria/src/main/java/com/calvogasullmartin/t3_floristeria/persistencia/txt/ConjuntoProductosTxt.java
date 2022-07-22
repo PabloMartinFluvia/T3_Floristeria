@@ -16,7 +16,30 @@ public class ConjuntoProductosTxt extends GenericDaoTxt<ConjuntoProductos, Integ
     
     private final String atributo_tiquets = Floristeria.class.getDeclaredFields()[5].getName();
     
+    private final String atributo_stockId = ConjuntoProductos.class.getDeclaredFields()[0].getName();                
+    
     private final String atributo_valorProductos = ConjuntoProductos.class.getDeclaredFields()[1].getName();                
+    
+     @Override
+    @SuppressWarnings("unchecked")
+    public void createTiquet(ConjuntoProductos tiquet) throws IOException {
+        int maxActualId = findMaxTiquetId();    
+        tiquet.setId(maxActualId + 1);
+        gestor.setMainNode_FromFile();
+        gestor.setAuxiliarNodesNull();
+        gestor.setNode_findFieldByName_fromMain(atributo_tiquets); //tiquets 
+        gestor.setAuxiliarNode_ObjectInput(tiquet);
+        gestor.updateNode_isArray_pushAuxiliarNode(); 
+        gestor.saveMainNodeInFile();
+    }
+    
+    private int findMaxTiquetId() throws IOException {
+        gestor.setMainNode_FromFile();
+        gestor.setAuxiliarNodesNull();
+        gestor.setNode_findFieldByName_fromMain(atributo_tiquets);//stocks        
+        gestor.setListNodes_findAllFieldsByName(atributo_stockId); // all tiquetsId in stockS        
+        return gestor.getMaxIntValue_fromListNodes();
+    }
     
     @Override
     public void incrementarValorEnStockById(int idStock, float incremento) throws IOException {
@@ -58,5 +81,7 @@ public class ConjuntoProductosTxt extends GenericDaoTxt<ConjuntoProductos, Integ
         ConjuntoProductos[] tiquets = (ConjuntoProductos[]) gestor.parseNodeToObject(ConjuntoProductos[].class);
         return Arrays.asList(tiquets);
     }
+
+   
     
 }

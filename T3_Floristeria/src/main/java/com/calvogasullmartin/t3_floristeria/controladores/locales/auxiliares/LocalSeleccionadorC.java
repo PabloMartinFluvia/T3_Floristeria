@@ -46,5 +46,8 @@ public abstract class LocalSeleccionadorC extends LocalIncrementosC implements S
     public abstract void addIncrValor();
 
     @Override
-    public abstract void addIncrValorStock();   
+    public abstract void addIncrValorStock();  
+    
+    @Override
+    public abstract void modificarCantidadEnStock() throws IOException;
 }

@@ -20,4 +20,6 @@ public interface AppCVisitorC {
     void visitar(StocksC controlador);
     
     void visitar(ModificadorC controlador);
+    
+    void visistar(VentaC controlador);
 }

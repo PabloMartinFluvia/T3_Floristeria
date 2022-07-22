@@ -16,7 +16,7 @@ public class ProductoUnidadTxt extends GenericDaoTxt<ProductoUnidad, Integer> im
 
     private String atributo_cantidad = ProductoUnidad.class.getDeclaredFields()[1].getName();
 
-    private String atributo_id = ProductoCompleto.class.getDeclaredFields()[0].getName();
+    private String atributo_productoId = ProductoCompleto.class.getDeclaredFields()[0].getName();
 
     @Override
     @SuppressWarnings("unchecked")
@@ -30,7 +30,7 @@ public class ProductoUnidadTxt extends GenericDaoTxt<ProductoUnidad, Integer> im
         gestor.replaceNode_findFieldByName(atributo_productos);//productos         
         int assigned_id = productoUnidad.getProducto().getProducto_id();
         if (assigned_id > 0) {
-            gestor.replaceNode_isArray_NodeIndexedWithChildIntValue(atributo_id,assigned_id);   
+            gestor.replaceNode_isArray_NodeIndexedWithChildIntValue(atributo_productoId,assigned_id);   
             assert !gestor.isNodeNull();
             gestor.updateNode_setNewIntValueInField(atributo_cantidad, productoUnidad.getCantidad());                 
         }else{
@@ -45,7 +45,7 @@ public class ProductoUnidadTxt extends GenericDaoTxt<ProductoUnidad, Integer> im
         gestor.setMainNode_FromFile();
         gestor.setAuxiliarNodesNull();
         gestor.setNode_findFieldByName_fromMain(atributo_stocks);//stocks        
-        gestor.setListNodes_findAllFieldsByName(atributo_id); // all producto_id in stockS        
+        gestor.setListNodes_findAllFieldsByName(atributo_productoId); // all producto_id in stockS        
         return gestor.getMaxIntValue_fromListNodes();
     }
 
@@ -58,7 +58,7 @@ public class ProductoUnidadTxt extends GenericDaoTxt<ProductoUnidad, Integer> im
         gestor.setNode_findFieldByName_fromMain(atributo_stocks);
         gestor.replaceNode_isArray_nodeByIndex(stock_id - 1); //stock  
         gestor.replaceNode_findFieldByName(atributo_productos);//productos        
-        gestor.replaceNode_isArray_NodeIndexedWithChildIntValue(atributo_id, producto_id); //productoUnidad con ese id en producto
+        gestor.replaceNode_isArray_NodeIndexedWithChildIntValue(atributo_productoId, producto_id); //productoUnidad con ese id en producto
         if(gestor.isNodeNull()){ // not found
             return -1;
         }else{
@@ -76,9 +76,21 @@ public class ProductoUnidadTxt extends GenericDaoTxt<ProductoUnidad, Integer> im
         gestor.replaceNode_findFieldByName(atributo_productos); //products array
         int id = producto.getProducto().getProducto_id();
         //product with that id , ya antes me he assegurado de que existe
-        gestor.replaceNode_isArray_NodeIndexedWithChildIntValue(atributo_id,id);
+        gestor.replaceNode_isArray_NodeIndexedWithChildIntValue(atributo_productoId,id);
         gestor.updateNode_setNewIntValueInField(atributo_cantidad, producto.getCantidad());
         gestor.saveMainNodeInFile(); 
+    }
+
+    @Override
+    public void incrementarCantidadByStockIdProductoId(int stockId, int productoId, int incremento) throws IOException {
+        gestor.setMainNode_FromFile();
+        gestor.setAuxiliarNodesNull();
+        gestor.setNode_findFieldByName_fromMain(atributo_stocks); //stocks array    
+        gestor.replaceNode_isArray_nodeByIndex(stockId-1);  //stock
+        gestor.replaceNode_findFieldByName(atributo_productos); //products array        
+        gestor.replaceNode_isArray_NodeIndexedWithChildIntValue(atributo_productoId,productoId);
+        gestor.updateNode_incrementIntValueInField(atributo_cantidad, incremento);
+        gestor.saveMainNodeInFile();
     }
 
     

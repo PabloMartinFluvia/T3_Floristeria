@@ -13,7 +13,7 @@ public class IncrementosV {
 
     public IncrementosV(IncrementosC controlador) {
         io = new InOut();
-        this.controlador = controlador;    
+        this.controlador = controlador;      
         resetAll();
     }
     
@@ -23,7 +23,7 @@ public class IncrementosV {
         this.controlador.resetIncrValorStocks();
     }
     
-    public void requerirIncremento(String mensage){        
+    public void requerirIncremento(String mensage){            
         int max = controlador.getMaxIncr();
         int min = controlador.getMinIncr();        
         controlador.setIncr(new ProductoUnidadV().pedirIncremento(mensage, min, max));
@@ -36,5 +36,5 @@ public class IncrementosV {
         controlador.updateValoresStock();
         io.writeln("Valor en stock actualizado con éxito.");
         controlador.setIncrsNull();
-    }
+    }        
 }

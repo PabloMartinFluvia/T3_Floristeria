@@ -8,4 +8,6 @@ public interface SeleccionadorC extends IncrementosC{
     StocksC getNewStocksC();
         
     boolean isIdValid(int productoId, int stock_id) throws IOException; //lo busca y se lo guarda
+    
+    public void modificarCantidadEnStock() throws IOException;
 }
