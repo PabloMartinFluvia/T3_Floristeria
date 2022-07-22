@@ -1,11 +1,11 @@
 {
   "floristeria_id" : 1,
   "nombre_floristeria" : "FloriTest",
-  "valorStocksTotal" : 15561.0,
-  "valorTicketsTotal" : 0.0,
+  "valorStocksTotal" : 10876.0,
+  "valorTicketsTotal" : 4655.0,
   "stocks" : [ {
     "id" : 1,
-    "valor_Productos" : 15226.0,
+    "valor_Productos" : 10726.0,
     "productos" : [ {
       "producto" : {
         "producto_id" : 1,
@@ -23,7 +23,7 @@
         "precio" : 90.0,
         "altura" : "MUY_BAJO"
       },
-      "cantidad" : 50
+      "cantidad" : 0
     }, {
       "producto" : {
         "producto_id" : 5,
@@ -36,7 +36,7 @@
     } ]
   }, {
     "id" : 2,
-    "valor_Productos" : 330.0,
+    "valor_Productos" : 150.0,
     "productos" : [ {
       "producto" : {
         "producto_id" : 2,
@@ -45,10 +45,37 @@
         "precio" : 3.0,
         "color" : "rojo"
       },
-      "cantidad" : 110
+      "cantidad" : 50
     } ]
   }, {
     "id" : 3,
+    "valor_Productos" : 0.0,
+    "productos" : [ {
+      "producto" : {
+        "producto_id" : 3,
+        "categoria" : "DECORACION",
+        "nombre" : "Jarrón transparente",
+        "precio" : 5.0,
+        "material" : "PLASTICO"
+      },
+      "cantidad" : 0
+    } ]
+  } ],
+  "tiquets" : [ {
+    "id" : 1,
+    "valor_Productos" : 0.0,
+    "productos" : [ {
+      "producto" : {
+        "producto_id" : 2,
+        "categoria" : "FLOR",
+        "nombre" : "Ramo de rosas",
+        "precio" : 3.0,
+        "color" : "rojo"
+      },
+      "cantidad" : 10
+    } ]
+  }, {
+    "id" : 2,
     "valor_Productos" : 5.0,
     "productos" : [ {
       "producto" : {
@@ -60,6 +87,49 @@
       },
       "cantidad" : 1
     } ]
-  } ],
-  "tiquets" : [ ]
+  }, {
+    "id" : 3,
+    "valor_Productos" : 900.0,
+    "productos" : [ {
+      "producto" : {
+        "producto_id" : 4,
+        "categoria" : "ARBOL",
+        "nombre" : "Bonsai japonés",
+        "precio" : 90.0,
+        "altura" : "MUY_BAJO"
+      },
+      "cantidad" : 10
+    } ]
+  }, {
+    "id" : 4,
+    "valor_Productos" : 3755.0,
+    "productos" : [ {
+      "producto" : {
+        "producto_id" : 4,
+        "categoria" : "ARBOL",
+        "nombre" : "Bonsai japonés",
+        "precio" : 90.0,
+        "altura" : "MUY_BAJO"
+      },
+      "cantidad" : 40
+    }, {
+      "producto" : {
+        "producto_id" : 2,
+        "categoria" : "FLOR",
+        "nombre" : "Ramo de rosas",
+        "precio" : 3.0,
+        "color" : "rojo"
+      },
+      "cantidad" : 50
+    }, {
+      "producto" : {
+        "producto_id" : 3,
+        "categoria" : "DECORACION",
+        "nombre" : "Jarrón transparente",
+        "precio" : 5.0,
+        "material" : "PLASTICO"
+      },
+      "cantidad" : 1
+    } ]
+  } ]
 }

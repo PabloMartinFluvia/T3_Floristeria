@@ -1,0 +1,30 @@
+package com.calvogasullmartin.t3_floristeria.persistencia.txt;
+
+import java.io.File;
+import java.io.IOException;
+import com.calvogasullmartin.t3_floristeria.persistencia.Conector2;
+
+public class ConectorTxt2 implements Conector2{
+
+    private final String rutaArchivoTxt;
+    private final File archivoTxt;
+
+    public ConectorTxt2() {
+        rutaArchivoTxt = "floristeria.txt"; // se crea en el mismo directorio que carpetas src y target
+        archivoTxt = new File(rutaArchivoTxt);        
+    }
+            
+    @Override
+    public boolean isBDInicizializada() throws IOException{       
+        return archivoTxt.exists() && !archivoTxt.isDirectory();
+    }
+
+    @Override
+    public void inicializarBD() throws IOException{
+        archivoTxt.createNewFile();
+    }    
+
+    public File getArchivoTxt() {
+        return archivoTxt;
+    }        
+}

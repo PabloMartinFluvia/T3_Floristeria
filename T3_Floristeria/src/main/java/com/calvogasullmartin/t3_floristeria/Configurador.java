@@ -1,22 +1,22 @@
 package com.calvogasullmartin.t3_floristeria;
 
-import com.calvogasullmartin.t3_floristeria.controladores.locales.LocalLogica;
-import com.calvogasullmartin.t3_floristeria.persistencia.DaoFactory;
-import com.calvogasullmartin.t3_floristeria.persistencia.DaoFactoryTxt;
-import com.calvogasullmartin.t3_floristeria.vistasConsola.AppV;
+import com.calvogasullmartin.t3_floristeria.controladores.locales.LocalLogica2;
+import com.calvogasullmartin.t3_floristeria.persistencia.DaoFactory2;
+import com.calvogasullmartin.t3_floristeria.persistencia.DaoFactoryTxt2;
+import com.calvogasullmartin.t3_floristeria.vistasConsola.AppV2;
 
 
 public class Configurador{
           
     public void persistenciaTxt() {
-        DaoFactory.setFactory(new DaoFactoryTxt());
+        DaoFactory2.setFactory(new DaoFactoryTxt2());
     }
     
     public Vista vistasPorConsola (){
-        return new AppV();
+        return new AppV2();
     }
     
     public Logica controladoresLocales (){
-        return new LocalLogica();
+        return new LocalLogica2();
     }
 }
