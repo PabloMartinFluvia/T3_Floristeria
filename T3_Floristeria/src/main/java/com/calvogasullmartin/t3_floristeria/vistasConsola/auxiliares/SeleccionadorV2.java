@@ -26,7 +26,7 @@ public abstract class SeleccionadorV2 {
     
     protected boolean seleccionarIdProducto(SeleccionadorC2 controlador, String operationOption) throws IOException {
         int stock_id = mostrarStock(controlador.getNewStocksC(),
-                "el tipo de producto que desea"+operationOption);
+                "el tipo de producto que desea "+operationOption);
         int productoId = 0;
         boolean out = false;
         boolean seleccionado = false;

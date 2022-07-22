@@ -1,6 +1,7 @@
 package com.calvogasullmartin.t3_floristeria.vistasConsola;
 
 import com.calvogasullmartin.t3_floristeria.Vista;
+import com.calvogasullmartin.t3_floristeria.controladores.EliminarC2;
 import com.calvogasullmartin.t3_floristeria.controladores.FacturacionC2;
 import com.calvogasullmartin.t3_floristeria.controladores.MenuC2;
 import com.calvogasullmartin.t3_floristeria.controladores.ModificadorC2;
@@ -72,6 +73,12 @@ public class AppV2 implements Vista{
     public void visistar(VentaC2 controlador) {
         assert controlador != null;
         new VentaV2(controlador).interactuar();
+    }
+
+    @Override
+    public void visistar(EliminarC2 controlador) {
+        assert controlador != null;
+        new EliminarV2(controlador).interactuar();
     }
 
     

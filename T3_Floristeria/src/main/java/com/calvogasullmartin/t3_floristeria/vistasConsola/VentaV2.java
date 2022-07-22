@@ -52,7 +52,7 @@ public class VentaV2 extends SeleccionadorV2 {
     protected void step2() throws IOException {
         String mensage = "el número de unidades vendidas: ";
         int maxCantidad = -controlador.getMinIncr();
-        int cantidadVendida = new ProductoUnidadV2().pedirIncremento(mensage,1, maxCantidad);
+        int cantidadVendida = new ProductoUnidadV2().pedirIncremento(mensage,1, maxCantidad);        
         controlador.addProductoUnidadEnTiquet(cantidadVendida);
         controlador.addIncrValor();
         controlador.addIncrValorStock();

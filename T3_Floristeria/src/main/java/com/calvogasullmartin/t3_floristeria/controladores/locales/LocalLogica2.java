@@ -39,6 +39,8 @@ public class LocalLogica2 implements Logica{
         controladores.put(Estado2.ACTUALIZAR_UNIDADES, modificador);
         VentaC2 venta = new LocalVentaC2(manager);
         controladores.put(Estado2.REALIZAR_VENTA, venta);
+        EliminarC2 eliminar = new LocalEliminarC2(manager);
+        controladores.put(Estado2.RETIRAR_PRODUCTO, eliminar);
         controladores.put(Estado2.EXIT, null);
     }
         

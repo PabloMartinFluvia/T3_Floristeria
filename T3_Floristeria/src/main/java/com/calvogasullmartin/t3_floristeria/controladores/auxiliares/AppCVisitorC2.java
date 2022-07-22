@@ -22,4 +22,6 @@ public interface AppCVisitorC2 {
     void visitar(ModificadorC2 controlador);
     
     void visistar(VentaC2 controlador);
+    
+    void visistar(EliminarC2 controlador);
 }
