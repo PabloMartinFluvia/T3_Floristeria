@@ -1,17 +1,17 @@
 package com.calvogasullmartin.t3_floristeria.utils;
 
-public class YesNoDialog2 {
+public class YesNoDialog {
 
     private String title;
 
-    public YesNoDialog2(String title) {
+    public YesNoDialog(String title) {
         assert title != null;
         this.title = title;
     }
 
     public boolean read() {
         char answer;
-        InOut2 io = new InOut2();
+        InOut io = new InOut();
         boolean ok;
         do {
             answer = io.readChar(title + "? (s/n): ");

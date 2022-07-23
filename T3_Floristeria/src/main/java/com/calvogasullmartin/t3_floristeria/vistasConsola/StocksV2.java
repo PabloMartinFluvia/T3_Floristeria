@@ -1,7 +1,7 @@
 package com.calvogasullmartin.t3_floristeria.vistasConsola;
 
-import com.calvogasullmartin.t3_floristeria.utils.InOut2;
-import com.calvogasullmartin.t3_floristeria.utils.YesNoDialog2;
+import com.calvogasullmartin.t3_floristeria.utils.InOut;
+import com.calvogasullmartin.t3_floristeria.utils.YesNoDialog;
 import com.calvogasullmartin.t3_floristeria.vistasConsola.auxiliares.MostradorConjuntosV2;
 import com.calvogasullmartin.t3_floristeria.vistasConsola.auxiliares.ToMenuV2;
 import java.io.IOException;
@@ -9,20 +9,20 @@ import com.calvogasullmartin.t3_floristeria.controladores.StocksC2;
 
 public class StocksV2{
     
-    private InOut2 io;
+    private InOut io;
     
     private boolean withProductId;
     
     private boolean isAllOptionsPosible;
     
     public StocksV2(){
-        io = new InOut2();
+        io = new InOut();
         withProductId = false;
         isAllOptionsPosible = true;
     }
     
     public void interactuar(StocksC2 controlador){        
-        YesNoDialog2 requerimiento = new YesNoDialog2("Desea visualizar las unidades");                        
+        YesNoDialog requerimiento = new YesNoDialog("Desea visualizar las unidades");                        
         try {
             new MostradorConjuntosV2(requerimiento.read(),withProductId).
                     showStocks(controlador, isAllOptionsPosible, "que stock(s) desea ver");                     

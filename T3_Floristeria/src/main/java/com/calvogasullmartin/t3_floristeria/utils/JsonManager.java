@@ -15,9 +15,9 @@ import java.util.Iterator;
 import java.util.LinkedList;
 import java.util.List;
 
-public class JsonManager2<T> {
+public class JsonManager<T> {
     
-    private JsonFileManager2<T> fileManager;
+    private JsonFileManager<T> fileManager;
     private ObjectMapper mapper;
     private Gson gson;    
     private JsonNode mainNode;    
@@ -25,17 +25,17 @@ public class JsonManager2<T> {
     private List<JsonNode> listNodes;
     private JsonNode auxiliarNode;
 
-    public JsonManager2() {        
+    public JsonManager() {        
         this.mapper = new ObjectMapper().setSerializationInclusion(JsonInclude.Include.NON_NULL)
                 .enable(SerializationFeature.INDENT_OUTPUT); // serialize nulls: false  
         this.gson = new GsonBuilder().setPrettyPrinting().create(); //serialize nulls: false        
     }
     
-    public JsonManager2 (File archivo) {
+    public JsonManager (File archivo) {
         assert archivo != null;
         assert archivo.isFile();
         assert archivo.exists();
-        this.fileManager = new JsonFileManager2<>(archivo);
+        this.fileManager = new JsonFileManager<>(archivo);
         this.mapper = new ObjectMapper().setSerializationInclusion(JsonInclude.Include.NON_NULL)
                 .enable(SerializationFeature.INDENT_OUTPUT); // serialize nulls: false  
         this.gson = new GsonBuilder().setPrettyPrinting().create(); //serialize nulls: false

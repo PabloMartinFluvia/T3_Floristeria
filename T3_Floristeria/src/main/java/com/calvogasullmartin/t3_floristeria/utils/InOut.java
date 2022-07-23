@@ -4,7 +4,7 @@ import java.io.BufferedReader;
 import java.io.InputStreamReader;
 import java.util.Scanner;
 
-public class InOut2 {
+public class InOut {
 
         //Correcte per a ingés. Si es vol posar accents o apostrofs dona problemes
 	private BufferedReader lector = new BufferedReader(new InputStreamReader(System.in));

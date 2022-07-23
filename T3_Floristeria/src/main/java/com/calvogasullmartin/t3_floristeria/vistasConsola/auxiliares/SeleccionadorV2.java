@@ -1,14 +1,14 @@
 package com.calvogasullmartin.t3_floristeria.vistasConsola.auxiliares;
 
-import com.calvogasullmartin.t3_floristeria.utils.InOut2;
-import com.calvogasullmartin.t3_floristeria.utils.YesNoDialog2;
+import com.calvogasullmartin.t3_floristeria.utils.InOut;
+import com.calvogasullmartin.t3_floristeria.utils.YesNoDialog;
 import java.io.IOException;
 import com.calvogasullmartin.t3_floristeria.controladores.StocksC2;
 import com.calvogasullmartin.t3_floristeria.controladores.auxiliares.SeleccionadorC2;
 
 public abstract class SeleccionadorV2 {
     
-    private InOut2 io;
+    private InOut io;
     
     private boolean withUnits;
     
@@ -17,7 +17,7 @@ public abstract class SeleccionadorV2 {
     private boolean isAllOptionsPosible;    
     
     public SeleccionadorV2(){
-        io = new InOut2();
+        io = new InOut();
         withUnits = true;
         withProductId = true;
         isAllOptionsPosible = false;
@@ -37,7 +37,7 @@ public abstract class SeleccionadorV2 {
                seleccionado = true;
                out = true;
            }else{
-               YesNoDialog2 requerimiento = new YesNoDialog2("Id seleccionado incorrecto. Desea intentarlo de nuevo");
+               YesNoDialog requerimiento = new YesNoDialog("Id seleccionado incorrecto. Desea intentarlo de nuevo");
                out = !requerimiento.read();
            }
         }while(!out);  

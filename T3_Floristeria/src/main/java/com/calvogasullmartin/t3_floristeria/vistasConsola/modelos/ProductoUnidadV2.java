@@ -1,19 +1,19 @@
 package com.calvogasullmartin.t3_floristeria.vistasConsola.modelos;
 
-import com.calvogasullmartin.t3_floristeria.utils.InOut2;
-import com.calvogasullmartin.t3_floristeria.utils.PedirEnteroLimitado2;
+import com.calvogasullmartin.t3_floristeria.utils.InOut;
+import com.calvogasullmartin.t3_floristeria.utils.PedirEnteroLimitado;
 import com.calvogasullmartin.t3_floristeria.controladores.auxiliares.ConjuntosC2;
 
 public class ProductoUnidadV2 {
     
-    private InOut2 io;        
+    private InOut io;        
 
     public ProductoUnidadV2() {
-        io = new InOut2();
+        io = new InOut();
     }
     
     public int pedirIncremento(String mensage, int min, int max) {
-        PedirEnteroLimitado2 requerimiento = new PedirEnteroLimitado2("Introduzca "+mensage, min, max);
+        PedirEnteroLimitado requerimiento = new PedirEnteroLimitado("Introduzca "+mensage, min, max);
         return requerimiento.read();
     }
     

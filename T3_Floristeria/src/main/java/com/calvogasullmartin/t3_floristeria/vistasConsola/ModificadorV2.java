@@ -1,6 +1,6 @@
 package com.calvogasullmartin.t3_floristeria.vistasConsola;
 
-import com.calvogasullmartin.t3_floristeria.utils.InOut2;
+import com.calvogasullmartin.t3_floristeria.utils.InOut;
 import com.calvogasullmartin.t3_floristeria.vistasConsola.auxiliares.SeleccionadorV2;
 import com.calvogasullmartin.t3_floristeria.vistasConsola.auxiliares.ToMenuV2;
 import com.calvogasullmartin.t3_floristeria.vistasConsola.auxiliares.IncrementosV2;
@@ -9,12 +9,12 @@ import com.calvogasullmartin.t3_floristeria.controladores.ModificadorC2;
 
 public class ModificadorV2 extends SeleccionadorV2{
     
-    private InOut2 io;
+    private InOut io;
         
     private ModificadorC2 controlador;
     
     public ModificadorV2(ModificadorC2 controlador){
-        io = new InOut2();
+        io = new InOut();
         this.controlador = controlador;
     }
     

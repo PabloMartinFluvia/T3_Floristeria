@@ -1,8 +1,8 @@
 package com.calvogasullmartin.t3_floristeria.vistasConsola.modelos;
 
 import com.calvogasullmartin.t3_floristeria.modelos.Categoria2;
-import com.calvogasullmartin.t3_floristeria.utils.InOut2;
-import com.calvogasullmartin.t3_floristeria.utils.PedirEnteroLimitado2;
+import com.calvogasullmartin.t3_floristeria.utils.InOut;
+import com.calvogasullmartin.t3_floristeria.utils.PedirEnteroLimitado;
 
 /*
 Aunque sea una vista, no hay problema en que esté acoplada al modelo,
@@ -10,13 +10,13 @@ ya que es un Enum.
 */
 public class CategoriaV2 {
     
-    private InOut2 io = new InOut2();
+    private InOut io = new InOut();
     
     private boolean allOptionsPosible;
     
     private String mensageOpcion;
     
-    private PedirEnteroLimitado2 requerimiento;
+    private PedirEnteroLimitado requerimiento;
     
     private int maxOpciones;
     
@@ -48,7 +48,7 @@ public class CategoriaV2 {
         }else{
             minOpciones = 1;
         }       
-        requerimiento = new PedirEnteroLimitado2("Seleccione "+mensageOpcion ,minOpciones, maxOpciones);        
+        requerimiento = new PedirEnteroLimitado("Seleccione "+mensageOpcion ,minOpciones, maxOpciones);        
         return requerimiento.read();
     }
     

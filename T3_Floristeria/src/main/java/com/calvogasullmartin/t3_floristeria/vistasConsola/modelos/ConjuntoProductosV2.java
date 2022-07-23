@@ -1,16 +1,16 @@
 package com.calvogasullmartin.t3_floristeria.vistasConsola.modelos;
 
-import com.calvogasullmartin.t3_floristeria.utils.InOut2;
+import com.calvogasullmartin.t3_floristeria.utils.InOut;
 import com.calvogasullmartin.t3_floristeria.controladores.auxiliares.ConjuntosC2;
 
 public class ConjuntoProductosV2 {
 
-    private InOut2 io;
+    private InOut io;
 
     private ConjuntosC2 controlador;
 
     public ConjuntoProductosV2(ConjuntosC2 controlador) {
-        io = new InOut2();
+        io = new InOut();
         this.controlador = controlador;
     }
 

@@ -1,18 +1,18 @@
 package com.calvogasullmartin.t3_floristeria.vistasConsola;
 
-import com.calvogasullmartin.t3_floristeria.utils.InOut2;
+import com.calvogasullmartin.t3_floristeria.utils.InOut;
 import com.calvogasullmartin.t3_floristeria.vistasConsola.modelos.FloristeriaVista2;
 import java.io.IOException;
 import com.calvogasullmartin.t3_floristeria.controladores.StartC2;
 
 public class StartV2 {
     
-    private InOut2 io;
+    private InOut io;
     
     private StartC2 controlador;
 
     public StartV2(StartC2 controlador) {
-        io = new InOut2();
+        io = new InOut();
         this.controlador = controlador;
     }
     

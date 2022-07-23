@@ -11,14 +11,14 @@ import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
 
-public class JsonFileManager2<T> {
+public class JsonFileManager<T> {
 
     private File archivo;
     private ObjectMapper mapper;
     private BufferedWriter escritor;
     private Gson gson;
 
-    public JsonFileManager2(File archivo) {
+    public JsonFileManager(File archivo) {
         assert archivo != null;
         assert archivo.isFile();
         assert archivo.exists();

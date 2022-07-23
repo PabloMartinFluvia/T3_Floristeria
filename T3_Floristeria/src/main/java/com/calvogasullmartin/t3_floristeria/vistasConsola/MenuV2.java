@@ -1,19 +1,19 @@
 package com.calvogasullmartin.t3_floristeria.vistasConsola;
 
-import com.calvogasullmartin.t3_floristeria.utils.InOut2;
-import com.calvogasullmartin.t3_floristeria.utils.PedirEnteroLimitado2;
+import com.calvogasullmartin.t3_floristeria.utils.InOut;
+import com.calvogasullmartin.t3_floristeria.utils.PedirEnteroLimitado;
 import com.calvogasullmartin.t3_floristeria.controladores.MenuC2;
 
 public class MenuV2 {
     
-    private InOut2 io;
+    private InOut io;
     
     private MenuC2 controlador;
     
     private final int MIN_OPTION = 0;
 
     public MenuV2(MenuC2 controlador) {
-        io = new InOut2();
+        io = new InOut();
         this.controlador = controlador;
     }
 
@@ -22,7 +22,7 @@ public class MenuV2 {
         io.writeln("\n"+controlador.getMenuMensage());
         String mensage = "Seleccione una opción";
         int max = controlador.getNumOptionsNoExit();
-        PedirEnteroLimitado2 solicitud = new PedirEnteroLimitado2(mensage,MIN_OPTION,max);
+        PedirEnteroLimitado solicitud = new PedirEnteroLimitado(mensage,MIN_OPTION,max);
         int opcion = solicitud.read();
         indicarFuncionalidad(opcion);
     }

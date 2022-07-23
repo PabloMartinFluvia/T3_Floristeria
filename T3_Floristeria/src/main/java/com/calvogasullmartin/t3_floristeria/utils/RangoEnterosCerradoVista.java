@@ -1,19 +1,19 @@
 package com.calvogasullmartin.t3_floristeria.utils;
 
-class RangoEnterosCerradoVista2 {
+class RangoEnterosCerradoVista {
 
 	private String title;
 	
-	private RangoEnterosCerrado2 rango;
+	private RangoEnterosCerrado rango;
 	
-	private InOut2 io;
+	private InOut io;
 	
-	public RangoEnterosCerradoVista2(String title, RangoEnterosCerrado2 rango){
+	public RangoEnterosCerradoVista(String title, RangoEnterosCerrado rango){
 		assert title != null;
 		assert rango != null;
 		this.title = title;
 		this.rango = rango;
-		io = new InOut2();
+		io = new InOut();
 	}
 	
 	public void writeln() {

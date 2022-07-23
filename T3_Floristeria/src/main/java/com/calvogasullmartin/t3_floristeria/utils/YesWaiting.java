@@ -1,14 +1,14 @@
 package com.calvogasullmartin.t3_floristeria.utils;
 
-public class YesWaiting2 {
+public class YesWaiting {
     
-    private YesNoDialog2 pregunta;
+    private YesNoDialog pregunta;
     
     private String mensage;
 
-    public YesWaiting2(String mensage) {
+    public YesWaiting(String mensage) {
         this.mensage = mensage;
-        pregunta = new YesNoDialog2(mensage);
+        pregunta = new YesNoDialog(mensage);
     }
     
     public void bucleYes(){

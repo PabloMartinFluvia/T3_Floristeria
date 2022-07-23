@@ -1,13 +1,13 @@
 package com.calvogasullmartin.t3_floristeria.vistasConsola.modelos;
 
-import com.calvogasullmartin.t3_floristeria.utils.InOut2;
+import com.calvogasullmartin.t3_floristeria.utils.InOut;
 
 public class FloristeriaVista2 {
     
-    private InOut2 io;
+    private InOut io;
     
     public FloristeriaVista2() {        
-        this.io = new InOut2();        
+        this.io = new InOut();        
     }
     
     public String pedirNombre() {

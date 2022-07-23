@@ -1,7 +1,7 @@
 package com.calvogasullmartin.t3_floristeria.vistasConsola;
 
 import com.calvogasullmartin.t3_floristeria.controladores.EliminarC2;
-import com.calvogasullmartin.t3_floristeria.utils.InOut2;
+import com.calvogasullmartin.t3_floristeria.utils.InOut;
 import com.calvogasullmartin.t3_floristeria.vistasConsola.auxiliares.IncrementosV2;
 import com.calvogasullmartin.t3_floristeria.vistasConsola.auxiliares.SeleccionadorV2;
 import com.calvogasullmartin.t3_floristeria.vistasConsola.auxiliares.ToMenuV2;
@@ -10,14 +10,14 @@ import java.io.IOException;
 
 public class EliminarV2 extends SeleccionadorV2 {
 
-    private InOut2 io;
+    private InOut io;
 
     private EliminarC2 controlador;
 
     private IncrementosV2 incrV;
 
     public EliminarV2(EliminarC2 controlador) {
-        io = new InOut2();
+        io = new InOut();
         this.controlador = controlador;
         this.incrV = new IncrementosV2(controlador);
     }

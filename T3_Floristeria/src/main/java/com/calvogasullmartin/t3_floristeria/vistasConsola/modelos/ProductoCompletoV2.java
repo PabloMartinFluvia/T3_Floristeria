@@ -2,17 +2,17 @@ package com.calvogasullmartin.t3_floristeria.vistasConsola.modelos;
 
 import com.calvogasullmartin.t3_floristeria.modelos.Altura2;
 import com.calvogasullmartin.t3_floristeria.modelos.Material2;
-import com.calvogasullmartin.t3_floristeria.utils.InOut2;
-import com.calvogasullmartin.t3_floristeria.utils.PedirEnteroLimitado2;
+import com.calvogasullmartin.t3_floristeria.utils.InOut;
+import com.calvogasullmartin.t3_floristeria.utils.PedirEnteroLimitado;
 import com.calvogasullmartin.t3_floristeria.controladores.NuevoC2;
 import com.calvogasullmartin.t3_floristeria.controladores.auxiliares.ConjuntosC2;
 
 public class ProductoCompletoV2 {
 
-    private InOut2 io;
+    private InOut io;
     
     public ProductoCompletoV2() {
-        io = new InOut2();
+        io = new InOut();
     }
     
     public void mostrarProducto(ConjuntosC2 controlador, int[] indexs){
@@ -81,7 +81,7 @@ public class ProductoCompletoV2 {
             String opciones = "\t"+(i+1)+") "+Altura2.values()[i];
             io.writeln(opciones);
         }
-        PedirEnteroLimitado2 solicitud = new PedirEnteroLimitado2("Seleccione opción",numOpciones);
+        PedirEnteroLimitado solicitud = new PedirEnteroLimitado("Seleccione opción",numOpciones);
         int opcion = solicitud.read();
         return opcion-1;
     }
@@ -117,7 +117,7 @@ public class ProductoCompletoV2 {
             String opciones = "\t"+(i+1)+") "+Material2.values()[i];
             io.writeln(opciones);
         }
-        PedirEnteroLimitado2 solicitud = new PedirEnteroLimitado2("Seleccione opción",numOpciones);
+        PedirEnteroLimitado solicitud = new PedirEnteroLimitado("Seleccione opción",numOpciones);
         int opcion = solicitud.read();
         return opcion-1;
     }

@@ -1,7 +1,7 @@
 package com.calvogasullmartin.t3_floristeria.vistasConsola;
 
-import com.calvogasullmartin.t3_floristeria.utils.InOut2;
-import com.calvogasullmartin.t3_floristeria.utils.YesNoDialog2;
+import com.calvogasullmartin.t3_floristeria.utils.InOut;
+import com.calvogasullmartin.t3_floristeria.utils.YesNoDialog;
 import com.calvogasullmartin.t3_floristeria.vistasConsola.auxiliares.IncrementosV2;
 import com.calvogasullmartin.t3_floristeria.vistasConsola.auxiliares.SeleccionadorV2;
 import com.calvogasullmartin.t3_floristeria.vistasConsola.auxiliares.ToMenuV2;
@@ -11,21 +11,21 @@ import com.calvogasullmartin.t3_floristeria.controladores.VentaC2;
 
 public class VentaV2 extends SeleccionadorV2 {
 
-    private InOut2 io;
+    private InOut io;
 
     private VentaC2 controlador;
     
     private IncrementosV2 incrV;
 
     public VentaV2(VentaC2 controlador) {
-        io = new InOut2();
+        io = new InOut();
         this.controlador = controlador;
         this.controlador.resetTiquet();
         this.incrV = new IncrementosV2(controlador);   
     }
 
     public void interactuar() {
-        YesNoDialog2 requerimiento = new YesNoDialog2("Quiere añadir más productos al tiquet");
+        YesNoDialog requerimiento = new YesNoDialog("Quiere añadir más productos al tiquet");
         boolean ventaHecha = false;
         try {
             do {

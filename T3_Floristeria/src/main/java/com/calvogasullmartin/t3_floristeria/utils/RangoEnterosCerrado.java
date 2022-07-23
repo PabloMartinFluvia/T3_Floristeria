@@ -1,12 +1,12 @@
 package com.calvogasullmartin.t3_floristeria.utils;
 
-public class RangoEnterosCerrado2 {
+public class RangoEnterosCerrado {
 
     private int min;
 
     private int max;
 
-    public RangoEnterosCerrado2(int min, int max) {
+    public RangoEnterosCerrado(int min, int max) {
         assert min <= max;
         this.min = min;
         this.max = max;

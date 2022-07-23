@@ -1,6 +1,6 @@
 package com.calvogasullmartin.t3_floristeria.vistasConsola;
 
-import com.calvogasullmartin.t3_floristeria.utils.InOut2;
+import com.calvogasullmartin.t3_floristeria.utils.InOut;
 import com.calvogasullmartin.t3_floristeria.vistasConsola.auxiliares.IncrementosV2;
 import com.calvogasullmartin.t3_floristeria.vistasConsola.auxiliares.ToMenuV2;
 import com.calvogasullmartin.t3_floristeria.vistasConsola.modelos.ProductoCompletoV2;
@@ -9,12 +9,12 @@ import com.calvogasullmartin.t3_floristeria.controladores.NuevoC2;
 
 public class NuevoV2 {
 
-    private InOut2 io;
+    private InOut io;
     
     private NuevoC2 controlador;
 
     public NuevoV2(NuevoC2 controlador) {
-        io = new InOut2();
+        io = new InOut();
         this.controlador = controlador;
     }
 

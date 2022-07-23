@@ -1,18 +1,18 @@
 package com.calvogasullmartin.t3_floristeria.vistasConsola.auxiliares;
 
-import com.calvogasullmartin.t3_floristeria.utils.InOut2;
+import com.calvogasullmartin.t3_floristeria.utils.InOut;
 import com.calvogasullmartin.t3_floristeria.vistasConsola.modelos.ProductoUnidadV2;
 import java.io.IOException;
 import com.calvogasullmartin.t3_floristeria.controladores.auxiliares.IncrementosC2;
 
 public class IncrementosV2 {
     
-    private InOut2 io;
+    private InOut io;
     
     private IncrementosC2 controlador;
 
     public IncrementosV2(IncrementosC2 controlador) {
-        io = new InOut2();
+        io = new InOut();
         this.controlador = controlador;      
         resetAll();
     }
