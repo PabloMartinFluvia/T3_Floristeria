@@ -2,16 +2,16 @@ package com.calvogasullmartin.t3_floristeria.vistasConsola;
 
 import com.calvogasullmartin.t3_floristeria.Vista;
 import com.calvogasullmartin.t3_floristeria.controladores.EliminarC2;
-import com.calvogasullmartin.t3_floristeria.controladores.FacturacionC2;
-import com.calvogasullmartin.t3_floristeria.controladores.MenuC2;
 import com.calvogasullmartin.t3_floristeria.controladores.ModificadorC2;
 import com.calvogasullmartin.t3_floristeria.controladores.NuevoC2;
-import com.calvogasullmartin.t3_floristeria.controladores.StartC2;
 import com.calvogasullmartin.t3_floristeria.controladores.StocksC2;
 import com.calvogasullmartin.t3_floristeria.controladores.TicketsC2;
-import com.calvogasullmartin.t3_floristeria.controladores.ValorC2;
 import com.calvogasullmartin.t3_floristeria.controladores.VentaC2;
 import com.calvogasullmartin.t3_floristeria.controladores.auxiliares.AppC2;
+import com.calvogasullmartin.t3_floristeria.controladores.StartC;
+import com.calvogasullmartin.t3_floristeria.controladores.MenuC;
+import com.calvogasullmartin.t3_floristeria.controladores.FacturacionC;
+import com.calvogasullmartin.t3_floristeria.controladores.ValorC;
 
 public class AppV2 implements Vista{       
     
@@ -22,27 +22,27 @@ public class AppV2 implements Vista{
     }
 
     @Override
-    public void visitar(StartC2 controlador) {
+    public void visitar(StartC controlador) {
         assert controlador != null;        
-        new StartV2(controlador).interactuar();
+        new StartV(controlador).interactuar();
     }
 
     @Override
-    public void visitar(MenuC2 controlador) {
+    public void visitar(MenuC controlador) {
         assert controlador != null; 
-        new MenuV2(controlador).interactuar();
+        new MenuV(controlador).interactuar();
     }
 
     @Override
-    public void visitar(ValorC2 controlador) {
+    public void visitar(ValorC controlador) {
         assert controlador != null; 
         new ValorV2().interactuar(controlador);
     }
 
     @Override
-    public void visitar(FacturacionC2 controlador) {
+    public void visitar(FacturacionC controlador) {
         assert controlador != null; 
-        new FacturacionV2().interactuar(controlador);
+        new FacturacionV2().interactuar(controlador);        
     }
 
     @Override

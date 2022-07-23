@@ -5,13 +5,13 @@ import com.calvogasullmartin.t3_floristeria.controladores.*;
 
 public interface AppCVisitorC2 {
         
-    void visitar(StartC2 controlador);
+    void visitar(StartC controlador);
     
-    void visitar(MenuC2 controlador);
+    void visitar(MenuC controlador);
     
-    void visitar(ValorC2 controlador);
+    void visitar(ValorC controlador);
     
-    void visitar(FacturacionC2 controlador);
+    void visitar(FacturacionC controlador);
     
     void visitar(NuevoC2 controlador);
     

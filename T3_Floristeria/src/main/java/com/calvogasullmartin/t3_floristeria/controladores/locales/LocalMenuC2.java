@@ -5,9 +5,9 @@ import com.calvogasullmartin.t3_floristeria.modelos.Estado2;
 import com.calvogasullmartin.t3_floristeria.modelos.Manager2;
 import com.calvogasullmartin.t3_floristeria.modelos.Menu2;
 import com.calvogasullmartin.t3_floristeria.controladores.auxiliares.AppCVisitorC2;
-import com.calvogasullmartin.t3_floristeria.controladores.MenuC2;
+import com.calvogasullmartin.t3_floristeria.controladores.MenuC;
 
-public class LocalMenuC2 extends LocalAppC2 implements MenuC2{
+public class LocalMenuC2 extends LocalAppC2 implements MenuC{
 
     private Menu2 menu;
     
@@ -32,42 +32,42 @@ public class LocalMenuC2 extends LocalAppC2 implements MenuC2{
     }
 
     @Override
-    public void seleccionarNuevoProducto() {
+    public void selectNuevoArticulo() {
         this.setEstado(Estado2.NUEVO_PRODUCTO);
     }
 
     @Override
-    public void seleccionarActualizarUnidades() {
+    public void selectModificarUnidades() {
         this.setEstado(Estado2.ACTUALIZAR_UNIDADES);
     }
 
     @Override
-    public void seleccionarRetirarProducto() {
+    public void selectDescatalogarArticulo() {
         this.setEstado(Estado2.RETIRAR_PRODUCTO);
     }
 
     @Override
-    public void seleccionarMostrarStock() {
+    public void selectMostrarStocks() {
         this.setEstado(Estado2.MOSTRAR_STOCK);
     }
 
     @Override
-    public void seleccionarVerValorFloristeria() {
+    public void selectVerValor() {
         this.setEstado(Estado2.MOSTRAR_VALOR_TIENDA);
     }
 
     @Override
-    public void seleccionarRealizarVenta() {
+    public void selectNuevaVenta() {
         this.setEstado(Estado2.REALIZAR_VENTA);
     }
 
     @Override
-    public void seleccionarMostrarTiquets() {
+    public void selectMostrarTiquets() {
         this.setEstado(Estado2.MOSTRAR_TIQUETS);
     }
 
     @Override
-    public void seleccionarVerTotalFacturacion() {
+    public void selectVerFacturacion() {
         this.setEstado(Estado2.MOSTRAR_FACTURACION_TOTAL);
     }
 

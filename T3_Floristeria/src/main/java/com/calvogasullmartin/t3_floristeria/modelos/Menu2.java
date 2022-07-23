@@ -13,17 +13,17 @@ public class Menu2 {
     
     private void iniciarMensage(){
         menuMensage = "MENU INICAL:\n"
-                + "\t1) Añadir un articulo.\n"
-                + "\t2) Modificar unidades de un articulo.\n"
-                + "\t3) Descatalogar un articulo.\n"
+                + "\t1) Realizar una venta.\n"
+                + "\t2) Ver los productos en stock(s).\n\n"
                 
-                + "\t4) Ver los productos en stock(s).\n"
+                + "\t3) Añadir un nuevo articulo.\n"
+                + "\t4) Modificar unidades en stock de un articulo.\n"
+                + "\t5) Descatalogar un articulo.\n\n"
+                                                                                                              
+                + "\t6) Ver el valor total del stock (actual).\n"  
+                + "\t7) Ver el valor total de la facturación (actual).\n"
+                + "\t8) Ver todos los tickets de ventas pasadas.\n\n"
                 
-                + "\t5) Ver valor total del stock.\n"
-                
-                + "\t6) Realizar una venta.\n"
-                + "\t7) Ver los tickets de ventas pasadas.\n"
-                + "\t8) Mostrar el total de todas ventas.\n\n"
                 + "\t0) SALIR.\n"; 
     }
 

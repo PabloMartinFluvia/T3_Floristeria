@@ -4,9 +4,9 @@ import com.calvogasullmartin.t3_floristeria.controladores.locales.auxiliares.Loc
 import com.calvogasullmartin.t3_floristeria.modelos.Manager2;
 import java.io.IOException;
 import com.calvogasullmartin.t3_floristeria.controladores.auxiliares.AppCVisitorC2;
-import com.calvogasullmartin.t3_floristeria.controladores.ValorC2;
+import com.calvogasullmartin.t3_floristeria.controladores.ValorC;
 
-public class LocalValorC2 extends LocalPersistenciaC2 implements ValorC2{
+public class LocalValorC2 extends LocalPersistenciaC2 implements ValorC{
 
     public LocalValorC2(Manager2 manager) {
         super(manager);

@@ -21,13 +21,13 @@ public class LocalLogica2 implements Logica{
     }
     
     private void coordinarControladores(){  
-        StartC2 start = new LocalStartC2(manager);
+        StartC start = new LocalStartC2(manager);
         controladores.put(Estado2.INITIAL, start);
-        MenuC2 menu = new LocalMenuC2(manager);
+        MenuC menu = new LocalMenuC2(manager);
         controladores.put(Estado2.EN_MENU, menu);
-        ValorC2 valor = new LocalValorC2(manager);
+        ValorC valor = new LocalValorC2(manager);
         controladores.put(Estado2.MOSTRAR_VALOR_TIENDA, valor);
-        FacturacionC2 facturacion = new LocalFacturacionC2(manager);
+        FacturacionC facturacion = new LocalFacturacionC2(manager);
         controladores.put(Estado2.MOSTRAR_FACTURACION_TOTAL, facturacion);
         NuevoC2 nuevo = new LocalNuevoC2(manager);
         controladores.put(Estado2.NUEVO_PRODUCTO, nuevo);

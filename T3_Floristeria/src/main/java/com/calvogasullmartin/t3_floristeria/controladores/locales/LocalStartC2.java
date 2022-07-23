@@ -7,9 +7,9 @@ import com.calvogasullmartin.t3_floristeria.modelos.Manager2;
 import java.io.IOException;
 import com.calvogasullmartin.t3_floristeria.controladores.auxiliares.AppCVisitorC2;
 import com.calvogasullmartin.t3_floristeria.persistencia.Conector2;
-import com.calvogasullmartin.t3_floristeria.controladores.StartC2;
+import com.calvogasullmartin.t3_floristeria.controladores.StartC;
 
-public class LocalStartC2 extends LocalPersistenciaC2 implements StartC2{
+public class LocalStartC2 extends LocalPersistenciaC2 implements StartC{
 
     public LocalStartC2(Manager2 manager) {
         super(manager);
@@ -31,12 +31,12 @@ public class LocalStartC2 extends LocalPersistenciaC2 implements StartC2{
     }
 
     @Override
-    public void iniciarPersistencia() throws IOException {
+    public void inicizlizarBD() throws IOException {
         factory.getConector().inicializarBD();
     }
 
     @Override
-    public void guardarUnicaFloristeria(String nombre) throws IOException {
+    public void saveFloristeria(String nombre) throws IOException {
         assert nombre != null;
         assert nombre.length() >= 3;
         //el id lo pondrá el dao dentro del create        
@@ -46,7 +46,7 @@ public class LocalStartC2 extends LocalPersistenciaC2 implements StartC2{
     }
 
     @Override
-    public String getNombreFloristeria() throws IOException {
+    public String getFloristeriaName() throws IOException {
         return factory.getFloristeriaDao().getName();
     }    
 
