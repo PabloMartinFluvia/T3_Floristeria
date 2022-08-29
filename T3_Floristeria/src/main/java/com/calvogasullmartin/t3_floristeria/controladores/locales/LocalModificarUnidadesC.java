@@ -24,6 +24,5 @@ public class LocalModificarUnidadesC extends LocalElegirProductoC implements Mod
     @Override
     public void accept(ControladorVisitador controlador) {
         controlador.visit(this);
-    }
-    
+    }    
 }

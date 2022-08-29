@@ -1,7 +1,5 @@
 package com.calvogasullmartin.t3_floristeria.controladores;
 
-//quien implementa esta interfaz es la vista principal concreta (ConsolaV)
-
 public interface ControladorVisitador {
         
     void visit(StartC controlador);

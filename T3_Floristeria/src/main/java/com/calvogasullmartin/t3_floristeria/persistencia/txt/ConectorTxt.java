@@ -1,18 +1,12 @@
 package com.calvogasullmartin.t3_floristeria.persistencia.txt;
 
+import com.calvogasullmartin.t3_floristeria.persistencia.Conexion;
 import java.io.File;
 import java.io.IOException;
-import com.calvogasullmartin.t3_floristeria.persistencia.Conector;
 
-public class ConectorTxt implements Conector{
-
-    private final String rutaArchivoTxt = "floristeria.txt"; // se crea en el mismo directorio que carpetas src y target
+public class ConectorTxt implements Conexion{
     
-    private final File archivoTxt;
-
-    public ConectorTxt() {
-        archivoTxt = new File(rutaArchivoTxt);        
-    }
+    private static File archivoTxt;
             
     @Override
     public boolean isBDInicizialized() throws IOException{            
@@ -23,8 +17,12 @@ public class ConectorTxt implements Conector{
     public void initBD() throws IOException{        
         archivoTxt.createNewFile();
     }    
+
+    public static void setPathTxt(String filePath) {
+        ConectorTxt.archivoTxt = new File(filePath); 
+    }
     
-    public File getArchivoTxt() {
-        return archivoTxt;      
+    public static File getArchivoTxt() {
+        return ConectorTxt.archivoTxt;      
     }
 }

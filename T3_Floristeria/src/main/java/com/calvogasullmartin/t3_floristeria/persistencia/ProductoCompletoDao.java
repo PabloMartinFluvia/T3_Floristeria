@@ -10,7 +10,7 @@ public interface ProductoCompletoDao extends GenericDao<ProductoCompleto, Intege
     b) select id from productos where categoria = , nombre= , precio =, altura =, color=, material =
     c) idem
     */
-    public int findId(ProductoCompleto producto) throws IOException; //check
+    public int findId(ProductoCompleto producto) throws IOException; 
     
     
     // read: obtener el producto  
@@ -19,7 +19,7 @@ public interface ProductoCompletoDao extends GenericDao<ProductoCompleto, Intege
     c) find form floristeria stocks.stock_id.productos where produto_id = + lookup with products
         and project only producto fields
     */
-    public ProductoCompleto findProductoByIdInStockId(int producto_id, int stock_id) throws IOException; //check
+    public ProductoCompleto findProductoByIdInStockId(int producto_id, int stock_id) throws IOException; 
     
     /*
     este método solo se llama cuando el producto no tiene relación con ningún ticket

@@ -1,18 +1,16 @@
 package com.calvogasullmartin.t3_floristeria.modelos;
 
-//tiene información de los modelos, y lo proporciona a los controladores
 public class Manager {
     
     private Estado estado;
     
-    private final int NUM_CATEGORIAS = 3; //3 tipos de productos = 3 stocks distintos          
+    private final int NUM_CATEGORIAS = 3;         
     
     private final int MAX_UNIDADES_EN_STOCK = 999999;
     
     private final int CANTIDAD_VENTA_MINIMA = 1;
 
-    public Manager() {
-        // cuando la Lógica crea el manager se pone el estado inicial
+    public Manager() {        
         this.estado = Estado.INITIAL; 
     }
 

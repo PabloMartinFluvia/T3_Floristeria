@@ -18,7 +18,7 @@ public class LocalLogica implements Logica{
     }
     
     @Override
-    public Controlador getControladorFuncional(){             
+    public Controlador getControlador(){             
         return controladores.get(manager.getEstado());               
     }
     
