@@ -1,38 +1,49 @@
 package com.calvogasullmartin.t3_floristeria;
 
-import com.calvogasullmartin.t3_floristeria.controladores.auxiliares.AppC2;
+import com.calvogasullmartin.t3_floristeria.vistas.Vista;
+import com.calvogasullmartin.t3_floristeria.controladores.Logica;
+import com.calvogasullmartin.t3_floristeria.controladores.Controlador;
 
+
+/*
+VISTAS conocen solo interfaces de los controladores.
+    En algún caso pueden conocer enums de los modelos (ya que son constantes)
+CONTROLADORES solo conocen los modelos y las interfaces / abstracciones del patrón DAO
+MODELOS solo conocen modelos
+*/
 public class App {
 
-    private Logica logica;
+    private final Logica logica;
 
-    private Vista vistaPrincipal;
+    private final Vista vista;
 
-    public App() {
+    /**
+     * El configurador inyecta las dependencias.
+     * 1) Familia de persistencia
+     * 2) Tipo de vistas
+     * 3) Tipo de controladores
+     */
+    private App() {
         Configurador configurador = new Configurador();
-        configurarFamiliaPersistencia(configurador);
-        inyectarDependencias(configurador);
-    }
-    
-    private void configurarFamiliaPersistencia(Configurador configurador){
         configurador.persistenciaTxt();
-    }
-
-    private void inyectarDependencias(Configurador configurador) {                
-        this.vistaPrincipal = configurador.vistasPorConsola();
-        this.logica = configurador.controladoresLocales();           
+        this.vista = configurador.vistasConsola();
+        this.logica = configurador.controladoresLocales();
     }
 
     public static void main(String[] args) {
         new App().ejecutar(); 
     }
     
+    /**
+     * Se pregunta a la lógica "que controlador le toca".
+     * Se le dice a la vista que trabaje con "ese controloador".
+     */
     private void ejecutar() {        
-        AppC2 controlador;        
+        Controlador controlador;        
         do{           
-            controlador = logica.getControladorPadre();
+            controlador = logica.getControladorFuncional();
             if (controlador != null){
-                vistaPrincipal.interactuar(controlador);
+                vista.interact(controlador);
             }            
         }while(controlador != null);        
     }   

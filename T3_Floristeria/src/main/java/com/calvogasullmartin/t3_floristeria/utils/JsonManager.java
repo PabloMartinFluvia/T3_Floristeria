@@ -31,7 +31,7 @@ public class JsonManager<T> {
         this.gson = new GsonBuilder().setPrettyPrinting().create(); //serialize nulls: false        
     }
     
-    public JsonManager (File archivo) {
+    public JsonManager (File archivo) {        
         assert archivo != null;
         assert archivo.isFile();
         assert archivo.exists();
@@ -140,8 +140,8 @@ public class JsonManager<T> {
     /**
      * if list node is empty -> puts a new Node in node
      */
-    public void replaceNode_fromUniqueElementInListNode(){
-        assert listNodes.size() == 1;        
+    public void replaceNode_fromFirstElementInListNode(){
+        assert !listNodes.isEmpty();
         node = listNodes.get(0);        
     }
     

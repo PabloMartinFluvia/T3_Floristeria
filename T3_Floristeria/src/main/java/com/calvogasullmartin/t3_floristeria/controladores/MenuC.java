@@ -1,12 +1,10 @@
 package com.calvogasullmartin.t3_floristeria.controladores;
 
-public interface MenuC{
+public interface MenuC extends Controlador{
     
-    String getMenuMensage();
+    String getMenuMessage();
     
-    int getNumOptionsNoExit();   
+    int[] getRangeMenuOptions();   
     
-    void canviarEstado(int opcion);
-    
-    void selectExit();
+    void changeState(int opcion);
 }

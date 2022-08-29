@@ -1,36 +1,67 @@
 {
   "floristeria_id" : 1,
   "nombre_floristeria" : "FloriTest",
-  "valorStocksTotal" : 10876.0,
-  "valorTicketsTotal" : 4655.0,
+  "valorStocksTotal" : 200.0,
+  "valorTicketsTotal" : 250.0,
   "stocks" : [ {
     "id" : 1,
-    "valor_Productos" : 10726.0,
+    "valor_Productos" : 200.0,
     "productos" : [ {
       "producto" : {
         "producto_id" : 1,
         "categoria" : "ARBOL",
-        "nombre" : "Sequoya americana",
-        "precio" : 200.5,
+        "nombre" : "sequoya",
+        "precio" : 10.0,
         "altura" : "MUY_ALTO"
       },
-      "cantidad" : 52
-    }, {
-      "producto" : {
-        "producto_id" : 4,
-        "categoria" : "ARBOL",
-        "nombre" : "Bonsai japonés",
-        "precio" : 90.0,
-        "altura" : "MUY_BAJO"
-      },
-      "cantidad" : 0
+      "cantidad" : 10
     }, {
       "producto" : {
         "producto_id" : 5,
         "categoria" : "ARBOL",
-        "nombre" : "Manzao común",
-        "precio" : 30.0,
-        "altura" : "MEDIANO"
+        "nombre" : "bonsai",
+        "precio" : 10.0,
+        "altura" : "MUY_BAJO"
+      },
+      "cantidad" : 10
+    } ]
+  }, {
+    "id" : 2,
+    "valor_Productos" : 0.0,
+    "productos" : [ {
+      "producto" : {
+        "producto_id" : 3,
+        "categoria" : "FLOR",
+        "nombre" : "gira sol",
+        "precio" : 10.0,
+        "color" : "amarillo"
+      },
+      "cantidad" : 0
+    }, {
+      "producto" : {
+        "producto_id" : 4,
+        "categoria" : "FLOR",
+        "nombre" : "rosas",
+        "precio" : 10.0,
+        "color" : "rojo"
+      },
+      "cantidad" : 0
+    } ]
+  }, {
+    "id" : 3,
+    "valor_Productos" : 0.0,
+    "productos" : [ ]
+  } ],
+  "tiquets" : [ {
+    "id" : 1,
+    "valor_Productos" : 100.0,
+    "productos" : [ {
+      "producto" : {
+        "producto_id" : 3,
+        "categoria" : "FLOR",
+        "nombre" : "gira sol",
+        "precio" : 10.0,
+        "color" : "amarillo"
       },
       "cantidad" : 10
     } ]
@@ -39,97 +70,22 @@
     "valor_Productos" : 150.0,
     "productos" : [ {
       "producto" : {
-        "producto_id" : 2,
-        "categoria" : "FLOR",
-        "nombre" : "Ramo de rosas",
-        "precio" : 3.0,
-        "color" : "rojo"
-      },
-      "cantidad" : 50
-    } ]
-  }, {
-    "id" : 3,
-    "valor_Productos" : 0.0,
-    "productos" : [ {
-      "producto" : {
-        "producto_id" : 3,
-        "categoria" : "DECORACION",
-        "nombre" : "Jarrón transparente",
-        "precio" : 5.0,
-        "material" : "PLASTICO"
-      },
-      "cantidad" : 0
-    } ]
-  } ],
-  "tiquets" : [ {
-    "id" : 1,
-    "valor_Productos" : 0.0,
-    "productos" : [ {
-      "producto" : {
-        "producto_id" : 2,
-        "categoria" : "FLOR",
-        "nombre" : "Ramo de rosas",
-        "precio" : 3.0,
-        "color" : "rojo"
-      },
-      "cantidad" : 10
-    } ]
-  }, {
-    "id" : 2,
-    "valor_Productos" : 5.0,
-    "productos" : [ {
-      "producto" : {
-        "producto_id" : 3,
-        "categoria" : "DECORACION",
-        "nombre" : "Jarrón transparente",
-        "precio" : 5.0,
-        "material" : "PLASTICO"
-      },
-      "cantidad" : 1
-    } ]
-  }, {
-    "id" : 3,
-    "valor_Productos" : 900.0,
-    "productos" : [ {
-      "producto" : {
-        "producto_id" : 4,
+        "producto_id" : 1,
         "categoria" : "ARBOL",
-        "nombre" : "Bonsai japonés",
-        "precio" : 90.0,
-        "altura" : "MUY_BAJO"
+        "nombre" : "sequoya",
+        "precio" : 10.0,
+        "altura" : "MUY_ALTO"
       },
-      "cantidad" : 10
-    } ]
-  }, {
-    "id" : 4,
-    "valor_Productos" : 3755.0,
-    "productos" : [ {
-      "producto" : {
-        "producto_id" : 4,
-        "categoria" : "ARBOL",
-        "nombre" : "Bonsai japonés",
-        "precio" : 90.0,
-        "altura" : "MUY_BAJO"
-      },
-      "cantidad" : 40
+      "cantidad" : 5
     }, {
       "producto" : {
         "producto_id" : 2,
-        "categoria" : "FLOR",
-        "nombre" : "Ramo de rosas",
-        "precio" : 3.0,
-        "color" : "rojo"
+        "categoria" : "ARBOL",
+        "nombre" : "bonsai",
+        "precio" : 10.0,
+        "altura" : "MUY_BAJO"
       },
-      "cantidad" : 50
-    }, {
-      "producto" : {
-        "producto_id" : 3,
-        "categoria" : "DECORACION",
-        "nombre" : "Jarrón transparente",
-        "precio" : 5.0,
-        "material" : "PLASTICO"
-      },
-      "cantidad" : 1
+      "cantidad" : 10
     } ]
   } ]
 }

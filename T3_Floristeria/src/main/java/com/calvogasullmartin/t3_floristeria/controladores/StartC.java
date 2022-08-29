@@ -1,21 +1,14 @@
-    package com.calvogasullmartin.t3_floristeria.controladores;
+package com.calvogasullmartin.t3_floristeria.controladores;
 
 import java.io.IOException;
 
-public interface StartC{
+public interface StartC extends Controlador, PersistenciaC{
     
-    boolean isPrimeraVez() throws IOException;
+    boolean isFirstTimeRunning() throws IOException;
     
-    void inicizlizarBD() throws IOException;
+    void initBD() throws IOException;
     
     void saveFloristeria(String nombre) throws IOException;
         
-    String getFloristeriaName() throws IOException;     
-    
-    String getErrorBD();
-    
-    void selectMenu();
-    
-    void selectExit();
-    
+    String getFloristeriaName() throws IOException;                 
 }
