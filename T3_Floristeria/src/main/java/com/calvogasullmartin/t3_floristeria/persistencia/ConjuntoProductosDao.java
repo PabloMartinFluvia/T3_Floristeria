@@ -22,14 +22,14 @@ public interface ConjuntoProductosDao extends GenericDao<ConjuntoProductos, Inte
     b) join conjunto con conjunto_has_productos por el id del stock & join con productos con el id del producto
     c) find floristeria y proyectar solo el documento que este en el indice de stocks coherente con el id de stock buscado
     */
-    public ConjuntoProductos getOneStockById (int idStock)throws IOException; //check
+    public ConjuntoProductos getOneStockById (int idStock)throws IOException; 
     
     /*
     a)
     b) hacer 3 veces el método anterior, uno para cada id
     c) find floristeria y proyectar solo el stocks
     */
-    public List<ConjuntoProductos> getAllStocks ()throws IOException; //check
+    public List<ConjuntoProductos> getAllStocks ()throws IOException; 
     
     /*
     a)
@@ -37,7 +37,7 @@ public interface ConjuntoProductosDao extends GenericDao<ConjuntoProductos, Inte
             segun cada conjunto_id(tiquet) crear cada tiquet de la lista
     c) find floristeria y proyectar solo los tiquets
     */
-    public List<ConjuntoProductos> getAllTiquets ()throws IOException; //chek
+    public List<ConjuntoProductos> getAllTiquets ()throws IOException; 
     
     //update
     //incrementar (+/-) el valor del stock 
@@ -46,5 +46,5 @@ public interface ConjuntoProductosDao extends GenericDao<ConjuntoProductos, Inte
     b) update  conjunto set valor = valor + increment where stock_id
     c) find flortisteria + set stpck.id.valor: {$incr: increment}
     */    
-    public void incrementarValorEnStockById(int idStock, float incremento) throws IOException; //check
+    public void incrementarValorEnStockById(int idStock, float incremento) throws IOException; 
 }

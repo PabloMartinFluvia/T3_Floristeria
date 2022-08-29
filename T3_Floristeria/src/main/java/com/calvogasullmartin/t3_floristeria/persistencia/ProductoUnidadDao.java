@@ -13,7 +13,7 @@ public interface ProductoUnidadDao extends GenericDao<ProductoUnidad, Integer>{
      * @param stock_id
      * @throws IOException 
      */
-    public void createNuevoProductoUnidadEnStock(ProductoUnidad productoUnidad, int stock_id) throws IOException; //check   
+    public void createNuevoProductoUnidadEnStock(ProductoUnidad productoUnidad, int stock_id) throws IOException; 
 
     /**
      * associar el id del producto (que estaba descatalogado pero almacenado debido a relación conticket) al stock
@@ -22,7 +22,7 @@ public interface ProductoUnidadDao extends GenericDao<ProductoUnidad, Integer>{
      * @param stock_id
      * @throws IOException 
      */
-    public void reCatalogarProductoUnidadEnStock(ProductoUnidad productoUnidad, int stock_id) throws IOException; //check   
+    public void reCatalogarProductoUnidadEnStock(ProductoUnidad productoUnidad, int stock_id) throws IOException; 
     
    /**
     * si no existe la relación entre el producto y el stock -> el dao devuelve un número
@@ -32,7 +32,7 @@ public interface ProductoUnidadDao extends GenericDao<ProductoUnidad, Integer>{
     * @return
     * @throws IOException 
     */
-    public int getCantidadEnStockBy(int stock_id, int producto_id) throws IOException; //ok
+    public int getCantidadEnStockBy(int stock_id, int producto_id) throws IOException; 
     
     //update: modificar las unidades de un producto en un determinado stock (en un tiquet ya creado no se permite)
     
@@ -56,7 +56,4 @@ public interface ProductoUnidadDao extends GenericDao<ProductoUnidad, Integer>{
     c) find in floristeria collections conjunto.idConjunto the one with idProductos as reference and remove
     */
     public void eliminarRelacionConStock(int stock_id, int producto_id) throws IOException;
-    
-    
-    
-}
+}    

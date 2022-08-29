@@ -61,7 +61,8 @@ public class LocalNuevoProductoC extends LocalGestionarUnidadesC implements Nuev
 
     @Override
     public void lookForIdemProduct() throws IOException {
-        errorBD = "Error! No se ha podido comprovar si ya existe un producto con características idénticas.";
+        errorBD = "Error! No se ha podido comprovar si ya existe "
+                + "un producto con características idénticas.";
         //se busca un producto igual, tanto en stocks como en tickets
         int producto_id = factory.getProductoCompletoDao()
                 .findId(productoUnidadUpdating.getProducto());
@@ -76,7 +77,8 @@ public class LocalNuevoProductoC extends LocalGestionarUnidadesC implements Nuev
     //existe en la BD un producto con ídem características
     private void manageIdemProduct(int producto_id) throws IOException {       
         productoUnidadUpdating.getProducto().setProducto_id(producto_id);
-        errorBD = "Error! No se ha podido leer la cantidad en stock del producto con características idénticas.";
+        errorBD = "Error! No se ha podido leer la cantidad en stock "
+                + "del producto con características idénticas.";
         int cantidad = factory.getProductoUnidadDao()
                 .getCantidadEnStockBy(stock_id_updating, producto_id);
         if (cantidad >= 0) { //hay uno igual en stocks 
@@ -108,13 +110,14 @@ public class LocalNuevoProductoC extends LocalGestionarUnidadesC implements Nuev
     public void updateUnitsStock(int increment) throws IOException {
         assert increment >= 0 && increment <= getMAX_UNIDADES_EN_STOCK();
         productoUnidadUpdating.setCantidad(increment);
-        System.out.println(isNew);
         if (isNew) {            
             errorBD = "Error! No se ha podido guardar el nuevo producto";
-            factory.getProductoUnidadDao().createNuevoProductoUnidadEnStock(productoUnidadUpdating, stock_id_updating);
+            factory.getProductoUnidadDao()
+                    .createNuevoProductoUnidadEnStock(productoUnidadUpdating, stock_id_updating);
         } else {
             errorBD = "Error! No se ha podido volver a poner en catálogo el producto.";
-            factory.getProductoUnidadDao().reCatalogarProductoUnidadEnStock(productoUnidadUpdating, stock_id_updating);
+            factory.getProductoUnidadDao()
+                    .reCatalogarProductoUnidadEnStock(productoUnidadUpdating, stock_id_updating);
         }
         float canvioValor = increment * productoUnidadUpdating.precioProducto();
         variacionValorStocks[stock_id_updating - 1] += canvioValor;

@@ -15,7 +15,6 @@ public class FloristeriaTxt extends GenericDaoTxt<Floristeria, Integer> implemen
     @Override
     @SuppressWarnings("unchecked")
     public void create(Floristeria floristeria) throws IOException {
-        assert floristeria != null;
         floristeria.setFloristeria_id(1); 
         gestor.writeObjectInFile(floristeria);
     }

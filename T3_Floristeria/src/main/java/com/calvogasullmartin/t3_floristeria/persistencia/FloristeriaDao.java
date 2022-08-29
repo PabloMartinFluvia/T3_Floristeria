@@ -11,7 +11,7 @@ public interface FloristeriaDao extends GenericDao<Floristeria, Integer>{
     b) El registro de la tabla Floristeria (insert into) + la creación de todas las tablas de la BD
     c) ídem a (a) (insertOne)
     */
-    public void create(Floristeria floristeria)throws IOException; //check
+    public void create(Floristeria floristeria)throws IOException; 
     
     
     //READ
@@ -24,7 +24,7 @@ public interface FloristeriaDao extends GenericDao<Floristeria, Integer>{
     c) find floristeria + project nombre (y luego coger el valor del bson document)    
     si no encutra el campo o el valor no es un string devuelve null
     */
-    public String getName() throws IOException; //check
+    public String getName() throws IOException; 
     
     /*    
     a) el valor del campo valor del stock, en el documento de la floristeria
@@ -32,7 +32,7 @@ public interface FloristeriaDao extends GenericDao<Floristeria, Integer>{
     c) find floristeria + project valor del stock (y luego coger el valor del bson document)    
     si no encutra el campo o el valor no es un string devuelve null
     */
-    public float getValorFloristeria() throws IOException; //check
+    public float getValorFloristeria() throws IOException; 
     
     /*    
     a) el valor del campo total facturacion, en el documento de la floristeria
@@ -40,7 +40,7 @@ public interface FloristeriaDao extends GenericDao<Floristeria, Integer>{
     c) find floristeria + project valor del total facturacion (y luego coger el valor del bson document)    
     si no encutra el campo o el valor no es un string devuelve null
     */
-    public float getFacturacionFloristeria() throws IOException; //check
+    public float getFacturacionFloristeria() throws IOException; 
     
     /*
     Equivale a update
@@ -48,7 +48,7 @@ public interface FloristeriaDao extends GenericDao<Floristeria, Integer>{
     b) update Floristeria set valorTotal = valorTotal+increment where floristeria_id = 1;
     c)  db.restaurant.updateOne({ "floristeria_id" : 1 },{ $set: { "valorTotal" : : {$incr: increment} }
     */
-    public void incrementarValorFloristeria(float incremento) throws IOException; //check
+    public void incrementarValorFloristeria(float incremento) throws IOException; 
     
     /*
     Equivale a update

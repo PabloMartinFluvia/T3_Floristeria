@@ -1,12 +1,12 @@
 package com.calvogasullmartin.t3_floristeria.persistencia.txt;
 
+import com.calvogasullmartin.t3_floristeria.persistencia.ProductoUnidadDao;
 import com.calvogasullmartin.t3_floristeria.modelos.Categoria;
 import com.calvogasullmartin.t3_floristeria.modelos.ConjuntoProductos;
 import com.calvogasullmartin.t3_floristeria.modelos.Floristeria;
 import com.calvogasullmartin.t3_floristeria.modelos.ProductoCompleto;
 import com.calvogasullmartin.t3_floristeria.modelos.ProductoUnidad;
 import java.io.IOException;
-import com.calvogasullmartin.t3_floristeria.persistencia.ProductoUnidadDao;
 
 public class ProductoUnidadTxt extends GenericDaoTxt<ProductoUnidad, Integer> implements ProductoUnidadDao {
 
@@ -22,15 +22,14 @@ public class ProductoUnidadTxt extends GenericDaoTxt<ProductoUnidad, Integer> im
 
     @Override
     @SuppressWarnings("unchecked")
-    public void createNuevoProductoUnidadEnStock(ProductoUnidad productoUnidad, int stock_id) throws IOException {
-        assert stock_id <= Categoria.values().length && stock_id > 0;
+    public void createNuevoProductoUnidadEnStock(ProductoUnidad productoUnidad, int stock_id) throws IOException {        
         int maxActualId = findMaxProductId(); 
         productoUnidad.getProducto().setProducto_id(maxActualId + 1);
         gestor.setMainNode_FromFile();
         gestor.setAuxiliarNodesNull();
-        gestor.setNode_findFieldByName_fromMain(atributo_stocks); //stocks 
-        gestor.replaceNode_isArray_nodeByIndex(stock_id - 1);//stock  
-        gestor.replaceNode_findFieldByName(atributo_productos);//productos
+        gestor.setNode_findFieldByName_fromMain(atributo_stocks); 
+        gestor.replaceNode_isArray_nodeByIndex(stock_id - 1);
+        gestor.replaceNode_findFieldByName(atributo_productos);
         gestor.setAuxiliarNode_ObjectInput(productoUnidad);
         gestor.updateNode_isArray_pushAuxiliarNode();       
         gestor.saveMainNodeInFile();      
@@ -39,14 +38,12 @@ public class ProductoUnidadTxt extends GenericDaoTxt<ProductoUnidad, Integer> im
     @Override
     @SuppressWarnings("unchecked")
     public void reCatalogarProductoUnidadEnStock(ProductoUnidad productoUnidad, int stock_id) throws IOException {
-        //idem al anterior, pero en este caso ya tiene el id assignado
-        assert stock_id <= Categoria.values().length && stock_id > 0;
-        assert productoUnidad.getProducto().getProducto_id() > 0;        
+        //idem al anterior, pero en este caso ya tiene el id assignado     
         gestor.setMainNode_FromFile();
         gestor.setAuxiliarNodesNull();
-        gestor.setNode_findFieldByName_fromMain(atributo_stocks); //stocks 
-        gestor.replaceNode_isArray_nodeByIndex(stock_id - 1);//stock  
-        gestor.replaceNode_findFieldByName(atributo_productos);//productos
+        gestor.setNode_findFieldByName_fromMain(atributo_stocks); 
+        gestor.replaceNode_isArray_nodeByIndex(stock_id - 1);
+        gestor.replaceNode_findFieldByName(atributo_productos);
         gestor.setAuxiliarNode_ObjectInput(productoUnidad);
         gestor.updateNode_isArray_pushAuxiliarNode();       
         gestor.saveMainNodeInFile();   
@@ -55,13 +52,13 @@ public class ProductoUnidadTxt extends GenericDaoTxt<ProductoUnidad, Integer> im
     private int findMaxProductId() throws IOException {
         gestor.setMainNode_FromFile();
         gestor.setAuxiliarNodesNull();
-        gestor.setNode_findFieldByName_fromMain(atributo_stocks);//stocks        
-        gestor.setListNodes_findAllFieldsByName(atributo_productoId); // all producto_id in stockS  
+        gestor.setNode_findFieldByName_fromMain(atributo_stocks);      
+        gestor.setListNodes_findAllFieldsByName(atributo_productoId); 
         int maxIdSotck = gestor.getMaxIntValue_fromListNodes();
         gestor.setMainNode_FromFile();
         gestor.setAuxiliarNodesNull();
-        gestor.setNode_findFieldByName_fromMain(atributo_tickets);//stocks        
-        gestor.setListNodes_findAllFieldsByName(atributo_productoId); // all producto_id in stockS  
+        gestor.setNode_findFieldByName_fromMain(atributo_tickets);   
+        gestor.setListNodes_findAllFieldsByName(atributo_productoId); 
         int maxIdTickets = gestor.getMaxIntValue_fromListNodes();
         return Math.max(maxIdSotck, maxIdTickets);
     }
@@ -73,26 +70,24 @@ public class ProductoUnidadTxt extends GenericDaoTxt<ProductoUnidad, Integer> im
         gestor.setMainNode_FromFile();
         gestor.setAuxiliarNodesNull();
         gestor.setNode_findFieldByName_fromMain(atributo_stocks);
-        gestor.replaceNode_isArray_nodeByIndex(stock_id - 1); //stock  
-        gestor.replaceNode_findFieldByName(atributo_productos);//productos        
-        gestor.replaceNode_isArray_NodeIndexedWithChildIntValue(atributo_productoId, producto_id); //productoUnidad con ese id en producto
+        gestor.replaceNode_isArray_nodeByIndex(stock_id - 1);  
+        gestor.replaceNode_findFieldByName(atributo_productos);
+        gestor.replaceNode_isArray_NodeIndexedWithChildIntValue(atributo_productoId, producto_id); 
         if(gestor.isNodeNull()){ // not found
             return -1;
         }else{
            gestor.replaceNode_findFieldByName(atributo_cantidad);
            return gestor.getIntValue_fromNode(); 
         }        
-    }
-
-    
+    }   
 
     @Override
     public void incrementarCantidadByStockIdProductoId(int stockId, int productoId, int incremento) throws IOException {
         gestor.setMainNode_FromFile();
         gestor.setAuxiliarNodesNull();
-        gestor.setNode_findFieldByName_fromMain(atributo_stocks); //stocks array    
-        gestor.replaceNode_isArray_nodeByIndex(stockId-1);  //stock
-        gestor.replaceNode_findFieldByName(atributo_productos); //products array        
+        gestor.setNode_findFieldByName_fromMain(atributo_stocks);     
+        gestor.replaceNode_isArray_nodeByIndex(stockId-1);  
+        gestor.replaceNode_findFieldByName(atributo_productos); 
         gestor.replaceNode_isArray_NodeIndexedWithChildIntValue(atributo_productoId,productoId);
         gestor.updateNode_incrementIntValueInField(atributo_cantidad, incremento);
         gestor.saveMainNodeInFile();
@@ -102,7 +97,7 @@ public class ProductoUnidadTxt extends GenericDaoTxt<ProductoUnidad, Integer> im
     public boolean isSoldAnytimeById(int productoId) throws IOException {
         gestor.setMainNode_FromFile();
         gestor.setAuxiliarNodesNull();
-        gestor.setNode_findFieldByName_fromMain(atributo_tickets); //tickets array 
+        gestor.setNode_findFieldByName_fromMain(atributo_tickets);
         gestor.setListNodes_findAllFieldsByName(atributo_productoId);
         return gestor.inListNodes_hasAnyIntValue(productoId);
     }
@@ -111,8 +106,8 @@ public class ProductoUnidadTxt extends GenericDaoTxt<ProductoUnidad, Integer> im
     public void eliminarRelacionConStock(int stock_id, int producto_id) throws IOException {
         gestor.setMainNode_FromFile();
         gestor.setAuxiliarNodesNull();
-        gestor.setNode_findFieldByName_fromMain(atributo_stocks); //stocks array    
-        gestor.replaceNode_isArray_nodeByIndex(stock_id-1);  //stock
+        gestor.setNode_findFieldByName_fromMain(atributo_stocks); 
+        gestor.replaceNode_isArray_nodeByIndex(stock_id-1);  
         gestor.replaceNode_findFieldByName(atributo_productos);  
         gestor.updateNode_isArray_deleteFirstElementByChildIntValue(atributo_productoId, producto_id);
         gestor.saveMainNodeInFile();

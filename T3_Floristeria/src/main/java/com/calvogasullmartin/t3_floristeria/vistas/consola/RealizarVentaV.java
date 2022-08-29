@@ -39,7 +39,6 @@ public class RealizarVentaV extends ElegirProductoV {
         }else{
             io.writeln("Error. No hay stock actualmente de este producto.");
         }
-
     }
 
     private void finalizar() throws IOException {
@@ -51,5 +50,4 @@ public class RealizarVentaV extends ElegirProductoV {
             controlador.resetTicket();
         }
     }
-
 }

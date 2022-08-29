@@ -2,5 +2,5 @@ package com.calvogasullmartin.t3_floristeria.controladores;
 
 public interface Logica {        
     
-    Controlador getControladorFuncional();         
+    Controlador getControlador();         
 }

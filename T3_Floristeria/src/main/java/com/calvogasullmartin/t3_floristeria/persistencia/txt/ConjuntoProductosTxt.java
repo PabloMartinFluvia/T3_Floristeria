@@ -1,6 +1,7 @@
 
 package com.calvogasullmartin.t3_floristeria.persistencia.txt;
 
+import com.calvogasullmartin.t3_floristeria.persistencia.ConjuntoProductosDao;
 import com.calvogasullmartin.t3_floristeria.modelos.Categoria;
 import com.calvogasullmartin.t3_floristeria.modelos.ConjuntoProductos;
 import com.calvogasullmartin.t3_floristeria.modelos.Floristeria;
@@ -8,7 +9,6 @@ import java.io.IOException;
 import java.util.Arrays;
 import java.util.LinkedList;
 import java.util.List;
-import com.calvogasullmartin.t3_floristeria.persistencia.ConjuntoProductosDao;
 
 public class ConjuntoProductosTxt extends GenericDaoTxt<ConjuntoProductos, Integer> implements ConjuntoProductosDao{
     
@@ -27,7 +27,7 @@ public class ConjuntoProductosTxt extends GenericDaoTxt<ConjuntoProductos, Integ
         tiquet.setId(maxActualId + 1);
         gestor.setMainNode_FromFile();
         gestor.setAuxiliarNodesNull();
-        gestor.setNode_findFieldByName_fromMain(atributo_tiquets); //tiquets 
+        gestor.setNode_findFieldByName_fromMain(atributo_tiquets); 
         gestor.setAuxiliarNode_ObjectInput(tiquet);
         gestor.updateNode_isArray_pushAuxiliarNode(); 
         gestor.saveMainNodeInFile();
@@ -36,8 +36,8 @@ public class ConjuntoProductosTxt extends GenericDaoTxt<ConjuntoProductos, Integ
     private int findMaxTiquetId() throws IOException {
         gestor.setMainNode_FromFile();
         gestor.setAuxiliarNodesNull();
-        gestor.setNode_findFieldByName_fromMain(atributo_tiquets);//tickets        
-        gestor.setListNodes_findAllFieldsByName(atributo_stockId); // all tiquetsId in stockS        
+        gestor.setNode_findFieldByName_fromMain(atributo_tiquets);      
+        gestor.setListNodes_findAllFieldsByName(atributo_stockId);        
         return gestor.getMaxIntValue_fromListNodes();
     }
     
@@ -45,19 +45,19 @@ public class ConjuntoProductosTxt extends GenericDaoTxt<ConjuntoProductos, Integ
     public void incrementarValorEnStockById(int idStock, float incremento) throws IOException {
         gestor.setMainNode_FromFile();        
         gestor.setAuxiliarNodesNull();        
-        gestor.setNode_findFieldByName_fromMain(atributo_stocks); //stocks                
-        gestor.replaceNode_isArray_nodeByIndex(idStock-1); //stock  
-        gestor.updateNode_incrementFloatValueInField(atributo_valorProductos, incremento);//stock field updated
+        gestor.setNode_findFieldByName_fromMain(atributo_stocks);               
+        gestor.replaceNode_isArray_nodeByIndex(idStock-1);   
+        gestor.updateNode_incrementFloatValueInField(atributo_valorProductos, incremento);
         gestor.saveMainNodeInFile();  
     }
 
     @Override
+    @SuppressWarnings("unchecked")
     public ConjuntoProductos getOneStockById(int idStock) throws IOException {  
         gestor.setMainNode_FromFile();
         gestor.setAuxiliarNodesNull();
         gestor.setNode_findFieldByName_fromMain(atributo_stocks);
-        gestor.replaceNode_isArray_nodeByIndex(idStock-1);        
-        @SuppressWarnings("unchecked")
+        gestor.replaceNode_isArray_nodeByIndex(idStock-1);                
         ConjuntoProductos stock = (ConjuntoProductos) gestor.parseNodeToObject(ConjuntoProductos.class);                
         return  stock;
     }
@@ -73,15 +73,12 @@ public class ConjuntoProductosTxt extends GenericDaoTxt<ConjuntoProductos, Integ
     }
 
     @Override
+    @SuppressWarnings("unchecked")
     public List<ConjuntoProductos> getAllTiquets() throws IOException {
         gestor.setMainNode_FromFile();
         gestor.setAuxiliarNodesNull();
-        gestor.setNode_findFieldByName_fromMain(atributo_tiquets);
-        @SuppressWarnings("unchecked")
+        gestor.setNode_findFieldByName_fromMain(atributo_tiquets);        
         ConjuntoProductos[] tiquets = (ConjuntoProductos[]) gestor.parseNodeToObject(ConjuntoProductos[].class);
         return Arrays.asList(tiquets);
     }
-
-   
-    
 }

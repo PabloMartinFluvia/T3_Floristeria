@@ -15,20 +15,11 @@ import com.calvogasullmartin.t3_floristeria.controladores.StartC;
 
 public class ConsolaV implements Vista{      
     
-    /**
-     * Para aplicar el método doble despacho. El método aceptar solo accepta un 
-     * ControladorVisitor (y Vista hereda de esa interface)
-     * @param controlador 
-     */
     @Override
     public void interact(Controlador controlador) {
         assert controlador != null;
         controlador.accept(this);
-    }    
-    
-    //Implementaciones del método visit debido a que esta clase debe implementar ControladorVisitor
-    //Todos los controladores concretos almacenados en la lógica implementan el método acceptar
-    
+    }
     
     @Override
     public void visit(StartC controlador) {

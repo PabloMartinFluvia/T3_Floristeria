@@ -4,13 +4,13 @@ import java.util.LinkedList;
 import java.util.List;
 
 public class ConjuntoProductos {
-    // es = stock = tiquet
-    private int id; // 1,2,3 para los stock de arboles, flores, decoracion, los siguientes para tiquets
+
+    // 1,2,3 para los stock de arboles, flores, decoracion, los siguientes para tiquets
+    private int id; 
     
-    private float valor_Productos; // sumatorio, en este conjunto, de: precio del producto * unidades 
-                                    // = valor de este stock = importe de este tiquet
-    private List<ProductoUnidad> productos; // lista de ProductoUnidad
-                                    //asociar producto y unidades de este se puede hacer un Map, pero para serializar hace falta esta clase intermedia
+    private float valor_Productos; 
+    
+    private List<ProductoUnidad> productos; // productos + las unidades de este en el conjunto                                    
 
     public ConjuntoProductos() {
         this.id = 0;

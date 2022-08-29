@@ -40,6 +40,5 @@ public class LocalDescatalogarProductoC extends LocalElegirProductoC implements 
     @Override
     public void accept(ControladorVisitador controlador) {
         controlador.visit(this);
-    }
-    
+    }    
 }

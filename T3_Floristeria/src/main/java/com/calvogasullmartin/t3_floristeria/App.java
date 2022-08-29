@@ -4,44 +4,33 @@ import com.calvogasullmartin.t3_floristeria.vistas.Vista;
 import com.calvogasullmartin.t3_floristeria.controladores.Logica;
 import com.calvogasullmartin.t3_floristeria.controladores.Controlador;
 
-
-/*
-VISTAS conocen solo interfaces de los controladores.
-    En algún caso pueden conocer enums de los modelos (ya que son constantes)
-CONTROLADORES solo conocen los modelos y las interfaces / abstracciones del patrón DAO
-MODELOS solo conocen modelos
-*/
 public class App {
 
-    private final Logica logica;
+    private Logica logica;
 
-    private final Vista vista;
-
-    /**
-     * El configurador inyecta las dependencias.
-     * 1) Familia de persistencia
-     * 2) Tipo de vistas
-     * 3) Tipo de controladores
-     */
+    private Vista vista;
+    
     private App() {
+        configurarApp();
+    }
+    
+    private void configurarApp(){
         Configurador configurador = new Configurador();
-        configurador.persistenciaTxt();
-        this.vista = configurador.vistasConsola();
-        this.logica = configurador.controladoresLocales();
+        configurador.persistenciaTxt(); // persistencia en archivo txt
+        //configurador.persistenciaMySql(); // persistencia en BD MySql, pendiente
+        //configurador.persistenciaMongoDB(); // persistencia en BD Mongo, pendiente
+        this.vista = configurador.vistasConsola(); //interacción con usuario es por consola
+        this.logica = configurador.controladoresLocales(); // los controladores son locales
     }
 
     public static void main(String[] args) {
         new App().ejecutar(); 
     }
     
-    /**
-     * Se pregunta a la lógica "que controlador le toca".
-     * Se le dice a la vista que trabaje con "ese controloador".
-     */
     private void ejecutar() {        
         Controlador controlador;        
         do{           
-            controlador = logica.getControladorFuncional();
+            controlador = logica.getControlador();
             if (controlador != null){
                 vista.interact(controlador);
             }            

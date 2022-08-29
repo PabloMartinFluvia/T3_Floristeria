@@ -7,7 +7,7 @@ public abstract class GenericDaoTxt<T, ID> implements GenericDao<T, ID> {
 
     protected JsonManager gestor;
 
-    public GenericDaoTxt() {
-        gestor = new JsonManager(new ConectorTxt().getArchivoTxt());
+    public GenericDaoTxt() {        
+        gestor = new JsonManager(ConectorTxt.getArchivoTxt());
     }
 }

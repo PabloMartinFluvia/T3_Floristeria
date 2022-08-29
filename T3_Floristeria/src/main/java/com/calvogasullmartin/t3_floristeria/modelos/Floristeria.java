@@ -17,19 +17,18 @@ public class Floristeria {
     
     private List<ConjuntoProductos> tiquets;
    
-    public Floristeria(int numCategorias) {
-        // constructor -> null o conjuntos vacíos  
+    public Floristeria(int numCategorias) {        
         floristeria_id = 0; 
         nombre_floristeria = null;
         valorStocksTotal = 0f;
         valorTicketsTotal = 0f;
-        stocks = new ConjuntoProductos[numCategorias]; // elements = null 
+        stocks = new ConjuntoProductos[numCategorias]; 
         for (int i = 0; i< numCategorias; i++ ){
             stocks[i] = new ConjuntoProductos(); 
             stocks[i] = new ConjuntoProductos();
             stocks[i].setId(i+1);
         }
-        tiquets = new LinkedList<>(); // size = 0
+        tiquets = new LinkedList<>(); 
     }
 
     public int getFloristeria_id() {

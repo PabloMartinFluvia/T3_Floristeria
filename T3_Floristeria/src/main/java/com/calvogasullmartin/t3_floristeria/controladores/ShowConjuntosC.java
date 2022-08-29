@@ -11,8 +11,7 @@ public interface ShowConjuntosC extends PersistenciaC{
     int getNumConjuntosToShow();
     
     void setConjuntoToShow(int conjuntoIndex);
-    
-    //TicketsC i StocksC ho implementan de manera distinta
+        
     String getTitle();
     
     float getValue();
@@ -20,8 +19,7 @@ public interface ShowConjuntosC extends PersistenciaC{
     int getNumProductosToShow();        
     
     boolean isWithUnits();
-    
-    //TicketsC i StocksC ho implementan de manera distinta
+        
     String getMensageCantidad(); 
     
     int getCantidad(int indexProducto);
@@ -31,5 +29,5 @@ public interface ShowConjuntosC extends PersistenciaC{
     
     float getPrecio(int indexProducto);
     
-    String getDetalles(int indexProducto); //categoria + nombre/descripción + info particular    
+    String getDetalles(int indexProducto); 
 }

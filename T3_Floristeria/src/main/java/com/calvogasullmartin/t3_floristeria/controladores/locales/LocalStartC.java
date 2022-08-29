@@ -15,13 +15,13 @@ public class LocalStartC extends LocalPersistenciaC implements StartC{
     @Override
     public boolean isFirstTimeRunning() throws IOException {
         errorBD = "Error! No se ha podido comprovar si existe la BBDD.";
-        return !factory.getConector().isBDInicizialized();
+        return !factory.getConexion().isBDInicizialized();
     }
 
     @Override
     public void initBD() throws IOException {
         errorBD = "Error! No se ha podido crear la BBDD.";
-        factory.getConector().initBD();
+        factory.getConexion().initBD();
     }
 
     @Override

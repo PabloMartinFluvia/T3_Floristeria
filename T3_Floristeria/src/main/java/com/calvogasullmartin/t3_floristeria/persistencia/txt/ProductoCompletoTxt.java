@@ -1,11 +1,11 @@
 package com.calvogasullmartin.t3_floristeria.persistencia.txt;
 
-import com.calvogasullmartin.t3_floristeria.modelos.ConjuntoProductos;
-import com.calvogasullmartin.t3_floristeria.modelos.Floristeria;
-import com.calvogasullmartin.t3_floristeria.modelos.ProductoCompleto;
-import com.calvogasullmartin.t3_floristeria.modelos.ProductoUnidad;
-import java.io.IOException;
 import com.calvogasullmartin.t3_floristeria.persistencia.ProductoCompletoDao;
+import com.calvogasullmartin.t3_floristeria.modelos.Floristeria;
+import com.calvogasullmartin.t3_floristeria.modelos.ConjuntoProductos;
+import com.calvogasullmartin.t3_floristeria.modelos.ProductoUnidad;
+import com.calvogasullmartin.t3_floristeria.modelos.ProductoCompleto;
+import java.io.IOException;
 
 public class ProductoCompletoTxt extends GenericDaoTxt<ProductoCompleto, Integer> implements ProductoCompletoDao{
 
@@ -32,7 +32,8 @@ public class ProductoCompletoTxt extends GenericDaoTxt<ProductoCompleto, Integer
         gestor.setMainNode_FromFile();
         gestor.setAuxiliarNodesNull();
         gestor.setNode_fromMain();
-        gestor.setListNodes_findAllFieldsByName(atributo_producto);//lista de todos los productos, tanto en stock como en tickets        
+        //lista de todos los productos, tanto en stock como en tickets        
+        gestor.setListNodes_findAllFieldsByName(atributo_producto);
         gestor.replaceList_NodesListWithChildStringValue(atributo_nombre, producto.getNombre());
         gestor.replaceList_NodesListWithChildFloatValue(atributo_precio, producto.getPrecio());
         if(producto.getAltura()!=null){        
@@ -53,19 +54,17 @@ public class ProductoCompletoTxt extends GenericDaoTxt<ProductoCompleto, Integer
             return gestor.getIntValue_fromNode();
         }    
     }
-    
-    
-
+        
     @Override
     @SuppressWarnings("unchecked")
     public ProductoCompleto findProductoByIdInStockId(int producto_id, int stock_id) throws IOException {        
         gestor.setMainNode_FromFile();
         gestor.setAuxiliarNodesNull();
         gestor.setNode_findFieldByName_fromMain(atributo_stocks);        
-        gestor.replaceNode_isArray_nodeByIndex(stock_id-1); //stock
-        gestor.replaceNode_findFieldByName(atributo_productosUnidad);//productos
-        gestor.replaceNode_isArray_NodeIndexedWithChildIntValue(atributo_id, producto_id);//stock que tiene el producto        
-        if (gestor.isNodeNull()){//no está en la lista de productos ese stock
+        gestor.replaceNode_isArray_nodeByIndex(stock_id-1); 
+        gestor.replaceNode_findFieldByName(atributo_productosUnidad);
+        gestor.replaceNode_isArray_NodeIndexedWithChildIntValue(atributo_id, producto_id);
+        if (gestor.isNodeNull()){
             return null;
         }else{                        
             gestor.replaceNode_findFieldByName(atributo_producto);
@@ -77,13 +76,11 @@ public class ProductoCompletoTxt extends GenericDaoTxt<ProductoCompleto, Integer
     public void eliminarProducto(ProductoCompleto producto) throws IOException {
         gestor.setMainNode_FromFile();
         gestor.setAuxiliarNodesNull();
-        gestor.setNode_findFieldByName_fromMain(atributo_stocks); //stocks array  
+        gestor.setNode_findFieldByName_fromMain(atributo_stocks);  
         int stock_index = producto.getCategoria().ordinal();
-        gestor.replaceNode_isArray_nodeByIndex(stock_index);  //stock
-        gestor.replaceNode_findFieldByName(atributo_productosUnidad);    //array de productos    
-        gestor.updateNode_isArray_deleteFirstElementByChildIntValue(atributo_id, producto.getProducto_id());        
+        gestor.replaceNode_isArray_nodeByIndex(stock_index);  
+        gestor.replaceNode_findFieldByName(atributo_productosUnidad);    
+        gestor.updateNode_isArray_deleteFirstElementByChildIntValue(atributo_id, producto.getProducto_id());       
         gestor.saveMainNodeInFile();
-    }
-    
-    
+    }        
 }

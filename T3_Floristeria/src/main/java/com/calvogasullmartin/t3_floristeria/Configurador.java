@@ -5,12 +5,13 @@ import com.calvogasullmartin.t3_floristeria.vistas.consola.ConsolaV;
 import com.calvogasullmartin.t3_floristeria.controladores.Logica;
 import com.calvogasullmartin.t3_floristeria.controladores.locales.LocalLogica;
 import com.calvogasullmartin.t3_floristeria.persistencia.DaoFactory;
-import com.calvogasullmartin.t3_floristeria.persistencia.DaoFactoryTxt;
+import com.calvogasullmartin.t3_floristeria.persistencia.txt.DaoFactoryTxt;
 
 public class Configurador{          
     
     public void persistenciaTxt() {
-        DaoFactory.setFactory(new DaoFactoryTxt());
+        String rutaArchivoTxt = "floristeria.txt"; // archivo .txt ubicado en src
+        DaoFactory.setFactory(new DaoFactoryTxt(rutaArchivoTxt));
     }
     
     public Vista vistasConsola (){

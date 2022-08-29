@@ -14,7 +14,7 @@ public abstract class DaoFactory {
         DaoFactory.factory = factory;
     }    
     
-    public abstract Conector getConector();
+    public abstract Conexion getConexion();
     
     public abstract FloristeriaDao getFloristeriaDao();
     

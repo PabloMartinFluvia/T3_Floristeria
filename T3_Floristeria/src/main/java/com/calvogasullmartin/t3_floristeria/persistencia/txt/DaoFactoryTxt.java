@@ -1,10 +1,15 @@
-package com.calvogasullmartin.t3_floristeria.persistencia;
+package com.calvogasullmartin.t3_floristeria.persistencia.txt;
 
-import com.calvogasullmartin.t3_floristeria.persistencia.txt.*;
+import com.calvogasullmartin.t3_floristeria.persistencia.DaoFactory;
+import com.calvogasullmartin.t3_floristeria.persistencia.Conexion;
+import com.calvogasullmartin.t3_floristeria.persistencia.ConjuntoProductosDao;
+import com.calvogasullmartin.t3_floristeria.persistencia.FloristeriaDao;
+import com.calvogasullmartin.t3_floristeria.persistencia.ProductoCompletoDao;
+import com.calvogasullmartin.t3_floristeria.persistencia.ProductoUnidadDao;
 
-public class DaoFactoryTxt extends DaoFactory{
+public class DaoFactoryTxt extends DaoFactory{   
     
-    private Conector conector;
+    private Conexion conexion;
     
     private FloristeriaDao floristeriaDao;
     
@@ -12,14 +17,18 @@ public class DaoFactoryTxt extends DaoFactory{
     
     private ProductoUnidadDao productoUnidadDao;
     
-    private ProductoCompletoDao productoCompletoDao;
+    private ProductoCompletoDao productoCompletoDao;        
+        
+    public DaoFactoryTxt(String filePath) {
+        ConectorTxt.setPathTxt(filePath);
+    }
 
     @Override
-    public Conector getConector() {
-       if (conector == null) {
-            conector = new ConectorTxt();
+    public Conexion getConexion() {
+       if (conexion == null) {
+            conexion = new ConectorTxt();
         }
-        return conector;
+        return conexion;
     }
     
     @Override

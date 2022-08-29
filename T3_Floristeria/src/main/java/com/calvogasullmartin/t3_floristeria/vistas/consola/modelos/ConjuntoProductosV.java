@@ -15,7 +15,7 @@ public class ConjuntoProductosV {
         assert controlador != null;
         int numConjuntosToShow = controlador.getNumConjuntosToShow();
         if (numConjuntosToShow == 0) {
-            io.writeln("No hay tiquets registrados."); //los stocks se crean cuando se inizializa la BD, y siempre estan (aunque sean vacíos)
+            io.writeln("No hay tiquets registrados."); 
         } else {
             for (int i = 0; i < numConjuntosToShow; i++) {
                 controlador.setConjuntoToShow(i);
@@ -35,8 +35,9 @@ public class ConjuntoProductosV {
         if (numProductos == 0) {
             io.writeln("\tActualmente no hay productos en este stock.");
         } else {            
+            ProductoUnidadV productoUnidadV = new ProductoUnidadV();
             for (int indexProducto = 0; indexProducto < numProductos; indexProducto++) {
-                new ProductoUnidadV().mostrarProductoUnidad(controlador, indexProducto);
+                productoUnidadV.mostrarProductoUnidad(controlador, indexProducto);
             }
         }
     }
