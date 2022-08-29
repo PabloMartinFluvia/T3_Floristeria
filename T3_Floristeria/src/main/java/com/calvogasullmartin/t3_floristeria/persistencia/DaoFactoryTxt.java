@@ -5,10 +5,14 @@ import com.calvogasullmartin.t3_floristeria.persistencia.txt.*;
 public class DaoFactoryTxt extends DaoFactory{
     
     private Conector conector;
+    
     private FloristeriaDao floristeriaDao;
-    private ProductoCompletoDao productoDao;
+    
+    private ConjuntoProductosDao conjuntoProductosDao;
+    
     private ProductoUnidadDao productoUnidadDao;
-    private ConjuntoProductosDao conjuntoProductosDao;       
+    
+    private ProductoCompletoDao productoCompletoDao;
 
     @Override
     public Conector getConector() {
@@ -27,26 +31,26 @@ public class DaoFactoryTxt extends DaoFactory{
     }
 
     @Override
-    public ProductoCompletoDao getProductoCompletoDao() {
-        if (productoDao == null) {
-            productoDao = new ProductoCompletoTxt();
+    public ConjuntoProductosDao getConjuntoProductosDao() {
+        if (conjuntoProductosDao == null) {
+            conjuntoProductosDao = new ConjuntoProductosTxt();
         }
-        return productoDao;
-    }
+        return conjuntoProductosDao;
+    }    
     
     @Override
-    public ProductoUnidadDao getProductoUnidadesDao() {
+    public ProductoUnidadDao getProductoUnidadDao() {
         if (productoUnidadDao == null) {
             productoUnidadDao = new ProductoUnidadTxt();
         }
         return productoUnidadDao;
-    }
+    }  
     
     @Override
-    public ConjuntoProductosDao getConjuntoProductosDao() {
-       if (conjuntoProductosDao == null) {
-            conjuntoProductosDao = new ConjuntoProductosTxt();
+    public ProductoCompletoDao getProductoCompletoDao() {
+        if (productoCompletoDao == null) {
+            productoCompletoDao = new ProductoCompletoTxt();
         }
-        return conjuntoProductosDao; 
-    }                
+        return productoCompletoDao;
+    }
 }

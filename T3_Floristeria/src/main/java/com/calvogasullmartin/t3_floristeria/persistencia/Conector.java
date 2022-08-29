@@ -4,7 +4,7 @@ import java.io.IOException;
 
 public interface Conector {
     
-    public boolean isBDInicizializada() throws IOException;
-    
-    public void inicializarBD() throws IOException;
+    public boolean isBDInicizialized() throws IOException; //ok
+        
+    public void initBD() throws IOException; //ok   
 }

@@ -1,28 +1,91 @@
 {
   "floristeria_id" : 1,
   "nombre_floristeria" : "FloriTest",
-  "valorStocksTotal" : 15.0,
-  "valorTicketsTotal" : 0.0,
+  "valorStocksTotal" : 200.0,
+  "valorTicketsTotal" : 250.0,
   "stocks" : [ {
     "id" : 1,
-    "valor_Productos" : 15.0,
+    "valor_Productos" : 200.0,
     "productos" : [ {
       "producto" : {
         "producto_id" : 1,
         "categoria" : "ARBOL",
-        "precio" : 1.0,
+        "nombre" : "sequoya",
+        "precio" : 10.0,
         "altura" : "MUY_ALTO"
       },
-      "cantidad" : 15.0
+      "cantidad" : 10
+    }, {
+      "producto" : {
+        "producto_id" : 5,
+        "categoria" : "ARBOL",
+        "nombre" : "bonsai",
+        "precio" : 10.0,
+        "altura" : "MUY_BAJO"
+      },
+      "cantidad" : 10
     } ]
   }, {
     "id" : 2,
     "valor_Productos" : 0.0,
-    "productos" : [ ]
+    "productos" : [ {
+      "producto" : {
+        "producto_id" : 3,
+        "categoria" : "FLOR",
+        "nombre" : "gira sol",
+        "precio" : 10.0,
+        "color" : "amarillo"
+      },
+      "cantidad" : 0
+    }, {
+      "producto" : {
+        "producto_id" : 4,
+        "categoria" : "FLOR",
+        "nombre" : "rosas",
+        "precio" : 10.0,
+        "color" : "rojo"
+      },
+      "cantidad" : 0
+    } ]
   }, {
     "id" : 3,
     "valor_Productos" : 0.0,
     "productos" : [ ]
   } ],
-  "tiquets" : [ ]
+  "tiquets" : [ {
+    "id" : 1,
+    "valor_Productos" : 100.0,
+    "productos" : [ {
+      "producto" : {
+        "producto_id" : 3,
+        "categoria" : "FLOR",
+        "nombre" : "gira sol",
+        "precio" : 10.0,
+        "color" : "amarillo"
+      },
+      "cantidad" : 10
+    } ]
+  }, {
+    "id" : 2,
+    "valor_Productos" : 150.0,
+    "productos" : [ {
+      "producto" : {
+        "producto_id" : 1,
+        "categoria" : "ARBOL",
+        "nombre" : "sequoya",
+        "precio" : 10.0,
+        "altura" : "MUY_ALTO"
+      },
+      "cantidad" : 5
+    }, {
+      "producto" : {
+        "producto_id" : 2,
+        "categoria" : "ARBOL",
+        "nombre" : "bonsai",
+        "precio" : 10.0,
+        "altura" : "MUY_BAJO"
+      },
+      "cantidad" : 10
+    } ]
+  } ]
 }

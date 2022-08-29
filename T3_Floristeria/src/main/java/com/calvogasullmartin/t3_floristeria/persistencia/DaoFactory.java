@@ -18,9 +18,9 @@ public abstract class DaoFactory {
     
     public abstract FloristeriaDao getFloristeriaDao();
     
+    public abstract ConjuntoProductosDao getConjuntoProductosDao();
+    
     public abstract ProductoCompletoDao getProductoCompletoDao();
     
-    public abstract ProductoUnidadDao getProductoUnidadesDao();
-    
-    public abstract ConjuntoProductosDao getConjuntoProductosDao();
+    public abstract ProductoUnidadDao getProductoUnidadDao();
 }

@@ -1,57 +1,67 @@
+
 package com.calvogasullmartin.t3_floristeria.persistencia.txt;
 
 import com.calvogasullmartin.t3_floristeria.modelos.Categoria;
 import com.calvogasullmartin.t3_floristeria.modelos.ConjuntoProductos;
 import com.calvogasullmartin.t3_floristeria.modelos.Floristeria;
-import com.calvogasullmartin.t3_floristeria.persistencia.ConjuntoProductosDao;
 import java.io.IOException;
 import java.util.Arrays;
 import java.util.LinkedList;
 import java.util.List;
+import com.calvogasullmartin.t3_floristeria.persistencia.ConjuntoProductosDao;
 
 public class ConjuntoProductosTxt extends GenericDaoTxt<ConjuntoProductos, Integer> implements ConjuntoProductosDao{
-
-    @Override
-    public void createNewTiquet(ConjuntoProductos tiquet) throws IOException {
-        int max_id = findMaxProductId();
-        tiquet.setId(max_id + 1);
-        String arrayFieldName = Floristeria.class.getDeclaredFields()[5].getName();
+    
+    private final String atributo_stocks = Floristeria.class.getDeclaredFields()[4].getName();
+    
+    private final String atributo_tiquets = Floristeria.class.getDeclaredFields()[5].getName();
+    
+    private final String atributo_stockId = ConjuntoProductos.class.getDeclaredFields()[0].getName();                
+    
+    private final String atributo_valorProductos = ConjuntoProductos.class.getDeclaredFields()[1].getName();                
+    
+     @Override
+    @SuppressWarnings("unchecked")
+    public void createTiquet(ConjuntoProductos tiquet) throws IOException {
+        int maxActualId = findMaxTiquetId();    
+        tiquet.setId(maxActualId + 1);
         gestor.setMainNode_FromFile();
-        gestor.addObjectInUniqueArray(tiquet, arrayFieldName);
+        gestor.setAuxiliarNodesNull();
+        gestor.setNode_findFieldByName_fromMain(atributo_tiquets); //tiquets 
+        gestor.setAuxiliarNode_ObjectInput(tiquet);
+        gestor.updateNode_isArray_pushAuxiliarNode(); 
         gestor.saveMainNodeInFile();
     }
     
-    private int findMaxProductId() throws IOException{
-        String nombreAtributoId = ConjuntoProductos.class.getDeclaredFields()[0].getName();
+    private int findMaxTiquetId() throws IOException {
         gestor.setMainNode_FromFile();
-        return gestor.findMaxIntValueInMultipleChildNodes(nombreAtributoId);
+        gestor.setAuxiliarNodesNull();
+        gestor.setNode_findFieldByName_fromMain(atributo_tiquets);//tickets        
+        gestor.setListNodes_findAllFieldsByName(atributo_stockId); // all tiquetsId in stockS        
+        return gestor.getMaxIntValue_fromListNodes();
     }
     
     @Override
-    public void incrementarValorEnStockById(int stock_id, float increment) throws IOException {
-        gestor.setMainNode_FromFile();
-        gestor.setAuxiliarNodesNull();
-        String atributo_stocks = Floristeria.class.getDeclaredFields()[4].getName(); 
-        gestor.setNode_findFieldByName_fromMain(atributo_stocks); //stocks        
-        gestor.replaceNode_isArray_nodeByIndex(stock_id-1); //stock
-        String atributo_valorProductos = ConjuntoProductos.class.getDeclaredFields()[1].getName();        
-        gestor.updateNode_incrementFloatValueInField(atributo_valorProductos, increment);//stock field updated
-        gestor.saveMainNodeInFile();        
+    public void incrementarValorEnStockById(int idStock, float incremento) throws IOException {
+        gestor.setMainNode_FromFile();        
+        gestor.setAuxiliarNodesNull();        
+        gestor.setNode_findFieldByName_fromMain(atributo_stocks); //stocks                
+        gestor.replaceNode_isArray_nodeByIndex(idStock-1); //stock  
+        gestor.updateNode_incrementFloatValueInField(atributo_valorProductos, incremento);//stock field updated
+        gestor.saveMainNodeInFile();  
     }
 
     @Override
-    public ConjuntoProductos getOneStockById(int stock_id) throws IOException {
-        String stocksFieldName = Floristeria.class.getDeclaredFields()[4].getName();   
+    public ConjuntoProductos getOneStockById(int idStock) throws IOException {  
         gestor.setMainNode_FromFile();
         gestor.setAuxiliarNodesNull();
-        gestor.setNode_findFieldByName_fromMain(stocksFieldName);
-        gestor.replaceNode_isArray_nodeByIndex(stock_id-1);        
-        ConjuntoProductos stock = (ConjuntoProductos) gestor.parseNodeToObject(ConjuntoProductos.class);
-        
-        //ConjuntoProductos stock = (ConjuntoProductos) gestor.getObjectIndexedInArray(stocksFieldName,ConjuntoProductos.class, id-1);
+        gestor.setNode_findFieldByName_fromMain(atributo_stocks);
+        gestor.replaceNode_isArray_nodeByIndex(idStock-1);        
+        @SuppressWarnings("unchecked")
+        ConjuntoProductos stock = (ConjuntoProductos) gestor.parseNodeToObject(ConjuntoProductos.class);                
         return  stock;
     }
-    
+
     @Override
     public List<ConjuntoProductos> getAllStocks() throws IOException {
         List<ConjuntoProductos> stocks = new LinkedList<>();
@@ -64,15 +74,14 @@ public class ConjuntoProductosTxt extends GenericDaoTxt<ConjuntoProductos, Integ
 
     @Override
     public List<ConjuntoProductos> getAllTiquets() throws IOException {
-        String tiquetsFieldName = Floristeria.class.getDeclaredFields()[5].getName();  
         gestor.setMainNode_FromFile();
-        ConjuntoProductos[] arrayTiquets =  (ConjuntoProductos[]) gestor.getObjectArray(tiquetsFieldName,ConjuntoProductos[].class);        
-        List<ConjuntoProductos> tiquets = Arrays.asList(arrayTiquets);        
-        return tiquets;
+        gestor.setAuxiliarNodesNull();
+        gestor.setNode_findFieldByName_fromMain(atributo_tiquets);
+        @SuppressWarnings("unchecked")
+        ConjuntoProductos[] tiquets = (ConjuntoProductos[]) gestor.parseNodeToObject(ConjuntoProductos[].class);
+        return Arrays.asList(tiquets);
     }
 
-    
-
-    
+   
     
 }

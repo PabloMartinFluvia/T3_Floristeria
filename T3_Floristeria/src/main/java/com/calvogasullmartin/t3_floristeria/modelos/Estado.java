@@ -1,15 +1,19 @@
 package com.calvogasullmartin.t3_floristeria.modelos;
 
 public enum Estado { 
-    INITIAL,    
-    EN_MENU,
-    NUEVO_PRODUCTO,
+    EXIT,
+    
+    REALIZAR_VENTA,
     MOSTRAR_STOCK,
-    MOSTRAR_TIQUETS,
+    
+    NUEVO_PRODUCTO,
+    ACTUALIZAR_UNIDADES,
+    RETIRAR_PRODUCTO, 
+   
     MOSTRAR_VALOR_TIENDA,
     MOSTRAR_FACTURACION_TOTAL,
-    RETIRAR_PRODUCTO,
-    ACTUALIZAR_UNIDADES,
-    REALIZAR_VENTA,
-    EXIT;    
+    MOSTRAR_TIQUETS,
+    
+    INITIAL,    
+    EN_MENU;    
 }

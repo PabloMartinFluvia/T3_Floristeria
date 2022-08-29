@@ -42,55 +42,19 @@ public class ConjuntoProductos {
         this.productos = productos;
     }
     
-    
-    ///métodes problematics per a la persistencia
-    public int obtainCantidadProductoByIndex(int productoIndex){
-        return this.productos.get(productoIndex).getCantidad();
+    public int cantidadProducto(int productoIndex){
+        return productos.get(productoIndex).getCantidad();
     }
     
-    public float obtainPrecioProductoByIndex(int productoIndex){
-        return this.productos.get(productoIndex).obtainPrecioProducto();        
+    public int idProducto(int productoIndex){
+        return productos.get(productoIndex).idProducto();
     }
     
-    public String obtainIntroProductoByIndex(int productoIndex){
-        return this.productos.get(productoIndex).obtainIntroProducto();
+    public float precioProducto(int productoIndex){
+        return productos.get(productoIndex).precioProducto();
     }
     
-    public String obtainDetallesProductoByIndex(int productoIndex){
-        return this.productos.get(productoIndex).obtainDetallesProducto();
-    }
-
-    
-    
-    
-    
-    
-    
-
-    public String listaToString(){
-        String string = "";
-        if(productos.size()!=0)
-            for (ProductoUnidad productoUnidad : productos) {
-                string = string + productoUnidad.productoToString();
-            }
-        return string;
-    }
-    
-    public String listaToStringQ(){
-        String string = "";
-        if(productos.size()!=0)
-            for (ProductoUnidad productoUnidad : productos) {
-                string = string + productoUnidad.productoToStringQ();
-            }
-        return string;
-    }
-    
-    public String listaToStringTicket(){
-        String string = "Valor total: "+valor_Productos+".\n";
-        if(productos.size()!=0)
-            for (ProductoUnidad productoUnidad : productos) {
-                string = string + productoUnidad.productoToString();
-            }
-        return string;
+    public String detallesProducto(int productoIndex){
+        return productos.get(productoIndex).detallesProducto();
     }
 }

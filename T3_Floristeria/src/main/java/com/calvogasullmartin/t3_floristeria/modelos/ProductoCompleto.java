@@ -2,22 +2,24 @@ package com.calvogasullmartin.t3_floristeria.modelos;
 
 public class ProductoCompleto {
     
-    private int producto_id; //todos
+    private int producto_id; 
     
-    private Categoria categoria; //todos
+    private Categoria categoria; 
     
-    private float precio; //todos
+    private String nombre;
     
-    private Altura altura; //opcional
+    private float precio; 
     
-    private String color; //opcional
+    private Altura altura;
     
-    private Material material; //opcional
+    private String color; 
+    
+    private Material material; 
 
-    public ProductoCompleto() {
-        // constructor -> todo null
+    public ProductoCompleto() {        
         producto_id = 0;
         categoria = null;
+        nombre = null;
         precio = 0;
         altura = null;
         color = null;
@@ -38,6 +40,14 @@ public class ProductoCompleto {
 
     public void setCategoria(Categoria categoria) {
         this.categoria = categoria;
+    }
+    
+    public String getNombre(){
+        return nombre;
+    }
+    
+    public void setNombre(String nombre){
+        this.nombre = nombre;
     }
 
     public float getPrecio() {
@@ -72,49 +82,23 @@ public class ProductoCompleto {
         this.material = material;
     }
     
-    
-    
-    
-    ///métodes problematics per a la persistencia
-    public String obtainIntroProducto(){
-        return "ID: "+producto_id+") ";
-    }
-    
-    public String obtainDetallesProducto(){
-        String detalles = null;
-        switch(categoria){
-            case ARBOL: 
-                detalles = "Arbol con altura "+altura+". ";
-                break;
-            case FLOR: 
-                detalles = "Flor de color "+color+". ";
-                break;
-            case DECORACION: 
-                detalles = "Decoración de material "+material+". ";
-                break;
-        }
-        return detalles;
-    }
-    
-    
-    public int obtainCategoriaIndex(){
+    public int categoriaIndex(){
         return categoria.ordinal();
     }
     
-    
-    public String toString(){
-        String string = "";
-        string = string + producto_id+", "+ precio + ", ";
-        if(this.categoria == categoria.ARBOL){
-            string = string + altura;
+    public String detallesProducto(){
+        String detalles = null;
+        switch(categoria){
+            case ARBOL: 
+                detalles = nombre+" (árbol), con altura "+altura+".";
+                break;
+            case FLOR: 
+                detalles = nombre+" (flor), de color "+color+".";
+                break;
+            case DECORACION: 
+                detalles = nombre+" (decoracion), de material "+material+".";
+                break;
         }
-        if(this.categoria == categoria.FLOR){
-            string = string + color;
-        }
-        if(this.categoria == categoria.DECORACION){
-            string = string + material;
-        }
-        return string;
-    }
-    
+        return detalles;
+    }                        
 }
