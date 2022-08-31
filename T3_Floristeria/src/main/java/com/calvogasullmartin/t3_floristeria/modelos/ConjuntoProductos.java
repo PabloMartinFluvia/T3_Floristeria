@@ -6,24 +6,24 @@ import java.util.List;
 public class ConjuntoProductos {
 
     // 1,2,3 para los stock de arboles, flores, decoracion, los siguientes para tiquets
-    private int id; 
+    private int conjunto_id; 
     
     private float valor_Productos; 
     
     private List<ProductoUnidad> productos; // productos + las unidades de este en el conjunto                                    
 
     public ConjuntoProductos() {
-        this.id = 0;
+        this.conjunto_id = 0;
         valor_Productos = 0f;
         productos = new LinkedList<>();
     }
 
-    public int getId() {
-        return id;
+    public int getConjunto_id() {
+        return conjunto_id;
     }
 
-    public void setId(int id) {
-        this.id = id;
+    public void setConjunto_id(int conjunto_id) {
+        this.conjunto_id = conjunto_id;
     }
 
     public float getValor_Productos() {

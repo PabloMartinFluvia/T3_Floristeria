@@ -5,13 +5,22 @@ import com.calvogasullmartin.t3_floristeria.vistas.consola.ConsolaV;
 import com.calvogasullmartin.t3_floristeria.controladores.Logica;
 import com.calvogasullmartin.t3_floristeria.controladores.locales.LocalLogica;
 import com.calvogasullmartin.t3_floristeria.persistencia.DaoFactory;
+import com.calvogasullmartin.t3_floristeria.persistencia.mysql.DaoFactoryMySQL;
 import com.calvogasullmartin.t3_floristeria.persistencia.txt.DaoFactoryTxt;
 
 public class Configurador{          
     
     public void persistenciaTxt() {
-        String rutaArchivoTxt = "floristeria.txt"; // archivo .txt ubicado en src
+        String rutaArchivoTxt = "floristeria.txt"; // archivo .txt ubicado en carpeta del proyecto
         DaoFactory.setFactory(new DaoFactoryTxt(rutaArchivoTxt));
+    }
+    
+    public void persistenciaMySql(){
+        String port = "3306";
+        String user = "root";
+        String password = "admin";
+        String[] argsConexion = {port,user,password};
+        DaoFactory.setFactory(new DaoFactoryMySQL(argsConexion));
     }
     
     public Vista vistasConsola (){

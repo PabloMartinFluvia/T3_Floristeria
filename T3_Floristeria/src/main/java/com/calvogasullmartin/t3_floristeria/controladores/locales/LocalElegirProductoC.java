@@ -6,6 +6,7 @@ import com.calvogasullmartin.t3_floristeria.modelos.Manager;
 import com.calvogasullmartin.t3_floristeria.modelos.ProductoCompleto;
 import com.calvogasullmartin.t3_floristeria.persistencia.DaoFactory;
 import java.io.IOException;
+import java.sql.SQLException;
 
 public abstract class LocalElegirProductoC extends LocalGestionarUnidadesC implements ElegirProductoC{        
     
@@ -30,7 +31,7 @@ public abstract class LocalElegirProductoC extends LocalGestionarUnidadesC imple
     }
 
     @Override
-    public boolean isIdValid(int productoId) throws IOException {
+    public boolean isIdValid(int productoId) throws IOException, SQLException {
         stock_id_updating = controladorShowStocks.getIndexStockTarget() + 1;
         errorBD = "Error! No se ha podido buscar el producto en la BD.";
         ProductoCompleto producto = DaoFactory.getFactory().getProductoCompletoDao().findProductoByIdInStockId(productoId, stock_id_updating);
@@ -49,5 +50,5 @@ public abstract class LocalElegirProductoC extends LocalGestionarUnidadesC imple
     }
 
     @Override
-    public abstract void updateUnitsStock(int incremento) throws IOException;
+    public abstract void updateUnitsStock(int incremento) throws IOException, SQLException;
 }

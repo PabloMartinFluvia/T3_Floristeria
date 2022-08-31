@@ -5,6 +5,7 @@ import com.calvogasullmartin.t3_floristeria.controladores.PersistenciaC;
 import com.calvogasullmartin.t3_floristeria.utils.InOut;
 import com.calvogasullmartin.t3_floristeria.utils.YesNoDialog;
 import java.io.IOException;
+import java.sql.SQLException;
 
 public abstract class ElegirProductoV {
 
@@ -18,13 +19,13 @@ public abstract class ElegirProductoV {
         endV = new EndV(controlador);
     }
 
-    protected void update(ElegirProductoC controlador, String operationOption) throws IOException {
+    protected void update(ElegirProductoC controlador, String operationOption) throws IOException, SQLException {
         if (isProductChoosed(controlador, operationOption)) {
             updateProduct();
         }
     }
 
-    protected boolean isProductChoosed(ElegirProductoC controlador, String operationOption) throws IOException {
+    protected boolean isProductChoosed(ElegirProductoC controlador, String operationOption) throws IOException, SQLException {
         String messageSelectStock = "el tipo de producto que desea " + operationOption;
         new ShowConjuntosV().printStock(controlador.getNewShowStocksC(), messageSelectStock);
         if (!controlador.isStockEmpty()) {
@@ -35,7 +36,7 @@ public abstract class ElegirProductoV {
         }
     }
 
-    private boolean chooseProduct(ElegirProductoC controlador, String operationOption) throws IOException {
+    private boolean chooseProduct(ElegirProductoC controlador, String operationOption) throws IOException, SQLException {
         String messageSelectId
                 = "Introduzca el ID del producto que desea " + operationOption + ": ";
         String messageWrongSelection = "Id seleccionado incorrecto. Desea intentarlo de nuevo";
@@ -52,5 +53,5 @@ public abstract class ElegirProductoV {
         return false;
     }
 
-    protected abstract void updateProduct() throws IOException;
+    protected abstract void updateProduct() throws IOException, SQLException;
 }

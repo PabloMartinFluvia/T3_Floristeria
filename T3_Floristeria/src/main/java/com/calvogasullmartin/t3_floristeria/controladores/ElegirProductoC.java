@@ -1,6 +1,7 @@
 package com.calvogasullmartin.t3_floristeria.controladores;
 
 import java.io.IOException;
+import java.sql.SQLException;
 
 public interface ElegirProductoC{       
         
@@ -9,6 +10,6 @@ public interface ElegirProductoC{
     boolean isStockEmpty();
         
     //si ok -> lo almacena en atributos
-    boolean isIdValid(int productoId) throws IOException;    
+    boolean isIdValid(int productoId) throws IOException, SQLException;    
          
 }

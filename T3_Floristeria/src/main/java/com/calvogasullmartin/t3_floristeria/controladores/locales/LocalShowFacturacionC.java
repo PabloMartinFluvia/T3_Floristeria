@@ -4,6 +4,7 @@ import com.calvogasullmartin.t3_floristeria.controladores.ShowFacturacionC;
 import com.calvogasullmartin.t3_floristeria.modelos.Manager;
 import java.io.IOException;
 import com.calvogasullmartin.t3_floristeria.controladores.ControladorVisitador;
+import java.sql.SQLException;
 
 public class LocalShowFacturacionC extends LocalPersistenciaC implements ShowFacturacionC{    
 
@@ -12,7 +13,7 @@ public class LocalShowFacturacionC extends LocalPersistenciaC implements ShowFac
     }
 
     @Override
-    public float getFacturacion() throws IOException {
+    public float getFacturacion() throws IOException, SQLException {
         errorBD = "Error! No se ha podido leer la facturación total de la floristería.";
         return factory.getFloristeriaDao().getFacturacionFloristeria();
     }

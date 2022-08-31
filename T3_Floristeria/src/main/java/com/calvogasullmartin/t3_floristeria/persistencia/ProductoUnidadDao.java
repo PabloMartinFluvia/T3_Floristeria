@@ -2,6 +2,7 @@ package com.calvogasullmartin.t3_floristeria.persistencia;
 
 import com.calvogasullmartin.t3_floristeria.modelos.ProductoUnidad;
 import java.io.IOException;
+import java.sql.SQLException;
 
 public interface ProductoUnidadDao extends GenericDao<ProductoUnidad, Integer>{
     
@@ -12,8 +13,9 @@ public interface ProductoUnidadDao extends GenericDao<ProductoUnidad, Integer>{
      * @param productoUnidad
      * @param stock_id
      * @throws IOException 
+     * @throws java.sql.SQLException 
      */
-    public void createNuevoProductoUnidadEnStock(ProductoUnidad productoUnidad, int stock_id) throws IOException; 
+    public void createNuevoProductoUnidadEnStock(ProductoUnidad productoUnidad, int stock_id) throws IOException, SQLException; 
 
     /**
      * associar el id del producto (que estaba descatalogado pero almacenado debido a relación conticket) al stock
@@ -21,8 +23,9 @@ public interface ProductoUnidadDao extends GenericDao<ProductoUnidad, Integer>{
      * @param productoUnidad
      * @param stock_id
      * @throws IOException 
+     * @throws java.sql.SQLException 
      */
-    public void reCatalogarProductoUnidadEnStock(ProductoUnidad productoUnidad, int stock_id) throws IOException; 
+    public void reCatalogarProductoUnidadEnStock(ProductoUnidad productoUnidad, int stock_id) throws IOException, SQLException; 
     
    /**
     * si no existe la relación entre el producto y el stock -> el dao devuelve un número
@@ -31,29 +34,24 @@ public interface ProductoUnidadDao extends GenericDao<ProductoUnidad, Integer>{
     * @param producto_id
     * @return
     * @throws IOException 
+     * @throws java.sql.SQLException 
     */
-    public int getCantidadEnStockBy(int stock_id, int producto_id) throws IOException; 
+    public int getCantidadEnStockBy(int stock_id, int producto_id) throws IOException, SQLException; 
     
-    //update: modificar las unidades de un producto en un determinado stock (en un tiquet ya creado no se permite)
-    
-    /*
-    unpdate conjunto_has_products cantidad = cantidad + incremento where conjuntoId= and productoId =
-    find in floristeria  stocks.id-1.products with one has reference to productoId 
+    /*    
+    c) find in floristeria  stocks.id-1.products with one has reference to productoId 
     + set cantidad: {$incr:}
     */
-    public void incrementarCantidadByStockIdProductoId (int stockId,int productoId,int incremento) throws IOException;
+    public void incrementarCantidadByStockIdProductoId (int stockId,int productoId,int incremento) throws IOException, SQLException;
     
     /*
-    select  from conjuntos_has_products where productoId = & conjuntoId > numStocks
-        if found null -> false; else -> true
-    find in floristeria tickets match productoId =
+    c) find in floristeria tickets match productoId =
         if found null -> false; else -> true
     */
-    public boolean isSoldAnytimeById(int productoId) throws IOException;
+    public boolean isSoldAnytimeById(int productoId) throws IOException, SQLException;
     
     /*
-    b) delete en conjunto_has_products el registro where stock_id = and productoId =
     c) find in floristeria collections conjunto.idConjunto the one with idProductos as reference and remove
     */
-    public void eliminarRelacionConStock(int stock_id, int producto_id) throws IOException;
+    public void eliminarRelacionConStock(int stock_id, int producto_id) throws IOException, SQLException;
 }    

@@ -5,6 +5,7 @@ import com.calvogasullmartin.t3_floristeria.controladores.StartC;
 import com.calvogasullmartin.t3_floristeria.modelos.Floristeria;
 import com.calvogasullmartin.t3_floristeria.modelos.Manager;
 import java.io.IOException;
+import java.sql.SQLException;
 
 public class LocalStartC extends LocalPersistenciaC implements StartC{    
     
@@ -13,19 +14,26 @@ public class LocalStartC extends LocalPersistenciaC implements StartC{
     }    
 
     @Override
-    public boolean isFirstTimeRunning() throws IOException {
+    public boolean isFirstTimeRunning() throws IOException, SQLException {
         errorBD = "Error! No se ha podido comprovar si existe la BBDD.";
-        return !factory.getConexion().isBDInicizialized();
+        boolean bdInicialized = factory.getValidadorBD().isBDInicizialized();
+        if(bdInicialized){
+            String name = getFloristeriaName();
+            return !(name != null && name.length() >= 3);
+        }
+        return !bdInicialized;
     }
 
     @Override
-    public void initBD() throws IOException {
+    public void initBD(String nombre) throws IOException, SQLException {
+        assert nombre != null;
+        assert nombre.length() >= 3;
         errorBD = "Error! No se ha podido crear la BBDD.";
-        factory.getConexion().initBD();
+        factory.getValidadorBD().initBD();
+        saveFloristeria(nombre);
     }
 
-    @Override
-    public void saveFloristeria(String nombre) throws IOException {
+    private void saveFloristeria(String nombre) throws IOException, SQLException {
         assert nombre != null;
         assert nombre.length() >= 3;
         errorBD = "Error! No se ha podido guardar los datos de la floristeria.";                      
@@ -36,7 +44,7 @@ public class LocalStartC extends LocalPersistenciaC implements StartC{
     }
 
     @Override
-    public String getFloristeriaName() throws IOException {
+    public String getFloristeriaName() throws IOException, SQLException {
         errorBD = "Error! No se ha podido leer los datos de la floristeria.";  
         return factory.getFloristeriaDao().getName();
     }    

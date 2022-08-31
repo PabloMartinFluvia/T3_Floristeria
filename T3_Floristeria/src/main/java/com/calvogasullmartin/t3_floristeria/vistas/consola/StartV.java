@@ -4,6 +4,7 @@ import com.calvogasullmartin.t3_floristeria.vistas.consola.modelos.FloristeriaV;
 import com.calvogasullmartin.t3_floristeria.controladores.StartC;
 import java.io.IOException;
 import com.calvogasullmartin.t3_floristeria.utils.InOut;
+import java.sql.SQLException;
 
 public class StartV {
     
@@ -25,26 +26,20 @@ public class StartV {
             }
             printWelcome();
             endV.setEstadoMenu();
-        } catch (IOException ex) {
-            endV.manageError();
+        } catch (IOException|SQLException ex) {
+            endV.manageError(ex);
         }
     }            
     
-    private void init() throws IOException {
+    private void init() throws IOException, SQLException {
         io.writeln("Aplicación ejecutandose por primera vez ...");
-        controlador.initBD();
-        io.writeln("Capa de persistencia inizializada con exito");   
-        getFloristeriaName();
-    }
-    
-    private void getFloristeriaName() throws IOException {
         String name = new FloristeriaV().askName();
-        controlador.saveFloristeria(name);
-        io.writeln("Floristeria guardada con éxito.");
-        io.writeln();   
+        controlador.initBD(name);
+        io.writeln("Capa de persistencia inizializada con exito");  
+        io.writeln();
     }
 
-    private void printWelcome() throws IOException {
+    private void printWelcome() throws IOException, SQLException {
         String nombre = controlador.getFloristeriaName();              
         io.writeln("Bienvenid@ al gestor de la floristeria " + nombre + ", desarrollado por CalvoGasullMartin.");        
         io.writeln();
