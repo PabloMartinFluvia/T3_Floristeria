@@ -4,6 +4,7 @@ import com.calvogasullmartin.t3_floristeria.controladores.ShowConjuntosC;
 import com.calvogasullmartin.t3_floristeria.modelos.Manager;
 import com.calvogasullmartin.t3_floristeria.modelos.ConjuntoProductos;
 import java.io.IOException;
+import java.sql.SQLException;
 import java.util.LinkedList;
 import java.util.List;
 
@@ -25,7 +26,7 @@ public abstract class LocalShowConjuntosC extends LocalPersistenciaC implements 
     }
     
     @Override
-    public abstract void readConjuntos() throws IOException;
+    public abstract void readConjuntos() throws IOException, SQLException;
     
     @Override
     public final void resetConjuntosReaded(){

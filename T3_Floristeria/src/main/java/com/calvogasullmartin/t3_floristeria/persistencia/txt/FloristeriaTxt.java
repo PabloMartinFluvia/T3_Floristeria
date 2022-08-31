@@ -44,20 +44,20 @@ public class FloristeriaTxt extends GenericDaoTxt<Floristeria, Integer> implemen
     }
 
     @Override
-    public void incrementarValorFloristeria(float incremento) throws IOException {
+    public void incrementarValorFloristeria(float incrementoValor) throws IOException {
         gestor.setMainNode_FromFile();
         gestor.setAuxiliarNodesNull();
         gestor.setNode_fromMain();
-        gestor.updateNode_incrementFloatValueInField(atributo_valor, incremento);
+        gestor.updateNode_incrementFloatValueInField(atributo_valor, incrementoValor);
         gestor.saveMainNodeInFile();
     }
 
     @Override
-    public void incrementarFacturacionFloristeria(float incremento) throws IOException {
+    public void incrementarFacturacionFloristeria(float incrementoValor) throws IOException {
         gestor.setMainNode_FromFile();
         gestor.setAuxiliarNodesNull();
         gestor.setNode_fromMain();
-        gestor.updateNode_incrementFloatValueInField(atributo_facturacion, incremento);
+        gestor.updateNode_incrementFloatValueInField(atributo_facturacion, incrementoValor);
         gestor.saveMainNodeInFile();
     }
 }

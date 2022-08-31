@@ -3,6 +3,7 @@ package com.calvogasullmartin.t3_floristeria.vistas.consola;
 import com.calvogasullmartin.t3_floristeria.utils.YesNoDialog;
 import java.io.IOException;
 import com.calvogasullmartin.t3_floristeria.controladores.DescatalogarProductoC;
+import java.sql.SQLException;
 
 public class DescataogarProductoV extends ElegirProductoV {
 
@@ -18,13 +19,13 @@ public class DescataogarProductoV extends ElegirProductoV {
         try {
             update(controlador, "descatalogar");
             endV.askRepeatAction("descatalogar más articulos");
-        } catch (IOException ex) {
-            endV.manageError();
+        } catch (IOException | SQLException ex) {
+            endV.manageError(ex);
         }        
     }
 
     @Override
-    protected void updateProduct() throws IOException{   
+    protected void updateProduct() throws IOException, SQLException{   
         int productoId = controlador.getProductoId();
         int cantidadActual = -controlador.getIncrementRange()[0];
         String messageDelete = "Confirme que quiere eliminar del stock el "

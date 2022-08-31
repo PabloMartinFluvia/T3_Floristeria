@@ -6,6 +6,7 @@ import com.calvogasullmartin.t3_floristeria.controladores.NuevoProductoC;
 import java.io.IOException;
 import com.calvogasullmartin.t3_floristeria.utils.InOut;
 import com.calvogasullmartin.t3_floristeria.utils.YesNoDialog;
+import java.sql.SQLException;
 
 public class NuevoProductoV {
 
@@ -26,12 +27,12 @@ public class NuevoProductoV {
             verifyNewProductOk();            
             endV.askRepeatAction("añadir más articulos");
             controlador.resetProductUpdated();
-        } catch (IOException ex) {
-            endV.manageError();
+        } catch (IOException | SQLException ex) {
+            endV.manageError(ex);
         }
     }
 
-    private void verifyNewProductOk() throws IOException {
+    private void verifyNewProductOk() throws IOException, SQLException {
         controlador.lookForIdemProduct();
         if (!controlador.isIdemProductAlreadyInStocks()) {
             if (controlador.isIdemProductSoldAnytime()) {
@@ -45,7 +46,7 @@ public class NuevoProductoV {
         }
     }
 
-    private void askHowManageOldProduct() throws IOException {
+    private void askHowManageOldProduct() throws IOException, SQLException {
         String message = "Atención: existe en algún ticket un "
                 + "producto con idénticas características (actualmente descatalogado en stocks).";
         io.writeln(message);
@@ -53,7 +54,7 @@ public class NuevoProductoV {
         controlador.setIsNew(!require.read());
     }
 
-    private void saveProduct() throws IOException {
+    private void saveProduct() throws IOException, SQLException {
         int minInitUnits = controlador.getIncrementRange()[0];
         int maxInitUnits = controlador.getIncrementRange()[1];
         String message = "la cantidad inicial en stock";

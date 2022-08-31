@@ -15,9 +15,10 @@ public class EndV {
         this.controlador = controlador;
     }
     
-    public void manageError(){
+    public void manageError(Exception ex){
         io.writeln(controlador.getErrorBD());
         controlador.selectExit();
+        ex.printStackTrace();
     }
     
     public void setEstadoMenu(){

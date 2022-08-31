@@ -8,6 +8,7 @@ import com.calvogasullmartin.t3_floristeria.persistencia.DaoFactory;
 import java.io.IOException;
 import com.calvogasullmartin.t3_floristeria.controladores.ControladorVisitador;
 import com.calvogasullmartin.t3_floristeria.modelos.Categoria;
+import java.sql.SQLException;
 
 public class LocalRealizarVentaC extends LocalElegirProductoC implements RealizarVentaC {
 
@@ -19,7 +20,7 @@ public class LocalRealizarVentaC extends LocalElegirProductoC implements Realiza
     }
 
     @Override
-    public void updateUnitsStock(int incremento) throws IOException {
+    public void updateUnitsStock(int incremento) throws IOException, SQLException {
         assert incremento < 0;
         errorBD = "Error! No se ha podido actualizar la cantidad en la BD.";
         int productoId = productoUnidadUpdating.getProducto().getProducto_id();        
@@ -34,9 +35,25 @@ public class LocalRealizarVentaC extends LocalElegirProductoC implements Realiza
         ProductoUnidad productoVendido = new ProductoUnidad();
         productoVendido.setProducto(productoUnidadUpdating.getProducto());
         productoVendido.setCantidad(-incremento);
-        ticket.getProductos().add(productoVendido);
+        manageProductDuplicated(productoVendido);
         float valorTicket = ticket.getValor_Productos() + (-canvioValor);
         ticket.setValor_Productos(valorTicket);
+    }
+    
+    private void manageProductDuplicated(ProductoUnidad productoVendido){
+        int idProductoVendido = productoVendido.idProducto();
+        boolean duplicated = false;
+        for(ProductoUnidad product: ticket.getProductos()){
+            if(product.idProducto() == idProductoVendido){
+                duplicated = true;
+                int unitsUpdated = product.getCantidad() + productoVendido.getCantidad();
+                product.setCantidad(unitsUpdated);
+                break;
+            }
+        }
+        if(!duplicated){
+            ticket.getProductos().add(productoVendido);
+        }        
     }
 
     @Override
@@ -45,14 +62,14 @@ public class LocalRealizarVentaC extends LocalElegirProductoC implements Realiza
     }
 
     @Override
-    public void createTicket() throws IOException {
+    public void createTicket() throws IOException, SQLException {
         errorBD = "Error! No se ha podido guardar el ticket en la BD";
         DaoFactory.getFactory().getConjuntoProductosDao().createTiquet(ticket);
 
     }
     
     @Override
-    public void updateTotalsValues() throws IOException {
+    public void updateTotalsValues() throws IOException, SQLException {
         float variacionTotal = 0f;
         for (int i = 0; i < variacionValorStocks.length; i++){    
             errorBD = "Error! No se ha podido actuzlizar el valor del stock de "+Categoria.values()[i];

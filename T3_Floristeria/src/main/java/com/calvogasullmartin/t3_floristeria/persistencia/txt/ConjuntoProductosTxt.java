@@ -24,7 +24,7 @@ public class ConjuntoProductosTxt extends GenericDaoTxt<ConjuntoProductos, Integ
     @SuppressWarnings("unchecked")
     public void createTiquet(ConjuntoProductos tiquet) throws IOException {
         int maxActualId = findMaxTiquetId();    
-        tiquet.setId(maxActualId + 1);
+        tiquet.setConjunto_id(maxActualId + 1);
         gestor.setMainNode_FromFile();
         gestor.setAuxiliarNodesNull();
         gestor.setNode_findFieldByName_fromMain(atributo_tiquets); 
@@ -42,12 +42,12 @@ public class ConjuntoProductosTxt extends GenericDaoTxt<ConjuntoProductos, Integ
     }
     
     @Override
-    public void incrementarValorEnStockById(int idStock, float incremento) throws IOException {
+    public void incrementarValorEnStockById(int idStock, float incrementoValor) throws IOException {
         gestor.setMainNode_FromFile();        
         gestor.setAuxiliarNodesNull();        
         gestor.setNode_findFieldByName_fromMain(atributo_stocks);               
         gestor.replaceNode_isArray_nodeByIndex(idStock-1);   
-        gestor.updateNode_incrementFloatValueInField(atributo_valorProductos, incremento);
+        gestor.updateNode_incrementFloatValueInField(atributo_valorProductos, incrementoValor);
         gestor.saveMainNodeInFile();  
     }
 

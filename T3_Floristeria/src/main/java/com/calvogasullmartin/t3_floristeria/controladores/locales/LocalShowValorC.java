@@ -4,6 +4,7 @@ import com.calvogasullmartin.t3_floristeria.controladores.ShowValorC;
 import com.calvogasullmartin.t3_floristeria.modelos.Manager;
 import java.io.IOException;
 import com.calvogasullmartin.t3_floristeria.controladores.ControladorVisitador;
+import java.sql.SQLException;
 
 
 public class LocalShowValorC extends LocalPersistenciaC implements ShowValorC{
@@ -13,7 +14,7 @@ public class LocalShowValorC extends LocalPersistenciaC implements ShowValorC{
     }
 
     @Override
-    public float getValor() throws IOException {
+    public float getValor() throws IOException, SQLException {
         errorBD = "Error! No se ha podido leer el valor de la floristería.";
         return factory.getFloristeriaDao().getValorFloristeria();
     }

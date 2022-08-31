@@ -7,6 +7,7 @@ import com.calvogasullmartin.t3_floristeria.modelos.Categoria;
 import com.calvogasullmartin.t3_floristeria.modelos.Altura;
 import com.calvogasullmartin.t3_floristeria.modelos.Material;
 import java.io.IOException;
+import java.sql.SQLException;
 
 public class LocalNuevoProductoC extends LocalGestionarUnidadesC implements NuevoProductoC {
 
@@ -60,7 +61,7 @@ public class LocalNuevoProductoC extends LocalGestionarUnidadesC implements Nuev
     }
 
     @Override
-    public void lookForIdemProduct() throws IOException {
+    public void lookForIdemProduct() throws IOException, SQLException {
         errorBD = "Error! No se ha podido comprovar si ya existe "
                 + "un producto con características idénticas.";
         //se busca un producto igual, tanto en stocks como en tickets
@@ -75,10 +76,10 @@ public class LocalNuevoProductoC extends LocalGestionarUnidadesC implements Nuev
     }
 
     //existe en la BD un producto con ídem características
-    private void manageIdemProduct(int producto_id) throws IOException {       
+    private void manageIdemProduct(int producto_id) throws IOException, SQLException {       
         productoUnidadUpdating.getProducto().setProducto_id(producto_id);
         errorBD = "Error! No se ha podido leer la cantidad en stock "
-                + "del producto con características idénticas.";
+                + "del producto con características idénticas.";        
         int cantidad = factory.getProductoUnidadDao()
                 .getCantidadEnStockBy(stock_id_updating, producto_id);
         if (cantidad >= 0) { //hay uno igual en stocks 
@@ -107,7 +108,7 @@ public class LocalNuevoProductoC extends LocalGestionarUnidadesC implements Nuev
     }
 
     @Override
-    public void updateUnitsStock(int increment) throws IOException {
+    public void updateUnitsStock(int increment) throws IOException, SQLException {
         assert increment >= 0 && increment <= getMAX_UNIDADES_EN_STOCK();
         productoUnidadUpdating.setCantidad(increment);
         if (isNew) {            

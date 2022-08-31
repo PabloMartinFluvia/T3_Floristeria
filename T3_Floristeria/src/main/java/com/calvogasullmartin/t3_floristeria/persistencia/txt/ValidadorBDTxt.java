@@ -1,10 +1,10 @@
 package com.calvogasullmartin.t3_floristeria.persistencia.txt;
 
-import com.calvogasullmartin.t3_floristeria.persistencia.Conexion;
 import java.io.File;
 import java.io.IOException;
+import com.calvogasullmartin.t3_floristeria.persistencia.ValidadorBD;
 
-public class ConectorTxt implements Conexion{
+public class ValidadorBDTxt implements ValidadorBD{
     
     private static File archivoTxt;
             
@@ -19,10 +19,10 @@ public class ConectorTxt implements Conexion{
     }    
 
     public static void setPathTxt(String filePath) {
-        ConectorTxt.archivoTxt = new File(filePath); 
+        ValidadorBDTxt.archivoTxt = new File(filePath); 
     }
     
     public static File getArchivoTxt() {
-        return ConectorTxt.archivoTxt;      
+        return ValidadorBDTxt.archivoTxt;      
     }
 }

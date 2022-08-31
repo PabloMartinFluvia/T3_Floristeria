@@ -5,6 +5,7 @@ import com.calvogasullmartin.t3_floristeria.modelos.Manager;
 import com.calvogasullmartin.t3_floristeria.persistencia.DaoFactory;
 import java.io.IOException;
 import com.calvogasullmartin.t3_floristeria.controladores.ControladorVisitador;
+import java.sql.SQLException;
 
 public class LocalDescatalogarProductoC extends LocalElegirProductoC implements DescatalogarProductoC{
 
@@ -18,7 +19,7 @@ public class LocalDescatalogarProductoC extends LocalElegirProductoC implements 
      * se elimina la relación con el stock, però permanece en la BBDD para que no se pierda la info
      * del producto.
      */
-    public void updateUnitsStock(int incremento) throws IOException {
+    public void updateUnitsStock(int incremento) throws IOException, SQLException{
         int productoId = getProductoId();
         errorBD = "Error! No se ha podido comprovar si se ha vendido alguna vez.";
         if (DaoFactory.getFactory().getProductoUnidadDao().isSoldAnytimeById(productoId)){

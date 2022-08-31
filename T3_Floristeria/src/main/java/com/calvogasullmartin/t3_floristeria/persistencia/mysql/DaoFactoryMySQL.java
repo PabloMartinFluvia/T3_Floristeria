@@ -1,15 +1,15 @@
-package com.calvogasullmartin.t3_floristeria.persistencia.txt;
+package com.calvogasullmartin.t3_floristeria.persistencia.mysql;
 
-import com.calvogasullmartin.t3_floristeria.persistencia.DaoFactory;
 import com.calvogasullmartin.t3_floristeria.persistencia.ConjuntoProductosDao;
+import com.calvogasullmartin.t3_floristeria.persistencia.DaoFactory;
 import com.calvogasullmartin.t3_floristeria.persistencia.FloristeriaDao;
 import com.calvogasullmartin.t3_floristeria.persistencia.ProductoCompletoDao;
 import com.calvogasullmartin.t3_floristeria.persistencia.ProductoUnidadDao;
 import com.calvogasullmartin.t3_floristeria.persistencia.ValidadorBD;
 
-public class DaoFactoryTxt extends DaoFactory{   
-    
-    private ValidadorBD conexion;
+public class DaoFactoryMySQL extends DaoFactory{        
+
+    private ValidadorBD validador;
     
     private FloristeriaDao floristeriaDao;
     
@@ -17,24 +17,24 @@ public class DaoFactoryTxt extends DaoFactory{
     
     private ProductoUnidadDao productoUnidadDao;
     
-    private ProductoCompletoDao productoCompletoDao;        
-        
-    public DaoFactoryTxt(String filePath) {
-        ValidadorBDTxt.setPathTxt(filePath);
+    private ProductoCompletoDao productoCompletoDao;
+    
+    public DaoFactoryMySQL(String[] argsConexion) {
+        ConexionMySQL.setConexionValues(argsConexion);        
     }
 
     @Override
     public ValidadorBD getValidadorBD() {
-       if (conexion == null) {
-            conexion = new ValidadorBDTxt();
+        if (validador == null) {
+            validador = new ValidadorBDMySQL();
         }
-        return conexion;
+        return validador;
     }
-    
+
     @Override
     public FloristeriaDao getFloristeriaDao() {
-       if (floristeriaDao == null) {
-            floristeriaDao = new FloristeriaTxt();
+        if (floristeriaDao == null) {
+            floristeriaDao = new FloristeriaMySQL();
         }
         return floristeriaDao;
     }
@@ -42,24 +42,24 @@ public class DaoFactoryTxt extends DaoFactory{
     @Override
     public ConjuntoProductosDao getConjuntoProductosDao() {
         if (conjuntoProductosDao == null) {
-            conjuntoProductosDao = new ConjuntoProductosTxt();
+            conjuntoProductosDao = new ConjuntoProductosMySQL();
         }
         return conjuntoProductosDao;
-    }    
-    
-    @Override
-    public ProductoUnidadDao getProductoUnidadDao() {
-        if (productoUnidadDao == null) {
-            productoUnidadDao = new ProductoUnidadTxt();
-        }
-        return productoUnidadDao;
-    }  
-    
+    }
+
     @Override
     public ProductoCompletoDao getProductoCompletoDao() {
         if (productoCompletoDao == null) {
-            productoCompletoDao = new ProductoCompletoTxt();
+            productoCompletoDao = new ProductoCompletoMySQL();
         }
         return productoCompletoDao;
     }
+
+    @Override
+    public ProductoUnidadDao getProductoUnidadDao() {
+        if (productoUnidadDao == null) {
+            productoUnidadDao = new ProductoUnidadMySQL();
+        }
+        return productoUnidadDao;
+    }    
 }

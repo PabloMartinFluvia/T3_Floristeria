@@ -1,6 +1,7 @@
 package com.calvogasullmartin.t3_floristeria.controladores;
 
 import java.io.IOException;
+import java.sql.SQLException;
 
 public interface NuevoProductoC extends GestionarUnidadesC , Controlador{        
     
@@ -16,7 +17,7 @@ public interface NuevoProductoC extends GestionarUnidadesC , Controlador{
     
     void setMaterialIdx(int materialIndex);
     
-    void lookForIdemProduct() throws IOException;
+    void lookForIdemProduct() throws IOException, SQLException;
     
     boolean isIdemProductAlreadyInStocks();
     

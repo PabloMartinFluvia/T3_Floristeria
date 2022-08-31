@@ -5,6 +5,7 @@ import com.calvogasullmartin.t3_floristeria.modelos.Categoria;
 import com.calvogasullmartin.t3_floristeria.modelos.Manager;
 import java.io.IOException;
 import com.calvogasullmartin.t3_floristeria.controladores.ControladorVisitador;
+import java.sql.SQLException;
 
 public class LocalShowStocksC extends LocalShowConjuntosC implements ShowStocksC{
 
@@ -39,7 +40,7 @@ public class LocalShowStocksC extends LocalShowConjuntosC implements ShowStocksC
     }       
     
     @Override
-    public void readConjuntos() throws IOException {   
+    public void readConjuntos() throws IOException, SQLException {   
         errorBD = "Error! No se ha poddido leer los productos en stock.";
         if(indexStockTarget < 0){
             conjuntosLista = factory.getConjuntoProductosDao().getAllStocks();
@@ -50,7 +51,7 @@ public class LocalShowStocksC extends LocalShowConjuntosC implements ShowStocksC
     
     @Override
     public String getTitle() {
-        return "STOCK de "+Categoria.values()[conjuntoToShow.getId()-1];
+        return "STOCK de "+Categoria.values()[conjuntoToShow.getConjunto_id()-1];
     }
     
     @Override

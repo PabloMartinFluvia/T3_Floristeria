@@ -5,6 +5,7 @@ import com.calvogasullmartin.t3_floristeria.modelos.Categoria;
 import com.calvogasullmartin.t3_floristeria.modelos.Manager;
 import com.calvogasullmartin.t3_floristeria.modelos.ProductoUnidad;
 import java.io.IOException;
+import java.sql.SQLException;
 
 public abstract class LocalGestionarUnidadesC extends LocalPersistenciaC implements GestionarUnidadesC{   
     
@@ -29,10 +30,10 @@ public abstract class LocalGestionarUnidadesC extends LocalPersistenciaC impleme
     }
 
     @Override
-    public abstract void updateUnitsStock(int incremento) throws IOException;
+    public abstract void updateUnitsStock(int incremento) throws IOException, SQLException;
 
     @Override
-    public void updateTotalsValues() throws IOException {
+    public void updateTotalsValues() throws IOException, SQLException {
         float variacionTotal = 0f;
         for (int i = 0; i < variacionValorStocks.length; i++){    
             errorBD = "Error! No se ha podido actuzlizar el valor del stock de "+Categoria.values()[i];
