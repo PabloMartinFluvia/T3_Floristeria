@@ -1,5 +1,6 @@
 package com.calvogasullmartin.t3_floristeria.controladores;
 
+import com.mongodb.MongoException;
 import java.io.IOException;
 import java.sql.SQLException;
 
@@ -20,9 +21,9 @@ public interface GestionarUnidadesC extends PersistenciaC{
         nuevo: añade el prudcto al stock (eleccion del id segun si esNuevo)
     todos añaden al atributo variacionValor[] el canvio de valor debido a la modificación en el stock            
     */
-    void updateUnitsStock(int incremento) throws IOException, SQLException;  
+    void updateUnitsStock(int incremento) throws IOException, SQLException, MongoException;  
         
-    void updateTotalsValues() throws IOException, SQLException; 
+    void updateTotalsValues() throws IOException, SQLException, MongoException; 
     
     void resetProductUpdated();
 }

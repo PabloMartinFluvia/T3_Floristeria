@@ -2,6 +2,7 @@ package com.calvogasullmartin.t3_floristeria.vistas.consola;
 
 import com.calvogasullmartin.t3_floristeria.controladores.ModificarUnidadesC;
 import com.calvogasullmartin.t3_floristeria.vistas.consola.modelos.ProductoUnidadV;
+import com.mongodb.MongoException;
 import java.io.IOException;
 import java.sql.SQLException;
 
@@ -19,13 +20,13 @@ public class ModificarUnidadesV extends ElegirProductoV{
         try{                            
             update(controlador, "modificar las unidades");
             endV.askRepeatAction("modificar las unidades de más articulos");
-        }catch (IOException | SQLException ex){
+        }catch (IOException | SQLException | MongoException ex){
             endV.manageError(ex);
         }        
     }
         
     @Override
-    protected void updateProduct() throws IOException, SQLException{
+    protected void updateProduct() throws IOException, SQLException, MongoException{
         int minReduccion = controlador.getIncrementRange()[0];
         int maxAugmento = controlador.getIncrementRange()[1];
         String mensage = "en cuanto desea incrementar/disminuir la cantidad en stock";

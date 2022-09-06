@@ -1,43 +1,69 @@
 package com.calvogasullmartin.t3_floristeria.persistencia;
 
 import com.calvogasullmartin.t3_floristeria.modelos.Floristeria;
+import com.mongodb.MongoException;
 import java.io.IOException;
 import java.sql.SQLException;
 
 public interface FloristeriaDao extends GenericDao<Floristeria, Integer>{
+        
+    /**
+     * Almacena en la BD los datos iniciales de la floristería
+     *      Se ejecuta solo la primera vez que corre la App o cuando la BD no ha sido 
+     *      correctamente inicializada
+     * @param floristeria
+     * @throws IOException
+     * @throws SQLException
+     * @throws MongoException 
+     */
+    public void create(Floristeria floristeria)throws IOException, SQLException, MongoException; 
+        
+    /**
+     * Obtener el nombre de la floristería.
+     * Puede devolver null -> solo si la BD está inicializada de manera incorrecta
+     * @return
+     * @throws IOException
+     * @throws SQLException
+     * @throws MongoException 
+     */
+    public String getName() throws IOException, SQLException, MongoException; 
+        
+    /**
+     * Obtener el valor de los productos de la floristería (equivalente a sumatorio 
+     * de precio*cantidad de todos los productos en los stocks)     
+     * @return
+     * @throws IOException
+     * @throws SQLException
+     * @throws MongoException 
+     */
+    public float getValorFloristeria() throws IOException, SQLException, MongoException; 
     
-    /*   
-    c) documento inicial en la colección floristeria
-    */
-    public void create(Floristeria floristeria)throws IOException, SQLException; 
+    /**
+     * Obtener el total facturado de la floristería (equivalente a sumatorio 
+     * de precio*cantidad de todos los productos en los tickets)     
+     * @return
+     * @throws IOException
+     * @throws SQLException
+     * @throws MongoException 
+     */
+    public float getFacturacionFloristeria() throws IOException, SQLException, MongoException; 
+       
+    /**
+     * Incrementar el valor del total de los stocks según el parametro proporcionado
+     * @param incrementoValor
+     * @throws IOException
+     * @throws SQLException
+     * @throws MongoException 
+     */
+    public void incrementarValorFloristeria(float incrementoValor) throws IOException, SQLException, MongoException; 
     
-    /*
-    c) find floristeria + project nombre (y luego coger el valor del bson document)    
-    si no encutra el campo o el valor no es un string devuelve null
-    */
-    public String getName() throws IOException, SQLException; 
-    
-    /*    
-    c) find floristeria + project valor del stock (y luego coger el valor del bson document)    
-    si no encutra el campo o el valor no es un string devuelve null
-    */
-    public float getValorFloristeria() throws IOException, SQLException; 
-    
-    /*    
-    c) find floristeria + project valor del total facturacion (y luego coger el valor del bson document)    
-    si no encutra el campo o el valor no es un string devuelve null
-    */
-    public float getFacturacionFloristeria() throws IOException, SQLException; 
-    
-    /*
-    c)  db.restaurant.updateOne({ "floristeria_id" : 1 },{ $set: { "valorTotal" : : {$incr: increment} }
-    */
-    public void incrementarValorFloristeria(float incrementoValor) throws IOException, SQLException; 
-    
-    /*
-    c)  db.restaurant.updateOne({ "floristeria_id" : 1 },{ $set: { "    b) update Floristeria set valorFactutacion = valorTotal+increment where floristeria_id = 1;
-" : : {$incr: increment} }
-    */
-    public void incrementarFacturacionFloristeria(float incrementoValor) throws IOException, SQLException; 
+    /**
+     * Incrementar el valor del total facturado segín el parametro proporcionado
+     * @param incrementoValor
+     * @throws IOException
+     * @throws SQLException
+     * @throws MongoException 
+     */
+    public void incrementarFacturacionFloristeria(float incrementoValor) throws IOException, SQLException, MongoException; 
     
 }

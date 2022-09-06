@@ -6,6 +6,7 @@ import com.calvogasullmartin.t3_floristeria.modelos.Manager;
 import com.calvogasullmartin.t3_floristeria.modelos.Categoria;
 import com.calvogasullmartin.t3_floristeria.modelos.Altura;
 import com.calvogasullmartin.t3_floristeria.modelos.Material;
+import com.mongodb.MongoException;
 import java.io.IOException;
 import java.sql.SQLException;
 
@@ -61,10 +62,9 @@ public class LocalNuevoProductoC extends LocalGestionarUnidadesC implements Nuev
     }
 
     @Override
-    public void lookForIdemProduct() throws IOException, SQLException {
+    public void lookForIdemProduct() throws IOException, SQLException, MongoException {
         errorBD = "Error! No se ha podido comprovar si ya existe "
-                + "un producto con características idénticas.";
-        //se busca un producto igual, tanto en stocks como en tickets
+                + "un producto con características idénticas.";        
         int producto_id = factory.getProductoCompletoDao()
                 .findId(productoUnidadUpdating.getProducto());
         if (producto_id == 0) { // no existe ninguno igual
@@ -76,7 +76,7 @@ public class LocalNuevoProductoC extends LocalGestionarUnidadesC implements Nuev
     }
 
     //existe en la BD un producto con ídem características
-    private void manageIdemProduct(int producto_id) throws IOException, SQLException {       
+    private void manageIdemProduct(int producto_id) throws IOException, SQLException, MongoException {       
         productoUnidadUpdating.getProducto().setProducto_id(producto_id);
         errorBD = "Error! No se ha podido leer la cantidad en stock "
                 + "del producto con características idénticas.";        
@@ -108,7 +108,7 @@ public class LocalNuevoProductoC extends LocalGestionarUnidadesC implements Nuev
     }
 
     @Override
-    public void updateUnitsStock(int increment) throws IOException, SQLException {
+    public void updateUnitsStock(int increment) throws IOException, SQLException, MongoException {
         assert increment >= 0 && increment <= getMAX_UNIDADES_EN_STOCK();
         productoUnidadUpdating.setCantidad(increment);
         if (isNew) {            

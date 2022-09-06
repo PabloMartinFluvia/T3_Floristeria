@@ -4,6 +4,7 @@ import com.calvogasullmartin.t3_floristeria.utils.YesNoDialog;
 import com.calvogasullmartin.t3_floristeria.vistas.consola.modelos.ProductoUnidadV;
 import java.io.IOException;
 import com.calvogasullmartin.t3_floristeria.controladores.RealizarVentaC;
+import com.mongodb.MongoException;
 import java.sql.SQLException;
 
 public class RealizarVentaV extends ElegirProductoV {
@@ -24,13 +25,13 @@ public class RealizarVentaV extends ElegirProductoV {
             } while (requerimiento.read());
             finalizar();
             endV.askRepeatAction("crear más tiquets");
-        } catch (IOException | SQLException ex) {
+        } catch (IOException | SQLException | MongoException ex) {
             endV.manageError(ex);
         }
     }
 
     @Override
-    protected void updateProduct() throws IOException, SQLException {
+    protected void updateProduct() throws IOException, SQLException, MongoException {
         int minVenta = controlador.getMinVenta();
         int maxVenta = -controlador.getIncrementRange()[0];
         if (maxVenta >= minVenta) {
@@ -42,7 +43,7 @@ public class RealizarVentaV extends ElegirProductoV {
         }
     }
 
-    private void finalizar() throws IOException, SQLException {
+    private void finalizar() throws IOException, SQLException, MongoException {
         if (controlador.isTicketValid()) {
             controlador.createTicket();
             controlador.updateTotalsValues();

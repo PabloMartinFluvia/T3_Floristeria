@@ -4,6 +4,7 @@ import com.calvogasullmartin.t3_floristeria.controladores.ControladorVisitador;
 import com.calvogasullmartin.t3_floristeria.controladores.StartC;
 import com.calvogasullmartin.t3_floristeria.modelos.Floristeria;
 import com.calvogasullmartin.t3_floristeria.modelos.Manager;
+import com.mongodb.MongoException;
 import java.io.IOException;
 import java.sql.SQLException;
 
@@ -14,7 +15,7 @@ public class LocalStartC extends LocalPersistenciaC implements StartC{
     }    
 
     @Override
-    public boolean isFirstTimeRunning() throws IOException, SQLException {
+    public boolean isFirstTimeRunning() throws IOException, SQLException, MongoException {
         errorBD = "Error! No se ha podido comprovar si existe la BBDD.";
         boolean bdInicialized = factory.getValidadorBD().isBDInicizialized();
         if(bdInicialized){
@@ -25,7 +26,7 @@ public class LocalStartC extends LocalPersistenciaC implements StartC{
     }
 
     @Override
-    public void initBD(String nombre) throws IOException, SQLException {
+    public void initBD(String nombre) throws IOException, SQLException, MongoException {
         assert nombre != null;
         assert nombre.length() >= 3;
         errorBD = "Error! No se ha podido crear la BBDD.";
@@ -33,7 +34,7 @@ public class LocalStartC extends LocalPersistenciaC implements StartC{
         saveFloristeria(nombre);
     }
 
-    private void saveFloristeria(String nombre) throws IOException, SQLException {
+    private void saveFloristeria(String nombre) throws IOException, SQLException, MongoException {
         assert nombre != null;
         assert nombre.length() >= 3;
         errorBD = "Error! No se ha podido guardar los datos de la floristeria.";                      
@@ -44,7 +45,7 @@ public class LocalStartC extends LocalPersistenciaC implements StartC{
     }
 
     @Override
-    public String getFloristeriaName() throws IOException, SQLException {
+    public String getFloristeriaName() throws IOException, SQLException, MongoException {
         errorBD = "Error! No se ha podido leer los datos de la floristeria.";  
         return factory.getFloristeriaDao().getName();
     }    

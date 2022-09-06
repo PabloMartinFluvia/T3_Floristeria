@@ -4,6 +4,7 @@ import com.calvogasullmartin.t3_floristeria.controladores.ShowTicketsC;
 import com.calvogasullmartin.t3_floristeria.modelos.Manager;
 import java.io.IOException;
 import com.calvogasullmartin.t3_floristeria.controladores.ControladorVisitador;
+import com.mongodb.MongoException;
 import java.sql.SQLException;
 
 public class LocalShowTicketsC extends LocalShowConjuntosC implements ShowTicketsC{
@@ -13,9 +14,9 @@ public class LocalShowTicketsC extends LocalShowConjuntosC implements ShowTicket
     }
 
     @Override
-    public void readConjuntos() throws IOException, SQLException {
+    public void readConjuntos() throws IOException, SQLException, MongoException {
         errorBD = "Error! No se ha poddido leer el histórico de tickets.";
-        conjuntosLista = factory.getConjuntoProductosDao().getAllTiquets();
+        conjuntosLista = factory.getConjuntoProductosDao().getAllTiquets();        
     }
 
     @Override

@@ -6,6 +6,7 @@ import com.calvogasullmartin.t3_floristeria.controladores.NuevoProductoC;
 import java.io.IOException;
 import com.calvogasullmartin.t3_floristeria.utils.InOut;
 import com.calvogasullmartin.t3_floristeria.utils.YesNoDialog;
+import com.mongodb.MongoException;
 import java.sql.SQLException;
 
 public class NuevoProductoV {
@@ -27,12 +28,12 @@ public class NuevoProductoV {
             verifyNewProductOk();            
             endV.askRepeatAction("añadir más articulos");
             controlador.resetProductUpdated();
-        } catch (IOException | SQLException ex) {
+        } catch (IOException | SQLException | MongoException ex) {
             endV.manageError(ex);
         }
     }
 
-    private void verifyNewProductOk() throws IOException, SQLException {
+    private void verifyNewProductOk() throws IOException, SQLException, MongoException {
         controlador.lookForIdemProduct();
         if (!controlador.isIdemProductAlreadyInStocks()) {
             if (controlador.isIdemProductSoldAnytime()) {
@@ -46,7 +47,7 @@ public class NuevoProductoV {
         }
     }
 
-    private void askHowManageOldProduct() throws IOException, SQLException {
+    private void askHowManageOldProduct() throws IOException, SQLException, MongoException {
         String message = "Atención: existe en algún ticket un "
                 + "producto con idénticas características (actualmente descatalogado en stocks).";
         io.writeln(message);
@@ -54,7 +55,7 @@ public class NuevoProductoV {
         controlador.setIsNew(!require.read());
     }
 
-    private void saveProduct() throws IOException, SQLException {
+    private void saveProduct() throws IOException, SQLException, MongoException {
         int minInitUnits = controlador.getIncrementRange()[0];
         int maxInitUnits = controlador.getIncrementRange()[1];
         String message = "la cantidad inicial en stock";
