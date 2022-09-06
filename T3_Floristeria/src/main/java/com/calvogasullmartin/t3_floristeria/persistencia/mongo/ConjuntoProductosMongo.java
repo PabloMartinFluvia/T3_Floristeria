@@ -48,7 +48,7 @@ public class ConjuntoProductosMongo extends GenericDaoMongo<ConjuntoProductos, I
         accessCollection(ConexionMongo.FLORISTERIA_COLL_NAME);
         tiquet.setConjunto_id(findMaxTicketId()+1);
         setConjuntoDocument(tiquet);
-        collection.updateOne(floristeriaFilter,push("tickets", document));
+        collection.updateOne(floristeriaFilter,push("tiquets", document));
         close();
     }
     
@@ -57,11 +57,11 @@ public class ConjuntoProductosMongo extends GenericDaoMongo<ConjuntoProductos, I
         document = collection.aggregate(Arrays.asList(
                 match(floristeriaFilter), // find document floristeria
                 project(projection), //project only tiquets[]                        
-                unwind("tiquets"), //N docs separated for N tickets in floristeria        
+                unwind("$tiquets"), //N docs separated for N tickets in floristeria        
                 sort(descending("tiquets.conjunto_id"))
-            )).first();
-        if(document != null){
-            return document.getInteger("tiquets.conjunto_id");
+            )).first();        
+        if(document != null){                
+            return document.get("tiquets", Document.class).getInteger("conjunto_id");
         }else{
             return 0;
         }

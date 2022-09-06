@@ -23,7 +23,7 @@ public class LocalDescatalogarProductoC extends LocalElegirProductoC implements 
     public void updateUnitsStock(int incremento) throws IOException, SQLException, MongoException{
         int productoId = getProductoId();
         errorBD = "Error! No se ha podido comprovar si se ha vendido alguna vez.";
-        if (DaoFactory.getFactory().getProductoUnidadDao().isSoldAnytimeById(productoId)){
+        if (DaoFactory.getFactory().getProductoUnidadDao().isSoldAnytimeById(productoId)){            
             errorBD = "Error! No se ha podido eliminar la relación del producto con el stock";
             DaoFactory.getFactory().getProductoUnidadDao().eliminarRelacionConStock(stock_id_updating, productoId);
         }else {//nunca vendido

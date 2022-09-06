@@ -45,6 +45,7 @@ public abstract class LocalElegirProductoC extends LocalGestionarUnidadesC imple
             throw new IOException();
         }else{
             productoUnidadUpdating.setProducto(producto);
+            productoUnidadUpdating.setCantidad(cantidad);
             return true;
         }
     }

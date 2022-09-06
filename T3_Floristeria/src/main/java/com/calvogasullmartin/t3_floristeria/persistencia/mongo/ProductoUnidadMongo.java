@@ -7,9 +7,11 @@ import com.mongodb.MongoException;
 import static com.mongodb.client.model.Aggregates.*;
 import com.mongodb.client.model.Filters;
 import static com.mongodb.client.model.Filters.*;
+import com.mongodb.client.model.FindOneAndUpdateOptions;
 import static com.mongodb.client.model.Sorts.*;
 import static com.mongodb.client.model.Updates.*;
 import static com.mongodb.client.model.Projections.*;
+import com.mongodb.client.model.ReturnDocument;
 import java.io.IOException;
 import java.sql.SQLException;
 import java.util.Arrays;
@@ -97,13 +99,17 @@ public class ProductoUnidadMongo extends GenericDaoMongo<ProductoUnidad, Integer
         assert stock_id >0 && stock_id <= Categoria.values().length;
         assert producto_id > 0;
         accessCollection(ConexionMongo.FLORISTERIA_COLL_NAME); 
-        int stock_idx = stock_id -1;
+        int stock_idx = stock_id -1;              
         Bson filter = and(floristeriaFilter,
                 Filters.elemMatch
-                    ("sotcks."+stock_idx+".productos",eq("producto.producto_id", producto_id))
-                );
-        update = inc("sotcks."+stock_idx+".productos.$.cantidad",increment);        
-        collection.updateOne(filter, update);
+                    ("stocks."+stock_idx+".productos",eq("producto.producto_id", producto_id))
+                );        
+        Bson arrayFilter = eq("elem.producto.producto_id", producto_id);          
+        FindOneAndUpdateOptions options = new FindOneAndUpdateOptions()
+                .arrayFilters(Arrays.asList(arrayFilter));
+        
+        update = inc("stocks."+stock_idx+".productos.$[elem].cantidad",increment);
+        collection.findOneAndUpdate(filter, update, options);
         close();
     }
 
@@ -113,7 +119,7 @@ public class ProductoUnidadMongo extends GenericDaoMongo<ProductoUnidad, Integer
         accessCollection(ConexionMongo.FLORISTERIA_COLL_NAME);        
         Bson filter = and(floristeriaFilter,
                 Filters.elemMatch
-                    ("tickets.productos",eq("producto.producto_id", producto_id))
+                    ("tiquets.productos",eq("producto.producto_id", producto_id))
                 );
         document = collection.find(filter).first();
         close();
