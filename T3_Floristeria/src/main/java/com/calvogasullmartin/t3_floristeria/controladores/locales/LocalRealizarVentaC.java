@@ -8,6 +8,7 @@ import com.calvogasullmartin.t3_floristeria.persistencia.DaoFactory;
 import java.io.IOException;
 import com.calvogasullmartin.t3_floristeria.controladores.ControladorVisitador;
 import com.calvogasullmartin.t3_floristeria.modelos.Categoria;
+import com.mongodb.MongoException;
 import java.sql.SQLException;
 
 public class LocalRealizarVentaC extends LocalElegirProductoC implements RealizarVentaC {
@@ -20,7 +21,7 @@ public class LocalRealizarVentaC extends LocalElegirProductoC implements Realiza
     }
 
     @Override
-    public void updateUnitsStock(int incremento) throws IOException, SQLException {
+    public void updateUnitsStock(int incremento) throws IOException, SQLException, MongoException {
         assert incremento < 0;
         errorBD = "Error! No se ha podido actualizar la cantidad en la BD.";
         int productoId = productoUnidadUpdating.getProducto().getProducto_id();        
@@ -62,14 +63,14 @@ public class LocalRealizarVentaC extends LocalElegirProductoC implements Realiza
     }
 
     @Override
-    public void createTicket() throws IOException, SQLException {
+    public void createTicket() throws IOException, SQLException, MongoException {
         errorBD = "Error! No se ha podido guardar el ticket en la BD";
         DaoFactory.getFactory().getConjuntoProductosDao().createTiquet(ticket);
 
     }
     
     @Override
-    public void updateTotalsValues() throws IOException, SQLException {
+    public void updateTotalsValues() throws IOException, SQLException, MongoException {
         float variacionTotal = 0f;
         for (int i = 0; i < variacionValorStocks.length; i++){    
             errorBD = "Error! No se ha podido actuzlizar el valor del stock de "+Categoria.values()[i];

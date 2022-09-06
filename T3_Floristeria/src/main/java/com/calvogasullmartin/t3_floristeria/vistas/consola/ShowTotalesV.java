@@ -3,6 +3,7 @@ package com.calvogasullmartin.t3_floristeria.vistas.consola;
 import com.calvogasullmartin.t3_floristeria.vistas.consola.modelos.FloristeriaV;
 import com.calvogasullmartin.t3_floristeria.controladores.ShowValorC;
 import com.calvogasullmartin.t3_floristeria.controladores.ShowFacturacionC;
+import com.mongodb.MongoException;
 import java.io.IOException;
 import java.sql.SQLException;
 
@@ -22,7 +23,7 @@ public class ShowTotalesV {
         try {
             floristeriaV.printValor(controlador.getValor());  
             endV.waitBeforeToMenu();
-        } catch (IOException | SQLException ex) {
+        } catch (IOException | SQLException | MongoException ex) {
             endV.manageError(ex);
         }           
     }
@@ -33,7 +34,7 @@ public class ShowTotalesV {
         try {
             floristeriaV.printFacturacion(controlador.getFacturacion());  
             endV.waitBeforeToMenu();
-        } catch (IOException | SQLException ex) {
+        } catch (IOException | SQLException | MongoException ex) {
             endV.manageError(ex);           
         }        
     }

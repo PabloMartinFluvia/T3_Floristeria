@@ -17,8 +17,8 @@ public class App {
     private void configurarApp(){
         Configurador configurador = new Configurador();
         //configurador.persistenciaTxt(); // persistencia en archivo txt
-        configurador.persistenciaMySql(); // persistencia en BD MySql
-        //configurador.persistenciaMongoDB(); // persistencia en BD Mongo, pendiente
+        //configurador.persistenciaMySql(); // persistencia en BD MySql
+        configurador.persistenciaMongoDB(); // persistencia en BD Mongo
         this.vista = configurador.vistasConsola(); //interacción con usuario es por consola
         this.logica = configurador.controladoresLocales(); // los controladores son locales
     }

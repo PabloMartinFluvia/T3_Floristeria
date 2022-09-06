@@ -4,6 +4,7 @@ import com.calvogasullmartin.t3_floristeria.vistas.consola.modelos.FloristeriaV;
 import com.calvogasullmartin.t3_floristeria.controladores.StartC;
 import java.io.IOException;
 import com.calvogasullmartin.t3_floristeria.utils.InOut;
+import com.mongodb.MongoException;
 import java.sql.SQLException;
 
 public class StartV {
@@ -26,12 +27,12 @@ public class StartV {
             }
             printWelcome();
             endV.setEstadoMenu();
-        } catch (IOException|SQLException ex) {
+        } catch (IOException|SQLException | MongoException ex) {
             endV.manageError(ex);
         }
     }            
     
-    private void init() throws IOException, SQLException {
+    private void init() throws IOException, SQLException, MongoException {
         io.writeln("Aplicación ejecutandose por primera vez ...");
         String name = new FloristeriaV().askName();
         controlador.initBD(name);
@@ -39,7 +40,7 @@ public class StartV {
         io.writeln();
     }
 
-    private void printWelcome() throws IOException, SQLException {
+    private void printWelcome() throws IOException, SQLException, MongoException {
         String nombre = controlador.getFloristeriaName();              
         io.writeln("Bienvenid@ al gestor de la floristeria " + nombre + ", desarrollado por CalvoGasullMartin.");        
         io.writeln();

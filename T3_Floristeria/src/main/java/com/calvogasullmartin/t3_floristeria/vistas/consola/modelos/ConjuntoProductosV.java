@@ -13,7 +13,7 @@ public class ConjuntoProductosV {
 
     public void mostrarConjuntos(ShowConjuntosC controlador) {    
         assert controlador != null;
-        int numConjuntosToShow = controlador.getNumConjuntosToShow();
+        int numConjuntosToShow = controlador.getNumConjuntosToShow();        
         if (numConjuntosToShow == 0) {
             io.writeln("No hay tiquets registrados."); 
         } else {

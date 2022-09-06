@@ -240,9 +240,20 @@ public class JsonManager<T> {
     public T parseNodeToObject(Class<T> objectClass){  
         assert node != null;
         String json = node.toPrettyString();
-        T arrayObject = gson.fromJson(json, objectClass);        
-        return arrayObject;        
+        T object = gson.fromJson(json, objectClass);        
+        return object;        
     }  
+    
+    public T parseJsonStringToObject(String json, Class<T> objectClass){
+        assert json != null;
+        T object = gson.fromJson(json, objectClass);        
+        return object; 
+    }
+    
+    public String parseObjectToJson(T enitity){
+        assert enitity != null;
+        return gson.toJson(enitity);
+    }
     
     //CHECK
     public boolean isNodeNull(){

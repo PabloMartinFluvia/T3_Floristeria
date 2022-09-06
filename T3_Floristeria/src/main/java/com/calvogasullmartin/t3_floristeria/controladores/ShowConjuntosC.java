@@ -1,11 +1,12 @@
 package com.calvogasullmartin.t3_floristeria.controladores;
 
+import com.mongodb.MongoException;
 import java.io.IOException;
 import java.sql.SQLException;
 
 public interface ShowConjuntosC extends PersistenciaC{   
     
-    void readConjuntos() throws IOException, SQLException; 
+    void readConjuntos() throws IOException, SQLException, MongoException; 
     
     void resetConjuntosReaded();
     

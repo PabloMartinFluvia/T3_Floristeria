@@ -5,6 +5,7 @@ import com.calvogasullmartin.t3_floristeria.modelos.Manager;
 import com.calvogasullmartin.t3_floristeria.persistencia.DaoFactory;
 import java.io.IOException;
 import com.calvogasullmartin.t3_floristeria.controladores.ControladorVisitador;
+import com.mongodb.MongoException;
 import java.sql.SQLException;
 
 public class LocalDescatalogarProductoC extends LocalElegirProductoC implements DescatalogarProductoC{
@@ -19,10 +20,10 @@ public class LocalDescatalogarProductoC extends LocalElegirProductoC implements 
      * se elimina la relación con el stock, però permanece en la BBDD para que no se pierda la info
      * del producto.
      */
-    public void updateUnitsStock(int incremento) throws IOException, SQLException{
+    public void updateUnitsStock(int incremento) throws IOException, SQLException, MongoException{
         int productoId = getProductoId();
         errorBD = "Error! No se ha podido comprovar si se ha vendido alguna vez.";
-        if (DaoFactory.getFactory().getProductoUnidadDao().isSoldAnytimeById(productoId)){
+        if (DaoFactory.getFactory().getProductoUnidadDao().isSoldAnytimeById(productoId)){            
             errorBD = "Error! No se ha podido eliminar la relación del producto con el stock";
             DaoFactory.getFactory().getProductoUnidadDao().eliminarRelacionConStock(stock_id_updating, productoId);
         }else {//nunca vendido
